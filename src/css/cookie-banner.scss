@@ -1,0 +1,40 @@
+#global-cookie-message, .casa-cookie-banner {
+  background: govuk-colour("light-grey");
+}
+
+.casa-cookie-banner--main,
+.casa-cookie-banner--accept,
+.casa-cookie-banner--reject {
+  margin-bottom: 0;
+}
+
+.casa-hidden {
+  display: none;
+}
+
+.casa-cookie-banner form {
+  display: inline;
+}
+
+.casa-cookie-banner--reject:focus,
+.casa-cookie-banner--accept:focus {
+  outline: none;
+}
+
+.casa-cookie-banner--reject p,
+.casa-cookie-banner--accept p,
+.casa-cookie-banner--hide {
+  display: inline-block;
+}
+
+.casa-cookie-banner--hide {
+  float: none;
+}
+
+@media (min-width: 840px) {
+  .casa-cookie-banner--hide {
+    float: right;
+    margin-right: govuk-spacing(6);
+    width: auto;
+  }
+}

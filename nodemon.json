@@ -1,0 +1,7 @@
+{
+  "ignore": [
+    "coverage/*", "static/*", "test/*", "node_modules/*"
+  ],
+  "ext": "js,njk,json",
+  "delay": "2500"
+}

@@ -1,0 +1,16 @@
+{% extends "layouts/app-error.njk" %}
+
+{% block casaPageTitle %}
+  {{ t('503:pageTitle') }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ t('503:h1') }}</h1>
+        <p class="govuk-body">{{ t('503:p1') }}</p>
+        <p class="govuk-body">{{ t('503:p2') }}</p>
+        <p class="govuk-body">{{ t('503:p3') | safe }}</p>
+    </div>
+</div>
+{% endblock %}

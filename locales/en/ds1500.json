@@ -1,0 +1,233 @@
+{
+  "pageTitle": "DS1500 form",
+  "pageHeader": "Report a terminally ill patient",
+  "patientDetailsHeader": "Patient details",
+  "p": "This page can't be saved. If you leave this page before pressing submit any changes you have made will be lost.",
+  "globalErrorMsgs": {
+    "wordTooLong":"Single words must be fewer than 59 characters"
+  },
+  "patientName": {
+    "ariaLabel": "Enter patient's full name",
+    "label": "Full name",
+    "labelA11y": "Patient's full name",
+    "empty": "Enter your patient's full name",
+    "pattern": "Patient's name can only contain letters, spaces, hyphens, apostrophes and full stops",
+    "endCharInvalid": "The last character of your patient's name must be an alphabetic character",
+    "specialChar": "Patient's name containing hyphens and apostrophes must have alphabetical characters on either side. For example O'Neil",
+    "wordTooLong": "Patient's name must contain words with fewer than 59 characters"
+  },
+  "patientAddress": {
+    "ariaLabel": "Enter patient's address",
+    "label": "Address",
+    "labelA11y": "Patient's address",
+    "empty": "Enter your patient's address",
+    "invalid": "Contains invalid characters"
+  },
+  "patientPostcode": {
+    "ariaLabel": "Enter patient's postcode",
+    "label": "Postcode",
+    "labelA11y": "Patients postcode",
+    "empty": "Enter your patient's postcode",
+    "tooLong": "Your patient's postcode has a maximum length of 8 characters. Please only include alphabetical and numeric characters and avoid spaces and hyphens",
+    "invalid": "Enter a real postcode",
+    "invalidChars": "Contains invalid characters"
+  },
+  "patientDateOfBirth": {
+    "label": "Date of birth",
+    "labelA11y": "Patient's date of birth",
+    "hint": "For example, 31 3 1980",
+    "empty": "Enter your patient's date of birth",
+    "empty[MMYY]":"Your patient's date of birth must include a month and a year",
+    "empty[DDYY]":"Your patient's date of birth must include a day and a year",
+    "empty[DDMM]":"Your patient's date of birth must include a day and month",
+    "invalid": "The day is not possible for the selected month",
+    "future": "Date of birth must be in the past",
+    "rangePast": "Date of birth must be after 1 January 1890",
+    "isNumeric": "Your patient's date of birth should contain only numbers 0-9. Please avoid any hyphens, slashes or spaces.",
+    "range": "Day must be between 1-31, Month must be between 1-12, Year must be between 1890-present",
+    "range[DDMM]": "Day must be between 1-31, Month must be between 1-12",
+    "range[DDYY]": "Day must be between 1-31, Year must be between 1890-present",
+    "range[MMYY]": "Month must be between 1-12, Year must be between 1890-present",
+    "tooLong": "Date of birth must not exceed 8 characters"
+  },
+  "patientDateOfBirth[dd]": {
+    "ariaLabel": "Enter patient's day of birth",
+    "empty": "Enter your patient's day of birth",
+    "range": "Day must be between 1-31"
+  },
+  "patientDateOfBirth[mm]": {
+    "ariaLabel": "Enter patient's month of birth",
+    "empty": "Your patient's date of birth must contain a month",
+    "range": "Month must be between 1-12"
+  },
+  "patientDateOfBirth[yyyy]": {
+    "ariaLabel": "Enter patient's year of birth",
+    "empty": "Your patient's date of birth must contain a year",
+    "range": "Year must be between 1890-present"
+  },
+  "patientNino": {
+    "ariaLabel": "Enter patient's National Insurance number",
+    "label": "National Insurance number",
+    "labelA11y": "Patient's National Insurance number",
+    "hint": "(This form is processed quicker if you have it)",
+    "pattern": "National Insurance number is not a valid format",
+    "invalid": "Enter a National Insurance number that is 2 letters, 6 numbers, then A, B, C or D, like QQ123456C"
+  },
+  "diagnosisHeading": "Diagnosis",
+  "diagnosis": {
+    "ariaLabel": "Enter details of the patient’s main diagnosis",
+    "label": "Include details of the patient’s main diagnosis, and any others that are relevant",
+    "labelA11y": "Details of the patient’s main diagnosis",
+    "empty": "Describe your patient's diagnosis",
+    "tooLong": "Your patient's diagnosis has a maximum length of 126 characters",
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Diagnosis must contain words with fewer than 59 characters"
+  },
+  "dateOfDiagnosis": {
+    "label": "Date of diagnosis",
+    "labelA11y": "Date of diagnosis",
+    "hint": "For example, 3 2020",
+    "empty": "Enter your patient's date of diagnosis",
+    "future": "Patient's date of diagnosis must be in the past",
+    "beforeDob": "Patient's date of diagnosis must be between date of birth and today",
+    "invalid": "Patient's date of diagnosis must be a real date",
+    "isNumeric": "Date of diagnosis should contain only numbers 0-9. Please avoid any hyphens, slashes or spaces",
+    "range": "Month must be between 1-12, Year must be between 1890-present"
+  },
+  "dateOfDiagnosis[dd]": {
+    "ariaLabel": "Enter day of patient's date of diagnosis",
+    "empty": "Enter day of your patient's diagnosis",
+    "range": "Day must be between 1 and 31"
+  },
+  "dateOfDiagnosis[mm]": {
+    "ariaLabel": "Enter month of the patient’s date of diagnosis",
+    "empty": "Enter your patient's month of diagnosis",
+    "range": "Month must be between 1 and 12"
+  },
+  "dateOfDiagnosis[yyyy]": {
+    "ariaLabel": "Enter year of the patient’s date of diagnosis",
+    "empty": "Enter your patient's year of diagnosis",
+    "range": "Year must be between 1890-present"
+  },
+  "otherDiagnoses": {
+    "label": "Other relevant diagnoses? (optional)",
+    "labelA11y": "Other relevant diagnoses? (optional)",
+    "tooLong": "Other relevant diagnoses has a maximum length of 132 characters",
+    "invalid": "Contains invalid characters"
+  },
+  "patientAware": {
+    "label": "Is the patient aware of their prognosis?",
+    "labelA11y": "Is the patient aware of their prognosis?",
+    "empty": "Select if your patient is aware of their condition"
+  },
+  "formRequester": {
+    "label": "Who asked you to complete this form?",
+    "labelA11y": "Who asked you to complete this form?",
+    "empty": "Select who asked you to complete this form",
+    "options": {
+      "patient": "Patient",
+      "representative": "Representative"
+    }
+  },
+  "repDetailsHeading": "Representative details",
+  "representativeName": {
+    "ariaLabel": "Enter representative's name",
+    "label": "Name",
+    "labelA11y": "Representative's name",
+    "invalid": "Contains invalid characters"
+  },
+  "representativeAddress": {
+    "ariaLabel": "Enter representative's address",
+    "label": "Address",
+    "labelA11y": "Representative's address",
+    "invalid": "Contains invalid characters"
+  },
+  "representativePostcode": {
+    "ariaLabel": "Enter representative's postcode",
+    "label": "Postcode",
+    "labelA11y": "Representative's postcode",
+    "invalid": "Enter a real postcode",
+    "invalidChars": "Contains invalid characters",
+    "tooLong": "Representative's postcode has a maximum length of 8 characters. Please only include alphabetical and numeric characters and avoid spaces and hyphens"
+  },
+  "clinicalHeading": "Clinical features",
+  "clinicalFeatures": {
+    "label": "Give details of the clinical features that indicate a severe progressive condition.",
+    "labelA11y": "Details of clinical features",
+    "labelAria": "Enter a description of clinical features",
+    "hint": "For example: the rate of progression, recurrence, staging, tumour markers, CD4 count and viral load, bulbar involvement, respiratory problems, heart failure.",
+    "empty": "Describe the clinical features",
+    "tooLong": "Clinical features has a maximum length of 236 characters",
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Clinical features must contain words with fewer than 59 characters"
+  },
+  "treatmentHeading": "Treatment",
+  "treatment": {
+    "m": "Give details of treatments",
+    "ariaLabel": "Enter dates and patient's response to treatment",
+    "label": "Including the dates and the patient's response to the treatment.",
+    "labelA11y": "Dates and patient's response to the treatment.",
+    "empty": "Describe your patient's treatment",
+    "tooLong": "Treatment details has a maximum length of 160 characters",
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Treatment must contain words with fewer than 59 characters"
+  },
+  "otherIntervention": {
+    "ariaLabel": "Enter any interventions or planned treatments",
+    "label": "If there are any interventions or treatments planned which could significantly change the progression of the patient's condition, give details.",
+    "labelA11y": "If there are any interventions or planned treatments.",
+    "tooLong": "Intervention and planned treatment has a maximum length of 120 characters",
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Other interventions must contain words with fewer than 59 characters"
+  },
+  "yourDetailsHeading": "Your details",
+  "declaration": {
+    "label": "I am the patient's:",
+    "labelA11y": "Your relation to the patient:",
+    "empty": "Select your role",
+    "options": {
+      "gp": "General Practitioner",
+      "gmc": "GMC registered consultant",
+      "other": "Other"
+    }
+  },
+  "gmcNumber": {
+    "label": "Your GMC number",
+    "labelA11y": "Your GMC number",
+    "empty": "Enter your GMC number",
+    "tooLong": "GMC numbers cannot be more than 7 digits long",
+    "tooShort": "GMC number must be 7 digits long",
+    "pattern": "GMC Numbers can only contain digits which cannot all be zeros"
+  },
+  "declarationAdditionalDetail": {
+    "label": "Please specify",
+    "labelA11y": "Please specify",
+    "empty": "Please specify your relationship to the patient",
+    "invalid": "Relationship to patient field contains invalid characters",
+    "wordTooLong": "Please specify field must contain words with fewer than 59 characters"
+  },
+  "gpName": {
+    "label": "Your full name",
+    "labelA11y": "Your full name",
+    "empty": "Enter your full name",
+    "invalid": "Contains invalid characters"
+  },
+  "trustName": {
+    "label": "Your trust",
+    "labelA11y": "Your trust",
+    "invalid": "Contains invalid characters"
+  },
+  "gpAddress": {
+    "label": "Your address",
+    "labelA11y": "Your address",
+    "empty": "Enter your address",
+    "invalid": "Contains invalid characters"
+  },
+  "gpPhone": {
+    "label": "Your phone number",
+    "labelA11y": "Your phone number",
+    "empty": "Enter your phone number",
+    "invalid": "Enter a telephone number, like 01632 960 001, 07700 900 982 or +44 0808 157 0192",
+    "pattern": "Phone number is not a valid format"
+  }
+}

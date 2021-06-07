@@ -1,0 +1,17 @@
+{
+    "pageTitle": "Give feedback",
+    "rating": "Overall, how did you feel about the service you received today?",
+    "very-satisfied": "Very satisfied",
+    "satisfied": "Satisfied",
+    "neither": "Neither satisfied or dissatisfied",
+    "dissatisfied": "Dissatisfied",
+    "very-dissatisfied": "Very dissatisfied",
+    "improvements": "How could we improve this service?",
+    "limit": 1200,
+    "info": "Please don't include any personal or financial information, for example your National Insurance or credit card numbers.",
+    "errors": {
+      "required": "Select a satisfaction rating",
+      "maxLength": "Enter improvement suggestions using 1200 characters or less"
+    },
+    "button": "Send feedback"
+}

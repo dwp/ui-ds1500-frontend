@@ -1,0 +1,36 @@
+{% extends "./app-main.njk" %}
+
+{% block casaPageTitle %}
+  {{ t('500:pageTitle') }}
+{% endblock %}
+
+{% block beforeContent %}
+  {% set phaseBannerContent %}
+    {{t('phase-banner-beta:phase-banner-text-1')}} <a class="govuk-link" href="/feedback" target="_blank" rel="noopener noreferrer">{{t('phase-banner-beta:feedback')}}</a> {{t('phase-banner-beta:phase-banner-text-2')}}
+  {% endset %}
+<aside>
+  {{ govukPhaseBanner({
+  tag: {
+    text: t('phase-banner-beta:tag-text')
+  },
+  html: phaseBannerContent
+}) }}
+<div class="organisation-logo">Department for Work &amp; Pensions</div>
+</aside>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ t('500:h1') }}</h1>
+        <p class="govuk-body-l">{{ t('500:lede') }}</p>
+        <p>{{ t('500:p1') }}</p>
+        <p>{{ t('500:p2') }}</p>
+        <p>
+          <a href="{{t('500:serviceDeskUrl')}}">{{t('500:serviceDeskUrl')}}</a>
+        </p>
+        <p>{{ t('500:p3') }}</p>
+        <p>{{ t('500:p4') }}</p>
+    </div>
+</div>
+{% endblock %}

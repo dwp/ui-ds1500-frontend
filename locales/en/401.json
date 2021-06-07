@@ -1,0 +1,7 @@
+{
+  "pageTitle": "Sorry, there is a problem with the service – DS1500 Report a terminally ill patient – GOV.UK",
+  "h1": "Sorry, there is a problem",
+  "p1": "We were unable to authenticate you from the NHS Spine portal.",
+  "p2": "Please contact your NHS IT Service Desk to ensure that DS1500 is added as a 'Trusted Site' to your web browser. Then try again.",
+  "p3": "If the problem persists, please contact <a class=\"govuk-link\" title=\"Click to email the NHS service desk\" href=\"mailto:${url}\">${url}</a>"
+}

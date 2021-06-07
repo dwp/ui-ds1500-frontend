@@ -1,0 +1,11 @@
+{
+  "pageTitle": "Your session has ended due to inactivity",
+  "p1": "Your session automatically ends if you don't use the service for 30 minutes.",
+  "p2": "We do this for your security. The information that you entered has not been saved.",
+  "p3": "<p>Return to the <a href=\"/ds1500-start\">start page</a>.</p>",
+  "dialog" : {
+    "message" : "We will reset your application if you do not respond in",
+    "keepAliveButton": "Get another 30 minutes",
+    "deleteYourAnswersButton": "Start again"
+  }
+}

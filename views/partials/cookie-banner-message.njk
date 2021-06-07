@@ -1,0 +1,26 @@
+<aside id="global-cookie-message"
+  class="global-cookie-message--consent casa-cookie-banner--main govuk-body"
+  aria-labelledby="a11y-cookie-message-heading"
+  >
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 id="a11y-cookie-message-heading" class="govuk-heading-m">{{ t("cookie-message:canWeUseCookies") }}</h2>
+        <p class="govuk-body govuk-!-margin-bottom-3 govuk-!-margin-left-0">{{ t("cookie-message:useAnalytics") }}</p>
+        <p class="govuk-body govuk-!-margin-bottom-3 govuk-!-margin-left-0">{{ t("cookie-message:readMore", { url: cookieDetailsUrl | escape }) | safe }}</p>
+        <form class="display--inline-block" method="post" action="{{ casa.mountUrl }}{{ cookieConsentSubmit }}/accept">
+          {{ govukButton({
+            classes: "govuk-!-margin-bottom-4 govuk-!-margin-right-4",
+            text: t("cookie-message:yes")
+          }) }}
+        </form>
+        <form class="display--inline-block" method="post" action="{{ casa.mountUrl }}{{ cookieConsentSubmit }}/reject">
+          {{ govukButton({
+            classes: "govuk-!-margin-bottom-4",
+            text: t("cookie-message:no")
+          }) }}
+        </form>
+      </div>
+    </div>
+  </div>
+</aside>

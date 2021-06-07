@@ -1,0 +1,10 @@
+{
+  "pageTitle": "Check your answers",
+  "declaration": {
+    "heading": "Declaration",
+    "p1": "You confirm that:",
+    "confirmation1": "the person named in this report is your patient",
+    "confirmation2": "this is a full report of their condition and treatment",
+    "btn": "I agree - send the report"
+  }
+}

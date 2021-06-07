@@ -1,0 +1,33 @@
+{% from "components/back-link/macro.njk" import govukBackLink %}
+{% from "components/button/macro.njk" import govukButton %}
+{% extends "layouts/app-journey.njk" %}
+
+{% block beforeContent %}
+{{ super() }}
+<nav>
+  {{ govukBackLink({
+    text: "Back",
+    href: casa.journeyPreviousUrl
+  }) }}
+</nav>
+
+{% endblock %}
+
+{% block journey_form %}
+<h2 class="govuk-heading-l">{{ t('ds1500:declarationHeading') }}</h2>
+
+<div class="form-group">
+  <p>{{ t('ds1500:declarationP') }}</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>{{ t('ds1500:declarationli1') }}</li>
+    <li>{{ t('ds1500:declarationli2') }}</li>
+  </ul>
+</div>
+
+{{
+  govukButton({
+    text: t('ds1500:btn'),
+    type: 'submit'
+  })
+}}
+{% endblock %}

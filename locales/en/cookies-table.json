@@ -1,0 +1,11 @@
+{
+  "pageTitle": "Cookies",
+  "h3":"Service cookies",
+  "th1":"Name",
+  "th2":"Purpose",
+  "th3":"Expires",
+  "td1":"seen_cookie_message",
+  "td2":"Records if  the cookies message at the top of the site has been viewed, upon your first visit, so it isn't redisplayed on each subsequent visit.",
+  "td3":"1 month",
+  "cookiesPage": "Go back to cookies page"
+}

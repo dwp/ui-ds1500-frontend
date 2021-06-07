@@ -1,0 +1,103 @@
+{% extends "layouts/app-main.njk" %}
+{% from "macros/site.njk" import fmtTitle with context %}
+
+{% block casaPageTitle %}
+  {{ fmtTitle('accessibility-statement:pageTitle') }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+        <header>
+            <h1 class="govuk-heading-l">
+                {{ t('accessibility-statement:pageTitle') }}
+            </h1>
+        </header>
+
+        <p>
+            {{ t('accessibility-statement:p1') | safe }}
+        </p>
+
+        <h2 class="govuk-heading-m">
+            {{ t('accessibility-statement:usingThisService.h2') }}
+        </h2>
+        <div class="form-group">
+            <p>{{ t('accessibility-statement:usingThisService.p1') }}</p>
+            <ul class="govuk-list govuk-list--bullet form-group">
+                <li>{{ t('accessibility-statement:usingThisService.li1') }}</li>
+                <li>{{ t('accessibility-statement:usingThisService.li2') }}</li>
+                <li>{{ t('accessibility-statement:usingThisService.li3') }}</li>
+                <li>{{ t('accessibility-statement:usingThisService.li4') }}</li>
+                <li>{{ t('accessibility-statement:usingThisService.li5') }}</li>
+            </ul>
+            <p>{{ t('accessibility-statement:usingThisService.p2') }}</p>
+            <p>{{ t('accessibility-statement:usingThisService.p3') | safe }}</p>
+        </div>
+
+        <h2 class="govuk-heading-m">
+            {{ t('accessibility-statement:howAccessibleThisServiceIs.h2') }}
+        </h2>
+
+        <div class="form-group">
+            <p>{{ t('accessibility-statement:howAccessibleThisServiceIs.p1') }}</p>
+        </div>
+
+        <h2 class="govuk-heading-m">
+            {{ t('accessibility-statement:difficultyUsingService.h2') }}
+        </h2>
+        <p>
+            {{ t('accessibility-statement:difficultyUsingService.p1') | safe }}
+        </p>
+        <p>
+            {{ t('accessibility-statement:difficultyUsingService.p2') }}
+        </p>
+        <p>
+            {{ t('accessibility-statement:difficultyUsingService.p3') }}
+        </p>
+
+        <h2 class="govuk-heading-m">
+            {{ t('accessibility-statement:reportingAccessibilityProblems.h2') }}
+        </h2>
+        <p>
+            {{ t('accessibility-statement:reportingAccessibilityProblems.p1') | safe }}
+        </p>
+
+        <h2 class="govuk-heading-m">
+            {{ t('accessibility-statement:enforcementProcedure.h2') }}
+        </h2>
+        <p>
+            {{ t('accessibility-statement:enforcementProcedure.p1') | safe }}
+        </p>
+
+        <h2 class="govuk-heading-m">
+            {{ t('accessibility-statement:technicalInformationAboutServiceAccessibility.h2') }}
+        </h2>
+        <p>
+            {{ t('accessibility-statement:technicalInformationAboutServiceAccessibility.p1') }}
+        </p>
+        <p>
+            {{ t('accessibility-statement:technicalInformationAboutServiceAccessibility.p2') }}
+        </p>
+
+        <h2 class="govuk-heading-m">
+            {{ t('accessibility-statement:howWeTested.h2') }}
+        </h2>
+        <p>
+            {{ t('accessibility-statement:howWeTested.p1') }}
+        </p>
+        <p>
+            {{ t('accessibility-statement:howWeTested.p2') }}
+        </p>
+
+        <h2 class="govuk-heading-m">
+            {{ t('accessibility-statement:preparation.h2') }}
+        </h2>
+        <p>
+            {{ t('accessibility-statement:preparation.p1') }}
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}

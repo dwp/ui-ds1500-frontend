@@ -1,0 +1,40 @@
+{% extends "layouts/app-main.njk" %}
+{% from "macros/site.njk" import fmtTitle with context %}
+
+{% block casaPageTitle %}
+  {{ fmtTitle('cookies-table:pageTitle') }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-gridcolumn-two-thirds">
+
+    <header>
+      <h1 class="govuk-heading-l">{{ t('cookies-table:pageTitle') }}</h1>
+    </header>
+
+    <h3 class="govuk-heading-m">{{ t('cookies-table:h3') }}</h3>
+
+    <table class="cookiesTable">
+        <thead class="govuk-list govuk-list--bullet">
+            <tr>
+                <th style="width:20%">{{ t('cookies-table:th1') }}</th>
+                <th style="width:60%">{{ t('cookies-table:th2') }}</th>
+                <th style="width:20%">{{ t('cookies-table:th3') }}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>{{ t('cookies-table:td1') }}</td>
+                <td>{{ t('cookies-table:td2') }}</td>
+                <td>{{ t('cookies-table:td3') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/cookies">{{ t('cookies-table:cookiesPage') }}</a>
+
+  </div>
+</div>
+{% endblock %}

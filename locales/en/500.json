@@ -1,0 +1,10 @@
+{
+  "pageTitle": "500 - Error",
+  "h1": "Something's gone wrong",
+  "lede": "Sorry - you can't complete a DS1500 online at this time",
+  "p1": "Please try again later.",
+  "p2": "If you continue to have problems please contact the NHS Service Desk at:",
+  "serviceDeskUrl": "https://nww.nhscfhservicedesk.nhs.uk",
+  "p3": "If you do not already have an account to log incidents with the NHS Service Desk please ring the NHS National Desk on 0300 303 5035",
+  "p4": "If you still need to complete a DS1500 for your patient please use the clerical process"
+}

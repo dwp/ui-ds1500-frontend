@@ -1,0 +1,153 @@
+{% macro dateObject(data, name, label, options, errors) %}
+  <div class="form-group{{ ' parsley-error' if errors[name] or errors[name+'Day'] or errors[name+'Month'] or errors[name+'Year'] }}"{{ ' id='+options.groupId if options.groupId }}>
+    {% if errors[name] %}<a id="error-{{ name }}"></a>{% endif %}
+    {% if errors[name+'Day'] %}<a id="error-{{ name }}Day"></a>{% endif %}
+    {% if errors[name+'Month'] %}<a id="error-{{ name }}Month"></a>{% endif %}
+    {% if errors[name+'Year'] %}<a id="error-{{ name }}Year"></a>{% endif %}
+    <fieldset>
+      <legend>
+        <span class="form-label{{ '-bold' if not options.unbolden }}">{{ label }}</span>
+        <span class="form-hint">{% if options.hint %}
+          {{ options.hint }}{% elseif options.hintHtml %}
+          {{ options.hintHtml | safe }}{% else %}
+          DD MM YYYY{% endif %}</span>
+      </legend>
+      <div class="form-date">
+        {% if options.inputPrefixHtml %}
+          {{ options.inputPrefixHtml | safe }}
+        {% endif %}
+        {% for error in errors[name] %}
+          {% set dv = {fn:name, va:error.validator} %}
+          <span class="error-message" data-validation="{{ dv | dump }}">{{ t(error.inline) }}</span>
+        {% endfor %}
+        {% for error in errors[name+'Day'] %}
+          {% set dv = {fn:name+'Day', va:error.validator} %}
+          <span class="error-message" data-validation="{{ dv | dump }}">{{ t(error.inline) }}</span>
+        {% endfor %}
+        {% for error in errors[name+'Month'] %}
+          {% set dv = {fn:name+'Month', va:error.validator} %}
+          <span class="error-message" data-validation="{{ dv | dump }}">{{ t(error.inline) }}</span>
+        {% endfor %}
+        {% for error in errors[name+'Year'] %}
+          {% set dv = {fn:name+'Year', va:error.validator} %}
+          <span class="error-message" data-validation="{{ dv | dump }}">{{ t(error.inline) }}</span>
+        {% endfor %}
+        <div id="ds1500-date-error" style="display:none"></div>
+        <div class="form-group form-group-day">
+          <label class="form-label" for="f-{{ name }}Day">{{ t('macros:dateObject.day') }}</label>
+          <input class="form-control{{ ' form-control-error' if errors[name+'Day'] or errors[name] }}" type="text" name="{{ name }}Day" value="{{ data[name+'Day'] }}" id="f-{{ name }}Day" pattern="[0-9]*" maxlength="2"
+                  data-parsley-required="true"
+                  data-parsley-required-message="{{ t('ds1500:'+name+'Day.empty') }}"
+                  data-parsley-range="[1,31]"
+                  data-parsley-range-message="{{ t('ds1500:'+name+'Day.range') }}"
+                  data-parsley-type="number"
+                  data-parsley-type-message="{{ t('ds1500:'+name+'Day.range') }}"
+                  data-parsley-invalid-message="{{ t('ds1500:'+name+'.invalid') }}"
+                  data-parsley-future-message="{{ t('ds1500:'+name+'.future') }}"
+                  data-parsley-errors-container="#{{ name }}-error"
+                  data-parsley-class-handler="#ds1500-date-error"
+                  data-parsley-trigger="focusout">
+        </div>
+        <div class="form-group form-group-month{% if options.allowMonthNames %} allow-month-names{% endif %}">
+          <label class="form-label" for="f-{{ name }}Month">{{ t('macros:dateObject.month') }}</label>
+          <input class="form-control{{ ' form-control-error' if errors[name+'Month'] or errors[name] }}" type="text" name="{{ name }}Month" value="{{ data[name+'Month'] }}" id="f-{{ name }}Month" {% if options.allowMonthNames %}maxlength="20"{% else %}pattern="[0-9]*" maxlength="2"{% endif %}
+                  data-parsley-required="true"
+                  data-parsley-required-message="{{ t('ds1500:'+name+'Month.empty') }}"
+                  data-parsley-range="[1,12]"
+                  data-parsley-range-message="{{ t('ds1500:'+name+'Month.range') }}"
+                  data-parsley-type="number"
+                  data-parsley-type-message="{{ t('ds1500:'+name+'Month.range') }}"
+                  data-parsley-errors-container="#{{ name }}-error"
+                  data-parsley-class-handler="#ds1500-date-error"
+                  data-parsley-trigger="focusout">
+        </div>
+        <div class="form-group form-group-year">
+          <label class="form-label" for="f-{{ name }}Year">{{ t('macros:dateObject.year') }}</label>
+            <input class="form-control{{ ' form-control-error' if errors[name+'Year'] or errors[name] }}" type="text" name="{{ name }}Year" value="{{ data[name+'Year'] }}" id="f-{{ name }}Year" pattern="[0-9]*" maxlength="4"
+                  data-parsley-required="true"
+                  data-parsley-required-message="{{ t('ds1500:'+name+'Year.empty') }}"
+                  data-parsley-range="[1890,2115]"
+                  data-parsley-range-message="{{ t('ds1500:'+name+'Year.range') }}"
+                  data-parsley-type="number"
+                  data-parsley-type-message="{{ t('ds1500:'+name+'Year.range') }}"
+                  data-parsley-errors-container="#{{ name }}-error"
+                  data-parsley-class-handler="#ds1500-date-error"
+                  data-parsley-trigger="focusout">
+        </div>
+      </div>
+    </fieldset>
+  </div>
+{% endmacro %}
+
+{#
+ # works with custom ds1500 date object that has no day field
+ #}
+{% macro dateObjectNoDay(data, name, label, options, errors) %}
+  <div class="form-group{{ ' parsley-error' if errors[name+'BeforeDob'] or errors[name] or errors[name+'Month'] or errors[name+'Year'] }}"{{ ' id='+options.groupId if options.groupId }}>
+    {% if errors[name] %}<a id="error-{{ name }}"></a>{% endif %}
+    {% if errors[name]+'BeforeDob' %}<a id="error-{{ name }}BeforeDob"></a>{% endif %}
+    {% if errors[name+'Month'] %}<a id="error-{{ name }}Month"></a>{% endif %}
+    {% if errors[name+'Year'] %}<a id="error-{{ name }}Year"></a>{% endif %}
+    <fieldset>
+      <legend>
+        <span class="form-label{{ '-bold' if not options.unbolden }}">{{ label }}</span>
+        <span class="form-hint">{% if options.hint %}
+          {{ options.hint }}{% elseif options.hintHtml %}
+          {{ options.hintHtml | safe }}{% else %}
+          DD MM YYYY{% endif %}</span>
+      </legend>
+      <div class="form-date">
+        {% if options.inputPrefixHtml %}
+          {{ options.inputPrefixHtml | safe }}
+        {% endif %}
+        {% for error in errors[name+'BeforeDob'] %}
+          {% set dv = {fn:name, va:error.validator} %}
+          <span data-id="custom-msg" class="error-message" data-validation="{{ dv | dump }}">{{ t(error.inline) }}</span>
+        {% endfor %}
+        {% for error in errors[name] %}
+          {% set dv = {fn:name, va:error.validator} %}
+          <span class="error-message" data-validation="{{ dv | dump }}">{{ t(error.inline) }}</span>
+        {% endfor %}
+        {% for error in errors[name+'Month'] %}
+          {% set dv = {fn:name+'Month', va:error.validator} %}
+          <span class="error-message" data-validation="{{ dv | dump }}">{{ t(error.inline) }}</span>
+        {% endfor %}
+        {% for error in errors[name+'Year'] %}
+          {% set dv = {fn:name+'Year', va:error.validator} %}
+          <span class="error-message" data-validation="{{ dv | dump }}">{{ t(error.inline) }}</span>
+        {% endfor %}
+        <div id="ds1500-error" style="display:none"></div>
+        <div class="form-group form-group-month{% if options.allowMonthNames %} allow-month-names{% endif %}">
+          <label class="form-label" for="f-{{ name }}Month">{{ t('macros:dateObject.month') }}</label>
+          <input class="form-control{{ ' form-control-error' if errors[name+'Month'] or errors[name] }}" type="text" name="{{ name }}Month" value="{{ data[name+'Month'] }}" id="f-{{ name }}Month" {% if options.allowMonthNames %}maxlength="20"{% else %}pattern="[0-9]*" maxlength="2"{% endif %}
+                  data-parsley-required="true"
+                  data-parsley-required-message="{{ t('ds1500:'+name+'Month.empty') }}"
+                  data-parsley-range="[1,12]"
+                  data-parsley-range-message="{{ t('ds1500:'+name+'Month.range') }}"
+                  data-parsley-type="number"
+                  data-parsley-type-message="{{ t('ds1500:'+name+'Month.range') }}"
+                  data-parsley-before-dob-message="{{ t('ds1500:'+name+'.beforeDob') }}"
+                  data-parsley-future-message="{{ t('ds1500:'+name+'.future') }}"
+                  data-parsley-errors-container="#{{ name }}-error"
+                  data-parsley-class-handler="#ds1500-error"
+                  data-parsley-trigger="focusout">
+        </div>
+        <div class="form-group form-group-year">
+          <label class="form-label" for="f-{{ name }}Year">{{ t('macros:dateObject.year') }}</label>
+            <input class="form-control{{ ' form-control-error' if errors[name+'Year'] or errors[name] }}" type="text" name="{{ name }}Year" value="{{ data[name+'Year'] }}" id="f-{{ name }}Year" pattern="[0-9]*" maxlength="4"
+                  data-parsley-required="true"
+                  data-parsley-required-message="{{ t('ds1500:'+name+'Year.empty') }}"
+                  data-parsley-range="[1890,2115]"
+                  data-parsley-range-message="{{ t('ds1500:'+name+'Year.range') }}"
+                  data-parsley-type="number"
+                  data-parsley-type-message="{{ t('ds1500:'+name+'Year.range') }}"
+                  data-parsley-errors-container="#{{ name }}-error"
+                  data-parsley-class-handler="#ds1500-error"
+                  data-parsley-trigger="focusout">
+        </div>
+      </div>
+    </fieldset>
+  </div>
+{% endmacro %}
+
+

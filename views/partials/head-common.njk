@@ -1,0 +1,11 @@
+{% from 'macros/site.njk' import gtmTags %}
+{% include "casa/partials/styles.njk" %}
+{% include "partials/styles.njk" %}
+
+<link href="{{ casa.mountUrl }}css/application.css" rel="stylesheet"/>
+{% if cookieChoiceMade and cookiesConsented === 'accept' %}
+  {{ gtmTags('N7JGL8W', nonce=nonce) }}
+
+{% endif %}
+
+{% include "partials/timeout-dialog/timeout-dialog.njk" %}

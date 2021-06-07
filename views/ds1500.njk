@@ -1,0 +1,652 @@
+{% extends "layouts/app-journey.njk" %}
+{% from "components/back-link/macro.njk" import govukBackLink %}
+{% from "components/button/macro.njk" import govukButton %}
+{% from "casa/components/input/macro.njk" import casaGovukInput with context %}
+{% from "casa/components/textarea/macro.njk" import casaGovukTextarea with context %}
+{% from "casa/components/date-input/macro.njk" import casaGovukDateInput with context %}
+{% from "casa/components/radios/macro.njk" import casaGovukRadios with context %}
+{% from "casa/components/character-count/macro.njk" import casaGovukCharacterCount with context %}
+
+{% from "macros/components.njk" import govukDateInputApprox with context %}
+{% from "macros/site.njk" import fmtTitle with context %}
+
+{% block casaPageTitle %}
+  {{ fmtTitle('ds1500:pageTitle') }}
+{% endblock %}
+
+{% macro dateInput(name, formData, formErrors, parts=['day', 'month', 'year']) %}
+{{ casaGovukDateInput({
+      id: name,
+      namePrefix: name,
+      casaValue: formData[name],
+      hint: {
+        text: t('ds1500:' + name + '.hint')
+      },
+      fieldset: {
+        legend: {
+          text: t('ds1500:' + name + '.label'),
+          classes: "govuk-label--m"
+        }
+      },
+      items: [
+        {
+          name: 'day',
+          attributes: {
+            'aria-label': t('ds1500:' + name + '[dd].ariaLabel'),
+            'data-parsley-required': true,
+            'data-parsley-required-message': t('ds1500:' + name + '[dd].empty'),
+            'data-parsley-range': "[1,31]",
+            'data-parsley-range-message': t('ds1500:' + name + '[dd].range'),
+            'data-parsley-type': "number",
+            'data-parsley-type-message': t('ds1500:' + name + '[dd].range'),
+            'data-parsley-invalid-message':t('ds1500:' + name + '.invalid'),
+            'data-parsley-future-message':t('ds1500:' + name + '.future'),
+            'data-parsley-errors-container': '#' + name + '-error',
+            'data-parsley-trigger': "focusout"
+          }
+        },
+        {
+          name: 'month',
+          attributes: {
+            'aria-label': t('ds1500:' + name + '[mm].ariaLabel'),
+            'data-parsley-required': true,
+            'data-parsley-required-message': t('ds1500:' + name + '[mm].empty'),
+            'data-parsley-range': "[1,12]",
+            'data-parsley-range-message': t('ds1500:' + name + '[mm].range'),
+            'data-parsley-type': "number",
+            'data-parsley-type-message': t('ds1500:' + name + '[mm].range'),
+            'data-parsley-errors-container': '#' + name + '-error',
+            'data-parsley-trigger': "focusout"
+          }
+        },
+        {
+          name: 'year',
+          attributes: {
+            'aria-label': t('ds1500:' + name + '[yyyy].ariaLabel'),
+            'data-parsley-required': true,
+            'data-parsley-required-message': t('ds1500:' + name + '[yyyy].empty'),
+            'data-parsley-range': "[1890,2115]",
+            'data-parsley-range-message': t('ds1500:' + name + '[yyyy].range'),
+            'data-parsley-type': "number",
+            'data-parsley-type-message': t('ds1500:' + name + '[yyyy].range'),
+            'data-parsley-errors-container': '#' + name + '-error',
+            'data-parsley-trigger': "focusout"
+          }
+        }
+      ],
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+{% endmacro %}
+
+
+{% block beforeContent %}
+{{ super() }}
+<nav>
+  {{ govukBackLink({
+    text: "Back",
+    href: casa.mountUrl
+  }) }}
+</nav>
+{% endblock %}
+
+{% block journey_form %}
+  {# Wrap your form in a CASA <form>, complete with submit/cancel buttons #}
+    <header>
+      <h1 class="govuk-heading-xl">
+        {{t('ds1500:pageHeader')}}
+      </h1>
+      <p>{{t('ds1500:p')}}</p>
+    </header>
+    <h2 class="govuk-heading-l">{{t('ds1500:patientDetailsHeader')}}</h2>
+    {# A simple input to gather the name #}
+    {# <div id="patientName-error" class="validation-message"></div> #}
+    {{ casaGovukInput({
+      name: 'patientName',
+      value: formData.patientName,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:patientName.label')
+      },
+      pattern: "^([A-Za-z](([A-Za-z]|'|\.|-|\s)?[A-Za-z])*)?",
+      casaErrors: formErrors,
+      attributes: {
+        'aria-label': t('ds1500:patientName.ariaLabel'),
+        'data-parsley-required': "true",
+        'data-parsley-required-message': t('ds1500:patientName.empty'),
+        'data-parsley-pattern': "^([A-Za-z](([A-Za-z]|'|\.|-|\s)?[A-Za-z])*)?",
+        'data-parsley-pattern-message': t('ds1500:patientName.pattern'),
+        'data-parsley-class-handler': "#patientName-group",
+        'data-parsley-errors-container': "#patientName-error",
+        'data-parsley-trigger': "focusout"
+      }
+    }) }}
+
+    {{ casaGovukTextarea({
+      name: 'patientAddress',
+      value: formData.patientAddress,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:patientAddress.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:patientAddress.ariaLabel'),
+        'data-parsley-required':"true",
+        'data-parsley-required-message': t('ds1500:patientAddress.empty'),
+        'data-parsley-invalidcharacters':"patientAddress",
+        'data-parsley-invalidcharacters-message': t('ds1500:patientAddress.invalid'),
+        'data-parsley-class-handler':"#patientAddress-group",
+        'data-parsley-errors-container':"#patientAddress-error",
+        'data-parsley-trigger':"focusout keyup"
+      },
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukInput({
+      name: 'patientPostcode',
+      value: formData.patientPostcode,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:patientPostcode.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:patientPostcode.ariaLabel'),
+        'data-parsley-required':"true",
+        'data-parsley-required-message': t('ds1500:patientPostcode.empty'),
+        'data-parsley-maxlength':"8",
+        'data-parsley-maxlength-message': t('ds1500:patientPostcode.tooLong'),
+        'data-parsley-pattern':"/^(?![QVX])[A-Z]((?![IJZ])[A-Z][0-9](([0-9]?)|([ABEHMNPRVWXY]?))|([0-9]([0-9]?|[ABCDEFGHJKPSTUW]?))) ?[0-9]((?![CIKMOV])[A-Z]){2}$|^(BFPO)[ ]?[0-9]{1,4}$/i",
+        'data-parsley-pattern-message': t('ds1500:patientPostcode.invalid'),
+        'data-parsley-invalidcharacters':"patientPostcode",
+        'data-parsley-invalidcharacters-message': t('ds1500:patientPostcode.invalidChars'),
+        'data-parsley-class-handler':"#patientPostcode-group",
+        'data-parsley-errors-container':"#patientPostcode-error",
+        'data-parsley-trigger':"focusout"
+      },
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+    {{ dateInput('patientDateOfBirth', formData, formErrors) }}
+
+    {{ casaGovukInput({
+      name: 'patientNino',
+      value: formData.patientNino,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:patientNino.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:patientNino.ariaLabel'),
+        'data-parsley-pattern':"/^(?!BG|GB|NK|KN|TN|NT|ZZ)[A-CEGHJ-PR-TW-Za-ceghj-pr-tw-z]{1}[A-CEGHJ-NPR-TW-Za-ceghj-npr-tw-z]{1}[0-9]{6}[A-Da-d]{1}$/",
+        'data-parsley-pattern-message': t('ds1500:patientNino.pattern'),
+        'data-parsley-class-handler':"#patientNino-group",
+        'data-parsley-errors-container':"#patientNino-error",
+        'data-parsley-trigger':"focusout"
+      },
+      classes: "govuk-!-width-two-thirds",
+      hint: {
+        text: t('ds1500:patientNino.hint')
+      },
+      casaErrors: formErrors
+    }) }}
+
+  <h2 class="govuk-heading-l">{{ t('ds1500:diagnosisHeading') }}</h2>
+
+  <div class="form-group">
+
+    {{ casaGovukCharacterCount({
+      name: 'diagnosis',
+      value: formData.diagnosis,
+      maxlength: 126,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:diagnosis.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:diagnosis.ariaLabel')
+      },
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+    {# {{ dateInput('dateOfDiagnosis', formData, formErrors) }} #}
+    {{ govukDateInputApprox({
+      id: 'dateOfDiagnosis',
+      name: 'dateOfDiagnosis',
+      namePrefix: 'dateOfDiagnosis',
+      hint: {
+        text: t('ds1500:dateOfDiagnosis.hint')
+      },
+      fieldset: {
+        legend: {
+          text: t('ds1500:dateOfDiagnosis.label'),
+          classes: "govuk-label--m"
+        }
+      },
+      casaValue: formData.dateOfDiagnosis,
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukCharacterCount({
+      name: 'otherDiagnoses',
+      maxlength: 132,
+      value: formData.otherDiagnoses,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:otherDiagnoses.label')
+      },
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukRadios({
+      name: 'patientAware',
+      casaValue: formData.patientAware,
+      fieldset: {
+        legend: {
+          classes: "govuk-label--m",
+          text: t('ds1500:patientAware.label')
+        }
+      },
+      items: [
+        {text: 'Yes', value: t('common:yes')},
+        {text: 'No', value: t('common:no')}
+      ],
+      attributes: {
+        'data-parsley-multiple':"patientAware",
+        'data-parsley-required':"true",
+        'data-parsley-required-message': t('ds1500:patientAware.empty'),
+        'data-parsley-class-handler':"#patientAware-group",
+        'data-parsley-errors-container':"#patientAware-error",
+        'data-parsley-trigger':"focusout"
+      },
+      classes: "govuk-!-width-two-thirds govuk-radios--inline",
+      casaErrors: formErrors
+    }) }}
+
+    {# representativeFields #}
+    {% set representativeFields %}
+    <h3 class="govuk-heading-m" >{{ t('ds1500:repDetailsHeading') }}</h3>
+    {{ casaGovukInput({
+      name: 'representativeName',
+      value: formData.representativeName,
+      label: {
+        classes: "govuk-label--s",
+        text: t('ds1500:representativeName.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:representativeName.ariaLabel'),
+        'data-parsley-invalidcharacters':"representativeName",
+        'data-parsley-invalidcharacters-message': t('ds1500:representativeName.invalid'),
+        'data-parsley-class-handler':"#representativeName-group",
+        'data-parsley-errors-container':"#representativeName-error",
+        'data-parsley-trigger':"focusout"
+      },
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukTextarea({
+      name: 'representativeAddress',
+      value: formData.representativeAddress,
+      label: {
+        classes: "govuk-label--s",
+        text: t('ds1500:representativeAddress.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:representativeAddress.ariaLabel'),
+        'data-parsley-invalidcharacters':"representativeAddress",
+        'data-parsley-invalidcharacters-message': t('ds1500:representativeAddress.invalid'),
+        'data-parsley-class-handler':"#representativeAddress-group",
+        'data-parsley-errors-container':"#representativeAddress-error",
+        'data-parsley-trigger':"focusout"
+      },
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukInput({
+      name: 'representativePostcode',
+      value: formData.representativePostcode,
+      label: {
+        classes: "govuk-label--s",
+        text: t('ds1500:representativePostcode.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:representativePostcode.ariaLabel'),
+        'data-parsley-maxlength':"8",
+        'data-parsley-maxlength-message':t('ds1500:representativePostcode.tooLong'),
+        'data-parsley-pattern':"/^(?![QVX])[A-Z]((?![IJZ])[A-Z][0-9](([0-9]?)|([ABEHMNPRVWXY]?))|([0-9]([0-9]?|[ABCDEFGHJKPSTUW]?))) ?[0-9]((?![CIKMOV])[A-Z]){2}$|^(BFPO)[ ]?[0-9]{1,4}$/i",
+        'data-parsley-pattern-message': t('ds1500:representativePostcode.invalid'),
+        'data-parsley-invalidcharacters':"representativePostcode",
+        'data-parsley-invalidcharacters-message': t('ds1500:representativePostcode.invalidChars'),
+        'data-parsley-class-handler':"#representativePostcode-group",
+        'data-parsley-errors-container':"#representativePostcode-error",
+        'data-parsley-trigger':"focusout"
+      },
+      casaErrors: formErrors
+    }) }}
+    {% endset %}
+
+    {{ casaGovukRadios({
+      name: 'formRequester',
+      casaValue: formData.formRequester,
+      attributes: {
+        'data-parsley-multiple':"formRequester",
+        'data-parsley-required':"true",
+        'data-parsley-required-message': t('ds1500:formRequester.empty'),
+        'data-parsley-class-handler':"#formRequester-group",
+        'data-parsley-errors-container':"#formRequester-error",
+        'data-parsley-trigger':"focusout"
+      },
+      fieldset: {
+        legend: {
+          classes: "govuk-label--m",
+          text: t('ds1500:formRequester.label')
+        }
+      },
+      items: [
+        {
+          text: 'Patient',
+          value: t('ds1500:formRequester.options.patient')
+        },
+        {
+          text: 'Representative',
+          value: t('ds1500:formRequester.options.representative'),
+          conditional: {
+            html: representativeFields
+          }
+          }
+      ],
+      classes: "govuk-!-width-two-thirds govuk-radios--inline",
+      casaErrors: formErrors
+    }) }}
+  </div>
+
+  <h2 class="govuk-heading-l">{{ t('ds1500:clinicalHeading') }}</h2>
+
+  <div class="form-group">
+    {{ casaGovukCharacterCount({
+      name: 'clinicalFeatures',
+      maxlength: 236,
+      value: formData.clinicalFeatures,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:clinicalFeatures.label')
+      },
+      hint: {
+        text: t('ds1500:clinicalFeatures.hint'),
+        attributes: {
+          'aria-hidden': true
+        }
+      },
+      attributes: {
+        'data-parsley-required':"true",
+        'data-parsley-required-message':t('ds1500:clinicalFeatures.empty'),
+        'data-parsley-maxlength':"236",
+        'data-parsley-maxlength-message':t('ds1500:clinicalFeatures.tooLong'),
+        'data-parsley-invalidcharacters':"clinicalFeatures",
+        'data-parsley-invalidcharacters-message':t('ds1500:clinicalFeatures.invalid'),
+        'data-parsley-class-handler':"#clinicalFeatures-group",
+        'data-parsley-errors-container':"#clinicalFeatures-error",
+        'data-parsley-trigger':"focusout keyup",
+        'aria-label': t('ds1500:clinicalFeatures.labelAria')
+      },
+      casaErrors: formErrors
+    }) }}
+  </div>
+
+  <h2 class="govuk-heading-l">{{ t('ds1500:treatmentHeading') }}</h2>
+
+  <h3 class="govuk-heading-m">{{ t('ds1500:treatment.m') }}</h3>
+
+  <div class="form-group">
+    {{ casaGovukCharacterCount({
+      name: 'treatment',
+      maxlength: 160,
+      value: formData.treatment,
+      label: {
+        text: t('ds1500:treatment.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:treatment.ariaLabel'),
+        'data-parsley-required':"true",
+        'data-parsley-required-message':t('ds1500:treatment.empty'),
+        'data-parsley-maxlength':"160",
+        'data-parsley-maxlength-message':t('ds1500:treatment.tooLong'),
+        'data-parsley-invalidcharacters':"treatment",
+        'data-parsley-invalidcharacters-message':t('ds1500:treatment.invalid'),
+        'data-parsley-class-handler':"#treatment-group",
+        'data-parsley-errors-container':"#treatment-error",
+        'data-parsley-trigger':"focusout keyup"
+      },
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukCharacterCount({
+      name: 'otherIntervention',
+      maxlength: 120,
+      value: formData.otherIntervention,
+      label: {
+        text: t('ds1500:otherIntervention.label')
+      },
+      attributes: {
+        'aria-label': t('ds1500:otherIntervention.ariaLabel'),
+        'data-parsley-maxlength':"120",
+        'data-parsley-maxlength-message':t('ds1500:otherIntervention.tooLong'),
+        'data-parsley-invalidcharacters':"otherIntervention",
+        'data-parsley-invalidcharacters-message': t('ds1500:otherIntervention.invalid'),
+        'data-parsley-class-handler':"#otherIntervention-group",
+        'data-parsley-errors-container':"#otherIntervention-error",
+        'data-parsley-trigger':"focusout keyup"
+      },
+      casaErrors: formErrors
+    }) }}
+  </div>
+
+  <h2 class="govuk-heading-l">{{ t('ds1500:yourDetailsHeading') }}</h2>
+
+
+
+  <div class="form-group">
+    {{ casaGovukRadios({
+      name: 'declaration',
+      casaValue: formData.declaration,
+      attributes: {
+        'data-parsley-multiple':"declaration",
+        'data-parsley-required':"true",
+        'data-parsley-required-message': t('ds1500:declaration.empty'),
+        'data-parsley-class-handler':"#declaration-group",
+        'data-parsley-errors-container':"#declaration-error",
+        'data-parsley-trigger':"focusout"
+      },
+      fieldset: {
+        legend: {
+          classes: "govuk-label--m",
+          text: t('ds1500:declaration.label')
+        }
+      },
+      items: [
+        {
+          text: 'General Practitioner',
+          value: t('ds1500:declaration.options.gp')
+        },
+        {
+          text: 'GMC registered consultant',
+          value: t('ds1500:declaration.options.gmc')
+        },
+        {
+          text: 'Other',
+          value: t('ds1500:declaration.options.other')
+        }
+      ],
+      classes: "govuk-!-width-two-thirds govuk-radios--inline",
+      casaErrors: formErrors
+    }) }}
+
+
+    {# gmcNumber attrs #}
+    {% set gmcVals = ['General Practitioner', 'GMC registered consultant'] %}
+    {% if formData.declaration | isIn(gmcVals) %}
+    {% set gmcNumberClasses = '' %}
+    {% set gmcNumberInputTabIndex = '0' %}
+    {% set additionalDetailClasses = 'govuk-visually-hidden' %}
+    {% set additionalDetailInputTabIndex = '-1' %}
+    {% else %}
+    {% set gmcNumberClasses = 'govuk-visually-hidden' %}
+    {% set gmcNumberInputTabIndex = '-1' %}
+    {% set additionalDetailClasses = '' %}
+    {% set additionalDetailInputTabIndex = '0' %}
+    {% endif %}
+
+    {{ casaGovukInput({
+      name: 'gmcNumber',
+      value: formData.gmcNumber,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:gmcNumber.label')
+      },
+      attributes: {
+        'data-parsley-requireifmedicalrelationvisible':"declaration",
+        'data-parsley-requireifmedicalrelationvisible-message':t('ds1500:gmcNumber.empty'),
+        'data-parsley-validate-if-empty':"true",
+        'data-parsley-validate-if-empty-message':"",
+        'data-parsley-maxlength':"7",
+        'data-parsley-gmcpattern':"7",
+        'data-parsley-gmcpattern-message':t('ds1500:gmcNumber.tooShort'),
+        'data-parsley-maxlength-message':t('ds1500:gmcNumber.tooLong'),
+        'data-parsley-pattern':"^(?!0000000)[0-9]*$",
+        'data-parsley-pattern-message': t('ds1500:gmcNumber.pattern'),
+        'data-parsley-class-handler':"#gmcNumber-group",
+        'data-parsley-errors-container':"#gmcNumber-error",
+        'data-parsley-trigger':"focusout",
+        'tabindex': gmcNumberInputTabIndex
+      },
+      formGroup: {
+        classes:gmcNumberClasses
+      },
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+    {# decalartionAdditionalDetails attr #}
+    {#
+
+        #}
+    {{ casaGovukInput({
+      name: 'declarationAdditionalDetail',
+      value: formData.declarationAdditionalDetail,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:declarationAdditionalDetail.label')
+      },
+      formGroup: {
+        classes: additionalDetailClasses
+      },
+      attributes: {
+        'data-parsley-class-handler':"#declarationAdditionalDetail-group",
+        'data-parsley-errors-container':"#declarationAdditionalDetail-error",
+        'data-parsley-requireifotherrelationvisible':"declaration",
+        'data-parsley-requireifotherrelationvisible-message':t('ds1500:declarationAdditionalDetail.empty'),
+        'data-parsley-validate-if-empty':"true",
+        'data-parsley-trigger':"focusout",
+        'data-parsley-invalidcharacters':"declarationAdditionalDetail",
+        'data-parsley-invalidcharacters-message':t('ds1500:declarationAdditionalDetail.invalid'),
+        'tabindex': additionalDetailInputTabIndex
+      },
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukInput({
+      name: 'gpName',
+      value: formData.gpName,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:gpName.label')
+      },
+      attributes: {
+        'data-parsley-required':"true",
+        'data-parsley-required-message': t('ds1500:gpName.empty'),
+        'data-parsley-invalidcharacters':"gpName",
+        'data-parsley-invalidcharacters-message':t('ds1500:gpName.invalid'),
+        'data-parsley-class-handler':"#gpName-group",
+        'data-parsley-errors-container':"#gpName-error",
+        'data-parsley-trigger':"focusout"
+      },
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukInput({
+      name: 'trustName',
+      value: formData.trustName,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:trustName.label')
+      },
+      attributes: {
+        'data-parsley-invalidcharacters':"trustName",
+        'data-parsley-invalidcharacters-message':t('ds1500:trustName.invalid'),
+        'data-parsley-class-handler':"#trustName-group",
+        'data-parsley-errors-container':"#trustName-error",
+        'data-parsley-trigger':"focusout keyup"
+      },
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukTextarea({
+      name: 'gpAddress',
+      value: formData.gpAddress,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:gpAddress.label')
+      },
+      classes: "govuk-!-width-two-thirds",
+      attributes: {
+        'data-parsley-required':"true",
+        'data-parsley-required-message':t('ds1500:gpAddress.empty'),
+        'data-parsley-invalidcharacters':"gpAddress",
+        'data-parsley-invalidcharacters-message':t('ds1500:gpAddress.invalid'),
+        'data-parsley-class-handler':"#gpAddress-group",
+        'data-parsley-errors-container':"#gpAddress-error",
+        'data-parsley-trigger':"focusout keyup"
+      },
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukInput({
+      name: 'gpPhone',
+      value: formData.gpPhone,
+      label: {
+        classes: "govuk-label--m",
+        text: t('ds1500:gpPhone.label')
+      },
+      attributes: {
+        'data-parsley-required':"true",
+        'data-parsley-required-message':t('ds1500:gpPhone.empty'),
+        'data-parsley-invalidcharacters':"gpPhone",
+        'data-parsley-invalidcharacters-message':t('ds1500:gpAddress.invalid'),
+        'data-parsley-class-handler':"#gpPhone-group",
+        'data-parsley-errors-container':"#gpPhone-error",
+        'data-parsley-trigger':"focusout keyup"
+      },
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+  </div>
+
+  {{
+    govukButton({
+      text: t('common:btnContinue'),
+      type: 'submit'
+    })
+  }}
+
+{% endblock %}
+
+{% block bodyEnd %}
+  {{super()}}
+  <script nonce="{{nonce}}" src="{{ casa.mountUrl }}js/validation-declaration.js"></script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{
+  "serviceName": "Report a terminally ill patient",
+  "govukTagline": "GOV.UK",
+  "skip_link_message": "Skip to main content",
+  "cookieMessage": "<p>This service uses cookies to make the site simpler. <a href=\"/cookies\">Find out more about cookies</a></p>",
+  "feedback": "Feedback",
+  "accessibilityStatement": "Accessibility Statement",
+  "cookies": "Cookies",
+  "privacy": "Privacy",
+  "licence_message": "<p>All content is available under the <a href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"license\" target=\"_blank\">Open Government Licence v3.0</a>, except where otherwise stated</p>",
+  "crown_copyright_message": "&copy; Crown copyright",
+  "serviceDeskUrl": "https://nww.nhscfhservicedesk.nhs.uk",
+  "serviceDeskUrlEmail": "dwp.digitalds1500@dwp.gov.uk",
+  "btnContinue": "Continue"
+}
