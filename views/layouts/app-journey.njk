@@ -1,0 +1,68 @@
+{% extends "casa/layouts/journey.njk" %}
+{% from "components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "casa/components/journey-form/macro.njk" import casaJourneyForm with context %}
+{% from "macros/site.njk" import cookieBanner with context %}
+
+{% block head %}
+  {# {{super()}} #}
+  {% include "partials/head-common.njk" %}
+{% endblock %}
+
+{% block skipLink %}
+  {% include "partials/skip-link.njk" %}
+{% endblock %}
+
+{% block bodyStart %}
+  {% include "partials/common-body-start.njk" %}
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if formErrorsGovukArray %}
+        {{ govukErrorSummary({
+        titleText: t("error:summary.h1"),
+        errorList: formErrorsGovukArray
+      }) }}
+      {% endif %}
+
+      {% call casaJourneyForm({csrfToken: casa.csrfToken, inEditMode: inEditMode, editOriginUrl: editOriginUrl, casaMountUrl: casa.mountUrl, buttonBarHidden: true}) %}
+
+      {% block journey_form %}{% endblock %}
+      {% block journey_button %}{% endblock %}
+      {% endcall %}
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      {% include "partials/inset-talk-to-advisor.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+  {{super()}}
+  {% include "partials/end-common.njk" %}
+  <script nonce="{{nonce}}" src="{{ casa.mountUrl }}js/jquery.easy-autocomplete.js"></script>
+  <script nonce="{{nonce}}" src="{{ casa.mountUrl }}js/autocomplete.js"></script>
+{% endblock %}
+
+{% block beforeContent %}
+  {% set phaseBannerContent %}
+  {{t('phase-banner-beta:phase-banner-text-1')}}
+  <a class="govuk-link" href="/feedback" target="_blank" rel="noopener noreferrer">{{t('phase-banner-beta:feedback')}}</a>
+  {{t('phase-banner-beta:phase-banner-text-2')}}
+  {% endset %}
+  <aside>
+    {{ govukPhaseBanner({
+  tag: {
+    text: t('phase-banner-beta:tag-text')
+  },
+  html: phaseBannerContent
+}) }}
+  </aside>
+{% endblock %}
+
+{% block footer %}
+  {# <p>{{ getContext() | dump| safe }}</p> #}
+  {% include "partials/footer.njk" %}
+{% endblock %}

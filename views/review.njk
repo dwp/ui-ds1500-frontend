@@ -1,0 +1,83 @@
+{# {% extends "casa/review/page-block.njk" %} #}
+{% extends "layouts/app-journey.njk" %}
+{% from "components/back-link/macro.njk" import govukBackLink %}
+{% from "components/button/macro.njk" import govukButton %}
+{% from "components/summary-list/macro.njk" import govukSummaryList %}
+{% from "macros/site.njk" import fmtTitle with context %}
+
+{% block casaPageTitle %}
+  {{ fmtTitle('review:pageTitle') }}
+{% endblock %}
+
+
+{% block beforeContent %}
+{{ super() }}
+<nav>
+  {{ govukBackLink({
+    text: "Back",
+    href: casa.journeyPreviousUrl
+  }) }}
+</nav>
+{% endblock %}
+
+{% block journey_form %}
+  <h1 class="govuk-heading-xl">
+    {{t('review:pageTitle')}}
+  </h1>
+  {% set jData = journeyContext['ds1500'] %}
+
+  <h2 class="govuk-heading-l">Patient details</h2>
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: reviewSections.patientDetails
+  }) }}
+
+  <h2 class="govuk-heading-l">Diagnosis</h2>
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: reviewSections.diagnosis
+  }) }}
+
+  {% if jData.formRequester != 'Patient' %}
+  <h2 class="govuk-heading-l">Representative</h2>
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: reviewSections.representative
+  }) }}
+  {% endif %}
+
+  <h2 class="govuk-heading-l">Clinical features</h2>
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: reviewSections.clinicalFeatures
+  }) }}
+
+  <h2 class="govuk-heading-l">Treatment</h2>
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: reviewSections.treatment
+  }) }}
+
+  <h2 class="govuk-heading-l">Your details</h2>
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: reviewSections.referrer
+  }) }}
+
+  <h2 class="govuk-heading-l">{{ t('review:declaration.heading') }}</h2>
+
+  <div class="form-group">
+    <p>{{ t('review:declaration.p1') }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>{{ t('review:declaration.confirmation1') }}</li>
+      <li>{{ t('review:declaration.confirmation2') }}</li>
+    </ul>
+  </div>
+
+  {{
+    govukButton({
+      text: t('review:declaration.btn'),
+      type: 'submit'
+    })
+  }}
+{% endblock %}

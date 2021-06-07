@@ -1,0 +1,18 @@
+{% extends "casa/review/page-block.njk" %}
+{% from "components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block pageBlockTitle %}
+  Patient details
+{% endblock %}
+
+{% block reviewBlock %}
+  <h1 class="govuk-heading-xl">
+    {{t('ds1500:pageTitle')}}
+  </h1>
+  {# {% set jData = journeyContext['review'] %} #}
+
+  {{ govukSummaryList({
+    classes: "govuk-!-margin-bottom-9",
+    rows: reviewItems
+  }) }}
+{% endblock %}

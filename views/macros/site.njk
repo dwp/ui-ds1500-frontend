@@ -1,0 +1,38 @@
+{% from "components/button/macro.njk" import govukButton with context %}
+{% macro gtmTags(gtmId, nonce) %}
+ <!-- Google Tag Manager -->
+<script nonce='{{nonce}}'>
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push(
+{ 'gtm.whitelist': ['gaawc', 'gaawe', 'ua', 'cl', 'lcl', 'fsl', 'tl', 'jel', 'hl', 'v', 'c', 'ctv', 'e', 'dbg', 'd', 'f', 'j', 'smm', 'r' ,'u', 'gas', 'remm', 'vis', 'evl' , 'sdl'] }
+);
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;var n=d.querySelector('[nonce]');
+n&&j.setAttribute('nonce',n.nonce||n.getAttribute('nonce'));f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-{{gtmId}}');
+</script>
+<!-- End Google Tag Manager -->
+{% endmacro %}
+
+{% macro gtmIframe(gtmId) %}
+ <!-- Google Tag Manager (noscript) -->
+ <noscript><iframe src="[https://www.googletagmanager.com/ns.html?id=GTM-{{gtmId}}]"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+ <!-- End Google Tag Manager (noscript) -->
+{% endmacro %}
+
+{% macro cookieBanner() %}
+  {% if not cookieChoiceMade %}
+    {% include 'partials/cookie-banner-message.njk' %}
+  {% elif showCookieChoiceConfirmationBanner and cookieMessage === "accept" %}
+    {% include "partials/cookie-confirmation-accept.njk" %}
+  {% elif showCookieChoiceConfirmationBanner and cookieMessage === "reject" %}
+    {% include "partials/cookie-confirmation-reject.njk" %}
+  {% endif %}
+{% endmacro %}
+
+{%- macro fmtTitle(titleKey) %}
+  {{t(titleKey)}} - {{t('app:serviceName')}} - {{t('app:govukTagline')}}
+{%- endmacro %}

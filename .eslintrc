@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": "standard",
+  "rules": {
+    "semi": [0]
+  },
+  "env" : {
+    "node" : true
+  }
+}

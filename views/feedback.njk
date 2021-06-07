@@ -1,0 +1,70 @@
+{% extends "layouts/app-journey.njk" %}
+{% from "casa/components/radios/macro.njk" import casaGovukRadios with context %}
+{% from "components/button/macro.njk" import govukButton %}
+{% from "components/fieldset/macro.njk" import govukFieldset %}
+{% from "components/character-count/macro.njk" import govukCharacterCount %}
+{% from "macros/site.njk" import fmtTitle with context %}
+
+{% block casaPageTitle %}
+    {{ fmtTitle('feedback:pageTitle') }}
+{% endblock %}
+
+{% block bodyEnd %}
+{% endblock %}
+{% block journey_form %}
+
+
+
+<header>
+    <h1 class="form-title govuk-heading-l">{{ t('feedback:pageTitle') }}</h1>
+</header>
+
+{% call govukFieldset({
+    legend: {
+        text: t('feedback:rating')
+    }
+}) %}
+
+{{ casaGovukRadios({
+      name: 'rating',
+      value: formData.rating,
+      items: [
+        {text: 'Very satisfied', value: t('feedback:very-satisfied')},
+        {text: 'Satisfied', value: t('feedback:satisfied')},
+        {text: 'Neither satisfied or dissatisfied', value: t('feedback:neither')},
+        {text: 'Dissatisfied', value: t('feedback:dissatisfied')},
+        {text: 'Very dissatisfied', value: t('feedback:very-dissatisfied')}
+      ],
+      classes: "govuk-!-width-two-thirds",
+      attributes: {
+          required: 'required'
+      },
+      casaErrors: formErrors
+    })
+}}
+
+{{
+    govukCharacterCount({
+        name: "improvements",
+        id: "improvements",
+        maxlength: t('feedback:limit'),
+        label: {
+            text: "Can you provide more detail?"
+        },
+        hint: {
+            text: t('feedback:info')
+        }
+    })
+}}
+
+{% endcall %}
+{{
+    govukButton({
+        text: t('feedback:button')
+    })
+}}
+
+
+{% endblock %}
+
+

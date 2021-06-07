@@ -1,0 +1,10 @@
+{% from "components/skip-link/macro.njk" import govukSkipLink %}
+<nav aria-labelledby="skipLink">
+{{ govukSkipLink({
+  text: "Skip to main content",
+  href: "#main-content",
+  attributes: {
+    id: 'skipLink'
+  }
+}) }}
+</nav>

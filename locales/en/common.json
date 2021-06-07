@@ -1,0 +1,32 @@
+{
+  "back": "Back",
+  "btnContinue": "Continue",
+  "btnSaveChanges": "Save changes",
+  "btnNext": "Next",
+  "btnCancel": "Cancel",
+  "yes": "Yes",
+  "yes_alt1": "Yes",
+  "yes_alt2": "Yes",
+  "no": "No",
+  "date": {
+    "day": "Day",
+    "month": "Month",
+    "year": "Year"
+  },
+  "address": {
+    "label": "Address",
+    "street": "Building or street",
+    "town": "Town or city",
+    "line1":"Building or street 1",
+    "line2":"Building or street 2",
+    "postcode": "Postcode"
+  },
+  "talkToAdvisor": {
+    "heading": "Talk to an advisor",
+    "telephoneLabel": "Telephone",
+    "telephoneValue": "0300 303 5035",
+    "email": "ssd.nationalservicedesk@nhs.net",
+    "emailAnchor": "<a title=\"Click to send email\" href=\"mailto:${email}\">${email}</a>",
+    "serviceHours": "24-hour service"
+  }
+}

@@ -1,0 +1,25 @@
+{% from "components/footer/macro.njk" import govukFooter with context %}
+{% block footer %}
+{{ govukFooter({
+  meta: {
+    items: [
+      {
+        href: "/feedback",
+        text: "Feedback"
+      },
+      {
+        href: '/cookie-policy?previousPage=' + currentPage,
+        text: "Cookies"
+      },
+      {
+        href: "/accessibility-statement",
+        text: "Accessibility Statement"
+      },
+      {
+        href: "https://www.gov.uk/government/organisations/department-for-work-pensions/about/personal-information-charter",
+        text: "Privacy"
+      }
+    ]
+  }
+}) }}
+{% endblock  %}

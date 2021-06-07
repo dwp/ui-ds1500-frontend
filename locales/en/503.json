@@ -1,0 +1,7 @@
+{
+    "pageTitle": "503 - Service unavailable",
+    "h1": "There's been a problem",
+    "p1": "We haven't been able to send the DS1500 form.",
+    "p2": "If you still need to complete a DS1500 for your patient please use your existing clerical process.",
+    "p3": "If you have continuing problems using this service please contact <a href='mailto:dwp.digitalds1500@dwp.gsi.gov.uk?subject=DS1500%20error'>dwp.digitalds1500@dwp.gsi.gov.uk</a> and we will try to fix the problem."
+}

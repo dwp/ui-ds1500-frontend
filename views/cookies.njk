@@ -1,0 +1,63 @@
+{% extends "layouts/app-main.njk" %}
+{% from "macros/site.njk" import fmtTitle with context %}
+
+{% block casaPageTitle %}
+  {{ fmtTitle('cookies:pageTitle') }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <header>
+      <h1 class="govuk-heading-l">{{ t('cookies:pageTitle') }} </h1>
+    </header>
+    <div class="form-group">
+      <p>{{ t('cookies:p1') }}</p>
+      <p>{{ t('cookies:p2') }}</p>
+      <ul class="govuk-list govuk-list--bullet form-group">
+        <li>{{ t('cookies:li1') }}</li>
+        <li>{{ t('cookies:li2') }}</li>
+        <li>{{ t('cookies:li3') }}</li>
+      </ul>
+      <p>{{ t('cookies:p3') }}</p>
+    </div>
+
+    <div class="form-group">
+      <h2 class="govuk-!-font-size-24 govuk-!-font-weight-bold">{{ t('cookies:h2') }}</h2>
+      <p>{{ t('cookies:p4') }}</p>
+      {{ t('cookies:p5') | safe }}
+      <p>{{ t('cookies:p6') }}</p>
+      <ul class="govuk-list govuk-list--bullet form-group">
+        <li>{{ t('cookies:microsoft') | safe }}</li>
+        <li>{{ t('cookies:mozilla') | safe }}</li>
+        <li>{{ t('cookies:chrome') | safe }}</li>
+        <li>{{ t('cookies:safari') | safe }}</li>
+      </ul>
+      <p>{{ t('cookies:otherBrowsers') | safe }}</p>
+    </div>
+
+    <h2 class="govuk-!-font-size-24 govuk-!-font-weight-bold">{{ t('cookies:cookiesDS1500') }}</h2>
+
+    <div class="form-group">
+
+      <h3 class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ t('cookies:sessionSecurityCookies.h3') }}</h3>
+      <p>{{ t('cookies:sessionSecurityCookies.p1') }}</p>
+      <p>{{ t('cookies:sessionSecurityCookies.p2') }}</p>
+      <p>
+        <ul class="govuk-list govuk-list--bullet form-group">
+          <li>{{ t('cookies:sessionSecurityCookies.li1') }}</li>
+          <li>{{ t('cookies:sessionSecurityCookies.li2') }}</li>
+          <li>{{ t('cookies:sessionSecurityCookies.li3') }}</li>
+        </ul>
+      </p>
+
+      <h3 class="govuk-!-font-size-19 govuk-!-font-weight-bold">{{ t('cookies:introMsgCookie.h3') }}</h3>
+      <p>{{ t('cookies:introMsgCookie.p1') }}</p>
+      <p>{{ t('cookies:introMsgCookie.p2') }}</p>
+
+      <a href="/cookies-table" target="_self">{{ t('cookies:cookiesTable') }}</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{
+  "pageTitle": "Report submitted",
+  "panel": {
+    "transactionLabel": "Transaction ID<br /><br /><strong>${transactionID}</strong>"
+  },
+  "heading": "Download your documents",
+  "warning": "This is your only chance to download this document, so do it now.",
+  "attachments": {
+    "fileType": {
+      "name": "PDF",
+      "label": "Portable Document Format"
+    },
+    "claimForm": {
+      "headline": "DS1500 claim fee form",
+      "label": "Download claim fee form PDF",
+      "hintText": "Download the form for you to claim the fee of filling in this DS1500"
+    },
+    "ds1500": {
+      "headline": "DS1500",
+      "label": "Download DS1500 PDF",
+      "hintText": "Download a copy of this DS1500 for your own records"
+    }
+  },
+  "transactionID": "Make a note of unique transaction ID for tracking purpose.",
+  "sendAnother": "Report another terminally ill patient",
+  "feedbackLinkText": "What did you think of this service?",
+  "feedbackTime": "(takes 30 seconds)"
+}

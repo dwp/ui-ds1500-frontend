@@ -1,0 +1,11 @@
+src/data/*
+src/img/*
+src/css/**/*
+src/js/jquery.easy-autocomplete.min.js
+src/parsley/*
+coverage/**/*
+.idea/**/*
+.sonar/**/*
+tools/**/*
+node_modules/**/*
+static/**/*
