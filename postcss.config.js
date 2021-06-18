@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const autoprefixer = require('autoprefixer');
 const postcssurl = require('postcss-url');
-const cssnano = require('cssnano');
 const oldie = require('oldie');
 const path = require('path');
 
@@ -24,7 +23,6 @@ module.exports = {
       // using hash names for assets (generates from asset content)
       useHash: true
     }]),
-    cssnano,
     ie8
   ]
 };
