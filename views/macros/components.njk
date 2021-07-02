@@ -1,7 +1,7 @@
-{% from "components/error-message/macro.njk" import govukErrorMessage -%}
-{% from "components/fieldset/macro.njk" import govukFieldset %}
-{% from "components/hint/macro.njk" import govukHint %}
-{% from "components/input/macro.njk" import govukInput %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage -%}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/hint/macro.njk" import govukHint %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 
 {% macro govukDateInputApprox(params) %}
 {% set fieldErrors = params.casaErrors[params.namePrefix] %}

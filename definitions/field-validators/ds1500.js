@@ -1,14 +1,14 @@
 const { validationRules: r, simpleFieldValidation: sf } = require('@dwp/govuk-casa')
 
-const moment = require('moment');
 const { isValidPhoneNumber, isValidPatientName, hasValidWords } = require('../../lib/validation-rules/ds1500');
 const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../lib/validation-rules/ds1500DateOfBirth')
 const { isEmptyDateOfDiagnosis, isDateNumeric, isValidDateRange, isDateOfDiagnosisInFuture, isDateBeforeDoB } = require('../../lib/validation-rules/ds1500DateOfDiagnosis')
+const { DateTime } = require('luxon');
 
 const { VALID_POSTCODE } = require('../../lib/constants')
 const fieldValidators = {
   patientName: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:patientName.empty'
     }),
     hasValidWords,
@@ -16,20 +16,20 @@ const fieldValidators = {
   ]),
 
   patientAddress: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:patientAddress.empty'
     })
   ]),
 
   patientPostcode: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:patientPostcode.empty'
     }),
-    r.strlen.bind({
+    r.strlen.make({
       max: 8,
       errorMsgMax: 'ds1500:patientPostcode.tooLong'
     }),
-    r.regex.bind({
+    r.regex.make({
       pattern: VALID_POSTCODE,
       errorMsg: 'ds1500:patientPostcode.invalid'
     })
@@ -40,11 +40,11 @@ const fieldValidators = {
     isDateNumericDob,
     isValidDateRangeDob,
     isTooLongDob,
-    r.dateObject.bind({
+    r.dateObject.make({
       allowSingleDigitDay: true,
       allowSingleDigitMonth: true,
-      beforeOffsetFromNow: moment.duration(1, 'day'),
-      afterOffsetFromNow: moment.duration(moment('1890-01-01').diff(moment())),
+      beforeOffsetFromNow: { days: 0 },
+      afterOffsetFromNow: DateTime.fromISO('1890-01-01').diff(DateTime.now()),
       errorMsg: {
         summary: 'ds1500:patientDateOfBirth.invalid',
         focusSuffix: '[dd]'
@@ -62,17 +62,17 @@ const fieldValidators = {
 
   patientNino: sf([
     r.optional,
-    r.nino.bind({
+    r.nino.make({
       allowWhitespace: true,
       errorMsg: 'ds1500:patientNino.invalid'
     })
   ]),
 
   diagnosis: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:diagnosis.empty'
     }),
-    r.strlen.bind({
+    r.strlen.make({
       max: 126,
       errorMsgMax: 'ds1500:diagnosis.tooLong'
     }),
@@ -91,27 +91,27 @@ const fieldValidators = {
 
   otherDiagnoses: sf([
     r.optional,
-    r.strlen.bind({
+    r.strlen.make({
       max: 132,
       errorMsgMax: 'ds1500:otherDiagnoses.tooLong'
     })
   ]),
 
   patientAware: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:patientAware.empty'
     }),
-    r.inArray.bind({
+    r.inArray.make({
       source: ['Yes', 'No'],
       errorMsg: 'ds1500:patientAware.empty'
     })
   ]),
 
   formRequester: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:formRequester.empty'
     }),
-    r.inArray.bind({
+    r.inArray.make({
       source: ['Patient', 'Representative'],
       errorMsg: 'ds1500:formRequester.empty'
     })
@@ -124,31 +124,31 @@ const fieldValidators = {
   ]),
   representativePostcode: sf([
     r.optional,
-    r.strlen.bind({
+    r.strlen.make({
       max: 8,
       errorMsgMax: 'ds1500:representativePostcode.tooLong'
     }),
-    r.regex.bind({
+    r.regex.make({
       pattern: VALID_POSTCODE,
       errorMsg: 'ds1500:representativePostcode.invalid'
     })
   ]),
   clinicalFeatures: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:clinicalFeatures.empty'
     }),
     hasValidWords,
-    r.strlen.bind({
+    r.strlen.make({
       max: 236,
       errorMsgMax: 'ds1500:clinicalFeatures.tooLong'
     })
   ]),
   treatment: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:treatment.empty'
     }),
     hasValidWords,
-    r.strlen.bind({
+    r.strlen.make({
       max: 160,
       errorMsgMax: 'ds1500:treatment.tooLong'
     })
@@ -156,33 +156,33 @@ const fieldValidators = {
   otherIntervention: sf([
     r.optional,
     hasValidWords,
-    r.strlen.bind({
+    r.strlen.make({
       max: 120,
       errorMsgMax: 'ds1500:otherIntervention.tooLong'
     })
   ]),
 
   declaration: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:declaration.empty'
     }),
-    r.inArray.bind({
+    r.inArray.make({
       source: ['General Practitioner', 'GMC registered consultant', 'Other'],
       errorMsg: 'ds1500:declaration.empty'
     })
   ]),
 
   gmcNumber: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:gmcNumber.empty'
     }),
-    r.strlen.bind({
+    r.strlen.make({
       max: 7,
       min: 7,
       errorMsgMax: 'ds1500:gmcNumber.tooLong',
       errorMsgMin: 'ds1500:gmcNumber.tooShort'
     }),
-    r.regex.bind({
+    r.regex.make({
       pattern: /^(?!0000000)[0-9]*$/,
       errorMsg: 'ds1500:gmcNumber.pattern'
     })
@@ -194,7 +194,7 @@ const fieldValidators = {
   }),
 
   declarationAdditionalDetail: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:declarationAdditionalDetail.empty'
     }),
     hasValidWords
@@ -205,23 +205,19 @@ const fieldValidators = {
   }),
 
   gpName: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:gpName.empty'
     })
   ]),
 
-  trustName: sf([
-    r.optional
-  ]),
-
   gpAddress: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:gpAddress.empty'
     })
   ]),
 
   gpPhone: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'ds1500:gpPhone.empty'
     }),
     isValidPhoneNumber

@@ -2,20 +2,20 @@ const { validationRules: r, simpleFieldValidation: sf } = require('@dwp/govuk-ca
 
 const fieldValidators = {
   rating: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'feedback:errors.required'
     }),
-    r.inArray.bind({
+    r.inArray.make({
       source: ['Very satisfied', 'Satisfied', 'Neither satisfied or dissatisfied', 'Dissatisfied', 'Very dissatisfied'],
       errorMsg: 'feedback:errors.required'
     })
   ]),
 
   improvements: sf([
-    r.required.bind({
+    r.required.make({
       errorMsg: 'feedback:errors.maxLength'
     }),
-    r.strlen.bind({
+    r.strlen.make({
       max: 1200,
       errorMsgMax: 'feedback:errors.maxLength'
     })

@@ -1,6 +1,6 @@
 {% extends "layouts/app-main.njk" %}
-{% from "components/accordion/macro.njk" import govukAccordion %}
-{% from "components/button/macro.njk" import govukButton %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block casaPageTitle %}
   {{ t('ds1500-start:pageTitle') }}
@@ -9,14 +9,14 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    
+
     <header>
       <h1 class="govuk-heading-l">{{ t('ds1500-start:h1') }} </h1>
     </header>
 
-    <div class="form-group">  
+    <div class="form-group">
       <p>{{ t('ds1500-start:p1') }}</p>
-      
+
       <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
         <li class="govuk-!-margin-bottom-0">{{ t('ds1500-start:li1') }}</li>
       </ul>
@@ -30,7 +30,7 @@
       </div>
       <p>{{ t('ds1500-start:p2') }}</p>
     </div>
-    
+
     <div class="form-group">
       {{ govukButton({
         text: t('ds1500-start:startNow'),

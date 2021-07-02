@@ -67,7 +67,6 @@ module.exports = {
           'declarationAdditionalDetail',
           'gmcNumber',
           'gpName',
-          'trustName',
           'gpAddress',
           'gpPhone'
         ]

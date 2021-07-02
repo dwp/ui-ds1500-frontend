@@ -1,6 +1,6 @@
 {% extends "casa/layouts/journey.njk" %}
-{% from "components/phase-banner/macro.njk" import govukPhaseBanner %}
-{% from "components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "casa/components/journey-form/macro.njk" import casaJourneyForm with context %}
 {% from "macros/site.njk" import cookieBanner with context %}
 
@@ -42,8 +42,6 @@
 {% block bodyEnd %}
   {{super()}}
   {% include "partials/end-common.njk" %}
-  <script nonce="{{nonce}}" src="{{ casa.mountUrl }}js/jquery.easy-autocomplete.js"></script>
-  <script nonce="{{nonce}}" src="{{ casa.mountUrl }}js/autocomplete.js"></script>
 {% endblock %}
 
 {% block beforeContent %}

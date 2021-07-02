@@ -1,7 +1,11 @@
+## 0.42.0 (2021-07-02)
+
+* feature: remove trust lookup ([a1ded508](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/a1ded508))
+* feature: migrate to casa 7 ([878776d5](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/878776d5))
+
 ## 0.41.0 (2021-06-18)
 
 * fix: error on session timeout dialog for older IE versions ([3fff21e9](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/3fff21e9))
-
 
 ## 0.40.0 (2021-06-04)
 
