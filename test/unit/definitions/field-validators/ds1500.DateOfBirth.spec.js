@@ -180,7 +180,7 @@ describe('ds1500 field: patientDateOfBirth', () => {
 
     it('should fail "dateObject" validator if value is not a valid date', async () => {
       const patientDateOfBirth = { dd: '30', mm: '2', yyyy: '1970' };
-      await expectValidatorToFail(validators, 'patientDateOfBirth', 'dateObject', { ...defaultValidators, patientDateOfBirth }, {
+      await expectValidatorToFail(validators, 'patientDateOfBirth', 'DateObject', { ...defaultValidators, patientDateOfBirth }, {
         summary: 'ds1500:patientDateOfBirth.invalid'
       });
     });
@@ -188,7 +188,7 @@ describe('ds1500 field: patientDateOfBirth', () => {
     it('should fail "dateObject" validator if value is beyond today', async () => {
       Date.now = () => (0); // 1970-01-01
       const patientDateOfBirth = { mm: '1', dd: '2', yyyy: '1970' }
-      await expectValidatorToFail(validators, 'patientDateOfBirth', 'dateObject', { ...defaultValidators, patientDateOfBirth }, {
+      await expectValidatorToFail(validators, 'patientDateOfBirth', 'DateObject', { ...defaultValidators, patientDateOfBirth }, {
         summary: 'ds1500:patientDateOfBirth.future',
         focusSuffix: ['[dd]', '[mm]', '[yyyy]']
       });
@@ -197,7 +197,7 @@ describe('ds1500 field: patientDateOfBirth', () => {
     it('should pass "dateObject" validator if value is before today', async () => {
       Date.now = () => (86400000); // 1970-01-02
       const patientDateOfBirth = { mm: 1, dd: 1, yyyy: 1970 }
-      await expectValidatorToPass(validators, 'patientDateOfBirth', 'dateObject', { ...defaultValidators, patientDateOfBirth });
+      await expectValidatorToPass(validators, 'patientDateOfBirth', 'DateObject', { ...defaultValidators, patientDateOfBirth });
     });
   })
 })

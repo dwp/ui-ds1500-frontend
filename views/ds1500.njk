@@ -1,6 +1,6 @@
 {% extends "layouts/app-journey.njk" %}
-{% from "components/back-link/macro.njk" import govukBackLink %}
-{% from "components/button/macro.njk" import govukButton %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "casa/components/input/macro.njk" import casaGovukInput with context %}
 {% from "casa/components/textarea/macro.njk" import casaGovukTextarea with context %}
 {% from "casa/components/date-input/macro.njk" import casaGovukDateInput with context %}
@@ -578,22 +578,6 @@
       casaErrors: formErrors
     }) }}
 
-    {{ casaGovukInput({
-      name: 'trustName',
-      value: formData.trustName,
-      label: {
-        classes: "govuk-label--m",
-        text: t('ds1500:trustName.label')
-      },
-      attributes: {
-        'data-parsley-invalidcharacters':"trustName",
-        'data-parsley-invalidcharacters-message':t('ds1500:trustName.invalid'),
-        'data-parsley-class-handler':"#trustName-group",
-        'data-parsley-errors-container':"#trustName-error",
-        'data-parsley-trigger':"focusout keyup"
-      },
-      casaErrors: formErrors
-    }) }}
 
     {{ casaGovukTextarea({
       name: 'gpAddress',
@@ -603,6 +587,9 @@
         text: t('ds1500:gpAddress.label')
       },
       classes: "govuk-!-width-two-thirds",
+      hint: {
+        text: t('ds1500:gpAddress.hint')
+      },
       attributes: {
         'data-parsley-required':"true",
         'data-parsley-required-message':t('ds1500:gpAddress.empty'),

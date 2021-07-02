@@ -18,13 +18,13 @@ const defaultValidators = {
 describe('Validators: ds1500', () => {
   describe('field: patientName', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'patientName', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'patientName', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:patientName.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
-      await expectValidatorToPass(validators, 'patientName', 'required', { patientName: 'test-value' });
+      await expectValidatorToPass(validators, 'patientName', 'Required', { patientName: 'test-value' });
     });
 
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
@@ -68,56 +68,56 @@ describe('Validators: ds1500', () => {
 
   describe('field: patientAddress', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'patientAddress', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'patientAddress', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:patientAddress.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
       const patientAddress = 'London'
-      await expectValidatorToPass(validators, 'patientAddress', 'required', { ...defaultValidators, patientAddress });
+      await expectValidatorToPass(validators, 'patientAddress', 'Required', { ...defaultValidators, patientAddress });
     });
 
     it('should pass "regex" validator if a valid value is provided', async () => {
       const patientAddress = '12 London road'
-      await expectValidatorToPass(validators, 'patientAddress', 'regex', { ...defaultValidators, patientAddress });
+      await expectValidatorToPass(validators, 'patientAddress', 'Regex', { ...defaultValidators, patientAddress });
     });
   })
 
   describe('field: patientPostcode', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'patientPostcode', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'patientPostcode', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:patientPostcode.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
       const patientPostcode = 'SW1 2AB'
-      await expectValidatorToPass(validators, 'patientPostcode', 'required', { ...defaultValidators, patientPostcode });
+      await expectValidatorToPass(validators, 'patientPostcode', 'Required', { ...defaultValidators, patientPostcode });
     });
 
     it('should fail "strlen" validator if invalid value is provided', async () => {
       const patientPostcode = 'SW12 2ABC'
-      await expectValidatorToFail(validators, 'patientPostcode', 'strlen', { ...defaultValidators, patientPostcode }, {
+      await expectValidatorToFail(validators, 'patientPostcode', 'Strlen', { ...defaultValidators, patientPostcode }, {
         summary: 'ds1500:patientPostcode.tooLong'
       });
     });
 
     it('should pass "strlen" validator if a valid value is provided', async () => {
       const patientPostcode = 'SW12 2AB'
-      await expectValidatorToPass(validators, 'patientPostcode', 'strlen', { ...defaultValidators, patientPostcode });
+      await expectValidatorToPass(validators, 'patientPostcode', 'Strlen', { ...defaultValidators, patientPostcode });
     });
 
     it('should fail "regex" validator if invalid value is provided', async () => {
       const patientPostcode = '11X X11'
-      await expectValidatorToFail(validators, 'patientPostcode', 'regex', { ...defaultValidators, patientPostcode }, {
+      await expectValidatorToFail(validators, 'patientPostcode', 'Regex', { ...defaultValidators, patientPostcode }, {
         summary: 'ds1500:patientPostcode.invalid'
       });
     });
 
     it('should pass "regex" validator if a valid value is provided', async () => {
       const patientPostcode = 'AA1 1AA'
-      await expectValidatorToPass(validators, 'patientPostcode', 'regex', { ...defaultValidators, patientPostcode });
+      await expectValidatorToPass(validators, 'patientPostcode', 'Regex', { ...defaultValidators, patientPostcode });
     });
   })
 
@@ -128,38 +128,38 @@ describe('Validators: ds1500', () => {
 
     it('should fail "nino" validator if invalid nino provided', async () => {
       const patientNino = 'ABCD123456'
-      await expectValidatorToFail(validators, 'patientNino', 'nino', { ...defaultValidators, patientNino }, {
+      await expectValidatorToFail(validators, 'patientNino', 'Nino', { ...defaultValidators, patientNino }, {
         summary: 'ds1500:patientNino.invalid'
       });
     });
 
     it('should pass "nino" validator if valid nino provided', async () => {
       const patientNino = 'AA370773A'
-      await expectValidatorToPass(validators, 'patientNino', 'nino', { ...defaultValidators, patientNino });
+      await expectValidatorToPass(validators, 'patientNino', 'Nino', { ...defaultValidators, patientNino });
     });
   });
 
   describe('field: diagnosis', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'diagnosis', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'diagnosis', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:diagnosis.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
-      await expectValidatorToPass(validators, 'diagnosis', 'required', { diagnosis: 'test-value' });
+      await expectValidatorToPass(validators, 'diagnosis', 'Required', { diagnosis: 'test-value' });
     });
 
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const diagnosis = 'a'.repeat(50) + '' + 'b'.repeat(50) + '' + 'c'.repeat(59)
-      await expectValidatorToFail(validators, 'diagnosis', 'strlen', { ...defaultValidators, diagnosis }, {
+      await expectValidatorToFail(validators, 'diagnosis', 'Strlen', { ...defaultValidators, diagnosis }, {
         summary: 'ds1500:diagnosis.tooLong'
       });
     });
 
     it('should pass "strlen" validator if a valid length is provided', async () => {
       const diagnosis = 'a'.repeat(50) + '' + 'b'.repeat(50)
-      await expectValidatorToPass(validators, 'diagnosis', 'strlen', { ...defaultValidators, diagnosis });
+      await expectValidatorToPass(validators, 'diagnosis', 'Strlen', { ...defaultValidators, diagnosis });
     });
 
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
@@ -176,7 +176,7 @@ describe('Validators: ds1500', () => {
 
     it('should pass "regex" validator if a valid pattern is provided', async () => {
       const diagnosis = 'test test'
-      await expectValidatorToPass(validators, 'diagnosis', 'regex', { ...defaultValidators, diagnosis });
+      await expectValidatorToPass(validators, 'diagnosis', 'Regex', { ...defaultValidators, diagnosis });
     });
   });
 
@@ -187,31 +187,31 @@ describe('Validators: ds1500', () => {
 
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const otherDiagnoses = 'a'.repeat(50) + '' + 'b'.repeat(50) + '' + 'c'.repeat(50)
-      await expectValidatorToFail(validators, 'otherDiagnoses', 'strlen', { ...defaultValidators, otherDiagnoses }, {
+      await expectValidatorToFail(validators, 'otherDiagnoses', 'Strlen', { ...defaultValidators, otherDiagnoses }, {
         summary: 'ds1500:otherDiagnoses.tooLong'
       });
     });
 
     it('should pass "strlen" validator if a valid length is provided', async () => {
       const otherDiagnoses = 'a'.repeat(50) + '' + 'b'.repeat(50)
-      await expectValidatorToPass(validators, 'otherDiagnoses', 'strlen', { ...defaultValidators, otherDiagnoses });
+      await expectValidatorToPass(validators, 'otherDiagnoses', 'Strlen', { ...defaultValidators, otherDiagnoses });
     });
 
     it('should pass "regex" validator if a valid pattern is provided', async () => {
       const otherDiagnoses = 'test test'
-      await expectValidatorToPass(validators, 'otherDiagnoses', 'regex', { ...defaultValidators, otherDiagnoses });
+      await expectValidatorToPass(validators, 'otherDiagnoses', 'Regex', { ...defaultValidators, otherDiagnoses });
     });
   })
 
   describe('field: patientAware', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'patientAware', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'patientAware', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:patientAware.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
-      await expectValidatorToPass(validators, 'patientAware', 'required', { patientAware: 'test-value' });
+      await expectValidatorToPass(validators, 'patientAware', 'Required', { patientAware: 'test-value' });
     });
 
     it('should pass "inArray" validator if value is yes', async () => {
@@ -225,13 +225,13 @@ describe('Validators: ds1500', () => {
 
   describe('field: formRequester', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'formRequester', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'formRequester', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:formRequester.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
-      await expectValidatorToPass(validators, 'formRequester', 'required', { formRequester: 'test-value' });
+      await expectValidatorToPass(validators, 'formRequester', 'Required', { formRequester: 'test-value' });
     });
 
     it('should pass "inArray" validator if value is Patient', async () => {
@@ -250,7 +250,7 @@ describe('Validators: ds1500', () => {
 
     it('should pass "regex" validator if a valid pattern is provided', async () => {
       const representativeName = 'test test'
-      await expectValidatorToPass(validators, 'representativeName', 'regex', { ...defaultValidators, representativeName });
+      await expectValidatorToPass(validators, 'representativeName', 'Regex', { ...defaultValidators, representativeName });
     });
   })
 
@@ -261,7 +261,7 @@ describe('Validators: ds1500', () => {
 
     it('should pass "regex" validator if a valid pattern is provided', async () => {
       const representativeAddress = 'test test'
-      await expectValidatorToPass(validators, 'representativeAddress', 'regex', { ...defaultValidators, representativeAddress });
+      await expectValidatorToPass(validators, 'representativeAddress', 'Regex', { ...defaultValidators, representativeAddress });
     });
   })
 
@@ -272,38 +272,38 @@ describe('Validators: ds1500', () => {
 
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const representativePostcode = 'SW12 2ABC'
-      await expectValidatorToFail(validators, 'representativePostcode', 'strlen', { ...defaultValidators, representativePostcode }, {
+      await expectValidatorToFail(validators, 'representativePostcode', 'Strlen', { ...defaultValidators, representativePostcode }, {
         summary: 'ds1500:representativePostcode.tooLong'
       });
     });
 
     it('should pass "strlen" validator if a valid length is provided', async () => {
       const representativePostcode = 'SW12 2AB'
-      await expectValidatorToPass(validators, 'otherDiagnoses', 'strlen', { ...defaultValidators, representativePostcode });
+      await expectValidatorToPass(validators, 'otherDiagnoses', 'Strlen', { ...defaultValidators, representativePostcode });
     });
 
     it('should fail "regex" validator if invalid value is provided', async () => {
       const representativePostcode = '11X X11'
-      await expectValidatorToFail(validators, 'representativePostcode', 'regex', { ...defaultValidators, representativePostcode }, {
+      await expectValidatorToFail(validators, 'representativePostcode', 'Regex', { ...defaultValidators, representativePostcode }, {
         summary: 'ds1500:representativePostcode.invalid'
       });
     });
 
     it('should pass "regex" validator if a valid value is provided', async () => {
       const representativePostcode = 'AA1 1AA'
-      await expectValidatorToPass(validators, 'representativePostcode', 'regex', { ...defaultValidators, representativePostcode });
+      await expectValidatorToPass(validators, 'representativePostcode', 'Regex', { ...defaultValidators, representativePostcode });
     });
   })
 
   describe('field: clinicalFeatures', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'clinicalFeatures', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'clinicalFeatures', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:clinicalFeatures.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
-      await expectValidatorToPass(validators, 'clinicalFeatures', 'required', { clinicalFeatures: 'test-value' });
+      await expectValidatorToPass(validators, 'clinicalFeatures', 'Required', { clinicalFeatures: 'test-value' });
     });
 
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
@@ -320,31 +320,31 @@ describe('Validators: ds1500', () => {
 
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const clinicalFeatures = 'a'.repeat(50) + ' ' + 'b'.repeat(50) + ' ' + 'c'.repeat(50) + ' ' + 'd'.repeat(50) + ' ' + 'e'.repeat(50)
-      await expectValidatorToFail(validators, 'clinicalFeatures', 'strlen', { ...defaultValidators, clinicalFeatures }, {
+      await expectValidatorToFail(validators, 'clinicalFeatures', 'Strlen', { ...defaultValidators, clinicalFeatures }, {
         summary: 'ds1500:clinicalFeatures.tooLong'
       });
     });
 
     it('should pass "strlen" validator if a valid length is provided', async () => {
       const clinicalFeatures = 'a'.repeat(50) + '' + 'b'.repeat(50)
-      await expectValidatorToPass(validators, 'clinicalFeatures', 'strlen', { ...defaultValidators, clinicalFeatures });
+      await expectValidatorToPass(validators, 'clinicalFeatures', 'Strlen', { ...defaultValidators, clinicalFeatures });
     });
 
     it('should pass "regex" validator if a valid pattern is provided', async () => {
       const clinicalFeatures = 'test test'
-      await expectValidatorToPass(validators, 'clinicalFeatures', 'regex', { ...defaultValidators, clinicalFeatures });
+      await expectValidatorToPass(validators, 'clinicalFeatures', 'Regex', { ...defaultValidators, clinicalFeatures });
     });
   });
 
   describe('field: treatment', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'treatment', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'treatment', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:treatment.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
-      await expectValidatorToPass(validators, 'treatment', 'required', { treatment: 'test-value' });
+      await expectValidatorToPass(validators, 'treatment', 'Required', { treatment: 'test-value' });
     });
 
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
@@ -361,19 +361,19 @@ describe('Validators: ds1500', () => {
 
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const treatment = 'a'.repeat(55) + ' ' + 'b'.repeat(55) + ' ' + 'c'.repeat(55)
-      await expectValidatorToFail(validators, 'treatment', 'strlen', { ...defaultValidators, treatment }, {
+      await expectValidatorToFail(validators, 'treatment', 'Strlen', { ...defaultValidators, treatment }, {
         summary: 'ds1500:treatment.tooLong'
       });
     });
 
     it('should pass "strlen" validator if a valid length is provided', async () => {
       const treatment = 'a'.repeat(50) + '' + 'b'.repeat(50)
-      await expectValidatorToPass(validators, 'treatment', 'strlen', { ...defaultValidators, treatment });
+      await expectValidatorToPass(validators, 'treatment', 'Strlen', { ...defaultValidators, treatment });
     });
 
     it('should pass "regex" validator if a valid pattern is provided', async () => {
       const treatment = 'test test'
-      await expectValidatorToPass(validators, 'treatment', 'regex', { ...defaultValidators, treatment });
+      await expectValidatorToPass(validators, 'treatment', 'Regex', { ...defaultValidators, treatment });
     });
   });
 
@@ -384,31 +384,31 @@ describe('Validators: ds1500', () => {
 
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const otherIntervention = 'a'.repeat(55) + ' ' + 'b'.repeat(55) + ' ' + 'c'.repeat(55)
-      await expectValidatorToFail(validators, 'otherIntervention', 'strlen', { ...defaultValidators, otherIntervention }, {
+      await expectValidatorToFail(validators, 'otherIntervention', 'Strlen', { ...defaultValidators, otherIntervention }, {
         summary: 'ds1500:otherIntervention.tooLong'
       });
     });
 
     it('should pass "strlen" validator if a valid length is provided', async () => {
       const otherIntervention = 'a'.repeat(55) + ' ' + 'b'.repeat(55)
-      await expectValidatorToPass(validators, 'otherIntervention', 'strlen', { ...defaultValidators, otherIntervention });
+      await expectValidatorToPass(validators, 'otherIntervention', 'Strlen', { ...defaultValidators, otherIntervention });
     });
 
     it('should pass "regex" validator if a valid value is provided', async () => {
       const otherIntervention = 'test test'
-      await expectValidatorToPass(validators, 'otherIntervention', 'regex', { ...defaultValidators, otherIntervention });
+      await expectValidatorToPass(validators, 'otherIntervention', 'Regex', { ...defaultValidators, otherIntervention });
     });
   })
 
   describe('field: declaration', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'declaration', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'declaration', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:declaration.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
-      await expectValidatorToPass(validators, 'declaration', 'required', { declaration: 'test-value' });
+      await expectValidatorToPass(validators, 'declaration', 'Required', { declaration: 'test-value' });
     });
 
     it('should pass "inArray" validator if value is General Practitioner', async () => {
@@ -427,7 +427,7 @@ describe('Validators: ds1500', () => {
   describe('field: gmcNumber', () => {
     it('should fail "required" validator if no value is provided', async () => {
       const declaration = 'General Practitioner'
-      await expectValidatorToFail(validators, 'gmcNumber', 'required', { ...defaultValidators, declaration }, {
+      await expectValidatorToFail(validators, 'gmcNumber', 'Required', { ...defaultValidators, declaration }, {
         summary: 'ds1500:gmcNumber.empty'
       });
     });
@@ -438,7 +438,7 @@ describe('Validators: ds1500', () => {
         gmcNumber: '0123456'
       }
 
-      await expectValidatorToPass(validators, 'gmcNumber', 'required', { ...defaultValidators, ...setValidators });
+      await expectValidatorToPass(validators, 'gmcNumber', 'Required', { ...defaultValidators, ...setValidators });
     });
 
     it('should fail "strlen" validator if max invalid length is provided', async () => {
@@ -446,7 +446,7 @@ describe('Validators: ds1500', () => {
         declaration: 'General Practitioner',
         gmcNumber: '0123456789'
       }
-      await expectValidatorToFail(validators, 'gmcNumber', 'strlen', { ...defaultValidators, ...setValidators }, {
+      await expectValidatorToFail(validators, 'gmcNumber', 'Strlen', { ...defaultValidators, ...setValidators }, {
         summary: 'ds1500:gmcNumber.tooLong'
       });
     });
@@ -456,7 +456,7 @@ describe('Validators: ds1500', () => {
         declaration: 'General Practitioner',
         gmcNumber: '01234'
       }
-      await expectValidatorToFail(validators, 'gmcNumber', 'strlen', { ...defaultValidators, ...setValidators }, {
+      await expectValidatorToFail(validators, 'gmcNumber', 'Strlen', { ...defaultValidators, ...setValidators }, {
         summary: 'ds1500:gmcNumber.tooShort'
       });
     });
@@ -466,7 +466,7 @@ describe('Validators: ds1500', () => {
         declaration: 'General Practitioner',
         gmcNumber: '0123456'
       }
-      await expectValidatorToPass(validators, 'gmcNumber', 'strlen', { ...defaultValidators, ...setValidators });
+      await expectValidatorToPass(validators, 'gmcNumber', 'Strlen', { ...defaultValidators, ...setValidators });
     });
 
     it('should fail "regex" validator if invalid value is provided', async () => {
@@ -474,7 +474,7 @@ describe('Validators: ds1500', () => {
         declaration: 'General Practitioner',
         gmcNumber: '@12e456'
       }
-      await expectValidatorToFail(validators, 'gmcNumber', 'regex', { ...defaultValidators, ...setValidators }, {
+      await expectValidatorToFail(validators, 'gmcNumber', 'Regex', { ...defaultValidators, ...setValidators }, {
         summary: 'ds1500:gmcNumber.pattern'
       });
     });
@@ -484,14 +484,14 @@ describe('Validators: ds1500', () => {
         declaration: 'General Practitioner',
         gmcNumber: '0123456'
       }
-      await expectValidatorToPass(validators, 'gmcNumber', 'regex', { ...defaultValidators, ...setValidators });
+      await expectValidatorToPass(validators, 'gmcNumber', 'Regex', { ...defaultValidators, ...setValidators });
     });
   })
 
   describe('field: declarationAdditionalDetail', () => {
     it('should fail "required" validator if no value is provided', async () => {
       const declaration = 'Other'
-      await expectValidatorToFail(validators, 'declarationAdditionalDetail', 'required', { ...defaultValidators, declaration }, {
+      await expectValidatorToFail(validators, 'declarationAdditionalDetail', 'Required', { ...defaultValidators, declaration }, {
         summary: 'ds1500:declarationAdditionalDetail.empty'
       });
     });
@@ -502,7 +502,7 @@ describe('Validators: ds1500', () => {
         declarationAdditionalDetail: 'test'
       }
 
-      await expectValidatorToPass(validators, 'declarationAdditionalDetail', 'required', { ...defaultValidators, ...setValidators });
+      await expectValidatorToPass(validators, 'declarationAdditionalDetail', 'Required', { ...defaultValidators, ...setValidators });
     });
 
     it('should pass "regex" validator if a valid value is provided', async () => {
@@ -510,7 +510,7 @@ describe('Validators: ds1500', () => {
         declaration: 'Other',
         declarationAdditionalDetail: 'test test'
       }
-      await expectValidatorToPass(validators, 'declarationAdditionalDetail', 'regex', { ...defaultValidators, ...setValidators });
+      await expectValidatorToPass(validators, 'declarationAdditionalDetail', 'Regex', { ...defaultValidators, ...setValidators });
     });
 
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
@@ -534,62 +534,50 @@ describe('Validators: ds1500', () => {
 
   describe('field: gpName', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'gpName', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'gpName', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:gpName.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
       const gpName = 'John'
-      await expectValidatorToPass(validators, 'gpName', 'required', { ...defaultValidators, gpName });
+      await expectValidatorToPass(validators, 'gpName', 'Required', { ...defaultValidators, gpName });
     });
 
     it('should pass "regex" validator if a valid value is provided', async () => {
       const gpName = 'John Doe'
-      await expectValidatorToPass(validators, 'gpName', 'regex', { ...defaultValidators, gpName });
-    });
-  })
-
-  describe('field: trustName', () => {
-    it('should pass "optional" validator even if a empty value is provided', async () => {
-      const trustName = ''
-      await expectValidatorToPass(validators, 'trustName', 'required', { ...defaultValidators, trustName });
-    });
-
-    it('should pass "regex" validator if a valid value is provided', async () => {
-      const trustName = 'Clinic'
-      await expectValidatorToPass(validators, 'trustName', 'regex', { ...defaultValidators, trustName });
+      await expectValidatorToPass(validators, 'gpName', 'Regex', { ...defaultValidators, gpName });
     });
   })
 
   describe('field: gpAddress', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'gpAddress', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'gpAddress', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:gpAddress.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
       const gpAddress = 'London'
-      await expectValidatorToPass(validators, 'gpAddress', 'required', { ...defaultValidators, gpAddress });
+      await expectValidatorToPass(validators, 'gpAddress', 'Required', { ...defaultValidators, gpAddress });
     });
 
     it('should pass "regex" validator if a valid value is provided', async () => {
       const gpAddress = '10 Downing street'
-      await expectValidatorToPass(validators, 'gpAddress', 'regex', { ...defaultValidators, gpAddress });
+      await expectValidatorToPass(validators, 'gpAddress', 'Regex', { ...defaultValidators, gpAddress });
     });
   })
 
   describe('field: gpPhone', () => {
     it('should fail "required" validator if no value is provided', async () => {
-      await expectValidatorToFail(validators, 'gpPhone', 'required', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'gpPhone', 'Required', { ...defaultValidators }, {
         summary: 'ds1500:gpPhone.empty'
       });
     });
 
     it('should pass "required" validator if a non-empty value is provided', async () => {
       const gpPhone = '0123456789'
-      await expectValidatorToPass(validators, 'gpPhone', 'required', { ...defaultValidators, gpPhone });
+      await expectValidatorToPass(validators, 'gpPhone', 'Required', { ...defaultValidators, gpPhone });
     });
 
     it('should fail "isValidPhoneNumber" validator if invalid value is provided', async () => {

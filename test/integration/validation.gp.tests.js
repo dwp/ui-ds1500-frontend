@@ -32,20 +32,6 @@ describe('validation: gpName', function () {
   });
 });
 
-describe('validation: trustName', function () {
-  it('should trigger error if invalid charaters are entered', function () {
-    browser.fill('trustName', '!@#$%^&*()');
-    browser.pressButton(CONFIRM_BTN);
-    browser.assert.text('#trustName-error .parsley-invalidcharacters', 'Contains invalid characters: $%&');
-  });
-
-  it('should accept standard names', function () {
-    browser.fill('trustName', 'Upwell Street Surgery');
-    browser.pressButton(CONFIRM_BTN);
-    expect(browser.query('#trustName-error li')).not.to.exist; // eslint-disable-line
-  });
-});
-
 describe('validation: gpAddress', function () {
   it('should trigger error if left blank', function () {
     browser.fill('gpAddress', '');

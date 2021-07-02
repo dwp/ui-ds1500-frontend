@@ -131,14 +131,8 @@ const casaApp = configure(app, {
     ]
   },
   sessionExpiryController: (req, res, next) => {
-    if (req.originalUrl === '/') {
       next();
-    } else {
-      res.redirect(`/${waypoints.SESSION_ENDED}`)
-    }
-
   },
-
   mountController: function casaMountController(mountCommonMiddleware) {
     mountCommonMiddleware();
     cookieMiddleware(
@@ -220,22 +214,6 @@ casaApp.router.get(`/${waypoints.SESSION_KEEP_ALIVE}`, (req, res) => {
   } catch (err) {
     res.status(500).json({ status: 500, message: 'Internal Server Error' });
   }
-});
-
-// User ended session
-casaApp.router.get(`/${waypoints.SESSION_ENDED}`, (req, res, next) => {
-  const lang = req.casa.journeyContext.nav.language;
-
-  req.session.regenerate((error) => {
-    // Persist language choice after session regneration
-    req.session.language = lang;
-
-    if (error) {
-      return next(error);
-    }
-
-    return req.session.save(() => res.status(200).render('session-ended-now.njk'));
-  });
 });
 
 // Setup SSL

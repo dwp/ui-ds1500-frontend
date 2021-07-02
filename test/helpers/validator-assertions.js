@@ -45,7 +45,7 @@ async function expectValidatorToFailWithJourney (
  * @param {array} fieldValidators List of validators to test
  * @param {string} fieldName Name of field to vextract from page data context
  * @param {string} validatorName Validator expected to have failed in errors
- * @param {mixed} pageDataContext Value to pass into processor to trigger validation fail
+ * @param {{}} pageDataContext Value to pass into processor to trigger validation fail
  * @param {object} errorObj Expected partial error object to be returned
  * @returns {Promise} Pending processor
  */
@@ -107,7 +107,7 @@ async function expectValidatorToPassWithJourney (
  * @param {array} fieldValidators List of validators to test
  * @param {string} fieldName Name of field to vextract from page data context
  * @param {string} validatorName Validator expected to have failed in errors
- * @param {mixed} pageDataContext Value to pass into processor to trigger validation fail
+ * @param {{}} pageDataContext Value to pass into processor to trigger validation fail
  * @param {object} errorObj Expected partial error object to be returned
  * @returns {Promise} Pending processor
  */

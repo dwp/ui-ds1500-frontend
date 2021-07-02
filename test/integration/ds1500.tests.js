@@ -46,7 +46,6 @@ describe('ds1500 form page', function () {
       .fill('gmcNumber', '1234567')
       .fill('declarationAdditionalDetail', 'asd')
       .fill('gpName', 'gp name')
-      .fill('trustName', 'trust name')
       .fill('gpAddress', 'gp address')
       .fill('gpPhone', '0114 2393939')
       .pressButton(CONFIRM_BTN, function () {
@@ -86,7 +85,6 @@ describe('ds1500 form page', function () {
           .fill('gmcNumber', '1234567')
           .fill('declarationAdditionalDetail', 'asd')
           .fill('gpName', 'gp name')
-          .fill('trustName', 'trust name')
           .fill('gpAddress', 'gp address')
           .fill('gpPhone', '0114 2393939')
           .pressButton(CONFIRM_BTN, function () {
@@ -128,7 +126,6 @@ describe('ds1500 form page', function () {
           .fill('gmcNumber', '1234567')
           .fill('declarationAdditionalDetail', 'Macmillan nurse')
           .fill('gpName', 'gp name')
-          .fill('trustName', 'trust name')
           .fill('gpAddress', 'gp address')
           .fill('gpPhone', '0114 2393939')
           .pressButton(CONFIRM_BTN, function () {

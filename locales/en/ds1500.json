@@ -212,15 +212,11 @@
     "empty": "Enter your full name",
     "invalid": "Contains invalid characters"
   },
-  "trustName": {
-    "label": "Your trust",
-    "labelA11y": "Your trust",
-    "invalid": "Contains invalid characters"
-  },
   "gpAddress": {
-    "label": "Your address",
-    "labelA11y": "Your address",
-    "empty": "Enter your address",
+    "label": "Your Trust address",
+    "labelA11y": "Your Trust address",
+    "hint": "If you are not a part of a Trust, this could be your Clinical Commissioning Group (CCG), Primary Care Trust (PCT) or surgery.",
+    "empty": "Enter your trust address",
     "invalid": "Contains invalid characters"
   },
   "gpPhone": {

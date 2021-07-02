@@ -43,34 +43,31 @@ describe('Middleware: session-timeout', () => {
   it('should add signOutUrl to timeoutDialog', () => {
     const req = new Request();
     const res = new Response(req);
-    sessionTimeout(app, '/', { SESSION_ENDED: 'session-ended' });
+    sessionTimeout(app, '/', { SESSION_RESTART: 'ds1500-start' });
     res.locals.casa.mountUrl = '/test/';
 
     app.mw(req, res, () => { });
-    expect(res.locals.timeoutDialog).to.have.property('signOutUrl').that.equals('/test/session-ended');
+    expect(res.locals.timeoutDialog).to.have.property('signOutUrl').that.equals('/test/ds1500-start');
   });
 
   it('should add timeoutUrl of current path to timeoutDialog', () => {
     const req = new Request();
     const res = new Response(req);
-    sessionTimeout(app, '/', {});
-    req.originalUrl = 'http://domain.test/current-path';
-    req.url = '/current-path';
+    sessionTimeout(app, '/', { SESSION_ENDED: 'session-timeout' });
+    res.locals.casa.mountUrl = '/test/';
 
     app.mw(req, res, () => { });
-    expect(res.locals.timeoutDialog).to.have.property('timeoutUrl').that.equals('/current-path');
+    expect(res.locals.timeoutDialog).to.have.property('timeoutUrl').that.equals('/test/session-timeout');
   });
 
   it('should add timeoutUrl of current path to timeoutDialog including current querystring', () => {
     const req = new Request();
     const res = new Response(req);
-    sessionTimeout(app, '/', {});
-    req.casa.journeyContext.nav.language = 'cy';
-    req.originalUrl = 'http://domain.test/current-path?query=string';
-    req.url = '/current-path?query=string';
+    sessionTimeout(app, '/', { SESSION_ENDED: 'session-timeout' });
+    res.locals.casa.mountUrl = '/test/';
 
     app.mw(req, res, () => { });
-    expect(res.locals.timeoutDialog).to.have.property('timeoutUrl').that.equals('/current-path?query=string');
+    expect(res.locals.timeoutDialog).to.have.property('timeoutUrl').that.equals('/test/session-timeout');
   });
 
   it('should add countdown to timeoutDialog (SESSION_TTL - TIMEOUT_DIALOG_COUNTDOWN)', () => {
