@@ -1,3 +1,9 @@
+## 0.43.0 (2021-07-21)
+
+* refactor: update session timeout content ([4fa0b512](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/4fa0b512))
+* feature: remove talk to advisor component from check answers ([55575dd9](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/55575dd9))
+* accessibility: h1 tag wrapped in header ([18ffc683](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/18ffc683))
+
 ## 0.42.0 (2021-07-02)
 
 * feature: remove trust lookup ([a1ded508](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/a1ded508))
