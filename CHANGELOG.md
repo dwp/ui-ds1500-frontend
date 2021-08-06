@@ -1,3 +1,8 @@
+## 0.44.0 (2021-08-05)
+
+* feature: Create new additional guidance page ([4e1fbb48](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/4e1fbb48))
+* accessibility: remove accordion from start page, content moved to new page ([942004e3](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/942004e3))
+
 ## 0.43.0 (2021-07-21)
 
 * refactor: update session timeout content ([4fa0b512](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/4fa0b512))

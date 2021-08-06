@@ -1,7 +1,7 @@
 const appVersion = require('../package.json').version;
 const { addStaticRoute } = require('../utils/routes');
 // list of static routes
-const staticRoutes = ['cookies', 'cookies-table', 'accessibility-statement', 'thankyou']
+const staticRoutes = ['cookies', 'cookies-table', 'accessibility-statement', 'thankyou', 'additional-guidance']
 
 module.exports = function (casaApp) {
   const { router } = casaApp
