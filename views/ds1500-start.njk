@@ -37,96 +37,9 @@
       }) }}
     </div>
 
-    {% set sectionWhen %}
-    {% include 'partials/ds1500-start/when.njk' %}
-    {% endset %}
-
-    {% set sectionWho %}
-    {% include 'partials/ds1500-start/who.njk' %}
-    {% endset %}
-
-    {% set sectionHow %}
-    {% include 'partials/ds1500-start/how.njk' %}
-    {% endset %}
-
-    {% set sectionWhat %}
-    {% include 'partials/ds1500-start/what.njk' %}
-    {% endset %}
-
-    {% set sectionClaiming %}
-    {% include 'partials/ds1500-start/claiming.njk' %}
-    {% endset %}
-
-    {% set sectionBenefits %}
-    {% include 'partials/ds1500-start/benefits.njk' %}
-    {% endset %}
-
-    {% set sectionAdditional %}
-    {% include 'partials/ds1500-start/additional.njk' %}
-    {% endset %}
-
-    {{ govukAccordion({
-      id: "ds1500-start-accordion",
-      items: [
-        {
-          heading: {
-            text: "When you should complete the DS1500 Report Form"
-          },
-          content: {
-            html: sectionWhen
-          }
-        },
-        {
-          heading: {
-            text: "Who should complete the DS1500 Report Form"
-          },
-          content: {
-            html: sectionWho
-          }
-        },
-        {
-          heading: {
-            text: "How this form will be used by DWP"
-          },
-          content: {
-            html: sectionHow
-          }
-        },
-        {
-          heading: {
-            text: "What to do with the completed form"
-          },
-          content: {
-            html: sectionWhat
-          }
-        },
-        {
-          heading: {
-            text: 'Claiming a fee'
-          },
-          content: {
-            html: sectionClaiming
-          }
-        },
-        {
-          heading: {
-            text: 'Benefits that can be claimed under special rules'
-          },
-          content: {
-            html: sectionBenefits
-          }
-        },
-        {
-          heading: {
-            text: t('ds1500-start:accordionSections.additional.heading')
-          },
-          content: {
-            html: sectionAdditional
-          }
-        }
-      ]
-    }) }}
+    <a href="/additional-guidance" class="govuk-link govuk-body">{{ t('ds1500-start:additionalGuidance')}}</a>
   </div>
+  
   <div class="govuk-grid-column-one-third">
     {% include "partials/inset-talk-to-advisor.njk" %}
   </div>

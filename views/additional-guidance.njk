@@ -1,0 +1,220 @@
+{% extends "layouts/app-main.njk" %}
+{% from "macros/site.njk" import fmtTitle with context %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% block casaPageTitle %}
+    {{ fmtTitle('additional-guidance:pageTitle') }}
+{% endblock %}
+{% block beforeContent %}
+    {{ super() }}
+    <nav>
+        {{ govukBackLink({
+    text: "Back",
+    href: casa.mountUrl
+  }) }}
+    </nav>
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-l">
+                {{ t('additional-guidance:h1') }}
+            </h1>
+            <ul class="govuk-list">
+                <li>
+                    <a class="govuk-link" href="#when-you-should-complete-the-ds1500-report-form">{{ t('additional-guidance:links.link1') }}</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#who-should-complete-the-ds1500-report-form">{{ t('additional-guidance:links.link2') }}</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#how-this-form-will-be-used-by-dwp">{{ t('additional-guidance:links.link3') }}</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#what-to-do-with-the-completed-form">{{ t('additional-guidance:links.link4') }}</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#claiming-a-fee">{{ t('additional-guidance:links.link5') }}</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#benefits-that-can-be-claimed-under-special-rules">{{ t('additional-guidance:links.link6') }}</a>
+                </li>
+                <li>
+                    <a class="govuk-link" href="#additional-requirements-and-confirmation">{{ t('additional-guidance:links.link7') }}</a>
+                </li>
+            </ul>
+            <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+            <h2 class="govuk-heading-m" id="when-you-should-complete-the-ds1500-report-form">
+                {{ t('additional-guidance:links.link1') }}
+            </h2>
+            <p class='govuk-body'>{{ t('additional-guidance:section1.p1') }}</p>
+            <h3 class="govuk-heading-s">
+                {{ t('additional-guidance:section1.h1') }}
+            </h3>
+            <p>{{ t('additional-guidance:section1.p2') }}</p>
+            <h3 class="govuk-heading-s">
+                {{ t('additional-guidance:section1.h2') }}
+            </h3>
+            <p>{{ t('additional-guidance:section1.p3') }}</p>
+            <h3 class="govuk-heading-s">
+                {{ t('additional-guidance:section1.h3') }}
+            </h3>
+            <p class="govuk-!-padding-bottom-1">{{ t('additional-guidance:section1.p4') }}</p>
+            <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+            <h2 class="govuk-heading-m" id="who-should-complete-the-ds1500-report-form">
+                {{ t('additional-guidance:links.link2') }}
+            </h2>
+            <p>{{ t('additional-guidance:section2.p') }}</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>{{ t('additional-guidance:section2.ul.li1') }}</li>
+                <li>{{ t('additional-guidance:section2.ul.li2') }}</li>
+                <li>{{ t('additional-guidance:section2.ul.li3') }}</li>
+            </ul>
+            <div class="govuk-inset-text">
+                {{ t('additional-guidance:section2.inset-text') }}
+            </div>
+            <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+            <h2 class="govuk-heading-m" id="how-this-form-will-be-used-by-dwp">
+                {{ t('additional-guidance:links.link3') }}
+            </h2>
+            <p class="govuk-!-padding-bottom-1">{{ t('additional-guidance:section3.p') }}</p>
+            <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+            <h2 class="govuk-heading-m" id="what-to-do-with-the-completed-form">
+                {{ t('additional-guidance:links.link4') }}
+            </h2>
+            <h3 class="govuk-heading-s">{{ t('additional-guidance:section4.h1') }}</h3>
+            <p>{{ t('additional-guidance:section4.p1') }}</p>
+            <h3 class="govuk-heading-s">{{ t('additional-guidance:section4.h2') }}</h3>
+            <p>{{ t('additional-guidance:section4.p2') }}</p>
+            <p>{{ t('additional-guidance:section4.p3') }}</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>{{ t('additional-guidance:section4.ul.li1') }}</li>
+                <li>{{ t('additional-guidance:section4.ul.li2') }}</li>
+                <li>{{ t('additional-guidance:section4.ul.li3') }}</li>
+                <li>{{ t('additional-guidance:section4.ul.li4') }}</li>
+            </ul>
+            <p>{{ t('additional-guidance:section4.p4') }}
+                <strong><a class="govuk-link" href="mailto:{{ t('additional-guidance:section4.email') }}">{{ t('additional-guidance:section4.email') }}</a></strong>
+            </p>
+            <p>
+                <strong>{{ t('additional-guidance:section4.p5bold') }}</strong>
+                {{ t('additional-guidance:section4.p5') }}
+            </p>
+            <h3 class="govuk-heading-s">{{ t('additional-guidance:section4.h3') }}</h3>
+            <p>{{ t('additional-guidance:section4.p6') }}</p>
+            <p class="govuk-!-padding-bottom-1">{{ t('additional-guidance:section4.p7') }}</p>
+            <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+            <h2 class="govuk-heading-m" id="claiming-a-fee">
+                {{ t('additional-guidance:links.link5') }}
+            </h2>
+            <p>{{ t('additional-guidance:section5.p1') }}</p>
+            <p>{{ t('additional-guidance:section5.p2') }}</p>
+            <p>{{ t('additional-guidance:section5.p3') }}</p>
+            <div class="govuk-inset-text">{{ t('additional-guidance:section5.inset-text') }}</div>
+            <p>
+                <strong>{{ t('additional-guidance:section5.p4') }}</strong>
+            </p>
+            <p>
+                {{ t('additional-guidance:section5.p5') }}
+                <a class="govuk-link" href="https://find-your-nearest-jobcentre.dwp.gov.uk">{{ t('additional-guidance:section5.link') }}</a>
+            </p>
+            <p>
+                <strong>{{ t('additional-guidance:section5.p6') }}</strong>
+            </p>
+            <details class="govuk-details govuk-!-padding-bottom-1" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                        {{ t('additional-guidance:section5.relevantAddresses.headline') }}
+                    </span>
+                </summary>
+                <div class="govuk-details__text">
+                    <h4 class="govuk-fieldset__heading">
+                        <strong>{{ t('additional-guidance:section5.relevantAddresses.address1.h6') }}</strong>
+                    </h4>
+                    <div id="details-hint" class="govuk-hint govuk-!-padding-bottom-0">{{ t('additional-guidance:section5.relevantAddresses.address1.hint') }}</div>
+                    <ul class="govuk-list govuk-!-padding-bottom-4">
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address1.ul.li1') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address1.ul.li2') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address1.ul.li3') }}</li>
+                        <li class="govuk-!-margin-top-2">{{ t('additional-guidance:section5.relevantAddresses.address1.ul.li4') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address1.ul.li5') }}</li>
+                    </ul>
+                    <h4 class="govuk-fieldset__heading">
+                        <strong>{{ t('additional-guidance:section5.relevantAddresses.address2.h6') }}</strong>
+                    </h4>
+                    <div id="details-hint" class="govuk-hint">{{ t('additional-guidance:section5.relevantAddresses.address2.hint') }}</div>
+                    <div class="govuk-!-padding-bottom-0"></div>
+                    <ul class="govuk-list">
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address2.ul.li1') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address2.ul.li2') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address2.ul.li3') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address2.ul.li4') }}</li>
+                        <li class="govuk-!-margin-top-2">{{ t('additional-guidance:section5.relevantAddresses.address2.ul.li5') }}</li>
+                    </ul>
+                    <div class="govuk-!-padding-bottom-4"></div>
+                    <h4 class="govuk-fieldset__heading">
+                        <strong>{{ t('additional-guidance:section5.relevantAddresses.address3.h6') }}</strong>
+                    </h4>
+                    <div id="details-hint govuk-!-padding-bottom-0" class="govuk-hint">{{ t('additional-guidance:section5.relevantAddresses.address3.hint') }}</div>
+                    <ul class="govuk-list">
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address3.ul.li1') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address3.ul.li2') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address3.ul.li3') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address3.ul.li4') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address3.ul.li5') }}</li>
+                        <li class="govuk-!-margin-top-2">{{ t('additional-guidance:section5.relevantAddresses.address3.ul.li6') }}</li>
+                    </ul>
+                    <h4 class="govuk-fieldset__heading">
+                        <strong>{{ t('additional-guidance:section5.relevantAddresses.address4.h6') }}</strong>
+                    </h4>
+                    <div class="govuk-!-padding-bottom-2"></div>
+                    <ul class="govuk-list">
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address4.ul.li1') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address4.ul.li2') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address4.ul.li3') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address4.ul.li4') }}</li>
+                        <li class="govuk-!-margin-top-2">{{ t('additional-guidance:section5.relevantAddresses.address4.ul.li5') }}</li>
+                    </ul>
+                    <div class="govuk-!-padding-bottom-4"></div>
+                    <h4 class="govuk-fieldset__heading">
+                        <strong>{{ t('additional-guidance:section5.relevantAddresses.address5.h6') }}</strong>
+                    </h4>
+                    <div class="govuk-!-padding-bottom-2"></div>
+                    <ul class="govuk-list">
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address5.ul.li1') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address5.ul.li2') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address5.ul.li3') }}</li>
+                        <li>{{ t('additional-guidance:section5.relevantAddresses.address5.ul.li4') }}</li>
+                        <li class="govuk-!-margin-top-2">{{ t('additional-guidance:section5.relevantAddresses.address5.ul.li5') }}</li>
+                    </ul>
+                </div>
+            </details>
+            <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+            <h2 class="govuk-heading-m" id="benefits-that-can-be-claimed-under-special-rules">
+                {{ t('additional-guidance:links.link6') }}
+            </h2>
+            <p>{{ t('additional-guidance:section6.p1') }}</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>{{ t('additional-guidance:section6.ul.li1') }}</li>
+                <li>{{ t('additional-guidance:section6.ul.li2') }}</li>
+                <li>{{ t('additional-guidance:section6.ul.li3') }}</li>
+                <li>{{ t('additional-guidance:section6.ul.li4') }}</li>
+                <li>{{ t('additional-guidance:section6.ul.li5') }}</li>
+            </ul>
+            <p class="govuk-!-padding-bottom-1">{{ t('additional-guidance:section6.p2') }}</p>
+            <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible"/>
+            <h2 class="govuk-heading-m" id="additional-requirements-and-confirmation">
+                {{ t('additional-guidance:links.link7') }}
+            </h2>
+            <p>{{ t('additional-guidance:section7.p1') }}</p>
+            <h3 class="govuk-heading-s">{{ t('additional-guidance:section7.h1') }}</h3>
+            <p>{{ t('additional-guidance:section7.p2') }}</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-padding-bottom-1">
+                <li>{{ t('additional-guidance:section7.ul.li1') }}</li>
+                <li>{{ t('additional-guidance:section7.ul.li2') }}</li>
+            </ul>
+        </div>
+        <div class="govuk-grid-column-one-third">
+            {% include "partials/inset-talk-to-advisor.njk" %}
+        </div>
+    </div>
+{% endblock %}
