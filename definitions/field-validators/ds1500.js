@@ -189,8 +189,27 @@ const fieldValidators = {
   ], (dataContext) => {
     const { waypointId, journeyContext } = dataContext
     const formData = journeyContext.getDataForPage(waypointId);
-    const validValues = ['General Practitioner', 'GMC registered consultant']
-    return validValues.indexOf(formData.declaration) > -1;
+    return formData.declaration === 'General Practitioner';
+  }),
+
+  gmcNumberConsultant: sf([
+    r.required.make({
+      errorMsg: 'ds1500:gmcNumberConsultant.empty'
+    }),
+    r.strlen.make({
+      max: 7,
+      min: 7,
+      errorMsgMax: 'ds1500:gmcNumberConsultant.tooLong',
+      errorMsgMin: 'ds1500:gmcNumberConsultant.tooShort'
+    }),
+    r.regex.make({
+      pattern: /^(?!0000000)[0-9]*$/,
+      errorMsg: 'ds1500:gmcNumberConsultant.pattern'
+    })
+  ], (dataContext) => {
+    const { waypointId, journeyContext } = dataContext
+    const formData = journeyContext.getDataForPage(waypointId);
+    return formData.declaration === 'GMC registered consultant';
   }),
 
   declarationAdditionalDetail: sf([

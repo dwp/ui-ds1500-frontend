@@ -132,19 +132,19 @@
   "repDetailsHeading": "Representative details",
   "representativeName": {
     "ariaLabel": "Enter representative's name",
-    "label": "Name",
+    "label": "Representative name",
     "labelA11y": "Representative's name",
     "invalid": "Contains invalid characters"
   },
   "representativeAddress": {
     "ariaLabel": "Enter representative's address",
-    "label": "Address",
+    "label": "Representative address",
     "labelA11y": "Representative's address",
     "invalid": "Contains invalid characters"
   },
   "representativePostcode": {
     "ariaLabel": "Enter representative's postcode",
-    "label": "Postcode",
+    "label": "Representative postcode",
     "labelA11y": "Representative's postcode",
     "invalid": "Enter a real postcode",
     "invalidChars": "Contains invalid characters",
@@ -163,9 +163,9 @@
   },
   "treatmentHeading": "Treatment",
   "treatment": {
-    "m": "Give details of treatments",
+    "label": "Give details of treatments",
     "ariaLabel": "Enter dates and patient's response to treatment",
-    "label": "Including the dates and the patient's response to the treatment.",
+    "hint": "Including the dates and the patient's response to the treatment.",
     "labelA11y": "Dates and patient's response to the treatment.",
     "empty": "Describe your patient's treatment",
     "tooLong": "Treatment details has a maximum length of 160 characters",
@@ -173,8 +173,9 @@
     "wordTooLong": "Treatment must contain words with fewer than 59 characters"
   },
   "otherIntervention": {
+    "label": "Give details of planned future treatments or interventions",
     "ariaLabel": "Enter any interventions or planned treatments",
-    "label": "If there are any interventions or treatments planned which could significantly change the progression of the patient's condition, give details.",
+    "hint": "Including if the planned treatments or interventions could significantly change the progression of the patient's condition.",
     "labelA11y": "If there are any interventions or planned treatments.",
     "tooLong": "Intervention and planned treatment has a maximum length of 120 characters",
     "invalid": "Contains invalid characters",
@@ -192,6 +193,14 @@
     }
   },
   "gmcNumber": {
+    "label": "Your GMC number",
+    "labelA11y": "Your GMC number",
+    "empty": "Enter your GMC number",
+    "tooLong": "GMC numbers cannot be more than 7 digits long",
+    "tooShort": "GMC number must be 7 digits long",
+    "pattern": "GMC Numbers can only contain digits which cannot all be zeros"
+  },
+  "gmcNumberConsultant": {
     "label": "Your GMC number",
     "labelA11y": "Your GMC number",
     "empty": "Enter your GMC number",

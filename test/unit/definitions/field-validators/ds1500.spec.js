@@ -488,6 +488,70 @@ describe('Validators: ds1500', () => {
     });
   })
 
+  describe('field: gmcNumberConsultant', () => {
+    it('should fail "required" validator if no value is provided', async () => {
+      const declaration = 'GMC registered consultant'
+      await expectValidatorToFail(validators, 'gmcNumberConsultant', 'Required', { ...defaultValidators, declaration }, {
+        summary: 'ds1500:gmcNumberConsultant.empty'
+      });
+    });
+
+    it('should pass "required" validator if a non-empty value is provided', async () => {
+      const setValidators = {
+        declaration: 'GMC registered consultant',
+        gmcNumberConsultant: '0123456'
+      }
+
+      await expectValidatorToPass(validators, 'gmcNumberConsultant', 'Required', { ...defaultValidators, ...setValidators });
+    });
+
+    it('should fail "strlen" validator if max invalid length is provided', async () => {
+      const setValidators = {
+        declaration: 'GMC registered consultant',
+        gmcNumberConsultant: '0123456789'
+      }
+      await expectValidatorToFail(validators, 'gmcNumberConsultant', 'Strlen', { ...defaultValidators, ...setValidators }, {
+        summary: 'ds1500:gmcNumberConsultant.tooLong'
+      });
+    });
+
+    it('should fail "strlen" validator if min invalid length is provided', async () => {
+      const setValidators = {
+        declaration: 'GMC registered consultant',
+        gmcNumberConsultant: '01234'
+      }
+      await expectValidatorToFail(validators, 'gmcNumberConsultant', 'Strlen', { ...defaultValidators, ...setValidators }, {
+        summary: 'ds1500:gmcNumberConsultant.tooShort'
+      });
+    });
+
+    it('should pass "strlen" validator if a valid length is provided', async () => {
+      const setValidators = {
+        declaration: 'GMC registered consultant',
+        gmcNumberConsultant: '0123456'
+      }
+      await expectValidatorToPass(validators, 'gmcNumberConsultant', 'Strlen', { ...defaultValidators, ...setValidators });
+    });
+
+    it('should fail "regex" validator if invalid value is provided', async () => {
+      const setValidators = {
+        declaration: 'GMC registered consultant',
+        gmcNumberConsultant: '@12e456'
+      }
+      await expectValidatorToFail(validators, 'gmcNumberConsultant', 'Regex', { ...defaultValidators, ...setValidators }, {
+        summary: 'ds1500:gmcNumberConsultant.pattern'
+      });
+    });
+
+    it('should pass "regex" validator if a valid value is provided', async () => {
+      const setValidators = {
+        declaration: 'GMC registered consultant',
+        gmcNumberConsultant: '0123456'
+      }
+      await expectValidatorToPass(validators, 'gmcNumberConsultant', 'Regex', { ...defaultValidators, ...setValidators });
+    });
+  })
+
   describe('field: declarationAdditionalDetail', () => {
     it('should fail "required" validator if no value is provided', async () => {
       const declaration = 'Other'

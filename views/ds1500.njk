@@ -397,15 +397,20 @@
 
   <h2 class="govuk-heading-l">{{ t('ds1500:treatmentHeading') }}</h2>
 
-  <h3 class="govuk-heading-m">{{ t('ds1500:treatment.m') }}</h3>
-
   <div class="form-group">
     {{ casaGovukCharacterCount({
       name: 'treatment',
       maxlength: 160,
       value: formData.treatment,
       label: {
+        classes: "govuk-label--m",
         text: t('ds1500:treatment.label')
+      },
+      hint: {
+        text: t('ds1500:treatment.hint'),
+        attributes: {
+        'aria-hidden': true
+        }
       },
       attributes: {
         'aria-label': t('ds1500:treatment.ariaLabel'),
@@ -427,7 +432,14 @@
       maxlength: 120,
       value: formData.otherIntervention,
       label: {
+        classes: "govuk-label--m",
         text: t('ds1500:otherIntervention.label')
+      },
+      hint: {
+          text: t('ds1500:otherIntervention.hint'),
+          attributes: {
+          'aria-hidden': true
+          }
       },
       attributes: {
         'aria-label': t('ds1500:otherIntervention.ariaLabel'),
@@ -448,6 +460,99 @@
 
 
   <div class="form-group">
+
+
+    {% set gmcNumberInput %}
+      {{ casaGovukInput({
+        name: 'gmcNumber',
+        value: formData.gmcNumber,
+        label: {
+          classes: "govuk-label--m",
+          text: t('ds1500:gmcNumber.label')
+        },
+        attributes: {
+          'data-parsley-requireifmedicalrelationvisible':"declaration",
+          'data-parsley-requireifmedicalrelationvisible-message':t('ds1500:gmcNumber.empty'),
+          'data-parsley-validate-if-empty':"true",
+          'data-parsley-validate-if-empty-message':"",
+          'data-parsley-maxlength':"7",
+          'data-parsley-gmcpattern':"7",
+          'data-parsley-gmcpattern-message':t('ds1500:gmcNumber.tooShort'),
+          'data-parsley-maxlength-message':t('ds1500:gmcNumber.tooLong'),
+          'data-parsley-pattern':"^(?!0000000)[0-9]*$",
+          'data-parsley-pattern-message': t('ds1500:gmcNumber.pattern'),
+          'data-parsley-class-handler':"#gmcNumber-group",
+          'data-parsley-errors-container':"#gmcNumber-error",
+          'data-parsley-trigger':"focusout",
+          'tabindex': gmcNumberInputTabIndex
+        },
+        formGroup: {
+          classes: gmcNumberClasses
+        },
+        classes: "govuk-!-width-two-thirds",
+        casaErrors: formErrors
+      }) }}
+    {% endset -%}
+
+    {% set gmcNumberConsultantInput %}
+      {{ casaGovukInput({
+        name: 'gmcNumberConsultant',
+        value: formData.gmcNumberConsultant,
+        label: {
+          classes: "govuk-label--m",
+          text: t('ds1500:gmcNumberConsultant.label')
+        },
+        attributes: {
+          'data-parsley-requireifmedicalrelationvisible':"declaration",
+          'data-parsley-requireifmedicalrelationvisible-message':t('ds1500:gmcNumberConsultant.empty'),
+          'data-parsley-validate-if-empty':"true",
+          'data-parsley-validate-if-empty-message':"",
+          'data-parsley-maxlength':"7",
+          'data-parsley-gmcpattern':"7",
+          'data-parsley-gmcpattern-message':t('ds1500:gmcNumberConsultant.tooShort'),
+          'data-parsley-maxlength-message':t('ds1500:gmcNumberConsultant.tooLong'),
+          'data-parsley-pattern':"^(?!0000000)[0-9]*$",
+          'data-parsley-pattern-message': t('ds1500:gmcNumberConsultant.pattern'),
+          'data-parsley-class-handler':"#gmcNumber-group",
+          'data-parsley-errors-container':"#gmcNumber-error",
+          'data-parsley-trigger':"focusout",
+          'tabindex': gmcNumberInputTabIndex
+        },
+        formGroup: {
+          classes: gmcNumberClasses
+        },
+        classes: "govuk-!-width-two-thirds",
+        casaErrors: formErrors
+      }) }}
+    {% endset -%}
+
+    {% set declarationAdditionalInput %}
+      {{ casaGovukInput({
+        name: 'declarationAdditionalDetail',
+        value: formData.declarationAdditionalDetail,
+        label: {
+          classes: "govuk-label--m",
+          text: t('ds1500:declarationAdditionalDetail.label')
+        },
+        formGroup: {
+          classes: additionalDetailClasses
+        },
+        attributes: {
+          'data-parsley-class-handler':"#declarationAdditionalDetail-group",
+          'data-parsley-errors-container':"#declarationAdditionalDetail-error",
+          'data-parsley-requireifotherrelationvisible':"declaration",
+          'data-parsley-requireifotherrelationvisible-message':t('ds1500:declarationAdditionalDetail.empty'),
+          'data-parsley-validate-if-empty':"true",
+          'data-parsley-trigger':"focusout",
+          'data-parsley-invalidcharacters':"declarationAdditionalDetail",
+          'data-parsley-invalidcharacters-message':t('ds1500:declarationAdditionalDetail.invalid'),
+          'tabindex': additionalDetailInputTabIndex
+        },
+        classes: "govuk-!-width-two-thirds",
+        casaErrors: formErrors
+      }) }}
+    {% endset -%}
+
     {{ casaGovukRadios({
       name: 'declaration',
       casaValue: formData.declaration,
@@ -468,92 +573,27 @@
       items: [
         {
           text: 'General Practitioner',
-          value: t('ds1500:declaration.options.gp')
+          value: t('ds1500:declaration.options.gp'),
+          conditional: {
+            html: gmcNumberInput
+          }
         },
         {
           text: 'GMC registered consultant',
-          value: t('ds1500:declaration.options.gmc')
+          value: t('ds1500:declaration.options.gmc'),
+          conditional: {
+            html: gmcNumberConsultantInput
+          }
         },
         {
           text: 'Other',
-          value: t('ds1500:declaration.options.other')
+          value: t('ds1500:declaration.options.other'),
+          conditional: {
+            html: declarationAdditionalInput
+          }
         }
       ],
       classes: "govuk-!-width-two-thirds govuk-radios--inline",
-      casaErrors: formErrors
-    }) }}
-
-
-    {# gmcNumber attrs #}
-    {% set gmcVals = ['General Practitioner', 'GMC registered consultant'] %}
-    {% if formData.declaration | isIn(gmcVals) %}
-    {% set gmcNumberClasses = '' %}
-    {% set gmcNumberInputTabIndex = '0' %}
-    {% set additionalDetailClasses = 'govuk-visually-hidden' %}
-    {% set additionalDetailInputTabIndex = '-1' %}
-    {% else %}
-    {% set gmcNumberClasses = 'govuk-visually-hidden' %}
-    {% set gmcNumberInputTabIndex = '-1' %}
-    {% set additionalDetailClasses = '' %}
-    {% set additionalDetailInputTabIndex = '0' %}
-    {% endif %}
-
-    {{ casaGovukInput({
-      name: 'gmcNumber',
-      value: formData.gmcNumber,
-      label: {
-        classes: "govuk-label--m",
-        text: t('ds1500:gmcNumber.label')
-      },
-      attributes: {
-        'data-parsley-requireifmedicalrelationvisible':"declaration",
-        'data-parsley-requireifmedicalrelationvisible-message':t('ds1500:gmcNumber.empty'),
-        'data-parsley-validate-if-empty':"true",
-        'data-parsley-validate-if-empty-message':"",
-        'data-parsley-maxlength':"7",
-        'data-parsley-gmcpattern':"7",
-        'data-parsley-gmcpattern-message':t('ds1500:gmcNumber.tooShort'),
-        'data-parsley-maxlength-message':t('ds1500:gmcNumber.tooLong'),
-        'data-parsley-pattern':"^(?!0000000)[0-9]*$",
-        'data-parsley-pattern-message': t('ds1500:gmcNumber.pattern'),
-        'data-parsley-class-handler':"#gmcNumber-group",
-        'data-parsley-errors-container':"#gmcNumber-error",
-        'data-parsley-trigger':"focusout",
-        'tabindex': gmcNumberInputTabIndex
-      },
-      formGroup: {
-        classes:gmcNumberClasses
-      },
-      classes: "govuk-!-width-two-thirds",
-      casaErrors: formErrors
-    }) }}
-
-    {# decalartionAdditionalDetails attr #}
-    {#
-
-        #}
-    {{ casaGovukInput({
-      name: 'declarationAdditionalDetail',
-      value: formData.declarationAdditionalDetail,
-      label: {
-        classes: "govuk-label--m",
-        text: t('ds1500:declarationAdditionalDetail.label')
-      },
-      formGroup: {
-        classes: additionalDetailClasses
-      },
-      attributes: {
-        'data-parsley-class-handler':"#declarationAdditionalDetail-group",
-        'data-parsley-errors-container':"#declarationAdditionalDetail-error",
-        'data-parsley-requireifotherrelationvisible':"declaration",
-        'data-parsley-requireifotherrelationvisible-message':t('ds1500:declarationAdditionalDetail.empty'),
-        'data-parsley-validate-if-empty':"true",
-        'data-parsley-trigger':"focusout",
-        'data-parsley-invalidcharacters':"declarationAdditionalDetail",
-        'data-parsley-invalidcharacters-message':t('ds1500:declarationAdditionalDetail.invalid'),
-        'tabindex': additionalDetailInputTabIndex
-      },
-      classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors
     }) }}
 
@@ -634,4 +674,5 @@
 {% block bodyEnd %}
   {{super()}}
   <script nonce="{{nonce}}" src="{{ casa.mountUrl }}js/validation-declaration.js"></script>
+  <script nonce="{{ nonce }}" src="{{ casa.mountUrl }}js/conditional-radios-accessibility.js"></script>
 {% endblock %}

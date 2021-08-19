@@ -78,34 +78,6 @@ function addErrorMarkupRadio (qs) {
   })
 }
 
-function showGmcNumber (bShow) {
-  var gmcNumberGroup = $('#gmcNumber-group')
-  var gmcNumberInput = gmcNumberGroup.find('input')
-  var declarationGroup = $('#declarationAdditionalDetail-group')
-  var declarationInput = declarationGroup.find('input')
-  if (bShow) {
-    gmcNumberGroup.removeClass('govuk-visually-hidden')
-    gmcNumberGroup.removeAttr('aria-hidden')
-    gmcNumberGroup.removeAttr('hidden')
-    gmcNumberInput.removeAttr('tabindex')
-
-    declarationGroup.addClass('govuk-visually-hidden')
-    declarationGroup.attr('aria-hidden', 'true')
-    declarationGroup.attr('hidden', 'true')
-    declarationInput.attr('tabindex', -1)
-  } else {
-    gmcNumberGroup.addClass('govuk-visually-hidden')
-    gmcNumberGroup.attr('aria-hidden', 'true')
-    gmcNumberGroup.attr('hidden', 'true')
-    gmcNumberInput.attr('tabindex', -1)
-
-    declarationGroup.removeClass('govuk-visually-hidden')
-    declarationGroup.removeAttr('aria-hidden')
-    declarationGroup.removeAttr('hidden')
-    declarationInput.removeAttr('tabindex')
-  }
-}
-
 $(function () {
   addErrorMarkup('input:not(".govuk-radios__input"), textarea')
   addErrorMarkupDate('#f-patientDateOfBirth\\[yyyy\\], #f-dateOfDiagnosis\\[yyyy\\]')
@@ -115,9 +87,5 @@ $(function () {
     // $('input[name="gmcNumber"]').parsley().validate();
     // $('input[name="declarationAdditionalDetail"]').parsley().validate();
     $('input[name="gmcNumber"], input[name="declarationAdditionalDetail"]').val('');
-
-    // hide/display GMC number/declarationAdditionalDetail
-    const currentVal = $(this).val()
-    showGmcNumber(gmcVals.indexOf(currentVal) > -1)
   });
 })

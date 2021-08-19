@@ -20,6 +20,7 @@ const fieldGatherModifiers = {
   },
   representativePostcode: gatherModifiers.trimWhitespace,
   gmcNumber: gatherModifiers.trimWhitespace,
+  gmcNumberConsultant: gatherModifiers.trimWhitespace,
   gpPhone: gatherModifiers.trimWhitespace
 };
 

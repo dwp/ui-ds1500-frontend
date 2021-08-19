@@ -1,3 +1,9 @@
+## 0.45.0 (2021-08-19)
+
+* accessibility: conditionally revealing radios for I am the patients field ([6d29eceb](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/6d29eceb))
+* feature: content update treatment section ([15a5c01c](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/15a5c01c))
+* feature: content update representative details section ([8bb11ed0](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/8bb11ed0))
+
 ## 0.44.0 (2021-08-05)
 
 * feature: Create new additional guidance page ([4e1fbb48](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/4e1fbb48))

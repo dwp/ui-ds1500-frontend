@@ -27,5 +27,5 @@ COPY --from=builder /src/app.js /
 COPY --from=builder /src/gulpfile.js /
 COPY --from=builder /src/package.json /
 EXPOSE ${PORT}
-RUN apk --no-cache add libcrypto1.1=1.1.1k-r0 libssl1.1=1.1.1k-r0
+RUN apk --no-cache add libcrypto1.1=1.1.1k-r0 libssl1.1=1.1.1k-r0 apk-tools=2.10.8-r0
 CMD ["npm", "start"]

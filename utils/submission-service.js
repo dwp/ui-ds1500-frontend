@@ -10,6 +10,12 @@ const formatServiceData = (submissionData) => {
     serviceData['dateOfDiagnosis-month'] = serviceData.dateOfDiagnosis.mm;
     serviceData['dateOfDiagnosis-year'] = serviceData.dateOfDiagnosis.yyyy;
     delete serviceData.dateOfDiagnosis;
+    const hasGmcNumberProperty = Object.prototype.hasOwnProperty.call(serviceData, 'gmcNumberConsultant');
+
+    if (hasGmcNumberProperty) {
+      serviceData.gmcNumber = serviceData.gmcNumberConsultant
+    }
+    delete serviceData.gmcNumberConsultant;
   } catch (err) {
     console.error(err)
     throw new Error(`formatServiceData error: ${submissionData}`)
