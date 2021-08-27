@@ -27,16 +27,37 @@ describe('Validators: ds1500', () => {
       await expectValidatorToPass(validators, 'patientName', 'Required', { patientName: 'test-value' });
     });
 
-    it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
-      const patientName = 'a'.repeat(59)
-      await expectValidatorToFail(validators, 'patientName', 'hasValidWords', { ...defaultValidators, patientName }, {
-        summary: 'ds1500:patientName.wordTooLong'
+    it('should fail "hasValidWordsPatientName" validator if both first words greater than 58 characters long and last word greater than 35 characters', async () => {
+      const patientName = 'a'.repeat(59) + ' ' + 'b'.repeat(36)
+      await expectValidatorToFail(validators, 'patientName', 'hasValidWordsPatientName', { ...defaultValidators, patientName }, {
+        summary: 'ds1500:patientName.firstLastTooLong'
       });
     });
 
-    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
-      const patientName = 'a'.repeat(10)
-      await expectValidatorToPass(validators, 'patientName', 'hasValidWords', { ...defaultValidators, patientName });
+    it('should fail "hasValidWordsPatientName" validator if first word is less than 2 characters', async () => {
+      const patientName = 'a'
+      await expectValidatorToFail(validators, 'patientName', 'hasValidWordsPatientName', { ...defaultValidators, patientName }, {
+        summary: 'ds1500:patientName.wordTooShort'
+      });
+    });
+
+    it('should fail "hasValidWordsPatientName" validator if first words greater than 58 characters long', async () => {
+      const patientName = 'a'.repeat(59) + ' ' + 'b'.repeat(30)
+      await expectValidatorToFail(validators, 'patientName', 'hasValidWordsPatientName', { ...defaultValidators, patientName }, {
+        summary: 'ds1500:patientName.firstWordTooLong'
+      });
+    });
+
+    it('should fail "hasValidWordsPatientName" validator if last word greater than 35 characters long', async () => {
+      const patientName = 'a'.repeat(50) + ' ' + 'b'.repeat(36)
+      await expectValidatorToFail(validators, 'patientName', 'hasValidWordsPatientName', { ...defaultValidators, patientName }, {
+        summary: 'ds1500:patientName.lastWordTooLong'
+      });
+    });
+
+    it('should pass "hasValidWordsPatientName" validator if first words less than 58 characters long and last word less than 35 characters long', async () => {
+      const patientName = 'a'.repeat(10) + ' ' + 'b'.repeat(5)
+      await expectValidatorToPass(validators, 'patientName', 'hasValidWordsPatientName', { ...defaultValidators, patientName });
     });
 
     it('should fail "isValidPatientName" validator if name has special char at end', async () => {

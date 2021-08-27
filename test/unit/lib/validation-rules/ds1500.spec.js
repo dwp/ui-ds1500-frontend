@@ -4,7 +4,7 @@ const chaiAsPromised = require('chai-as-promised');
 
 chai.use(chaiAsPromised);
 
-const { isValidPhoneNumber, hasValidWords, isValidPatientName, specialCharCheck } = require('../../../../lib/validation-rules/ds1500');
+const { isValidPhoneNumber, hasValidWords, isValidPatientName, specialCharCheck, hasValidWordsPatientName } = require('../../../../lib/validation-rules/ds1500');
 const { validNumbers } = require('../../../helpers/commonValues');
 
 describe('isValidPatientName', () => {
@@ -117,3 +117,38 @@ describe('ds1500 validations: Diagnosis', () => {
     })
   })
 });
+
+describe('hasValidWordsPatientName', () => {
+  const dataContext = {
+    waypointId: 'testPage',
+    fieldName: 'patientName',
+    journeyContext: {
+      getDataForPage: function () {
+        return this.testPage
+      },
+      testPage: {
+        patientName: ''
+      }
+    }
+  }
+  it('should reject if both first words greater than 58 characters long and last word greater than 35 characters', () => {
+    const fieldValue = 'a'.repeat(59) + ' ' + 'b'.repeat(36)
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.rejected
+  })
+  it('should reject if first word is less than 2 characters', () => {
+    const fieldValue = 'a';
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.rejected
+  })
+  it('should reject if first words greater than 58 characters long', () => {
+    const fieldValue = 'a'.repeat(59);
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.rejected
+  })
+  it('should reject if last word greater than 35 characters long', () => {
+    const fieldValue = 'a'.repeat(50) + ' ' + 'b'.repeat(36)
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.rejected
+  })
+  it('should resolve if it is valid name, first words less than 58 characters long and last word less than 35 characters long', () => {
+    const fieldValue = 'a'.repeat(10) + ' ' + 'b'.repeat(5)
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.fulfilled
+  })
+})

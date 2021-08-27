@@ -1,37 +1,17 @@
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% set talkToAdvisorMarkup %}
-<h2 class="govuk-heading-m govuk-!-margin-bottom-7">{{t('common:talkToAdvisor.heading')}}</h2>
-<h3 class="govuk-heading-s">Telephone</h3>
-<ul class="govuk-list">
-  <li>{{t('common:talkToAdvisor.telephoneLabel')}}: {{t('common:talkToAdvisor.telephoneValue')}}</li>
-  <li>{{t('common:talkToAdvisor.serviceHours')}}</li>
-</ul>
-<h3 class="govuk-heading-s">Email</h3>
-<ul class="govuk-list">
-  <li><a class="govuk-link" title="Click to email an advisor" href="mailto:{{t('common:talkToAdvisor.email')}}">{{t('common:talkToAdvisor.email')}}</a></li>
-  <li>{{t('common:talkToAdvisor.serviceHours')}}</li>
-</ul>
-{#
-
-        <h2 class="govuk-heading-m">Talk to an advisor</h2>
-
-          <div class="govuk-!-padding-bottom-4"></div>
-
-        <h3 class="govuk-heading-s">Telephone</h3>
-
-      <ul class="govuk-list">
-        <li>0300 303 5035</li>
-        <li>24-hour service</li>
-      </ul>
-
-      <h3 class="govuk-heading-s">Email</h3>
-
-      <ul class="govuk-list">
-        <li><a href="ssd.nationalservicedesk@nhs.net">ssd.nationalservicedesk@nhs.net</a></li>
-        <li>24-hour service</li>
-      </ul> #}
-
+  <h2 class="govuk-heading-m govuk-!-margin-bottom-7">{{t('common:talkToAdvisor.heading')}}</h2>
+  <h3 class="govuk-heading-s">Telephone</h3>
+  <ul class="govuk-list">
+    <li>{{t('common:talkToAdvisor.telephoneLabel')}}: {{t('common:talkToAdvisor.telephoneValue')}}</li>
+    <li>{{t('common:talkToAdvisor.serviceHours')}}</li>
+  </ul>
+  <h3 class="govuk-heading-s">Email</h3>
+  <ul class="govuk-list">
+    <li><a class="govuk-link" title="Click to email an advisor" href="mailto:{{t('common:talkToAdvisor.email')}}">{{t('common:talkToAdvisor.email')}}</a></li>
+    <li>{{t('common:talkToAdvisor.serviceHours')}}</li>
+  </ul>
 {% endset %}
 
 {{govukInsetText({

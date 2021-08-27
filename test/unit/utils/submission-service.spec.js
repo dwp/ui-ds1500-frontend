@@ -25,9 +25,6 @@ describe('submission-service', () => {
   }
 
   const result = formatServiceData(validForm)
-  console.table(validForm)
-  console.table(expectedServiceData)
-  console.table(result)
 
   it('should return an object with expected keys', () => {
     expect(Object.keys(result)).to.eql(Object.keys(expectedServiceData))
@@ -35,5 +32,19 @@ describe('submission-service', () => {
 
   it('should return expected result', () => {
     expect(result).to.eql(expectedServiceData)
+  })
+
+  it('should format data if provided declaration equals "Specialist nurse" then formats to "declaration:Other" and "declarationAdditionalDetail:Specialist nurse"', () => {
+    const inputData = {
+      declaration: 'Specialist nurse',
+      ...validForm
+    }
+    const outputData = {
+      declaration: 'Other',
+      declarationAdditionalDetail: 'Specialist nurse',
+      ...expectedServiceData
+    }
+
+    expect(formatServiceData(inputData)).to.eql(outputData)
   })
 })

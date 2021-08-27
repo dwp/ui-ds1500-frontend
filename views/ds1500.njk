@@ -572,21 +572,25 @@
       },
       items: [
         {
-          text: 'General Practitioner',
+          text: t('ds1500:declaration.options.sn'),
+          value: t('ds1500:declaration.options.sn')
+        },
+        {
+          text: t('ds1500:declaration.options.gp'),
           value: t('ds1500:declaration.options.gp'),
           conditional: {
             html: gmcNumberInput
           }
         },
         {
-          text: 'GMC registered consultant',
+          text: t('ds1500:declaration.options.gmc'),
           value: t('ds1500:declaration.options.gmc'),
           conditional: {
             html: gmcNumberConsultantInput
           }
         },
         {
-          text: 'Other',
+          text: t('ds1500:declaration.options.other'),
           value: t('ds1500:declaration.options.other'),
           conditional: {
             html: declarationAdditionalInput

@@ -1,6 +1,6 @@
 const { validationRules: r, simpleFieldValidation: sf } = require('@dwp/govuk-casa')
 
-const { isValidPhoneNumber, isValidPatientName, hasValidWords } = require('../../lib/validation-rules/ds1500');
+const { isValidPhoneNumber, isValidPatientName, hasValidWords, hasValidWordsPatientName } = require('../../lib/validation-rules/ds1500');
 const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../lib/validation-rules/ds1500DateOfBirth')
 const { isEmptyDateOfDiagnosis, isDateNumeric, isValidDateRange, isDateOfDiagnosisInFuture, isDateBeforeDoB } = require('../../lib/validation-rules/ds1500DateOfDiagnosis')
 const { DateTime } = require('luxon');
@@ -11,7 +11,7 @@ const fieldValidators = {
     r.required.make({
       errorMsg: 'ds1500:patientName.empty'
     }),
-    hasValidWords,
+    hasValidWordsPatientName,
     isValidPatientName
   ]),
 
@@ -167,7 +167,7 @@ const fieldValidators = {
       errorMsg: 'ds1500:declaration.empty'
     }),
     r.inArray.make({
-      source: ['General Practitioner', 'GMC registered consultant', 'Other'],
+      source: ['Specialist nurse', 'General Practitioner', 'GMC registered consultant', 'Other'],
       errorMsg: 'ds1500:declaration.empty'
     })
   ]),

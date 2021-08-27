@@ -1,3 +1,9 @@
+## 0.46.0 (2021-08-26)
+
+* feature: addition of specialist nurse radio button ([62a5299d](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/62a5299d))
+* fix: design fix for email address ([95b8e47c](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/95b8e47c))
+* fix: update validation for patient name text field ([e66ed0b0](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/e66ed0b0))
+
 ## 0.45.0 (2021-08-19)
 
 * accessibility: conditionally revealing radios for I am the patients field ([6d29eceb](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/6d29eceb))

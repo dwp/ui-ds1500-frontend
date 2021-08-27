@@ -1,3 +1,5 @@
+const { SPECIALIST_NURSE } = require('../lib/constants')
+
 const formatServiceData = (submissionData) => {
   const serviceData = { ...submissionData }
   // translate dates to how the controller is expecting
@@ -16,6 +18,11 @@ const formatServiceData = (submissionData) => {
       serviceData.gmcNumber = serviceData.gmcNumberConsultant
     }
     delete serviceData.gmcNumberConsultant;
+
+    if (serviceData.declaration === SPECIALIST_NURSE) {
+      serviceData.declaration = 'Other'
+      serviceData.declarationAdditionalDetail = SPECIALIST_NURSE
+    }
   } catch (err) {
     console.error(err)
     throw new Error(`formatServiceData error: ${submissionData}`)

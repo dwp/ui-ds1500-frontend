@@ -236,6 +236,9 @@ textarea {
 }
 
 // link overrides
-.govuk-link {
-  overflow-wrap: break-word;
+@media (max-width: 1024px) {
+  .govuk-link {
+    overflow-wrap: break-word;
+  }
 }
+

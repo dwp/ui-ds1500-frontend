@@ -14,7 +14,11 @@
     "pattern": "Patient's name can only contain letters, spaces, hyphens, apostrophes and full stops",
     "endCharInvalid": "The last character of your patient's name must be an alphabetic character",
     "specialChar": "Patient's name containing hyphens and apostrophes must have alphabetical characters on either side. For example O'Neil",
-    "wordTooLong": "Patient's name must contain words with fewer than 59 characters"
+    "wordTooLong": "Patient's name must contain words with fewer than 59 characters",
+    "wordTooShort": "The patient's name must be more than 1 character",
+    "lastWordTooLong": "The patient's last name must be 35 characters or fewer",
+    "firstWordTooLong": "The patient's first names must be 58 characters or fewer",
+    "firstLastTooLong": "The patient's last name must be 35 characters or fewer. First names must be 58 characters or fewer"
   },
   "patientAddress": {
     "ariaLabel": "Enter patient's address",
@@ -189,6 +193,7 @@
     "options": {
       "gp": "General Practitioner",
       "gmc": "GMC registered consultant",
+      "sn": "Specialist nurse",
       "other": "Other"
     }
   },
