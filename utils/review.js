@@ -31,7 +31,7 @@ const createSummaryItem = function (options, fieldName) {
         {
           href: href,
           text: t('review:block.changeLink'),
-          visuallyHiddenText: t(`ds1500:${fieldName}.labelA11y`).toLowerCase(),
+          visuallyHiddenText: t(`ds1500:${fieldName}.label`).toLowerCase(),
           classes: 'govuk-link--no-visited-state'
         }
       ]

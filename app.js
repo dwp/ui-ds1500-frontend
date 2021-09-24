@@ -82,6 +82,10 @@ if (appConfig.REDIS_PORT && appConfig.REDIS_HOST) {
 // Create a new CASA app instance
 const app = express();
 
+if (appConfig.SECURE_COOKIES === true) {
+  app.enable('trust proxy');
+}
+
 const casaApp = configure(app, {
   mountUrl: '/',
   views: {
@@ -98,7 +102,7 @@ const casaApp = configure(app, {
     secret: appConfig.SESSIONS_SECRET,
     ttl: appConfig.SESSIONS_TTL, // seconds
     // Only set to true if you're running a secure server
-    secure: appConfig.SERVER_SSL_ENABLED
+    secure: appConfig.SECURE_COOKIES
   },
   i18n: {
     // Loaded in this order, with later content taking precedence
@@ -142,7 +146,7 @@ const casaApp = configure(app, {
       CONSENT_COOKIE_NAME,
       COOKIE_POLICY,
       COOKIE_CONSENT,
-      appConfig.SERVER_SSL_ENABLED
+      appConfig.SECURE_COOKIES
     );
     timeoutMiddleware(
       this.expressApp,
@@ -191,7 +195,7 @@ const submissionCommonMw = [casaApp.csrfMiddleware];
 
 // Cookie policy pages
 casaApp.router.get(`/${COOKIE_POLICY}`, submissionCommonMw, cookiePolicyGet(COOKIE_DETAILS));
-casaApp.router.post(`/${COOKIE_POLICY}`, submissionCommonMw, cookiePolicyPost(CONSENT_COOKIE_NAME, appConfig.SERVER_SSL_ENABLED));
+casaApp.router.post(`/${COOKIE_POLICY}`, submissionCommonMw, cookiePolicyPost(CONSENT_COOKIE_NAME, appConfig.SECURE_COOKIES));
 casaApp.router.get(`/${COOKIE_DETAILS}`, submissionCommonMw, cookieDetailsGet(
   CONSENT_COOKIE_NAME,
   SESSIONID,
@@ -205,7 +209,7 @@ casaApp.router.get(`/${waypoints.SESSION_KEEP_ALIVE}`, (req, res) => {
     const cookieOptions = {
       ...COOKIE_OPTIONS_DEFAULT,
       expires: SESSIONS_TTL,
-      secure: appConfig.SERVER_SSL_ENABLED
+      secure: appConfig.SECURE_COOKIES
     }
 
     res.cookie(SESSIONID, cookieValue, cookieOptions);

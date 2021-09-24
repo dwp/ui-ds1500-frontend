@@ -44,9 +44,6 @@
       classes: 'govuk-input--width-2 ' + (inputErrorClass if includes(fieldErrors[0].focusSuffix, '[mm]') or not hasSuffixHighlights)
     }, params.items[0] if params.items[0] else {}, {
       id: 'f-' + params.namePrefix + '[mm]',
-      attributes: {
-        'aria-label': t('ds1500:' + params.namePrefix + '[mm].ariaLabel')
-      },
       name: params.namePrefix + '[mm]',
       value: params.casaValue.mm
     }),
@@ -55,9 +52,6 @@
       classes: 'govuk-input--width-4 ' + (inputErrorClass if includes(fieldErrors[0].focusSuffix, '[yyyy]') or not hasSuffixHighlights)
     }, params.items[1] if params.items[1] else {}, {
       id: 'f-' + params.namePrefix + '[yyyy]',
-      attributes: {
-        'aria-label': t('ds1500:' + params.namePrefix + '[yyyy].ariaLabel')
-      },
       name: params.namePrefix + '[yyyy]',
       value: params.casaValue.yyyy
     })

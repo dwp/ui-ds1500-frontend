@@ -32,7 +32,6 @@
         {
           name: 'day',
           attributes: {
-            'aria-label': t('ds1500:' + name + '[dd].ariaLabel'),
             'data-parsley-required': true,
             'data-parsley-required-message': t('ds1500:' + name + '[dd].empty'),
             'data-parsley-range': "[1,31]",
@@ -48,7 +47,6 @@
         {
           name: 'month',
           attributes: {
-            'aria-label': t('ds1500:' + name + '[mm].ariaLabel'),
             'data-parsley-required': true,
             'data-parsley-required-message': t('ds1500:' + name + '[mm].empty'),
             'data-parsley-range': "[1,12]",
@@ -62,7 +60,6 @@
         {
           name: 'year',
           attributes: {
-            'aria-label': t('ds1500:' + name + '[yyyy].ariaLabel'),
             'data-parsley-required': true,
             'data-parsley-required-message': t('ds1500:' + name + '[yyyy].empty'),
             'data-parsley-range': "[1890,2115]",
@@ -109,7 +106,6 @@
       pattern: "^([A-Za-z](([A-Za-z]|'|\.|-|\s)?[A-Za-z])*)?",
       casaErrors: formErrors,
       attributes: {
-        'aria-label': t('ds1500:patientName.ariaLabel'),
         'data-parsley-required': "true",
         'data-parsley-required-message': t('ds1500:patientName.empty'),
         'data-parsley-pattern': "^([A-Za-z](([A-Za-z]|'|\.|-|\s)?[A-Za-z])*)?",
@@ -128,7 +124,6 @@
         text: t('ds1500:patientAddress.label')
       },
       attributes: {
-        'aria-label': t('ds1500:patientAddress.ariaLabel'),
         'data-parsley-required':"true",
         'data-parsley-required-message': t('ds1500:patientAddress.empty'),
         'data-parsley-invalidcharacters':"patientAddress",
@@ -149,7 +144,6 @@
         text: t('ds1500:patientPostcode.label')
       },
       attributes: {
-        'aria-label': t('ds1500:patientPostcode.ariaLabel'),
         'data-parsley-required':"true",
         'data-parsley-required-message': t('ds1500:patientPostcode.empty'),
         'data-parsley-maxlength':"8",
@@ -176,7 +170,6 @@
         text: t('ds1500:patientNino.label')
       },
       attributes: {
-        'aria-label': t('ds1500:patientNino.ariaLabel'),
         'data-parsley-pattern':"/^(?!BG|GB|NK|KN|TN|NT|ZZ)[A-CEGHJ-PR-TW-Za-ceghj-pr-tw-z]{1}[A-CEGHJ-NPR-TW-Za-ceghj-npr-tw-z]{1}[0-9]{6}[A-Da-d]{1}$/",
         'data-parsley-pattern-message': t('ds1500:patientNino.pattern'),
         'data-parsley-class-handler':"#patientNino-group",
@@ -201,9 +194,6 @@
       label: {
         classes: "govuk-label--m",
         text: t('ds1500:diagnosis.label')
-      },
-      attributes: {
-        'aria-label': t('ds1500:diagnosis.ariaLabel')
       },
       classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors
@@ -276,7 +266,6 @@
         text: t('ds1500:representativeName.label')
       },
       attributes: {
-        'aria-label': t('ds1500:representativeName.ariaLabel'),
         'data-parsley-invalidcharacters':"representativeName",
         'data-parsley-invalidcharacters-message': t('ds1500:representativeName.invalid'),
         'data-parsley-class-handler':"#representativeName-group",
@@ -294,7 +283,6 @@
         text: t('ds1500:representativeAddress.label')
       },
       attributes: {
-        'aria-label': t('ds1500:representativeAddress.ariaLabel'),
         'data-parsley-invalidcharacters':"representativeAddress",
         'data-parsley-invalidcharacters-message': t('ds1500:representativeAddress.invalid'),
         'data-parsley-class-handler':"#representativeAddress-group",
@@ -312,7 +300,6 @@
         text: t('ds1500:representativePostcode.label')
       },
       attributes: {
-        'aria-label': t('ds1500:representativePostcode.ariaLabel'),
         'data-parsley-maxlength':"8",
         'data-parsley-maxlength-message':t('ds1500:representativePostcode.tooLong'),
         'data-parsley-pattern':"/^(?![QVX])[A-Z]((?![IJZ])[A-Z][0-9](([0-9]?)|([ABEHMNPRVWXY]?))|([0-9]([0-9]?|[ABCDEFGHJKPSTUW]?))) ?[0-9]((?![CIKMOV])[A-Z]){2}$|^(BFPO)[ ]?[0-9]{1,4}$/i",
@@ -374,10 +361,7 @@
         text: t('ds1500:clinicalFeatures.label')
       },
       hint: {
-        text: t('ds1500:clinicalFeatures.hint'),
-        attributes: {
-          'aria-hidden': true
-        }
+        text: t('ds1500:clinicalFeatures.hint')
       },
       attributes: {
         'data-parsley-required':"true",
@@ -388,8 +372,7 @@
         'data-parsley-invalidcharacters-message':t('ds1500:clinicalFeatures.invalid'),
         'data-parsley-class-handler':"#clinicalFeatures-group",
         'data-parsley-errors-container':"#clinicalFeatures-error",
-        'data-parsley-trigger':"focusout keyup",
-        'aria-label': t('ds1500:clinicalFeatures.labelAria')
+        'data-parsley-trigger':"focusout keyup"
       },
       casaErrors: formErrors
     }) }}
@@ -407,13 +390,9 @@
         text: t('ds1500:treatment.label')
       },
       hint: {
-        text: t('ds1500:treatment.hint'),
-        attributes: {
-        'aria-hidden': true
-        }
+        text: t('ds1500:treatment.hint')
       },
       attributes: {
-        'aria-label': t('ds1500:treatment.ariaLabel'),
         'data-parsley-required':"true",
         'data-parsley-required-message':t('ds1500:treatment.empty'),
         'data-parsley-maxlength':"160",
@@ -436,13 +415,9 @@
         text: t('ds1500:otherIntervention.label')
       },
       hint: {
-          text: t('ds1500:otherIntervention.hint'),
-          attributes: {
-          'aria-hidden': true
-          }
+          text: t('ds1500:otherIntervention.hint')
       },
       attributes: {
-        'aria-label': t('ds1500:otherIntervention.ariaLabel'),
         'data-parsley-maxlength':"120",
         'data-parsley-maxlength-message':t('ds1500:otherIntervention.tooLong'),
         'data-parsley-invalidcharacters':"otherIntervention",

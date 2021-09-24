@@ -5,7 +5,7 @@ const { COOKIE_OPTIONS_DEFAULT } = require('../lib/constants')
 const { DS1500_SERVICE_DOMAIN } = process.env
 
 // Set the consent cookie and flash message to consent banner
-const setCookie = (req, res, cookieName, cookieValue, useTLS = false) => {
+const setCookie = (req, res, cookieName, cookieValue, useTLS) => {
   res.cookie(cookieName, cookieValue, {
     ...COOKIE_OPTIONS_DEFAULT,
     secure: useTLS

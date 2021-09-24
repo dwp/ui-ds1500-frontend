@@ -1,3 +1,11 @@
+## 0.47.0 (2021-09-23)
+
+* accessibility: update hidden text on check answers ([072a6055](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/072a6055))
+* accessibility: remove aria-labels on form page ([072a6055](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/072a6055))
+* accessibility: hint text fix for Voice Over on Treatment fields ([0da84be8](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/0da84be8))
+* accessibility: hint text fix for Voice Over on Clinical Features fields ([0da84be8](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/0da84be8))
+* fix: session cookies missing security flags ([1cff5135](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/1cff5135))
+
 ## 0.46.0 (2021-08-26)
 
 * feature: addition of specialist nurse radio button ([62a5299d](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/62a5299d))
