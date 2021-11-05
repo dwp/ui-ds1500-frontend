@@ -3,25 +3,6 @@ const appVersion = require('../package.json').version;
 const notifyService = require('../lib/NotifyService');
 const whiteListValidateRedirect = require('../lib/whiteListValidateRedirect')
 
-const makeError = (text) => {
-  return {
-    summary: text,
-    message: text,
-    inline: text
-  }
-}
-
-const formIsValid = (formData) => {
-  return formData && !!formData.rating
-}
-
-const getErrors = (formData = {}) => {
-  const errors = {}
-  errors.rating = formData.rating && !!formData.rating ? [] : [makeError('Select a satisfaction rating')]
-  errors.improvements = formData.improvements && formData.improvements.length <= 1200 ? [] : [makeError('Enter improvement suggestions using 1200 characters or less')]
-  return errors
-}
-
 module.exports = function (casaApp, notifyEmailTo, notifyApiKey, notifyProxyHost, notifyProxyPort) {
   const { router, csrfMiddleware } = casaApp
   const { mountUrl } = casaApp.config
@@ -40,9 +21,35 @@ module.exports = function (casaApp, notifyEmailTo, notifyApiKey, notifyProxyHost
   });
   router.post('/feedback', csrfMiddleware, async function (req, res) {
     const formData = req.body || {};
-    const formErrors = getErrors(formData)
+    const { t } = res.locals;
+    const errors = {}
+    const errorList = []
 
-    if (formIsValid(formData)) {
+    if (!formData.rating) {
+      errors.rating = [{
+        summary: t('feedback:errors.required'),
+        message: t('feedback:errors.required'),
+        inline: t('feedback:errors.required')
+      }]
+      errorList.push({
+        text: t('feedback:errors.required'),
+        href: '#f-rating-error'
+      })
+    }
+
+    if (formData.improvements.length >= 1200) {
+      errors.improvements = [{
+        summary: t('feedback:errors.maxLength'),
+        message: t('feedback:errors.maxLength'),
+        inline: t('feedback:errors.maxLength')
+      }]
+      errorList.push({
+        text: t('feedback:errors.maxLength'),
+        href: '#improvements-error'
+      })
+    }
+
+    if (errorList.length === 0) {
       try {
         await notifyService(formData, notifyEmailTo, notifyApiKey, notifyProxyConfig)
         logger.info('Feedback sent successfully');
@@ -62,7 +69,8 @@ module.exports = function (casaApp, notifyEmailTo, notifyApiKey, notifyProxyHost
         sessionid: encodeURIComponent(req.session.id),
         appVersion: appVersion,
         formData: formData,
-        formErrors: formErrors
+        formErrors: errors,
+        formErrorsGovukArray: errorList
       });
     }
   });

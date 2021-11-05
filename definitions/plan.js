@@ -10,7 +10,7 @@ module.exports = (() => {
     'ds1500-start',
     'ds1500',
     'review',
-    'confirmation'
+    'ds1500-download'
   );
 
   // Define an origin starting point

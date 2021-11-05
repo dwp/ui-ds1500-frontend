@@ -1,3 +1,17 @@
 {
-  "exceptions": ["https://nodesecurity.io/advisories/566"]
+  "1002475": {
+    "active": true,
+    "notes": "Ignoring while package is not updated",
+    "expiry": "2021-11-13"
+  },
+  "1002477": {
+    "active": true,
+    "notes": "Ignoring while package is not updated",
+    "expiry": "2021-11-13"
+  },
+  "1002627": {
+    "active": true,
+    "notes": "Ignoring while package is not updated",
+    "expiry": "2021-11-13"
+  }
 }

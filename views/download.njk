@@ -1,0 +1,51 @@
+{% extends "layouts/app-main.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "macros/site.njk" import fmtTitle with context %}
+{% from "macros/download-block.njk" import downloadBlock with context %}
+{% block casaPageTitle %}
+    {{ fmtTitle('download:pageTitle') }}
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds govuk-!-padding-bottom-5">
+            <h1 class="govuk-heading-l increase-bottom-margin">{{ t('download:heading') }}</h1>
+            {{ govukInsetText({
+                text: t('download:warning')
+            }) }}
+            {{ downloadBlock({
+                name: 'ds1500',
+                downloadUrl: '/download',
+                imageUrl: 'img/ds1500-form.png',
+                data: json,
+                id: 'ds1500-form'
+            }) }}
+            {% if showFeeForm %}
+                {{ downloadBlock({
+                    name: 'claimForm',
+                    downloadUrl: '/downloadFee',
+                    imageUrl: 'img/fee-form.png',
+                    data: json,
+                    id: 'fee-form'
+                }) }}
+            {% endif %}
+            {{ govukButton({
+                classes: "govuk-!-margin-top-6",
+                text: t('common:btnContinue'),
+                href: casa.mountUrl + 'confirmation',
+                type: 'submit'
+            }) }}
+        </div>
+        <div class="govuk-grid-column-one-third">
+            {% include "partials/inset-talk-to-advisor.njk" %}
+        </div>
+    </div>
+{% endblock %}
+<script>
+    function submitForm() {
+        document.getElementById("download-form").submit();
+    }
+    document.getElementById("btn_ds1500-form").addEventListener("click", submitForm);
+    document.getElementById("btn_fee-form").addEventListener("click", submitForm);
+</script>

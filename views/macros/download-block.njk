@@ -1,0 +1,19 @@
+{% macro downloadBlock(options) %}
+<div id="{{ id }}" class="attachment clearfix">
+    <div class="attachment-thumb">
+    <img class="thumbnail" src="{{ options.imageUrl }}" alt=""> </div>
+    <div class="attachment-details">
+        <form id="download-form" action="{{ options.downloadUrl }}" method="post" class="form" autocomplete="off" novalidate>
+            <input class="govuk-visually-hidden" id="json_value_{{ options.id }}" type="hidden" name="json" value="{{ options.data }}">
+            <button
+                aria-label="Click to {{ t('download:attachments.' + options.name + '.label') }}"
+                type="submit"
+                class="submit-link govuk-link govuk-!-font-size-27"
+                id="btn_{{ options.id }}">{{ t('download:attachments.' + options.name + '.headline') }}
+            </button>
+            <div class="govuk-!-padding-bottom-4"></div>
+            <p>{{ t('download:attachments.' + options.name + '.hintText') }}</p>
+        </form>
+    </div>
+</div>
+{% endmacro %}

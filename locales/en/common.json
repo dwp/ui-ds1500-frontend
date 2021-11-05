@@ -22,7 +22,8 @@
     "postcode": "Postcode"
   },
   "talkToAdvisor": {
-    "heading": "Talk to an advisor",
+    "heading": "Get help",
+    "additionalGuidance": "Guidance for DS1500 (opens in new tab)",
     "telephoneLabel": "Telephone",
     "telephoneValue": "0300 303 5035",
     "email": "ssd.nationalservicedesk@nhs.net",

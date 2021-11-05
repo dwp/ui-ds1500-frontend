@@ -633,6 +633,18 @@ describe('Validators: ds1500', () => {
       const gpName = 'John Doe'
       await expectValidatorToPass(validators, 'gpName', 'Regex', { ...defaultValidators, gpName });
     });
+
+    it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
+      const gpName = 'a'.repeat(59)
+      await expectValidatorToFail(validators, 'gpName', 'hasValidWords', { ...defaultValidators, gpName }, {
+        summary: 'ds1500:gpName.wordTooLong'
+      });
+    });
+
+    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
+      const gpName = 'a'.repeat(10)
+      await expectValidatorToPass(validators, 'gpName', 'hasValidWords', { ...defaultValidators, gpName });
+    });
   })
 
   describe('field: gpAddress', () => {
@@ -650,6 +662,18 @@ describe('Validators: ds1500', () => {
     it('should pass "regex" validator if a valid value is provided', async () => {
       const gpAddress = '10 Downing street'
       await expectValidatorToPass(validators, 'gpAddress', 'Regex', { ...defaultValidators, gpAddress });
+    });
+
+    it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
+      const gpAddress = 'a'.repeat(59)
+      await expectValidatorToFail(validators, 'gpAddress', 'hasValidWords', { ...defaultValidators, gpAddress }, {
+        summary: 'ds1500:gpAddress.wordTooLong'
+      });
+    });
+
+    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
+      const gpAddress = 'a'.repeat(10)
+      await expectValidatorToPass(validators, 'gpAddress', 'hasValidWords', { ...defaultValidators, gpAddress });
     });
   })
 

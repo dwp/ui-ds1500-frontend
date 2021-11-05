@@ -106,6 +106,28 @@ module.exports = {
       let response
       try {
         response = await submissionService.sendApplication(serviceData);
+        if (typeof response.body.id !== 'undefined') {
+          logger.info('DS1500 sent successfully');
+
+          req.session.downloadContext = {
+            ninoComplete: req.body.patientNino !== '',
+            sessionid: encodeURIComponent(req.session.id),
+            appVersion: appVersion,
+            showFeeForm: serviceData.declaration === 'General Practitioner' || serviceData.declaration === 'GMC registered consultant',
+            transactionID: response.body.id,
+            controllerUrl: serviceUrl,
+            json: JSON.stringify(serviceData)
+          }
+
+          req.session.save()
+          next()
+        } else {
+          logger.error('Error in DS1500 Controller - ' + response.body);
+          res.status(503).render('casa/errors/503', {
+            sessionid: encodeURIComponent(req.session.id),
+            appVersion: appVersion
+          });
+        }
       } catch (errors) {
         if (errors instanceof Error) {
           logger.error('Error submitting application to DS1500 Controller', errors.message);
@@ -131,29 +153,6 @@ module.exports = {
             }
           })
         }
-      }
-
-      if (typeof response.body.id !== 'undefined') {
-        logger.info('DS1500 sent successfully');
-
-        req.session.downloadContext = {
-          ninoComplete: req.body.patientNino !== '',
-          sessionid: encodeURIComponent(req.session.id),
-          appVersion: appVersion,
-          showFeeForm: serviceData.declaration === 'General Practitioner' || serviceData.declaration === 'GMC registered consultant',
-          transactionID: response.body.id,
-          controllerUrl: serviceUrl,
-          json: JSON.stringify(serviceData)
-        }
-
-        req.session.save()
-        next()
-      } else {
-        logger.error('Error in DS1500 Controller - ' + response.body);
-        res.status(503).render('casa/errors/503', {
-          sessionid: encodeURIComponent(req.session.id),
-          appVersion: appVersion
-        });
       }
     }
   }

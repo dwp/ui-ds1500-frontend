@@ -3,13 +3,13 @@
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/footer/macro.njk" import govukFooter with context%}
 
+{% block skipLink %}
+{% endblock %}
+
 {% block head %}
 {# {{super()}} #}
   {% include "partials/head-common.njk" %}
-{% endblock %}
-
-{% block skipLink %}
-{% include "partials/skip-link.njk" %}
+  {% include "partials/skip-link.njk" %}
 {% endblock %}
 
 {% block bodyStart %}

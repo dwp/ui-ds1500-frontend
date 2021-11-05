@@ -182,18 +182,20 @@
     "label": "Please specify",
     "empty": "Please specify your relationship to the patient",
     "invalid": "Relationship to patient field contains invalid characters",
-    "wordTooLong": "Please specify field must contain words with fewer than 59 characters"
+    "wordTooLong": "Please specify must contain words with fewer than 59 characters"
   },
   "gpName": {
     "label": "Your full name",
     "empty": "Enter your full name",
-    "invalid": "Contains invalid characters"
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Names must be fewer than 59 characters"
   },
   "gpAddress": {
     "label": "Your Trust address",
     "hint": "If you are not a part of a Trust, this could be your Clinical Commissioning Group (CCG), Primary Care Trust (PCT) or surgery.",
     "empty": "Enter your trust address",
-    "invalid": "Contains invalid characters"
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Your address must contain words with fewer than 59 characters"
   },
   "gpPhone": {
     "label": "Your phone number",

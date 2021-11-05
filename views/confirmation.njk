@@ -5,76 +5,32 @@
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% from "macros/site.njk" import fmtTitle with context %}
 {% block casaPageTitle %}
-    {{ fmtTitle('download:pageTitle') }}
+    {{ fmtTitle('confirmation:pageTitle') }}
 {% endblock %}
-{% macro downloadBlock(options) %}
-    {# {name, downloadUrl, imageUrl, label, id} #}
-    <div id="{{ id }}" class="attachment clearfix">
-        <div class="attachment-thumb">
-            <img class="thumbnail" src="{{ options.imageUrl }}" alt="an image showing a thumbnail of the {{ options.name }} form"></div>
-            <div class="attachment-details">
-                <h2 class="govuk-heading-s">
-                    {{ t('download:attachments.' + options.name + '.headline') }}
-                </h2>
-                <p>{{ t('download:attachments.' + options.name + '.hintText') }}</p>
-                <form
-                    action="{{ options.downloadUrl }}" method="post" class="form" autocomplete="off" novalidate>
-                    <input class="govuk-visually-hidden" id="json_value_{{ options.id }}" type="hidden" name="json" value="{{ options.data }}">
-                        <button type="submit" aria-label="Click to {{ t('download:attachments.' + options.name + '.label') }}" class="govuk-button govuk-button--secondary" id="btn_{{ options.id }}">
-                            <strong>{{ t('download:attachments.' + options.name + '.label') }}</strong>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        {% endmacro %}
-        {% block content %}
-            {# {{getContext() | dump | safe}} #}
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                    {{ govukPanel({
-                titleText: t('download:pageTitle'),
+{% block content %}
+    {# {{getContext() | dump | safe}} #}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds govuk-!-padding-bottom-5">
+            {{ govukPanel({
+                titleText: t('confirmation:pageTitle'),
                 headingLevel: 1,
-                html: t('download:panel.transactionLabel', {"transactionID": transactionID})
+                html: t('confirmation:panel.transactionLabel', {"transactionID": transactionID})
             }) }}
-                    <h2 class="govuk-heading-l increase-bottom-margin">{{ t('download:heading') }}</h2>
-                    {# {{
-                                govukInsetText({
-                                    text: t('download:warning'),
-                                    classes: 'alert-warning'
-                                })
-                            }} #}
-                    {{ govukWarningText({
-            text: t('download:warning'),
-            iconFallbackText: "Warning"
-        }) }}
-                    {% if showFeeForm %}
-                        {{ downloadBlock({
-            name: 'claimForm',
-            downloadUrl: '/downloadFee',
-            imageUrl: 'img/claim-fee.jpg',
-            data: json,
-            id: 'fee-form'
-        }) }}
-                    {% endif %}
-                    {{ downloadBlock({
-            name: 'ds1500',
-            downloadUrl: '/download',
-            imageUrl: 'img/terminal-illness-report.jpg',
-            data: json,
-            id: 'ds1500-form'
-        }) }}
-                    <p class="govuk-body">
-                        <form action="ds1500-start" method="post" class="form" autocomplete="off" novalidate>
-                            <button type="submit" class="submit-link">{{ t('download:sendAnother') }}</button>
-                        </form>
-                    </p>
-                    <p class="govuk-body">
-                        <a href="{{ casa.mountUrl }}feedback" class="govuk-link" target="_blank">{{ t('download:feedbackLinkText') }}</a>
-                        {{ t('download:feedbackTime') }}
-                    </p>
-                </div>
-                <div class="govuk-grid-column-one-third">
-                    {% include "partials/inset-talk-to-advisor.njk" %}
-                </div>
-            </div>
-        {% endblock %}
+            <h2 class="govuk-heading-l govuk-!-padding-top-5">{{ t('confirmation:h2') }}</h2>
+            <p class="govuk-body">{{ t('confirmation:p1') }}</p>
+            <p class="govuk-body">{{ t('confirmation:p2') }}</p>
+            <p class="govuk-body govuk-!-padding-bottom-5">
+                <form action="ds1500-start" method="post" class="form" autocomplete="off" novalidate>
+                    <button type="submit" class="submit-link govuk-link">{{ t('confirmation:sendAnother') }}</button>
+                </form>
+            </p>
+            <p class="govuk-body">
+                <a href="{{ casa.mountUrl }}feedback" class="govuk-link" target="_blank">{{ t('confirmation:feedbackLinkText') }}</a>
+                {{ t('confirmation:feedbackTime') }}
+            </p>
+        </div>
+        <div class="govuk-grid-column-one-third">
+            {% include "partials/inset-talk-to-advisor.njk" %}
+        </div>
+    </div>
+{% endblock %}

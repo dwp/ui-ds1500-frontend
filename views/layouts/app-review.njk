@@ -4,12 +4,12 @@
 {% from "casa/components/journey-form/macro.njk" import casaJourneyForm with context %}
 {% from "macros/site.njk" import cookieBanner with context %}
 
+{% block skipLink %}
+{% endblock %}
+
 {% block head %}
   {# {{super()}} #}
   {% include "partials/head-common.njk" %}
-{% endblock %}
-
-{% block skipLink %}
   {% include "partials/skip-link.njk" %}
 {% endblock %}
 

@@ -1,10 +1,11 @@
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% set talkToAdvisorMarkup %}
-  <h2 class="govuk-heading-m govuk-!-margin-bottom-7">{{t('common:talkToAdvisor.heading')}}</h2>
-  <h3 class="govuk-heading-s">Telephone</h3>
+  <h2 class="govuk-heading-m govuk-!-margin-bottom-5">{{t('common:talkToAdvisor.heading')}}</h2>
+  <a href="/additional-guidance" target="_blank" class="govuk-link govuk-body govuk-!-margin-bottom-4">{{ t('common:talkToAdvisor.additionalGuidance')}}</a>
+  <h3 class="govuk-heading-s">{{t('common:talkToAdvisor.telephoneLabel')}}</h3>
   <ul class="govuk-list">
-    <li>{{t('common:talkToAdvisor.telephoneLabel')}}: {{t('common:talkToAdvisor.telephoneValue')}}</li>
+    <li>{{t('common:talkToAdvisor.telephoneValue')}}</li>
     <li>{{t('common:talkToAdvisor.serviceHours')}}</li>
   </ul>
   <h3 class="govuk-heading-s">Email</h3>

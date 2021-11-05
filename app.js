@@ -183,6 +183,7 @@ require('./middleware/nonce')(casaApp, true);
 // These routes will execute any matched URL before any CASA journey routes.
 require('./routes/index')(casaApp);
 require('./routes/static')(casaApp);
+require('./routes/confirmation')(casaApp);
 require('./routes/feedback')(casaApp, appConfig.NOTIFY_EMAILTO, appConfig.NOTIFY_APIKEY, appConfig.NOTIFY_PROXY_HOST, appConfig.NOTIFY_PROXY_PORT);
 
 casaApp.loadDefinitions(

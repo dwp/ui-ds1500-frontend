@@ -226,13 +226,15 @@ const fieldValidators = {
   gpName: sf([
     r.required.make({
       errorMsg: 'ds1500:gpName.empty'
-    })
+    }),
+    hasValidWords
   ]),
 
   gpAddress: sf([
     r.required.make({
       errorMsg: 'ds1500:gpAddress.empty'
-    })
+    }),
+    hasValidWords
   ]),
 
   gpPhone: sf([

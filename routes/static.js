@@ -8,14 +8,19 @@ module.exports = function (casaApp) {
   router.get('/ds1500-start', function (req, res) {
     const newSession = 'newSession' in req.query
     req.session.previousPage = 'ds1500-start';
-    console.table({ newSession })
-    res.render('ds1500-start', {
-      sessionid: encodeURIComponent(req.session.id),
-      appVersion,
-      newSession
-    });
+    if (typeof req.session.validSession === 'undefined' || req.session.validSession) {
+      req.session.validSession = true;
+      res.render('ds1500-start', {
+        sessionid: encodeURIComponent(req.session.id),
+        appVersion,
+        newSession
+      });
+    } else {
+      res.redirect('/session-timeout')
+    }
   });
   router.post('/ds1500-start', function (req, res) {
+    req.session.validSession = true;
     res.render('ds1500-start', {
       sessionid: encodeURIComponent(req.session.id),
       appVersion: appVersion,

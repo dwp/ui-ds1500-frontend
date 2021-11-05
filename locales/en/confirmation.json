@@ -1,0 +1,12 @@
+{
+    "pageTitle": "Report submitted",
+    "panel": {
+        "transactionLabel": "Transaction ID:<br /><br /><strong>${transactionID}</strong>"
+    },
+    "h2": "What happens next",
+    "p1": "The form has been sent to DWP.",
+    "p2": "If you require any further information contact the NHS service desk.",
+    "sendAnother": "Report another terminally ill patient",
+    "feedbackLinkText": "What did you think of this service?",
+    "feedbackTime": "(takes 30 seconds)"
+}

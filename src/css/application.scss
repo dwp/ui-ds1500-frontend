@@ -110,11 +110,15 @@ textarea {
 }
 
 .attachment-thumb {
-    background-color: #DEE0E2;
     display: inline;
     float: left;
     margin-right: 20px;
-    padding: 5px;
+    width: 150px
+}
+
+.thumbnail {
+  max-width: 100%;
+  height: auto;
 }
 
 .attachment-thumb a img {
@@ -124,7 +128,7 @@ textarea {
 }
 
 .attachment {
-    margin: 40px 1px 60px;
+    margin: 40px 20px 140px;
 }
 
 .increase-bottom-margin {
@@ -172,13 +176,12 @@ textarea {
 .submit-link {
   background: none;
   border: none;
-  color: #005ea5;
+  color: #1D70B8;
   text-decoration: underline;
   cursor: pointer;
   margin:0; padding:0;
   outline: none;
-  font-size: 1.1875rem;
-  line-height: 1.31579;
+  font-size: 19px;
 
   &:visited{
     color: #4c2c92;
@@ -242,3 +245,8 @@ textarea {
   }
 }
 
+@media (max-width: 640px) {
+  .submit-link {
+    font-size: 16px;
+  }
+}

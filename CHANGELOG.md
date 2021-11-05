@@ -1,3 +1,15 @@
+## 0.48.0 (2021-11-04)
+
+* feature: update talk to advisor panel ([11b60697](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/11b60697))
+* feature: separation of download and confirmation page ([b3ad5356](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/b3ad5356))
+* feature: update error on feedback page ([45385c48](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/45385c48))
+* feature: your details field error ([0a726457](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/0a726457))
+* accessibility: fix conditional revealing other radio ([550a3b9d](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/550a3b9d))
+* accessibility: skip to content at top of page ([d3394b4e](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/d3394b4e))
+* accessibility: fix heading level order on additional guidance ([94623983](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/94623983))
+* accessibility: remove alt text on download images ([b3ad5356](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/b3ad5356))
+* fix: session cookies missing security flags ([1cff5135](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/1cff5135))
+
 ## 0.47.0 (2021-09-23)
 
 * accessibility: update hidden text on check answers ([072a6055](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/072a6055))

@@ -2,15 +2,13 @@
 {% from "casa/components/radios/macro.njk" import casaGovukRadios with context %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+{% from "casa/components/character-count/macro.njk" import casaGovukCharacterCount with context %}
 {% from "macros/site.njk" import fmtTitle with context %}
 
 {% block casaPageTitle %}
     {{ fmtTitle('feedback:pageTitle') }}
 {% endblock %}
 
-{% block bodyEnd %}
-{% endblock %}
 {% block journey_form %}
 
 
@@ -25,7 +23,8 @@
 
 {{ casaGovukRadios({
       name: 'rating',
-      value: formData.rating,
+      id: "rating",
+      casaValue: formData.rating,
       items: [
         {text: 'Very satisfied', value: t('feedback:very-satisfied')},
         {text: 'Satisfied', value: t('feedback:satisfied')},
@@ -42,16 +41,18 @@
 }}
 
 {{
-    govukCharacterCount({
+    casaGovukCharacterCount({
         name: "improvements",
         id: "improvements",
+        value: formData.improvements,
         maxlength: t('feedback:limit'),
         label: {
             text: "Can you provide more detail?"
         },
         hint: {
             text: t('feedback:info')
-        }
+        },
+        casaErrors: formErrors
     })
 }}
 
@@ -62,7 +63,5 @@
     })
 }}
 
-
 {% endblock %}
-
 

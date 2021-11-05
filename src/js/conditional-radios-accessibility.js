@@ -42,5 +42,6 @@ window.onload = function () {
     document.getElementById('f-declaration').addEventListener('click', showDeclaration, false);
     document.getElementById('f-declaration-2').addEventListener('click', showDeclaration, false);
     document.getElementById('f-declaration-3').addEventListener('click', showDeclaration, false);
+    document.getElementById('f-declaration-4').addEventListener('click', showDeclaration, false);
   })();
 }
