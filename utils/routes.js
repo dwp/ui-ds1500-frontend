@@ -4,7 +4,7 @@
  * @param {*} endpoint Route endpoint path
  * @param {*} appVersion Version of app
  */
-const addStaticRoute = (r, endpoint, appVersion) => {
+const addStaticRoute = (r, endpoint, submissionCommonMw, appVersion) => {
   const route = function (req, res) {
     req.session.previousPage = 'ds1500-start';
     res.render(endpoint, {
@@ -12,7 +12,7 @@ const addStaticRoute = (r, endpoint, appVersion) => {
       appVersion
     });
   }
-  r.get(`/${endpoint}`, route);
+  r.get(`/${endpoint}`, submissionCommonMw, route);
   return route
 }
 

@@ -1,4 +1,5 @@
 import TimeoutDialog from 'hmrc-frontend-src/src/components/timeout-dialog/timeout-dialog';
+import CookieBanner from './js/cookie-banner';
 
 /**
  * @param opts
@@ -16,9 +17,16 @@ function initAll (opts) {
   if ($TimeoutDialog) {
     new TimeoutDialog($TimeoutDialog).init();
   }
+
+  // GDPR cookie consent banner
+  const $CookieBanner = scope.querySelector('[data-module="ds1500-cookie-banner"]');
+  if ($CookieBanner) {
+    new CookieBanner($CookieBanner).init();
+  }
 }
 
 export {
   initAll,
-  TimeoutDialog
+  TimeoutDialog,
+  CookieBanner
 }

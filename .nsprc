@@ -1,17 +1,6 @@
 {
-  "1002475": {
+  "1005018": {
     "active": true,
-    "notes": "Ignoring while package is not updated",
-    "expiry": "2021-11-13"
-  },
-  "1002477": {
-    "active": true,
-    "notes": "Ignoring while package is not updated",
-    "expiry": "2021-11-13"
-  },
-  "1002627": {
-    "active": true,
-    "notes": "Ignoring while package is not updated",
-    "expiry": "2021-11-13"
+    "notes": "Ignoring while package is not updated. Does not affect the service."
   }
 }

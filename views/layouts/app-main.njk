@@ -1,5 +1,4 @@
 {% extends "casa/layouts/main.njk" %}
-{% from 'macros/site.njk' import gtmIframe %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 {% from "govuk/components/footer/macro.njk" import govukFooter with context%}
 
@@ -19,7 +18,6 @@
 {% block bodyEnd %}
 {{super()}}
 {% include "partials/end-common.njk" %}
-<script nonce="{{nonce}}" src="{{ casa.mountUrl }}js/hide-cookie-banner.js"></script>
 {% endblock %}
 
 {% block beforeContent %}

@@ -1,0 +1,17 @@
+{%- if googleTagManagerId -%}
+  {# Google Tag Manager data layer; needs to be included before consent message
+     is accepted so it is applied when GTM snippet is executed on accept button
+     click #}
+  {%- if consentCookieValue !== "reject" -%}
+    <script{%- if nonce %} nonce="{{ nonce }}"{% endif -%}>dataLayer=[{'gtm.whitelist':['ua','cl','lcl','fsl','tl','jel','hl','v','c','ctv','e','dbg','d','f','j','smm','r','u','gas','remm','vis','evl','sdl']}]</script>
+  {% endif %}
+  {# Only include Google Tag Manager snippet if cookie consent is accepted #}
+  {%- if consentCookieValue === "accept" -%}
+    <script{%- if nonce %} nonce="{{ nonce }}"{% endif -%}>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-{{ googleTagManagerId }}');</script>
+  {% endif %}
+{% endif %}

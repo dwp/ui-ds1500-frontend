@@ -5,13 +5,14 @@
 const path = require('path');
 const { configure } = require('@dwp/govuk-casa');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const cookieMiddleware = require('./middleware/cookie-message');
 const cookiePolicyGet = require('./routes/cookies/cookie-policy.get');
 const cookiePolicyPost = require('./routes/cookies/cookie-policy.post');
 const cookieDetailsGet = require('./routes/cookies/cookie-details.get');
 const timeoutMiddleware = require('./middleware/session-timeout.js');
 
-const { CONSENT_COOKIE_NAME, COOKIE_CONSENT, COOKIE_POLICY, COOKIE_DETAILS, SESSIONID, COOKIE_OPTIONS_DEFAULT, waypoints } = require('./lib/constants.js');
+const { CONSENT_COOKIE_NAME, GTM_DOMAIN, COOKIE_POLICY, COOKIE_DETAILS, SESSIONID, COOKIE_OPTIONS_DEFAULT, waypoints } = require('./lib/constants.js');
 const { SESSIONS_TTL } = process.env
 
 // Load app config from `.env`
@@ -81,7 +82,7 @@ if (appConfig.REDIS_PORT && appConfig.REDIS_HOST) {
 
 // Create a new CASA app instance
 const app = express();
-
+app.use(cookieParser())
 if (appConfig.SECURE_COOKIES === true) {
   app.enable('trust proxy');
 }
@@ -116,7 +117,7 @@ const casaApp = configure(app, {
   },
   csp: { // @TODO conditional set domain for dev and production envs
     'style-src': [
-      '\'self\'',
+      "'self' 'unsafe-inline'",
       'https://tagmanager.google.com https://fonts.googleapis.com'
     ],
     'img-src': [
@@ -132,21 +133,20 @@ const casaApp = configure(app, {
     'connect-src': [
       '\'self\'',
       'https://www.google-analytics.com'
-    ]
+    ],
+    'frame-src': ["'self'", 'https://www.googletagmanager.com'],
   },
   sessionExpiryController: (req, res, next) => {
-      next();
+    next();
   },
   mountController: function casaMountController(mountCommonMiddleware) {
     mountCommonMiddleware();
     cookieMiddleware(
       this.expressApp,
-      '/',
-      '/',
       CONSENT_COOKIE_NAME,
-      COOKIE_POLICY,
-      COOKIE_CONSENT,
-      appConfig.SECURE_COOKIES
+      waypoints,
+      '/',
+      '/',
     );
     timeoutMiddleware(
       this.expressApp,
@@ -168,6 +168,10 @@ nunjucksEnv.addGlobal('getContext', function () {
   delete ctx.settings
   return JSON.parse(JSON.stringify(ctx))
 });
+
+// Add Google Tag Manger ID to view
+app.get('nunjucksEnv').addGlobal('googleTagManagerId', appConfig.GOOGLE_TAG_MANAGER_ID);
+
 
 nunjucksEnv.addFilter('isIn', function (val, arr) {
   return arr.indexOf(val) > -1
@@ -196,7 +200,7 @@ const submissionCommonMw = [casaApp.csrfMiddleware];
 
 // Cookie policy pages
 casaApp.router.get(`/${COOKIE_POLICY}`, submissionCommonMw, cookiePolicyGet(COOKIE_DETAILS));
-casaApp.router.post(`/${COOKIE_POLICY}`, submissionCommonMw, cookiePolicyPost(CONSENT_COOKIE_NAME, appConfig.SECURE_COOKIES));
+casaApp.router.post(`/${COOKIE_POLICY}`, submissionCommonMw, cookiePolicyPost(CONSENT_COOKIE_NAME, casaApp.config.mountUrl, GTM_DOMAIN, appConfig.SECURE_COOKIES));
 casaApp.router.get(`/${COOKIE_DETAILS}`, submissionCommonMw, cookieDetailsGet(
   CONSENT_COOKIE_NAME,
   SESSIONID,

@@ -29,5 +29,7 @@ COPY --from=builder /src/package.json /
 EXPOSE ${PORT}
 RUN apk --no-cache add libcrypto1.1=1.1.1l-r0 \
     libssl1.1=1.1.1l-r0 \
-    apk-tools=2.10.8-r0
+    apk-tools=2.10.8-r0 \
+    busybox=1.31.1-r11 \
+    ssl_client=1.31.1-r11
 CMD ["npm", "start"]

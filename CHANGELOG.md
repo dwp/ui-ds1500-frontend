@@ -1,3 +1,10 @@
+## 0.49.0 (2021-11-30)
+
+* feature: update cookie banner to gds design ([c2d337a7](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/c2d337a7))
+* accessibility: add opens in new tab to feedback link ([550a3b9d](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/550a3b9d))
+* accessibility fix: conditional radios focus not working on IE ([ba2b919a](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ba2b919a))
+* accessibility fix: ensure ID's are unique ([245e5dec](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/245e5dec))
+
 ## 0.48.0 (2021-11-04)
 
 * feature: update talk to advisor panel ([11b60697](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/11b60697))

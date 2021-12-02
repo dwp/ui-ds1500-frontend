@@ -1,0 +1,63 @@
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+{% if not consentCookieValue or cookieChoiceMade %}
+  {% set html %}
+    <p>{{ t("common:cookieBanner.essentialCookies") }}</p>
+    <p>{{ t("common:cookieBanner.analyticsCookies") }}</p>
+  {% endset %}
+
+  <form method="POST" action="{{ cookiePolicyUrl }}">
+    <input type="hidden" name="_csrf" value="{{ casa.csrfToken }}">
+    {{ govukCookieBanner({
+      classes: "ds1500-cookie-banner",
+      ariaLabel: t("common:cookieBanner.heading"),
+      attributes: {
+        "data-module": "ds1500-cookie-banner",
+        "data-consent-cookie-name": consentCookieName,
+        "data-gtm-id": googleTagManagerId
+      },
+      messages: [{
+        classes: "ds1500-cookie-banner--main",
+        headingText: t("common:cookieBanner.heading"),
+        html: html,
+        actions: [{
+          classes: "ds1500-cookie-banner--accept__button",
+          text: t("common:cookieBanner.acceptCookies"),
+          type: "submit",
+          name: "cookieConsent",
+          value: "accept"
+        }, {
+          classes: "ds1500-cookie-banner--reject__button",
+          text: t("common:cookieBanner.rejectCookies"),
+          type: "submit",
+          name: "cookieConsent",
+          value: "reject"
+        }, {
+          text: t("common:cookieBanner.viewCookies"),
+          href: cookiePolicyUrl
+        }],
+        hidden: cookieChoiceMade
+      }, {
+        classes: "ds1500-cookie-banner--accept",
+        html: t("common:cookieBanner.acceptedHtml", { url: cookiePolicyUrl }),
+        actions: [{
+          classes: "ds1500-cookie-banner--hide",
+          text: t("common:cookieBanner.hide"),
+          href: currentUrl,
+          type: "button"
+        }],
+        hidden: consentCookieValue !== "accept"
+      }, {
+        classes: "ds1500-cookie-banner--reject",
+        html: t("common:cookieBanner.rejectedHtml", { url: cookiePolicyUrl }),
+        actions: [{
+          classes: "ds1500-cookie-banner--hide",
+          text: t("common:cookieBanner.hide"),
+          href: currentUrl,
+          type: "button"
+        }],
+        hidden: consentCookieValue !== "reject"
+      }]
+    }) }}
+  </form>
+{% endif %}

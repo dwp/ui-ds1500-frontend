@@ -5,7 +5,9 @@ const staticRoutes = ['cookies', 'cookies-table', 'accessibility-statement', 'th
 
 module.exports = function (casaApp) {
   const { router } = casaApp
-  router.get('/ds1500-start', function (req, res) {
+  // Submission handlers
+  const submissionCommonMw = [casaApp.csrfMiddleware];
+  router.get('/ds1500-start', submissionCommonMw, function (req, res) {
     const newSession = 'newSession' in req.query
     req.session.previousPage = 'ds1500-start';
     if (typeof req.session.validSession === 'undefined' || req.session.validSession) {
@@ -28,6 +30,6 @@ module.exports = function (casaApp) {
     });
   });
   staticRoutes.forEach((endpoint) => {
-    addStaticRoute(router, endpoint, appVersion)
+    addStaticRoute(router, endpoint, submissionCommonMw, appVersion)
   })
 };

@@ -1,31 +1,59 @@
-const url = require('url');
-const { setCookie, clearAllCookies } = require('../../utils/cookies');
-const { COOKIE_UPDATE_QUERY_PARAM } = require('../../lib/constants')
+function getOneYearInMilliseconds () {
+  const currYear = new Date().getFullYear();
+  const isLeap = year => new Date(year, 1, 29).getDate() === 29;
+  const days = isLeap(currYear) ? 366 : 365;
+  return 1000 * 60 * 60 * 24 * days
+}
 
-module.exports = (consentCookieName, useTLS) => (req, res) => {
+module.exports = (consentCookieName, mountUrl, gtmDomain, useTLS = false) => (req, res) => {
   const { cookieConsent } = req.body;
-  let redirectPath
+  const oneYearInMilliseconds = getOneYearInMilliseconds();
+
   // Validation error, set messeage in session and redirect back to this page
   if (!cookieConsent || (cookieConsent !== 'reject' && cookieConsent !== 'accept')) {
     req.session.cookieConsentError = 'cookie-policy:field.cookieConsent.required';
-    redirectPath = req.originalUrl
-  } else {
-    // Validation successful, set cookie and redirect back where they came from
-    // via backto query string, if it exists
-    setCookie(req, res, consentCookieName, cookieConsent, useTLS);
-    if (cookieConsent === 'reject') {
-      clearAllCookies(req, res)
-    }
-
-    redirectPath = req.body.previousPage ? req.body.previousPage : '/cookie-policy';
+    return req.session.save(() => res.redirect(req.url));
   }
 
-  const qs = {};
-  qs[COOKIE_UPDATE_QUERY_PARAM] = 1;
-  const redirectUrl = url.format({
-    pathname: redirectPath,
-    query: Object.assign({}, req.query, qs)
+  // Validation successful, set cookie and redirect back where they came from
+  // via backto query string, if it exists
+  res.cookie(consentCookieName, cookieConsent, {
+    path: mountUrl,
+    maxAge: oneYearInMilliseconds,
+    httpOnly: true,
+    sameSite: 'Strict',
+    secure: useTLS
   });
 
-  req.session.save(() => res.redirect(redirectUrl));
+  // Show cookie accepted / rejected banner
+  req.session.cookieChoiceMade = true;
+
+  // If rejected, remove any GA cookies
+  if (cookieConsent === 'reject' && req.headers.cookie) {
+    const { DS1500_SERVICE_DOMAIN } = process.env;
+    const gatCookieName = req.headers.cookie.match(/_gat[^=;]*/);
+    const options = { path: '/' };
+
+    if (`${DS1500_SERVICE_DOMAIN}`.includes(gtmDomain)) {
+      options.domain = gtmDomain;
+    } else {
+      options.domain = `${DS1500_SERVICE_DOMAIN}`;
+    }
+
+    if (gatCookieName) {
+      res.clearCookie(gatCookieName[0], options);
+    }
+
+    res.clearCookie('_ga', options);
+    res.clearCookie('_gid', options);
+  }
+
+  // backto querystring contains the URL to redirect to
+  if (req.query.backto) {
+    const { pathname, search } = new URL(String(req.query.backto), 'https://dummy.test/');
+    const redirectBackTo = (pathname + search).replace(/\/+/g, '/').replace(/[.:]+/g, '');
+    return req.session.save(() => res.redirect(redirectBackTo));
+  }
+
+  return req.session.save(() => res.redirect(req.url));
 };

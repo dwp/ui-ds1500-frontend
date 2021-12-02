@@ -44,7 +44,6 @@
   <p class="govuk-body">
     {{ t("cookie-policy:weUseGoogleAnalytics") }}
   </p>
-  <input name="previousPage" value="{{previousPage}}" type="hidden" />
   {{ casaGovukRadios({
     name: "cookieConsent",
     classes: "govuk-radios--inline",
@@ -65,7 +64,7 @@
       text: t("cookie-policy:field.cookieConsent.options.reject")
     }],
     casaWithAnalytics: true,
-    casaValue: cookieMessage,
+    casaValue: consentCookieValue,
     casaErrors: formErrors
   }) }}
 {% endblock %}

@@ -1,8 +1,10 @@
-{% from 'macros/site.njk' import gtmIframe %}
 {% from "macros/site.njk" import cookieBanner with context %}
 
 <input type="hidden" id="SESSIONS_TTL" value="{{SESSIONS_TTL}}" />
-{% if cookieChoiceMade and cookiesConsented === 'accept' %}
-{{ gtmIframe('N7JGL8W') }}
-{% endif %}
+
+{# Google Tag Manager snippet #}
+{%- if consentCookieValue === "accept" -%}
+    {% include "partials/gtm-noscript.njk" %}
+{%- endif %}
+
 {{cookieBanner()}}

@@ -29,5 +29,16 @@
     "email": "ssd.nationalservicedesk@nhs.net",
     "emailAnchor": "<a title=\"Click to send email\" href=\"mailto:${email}\">${email}</a>",
     "serviceHours": "24-hour service"
+  },
+  "cookieBanner": {
+    "heading": "Cookies on Report a terminally ill patient",
+    "essentialCookies": "We use some essential cookies to make this service work.",
+    "analyticsCookies": "We’d also like to use analytics cookies so we can understand how you use the service and make improvements.",
+    "acceptedHtml": "<p>You’ve accepted additional cookies. You can <a class=\"govuk-link\" href=\"${url}\">change your cookie settings</a> at any time.</p>",
+    "rejectedHtml": "<p>You’ve rejected additional cookies. You can <a class=\"govuk-link\" href=\"${url}\">change your cookie settings</a> at any time.</p>",
+    "acceptCookies": "Accept analytics cookies",
+    "rejectCookies": "Reject analytics cookies",
+    "hide": "Hide this message",
+    "viewCookies": "View cookies"
   }
 }

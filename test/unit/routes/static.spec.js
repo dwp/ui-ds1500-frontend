@@ -27,7 +27,7 @@ describe('routes/static', () => {
     res.render = (template) => {
       assert.equal(template, 'ds1500-start');
     };
-    router.get = (path, callback) => {
+    router.get = (path, csrfMiddleware, callback) => {
       assert.equal(path, '/ds1500-start');
       callback(req, res);
       done();
@@ -40,7 +40,7 @@ describe('routes/static', () => {
     res.render = (template) => {
       assert.equal(template, 'ds1500-start');
     };
-    router.get = (path, callback) => {
+    router.get = (path, csrfMiddleware, callback) => {
       assert.equal(path, '/ds1500-start');
       callback(req, res);
       done();
@@ -53,7 +53,7 @@ describe('routes/static', () => {
     res.redirect = (path) => {
       assert.equal(path, '/session-timeout');
     };
-    router.get = (path, callback) => {
+    router.get = (path, csrfMiddleware, callback) => {
       assert.equal(path, '/ds1500-start');
       callback(req, res);
       done();

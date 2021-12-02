@@ -41,10 +41,7 @@ function addErrorMarkupDate (qs) {
     groupName = parseDateGroupName(groupName)
 
     const groupId = groupName + '-group'
-    const errorId = groupName + '-error'
     const errorDiv = document.createElement('div')
-
-    errorDiv.setAttribute('id', errorId)
     errorDiv.classList.add('validation-message')
 
     jEl.closest('.govuk-date-input').attr('id', groupId)

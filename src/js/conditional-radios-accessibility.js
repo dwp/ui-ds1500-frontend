@@ -1,5 +1,6 @@
+/* eslint-disable no-var */
 function focusOnTextBox (id) {
-  setTimeout(() => {
+  setTimeout(function () {
     document.getElementById(id).focus()
   }, 3500)
 }
@@ -7,7 +8,7 @@ function focusOnTextBox (id) {
 window.onload = function () {
   (function onLoad () {
     function showReps () {
-      const radioValueRaw = document.querySelector('input[name="formRequester"]:checked');
+      var radioValueRaw = document.querySelector('input[name="formRequester"]:checked');
       if (radioValueRaw !== null) {
         const radioValue = radioValueRaw.value;
         if (radioValue === 'Representative') {
@@ -21,7 +22,7 @@ window.onload = function () {
 
   (function onLoadDeclarations () {
     function showDeclaration () {
-      const radioValueRaw = document.querySelector('input[name="declaration"]:checked');
+      var radioValueRaw = document.querySelector('input[name="declaration"]:checked');
       if (radioValueRaw !== null) {
         const radioValue = radioValueRaw.value;
         switch (radioValue) {
