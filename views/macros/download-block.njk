@@ -3,7 +3,7 @@
     <div class="attachment-thumb">
     <img class="thumbnail" src="{{ options.imageUrl }}" alt=""> </div>
     <div class="attachment-details">
-        <form id="download-form" action="{{ options.downloadUrl }}" method="post" class="form" autocomplete="off" novalidate>
+        <form id="{{ options.id }}" action="{{ options.downloadUrl }}" method="post" class="form" autocomplete="off" novalidate>
             <input class="govuk-visually-hidden" id="json_value_{{ options.id }}" type="hidden" name="json" value="{{ options.data }}">
             <button
                 aria-label="Click to {{ t('download:attachments.' + options.name + '.label') }}"

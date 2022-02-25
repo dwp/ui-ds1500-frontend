@@ -1,3 +1,16 @@
+## 0.50.0 (2022-02-24)
+
+* build(new-version): update hmrc frontend dependency ([73771f12](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/73771f12))
+* build(new-version): update govuk frontend dependency ([ce9413d4](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ce9413d4))
+* feature: update ds1500 email address ([eff73aa7](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/eff73aa7))
+* feature: change please specify content ([f5327550](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/f5327550))
+* feature: change confirmation number to NINO ([13b426e8](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/13b426e8))
+* accessibility fix: unique ID on download page  ([da2a0d0f](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/da2a0d0f))
+* fix: session timeout modal should clear form data ([9600650d](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/9600650d))
+* feature: update feedback submitted content ([ffa0a4f5](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ffa0a4f5))
+* feature: update feedback submitted content ([ffa0a4f5](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ffa0a4f5))
+* accessibility fix: unique ID on guidance page ([849826b3](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/849826b3))
+
 ## 0.49.0 (2021-11-30)
 
 * feature: update cookie banner to gds design ([c2d337a7](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/c2d337a7))

@@ -54,7 +54,7 @@ module.exports = function (casaApp, notifyEmailTo, notifyApiKey, notifyProxyHost
         await notifyService(formData, notifyEmailTo, notifyApiKey, notifyProxyConfig)
         logger.info('Feedback sent successfully');
         res.clearCookie('feedback');
-        const redirectPath = whiteListValidateRedirect('thankyou')
+        const redirectPath = whiteListValidateRedirect('feedback-sent')
         if (redirectPath) {
           res.redirect(encodeURI(mountUrl + redirectPath));
         } else {

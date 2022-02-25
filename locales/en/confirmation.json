@@ -1,7 +1,7 @@
 {
     "pageTitle": "Report submitted",
     "panel": {
-        "transactionLabel": "Transaction ID:<br /><br /><strong>${transactionID}</strong>"
+        "text": "Your reference is the patient’s National Insurance number"
     },
     "h2": "What happens next",
     "p1": "The form has been sent to DWP.",

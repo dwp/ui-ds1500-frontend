@@ -1,0 +1,14 @@
+{% extends "layouts/app-main.njk" %}
+{% from "macros/site.njk" import fmtTitle with context %}
+{% block casaPageTitle %}{{ fmtTitle('feedback-sent:pageTitle') }}{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ t('feedback-sent:pageTitle') }}</h1>
+        <p class="govuk-body">{{ t('feedback-sent:p1') }}</p>
+        <p class="govuk-body">{{ t('feedback-sent:p2') }}</p>
+    </div>
+</div>
+{% endblock %}

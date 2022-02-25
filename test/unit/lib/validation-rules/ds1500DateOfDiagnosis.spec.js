@@ -61,7 +61,8 @@ describe('ds1500 validations: Date of Diagnosis', () => {
       return expect(isValidDateRange(fieldValue)).to.be.rejected
     })
     it('should reject if YYYY is non in range[1890-present]', () => {
-      const fieldValue = { mm: '10', yyyy: '2022' };
+      const year = new Date().getFullYear() + 1
+      const fieldValue = { mm: '10', yyyy: year };
       return expect(isValidDateRange(fieldValue)).to.be.rejected
     })
     it('should resolve if both MM and YYYY are in range', () => {

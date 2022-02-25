@@ -166,7 +166,7 @@ describe('routes/feedback', () => {
     }
   });
 
-  it('should redirect to thankyou page if rating is provided and improvements are empty', (done) => {
+  it('should redirect to feedback-sent page if rating is provided and improvements are empty', (done) => {
     const notifyService = sinon.stub().resolves();
     /* eslint-disable-next-line no-underscore-dangle */
     route.__set__('notifyService', notifyService);
@@ -177,7 +177,7 @@ describe('routes/feedback', () => {
         improvements: ''
       }
       res.redirect = (path, options) => {
-        assert.equal(path, '/thankyou');
+        assert.equal(path, '/feedback-sent');
         expect(options).to.have.property('sessionid');
         done()
       };
@@ -193,13 +193,13 @@ describe('routes/feedback', () => {
     }
   });
 
-  it('should set up a POST route for feedback and redirects to thankyou page if thankyou url is whitelisted', (done) => {
+  it('should set up a POST route for feedback and redirects to feedback-sent page if feedback-sent url is whitelisted', (done) => {
     const notifyService = sinon.stub().resolves();
     /* eslint-disable-next-line no-underscore-dangle */
     route.__set__('notifyService', notifyService);
 
     const whiteListValidateRedirect = sinon.stub()
-    whiteListValidateRedirect.returns('thankyou');
+    whiteListValidateRedirect.returns('feedback-sent');
 
     /* eslint-disable-next-line no-underscore-dangle */
     route.__set__('whiteListValidateRedirect', whiteListValidateRedirect);
@@ -209,7 +209,7 @@ describe('routes/feedback', () => {
         improvements: ''
       }
       res.render = (path, options) => {
-        assert.equal(path, 'thankyou');
+        assert.equal(path, 'feedback-sent');
         expect(options).to.have.property('sessionid');
         expect(options).to.have.property('appVersion');
         done();
@@ -226,7 +226,7 @@ describe('routes/feedback', () => {
     }
   });
 
-  it('should render the errors/500.njk page if thankyou url is not whitelisted', (done) => {
+  it('should render the errors/500.njk page if feedback-sent url is not whitelisted', (done) => {
     const notifyService = sinon.stub().rejects();
     /* eslint-disable-next-line no-underscore-dangle */
     route.__set__('notifyService', notifyService);

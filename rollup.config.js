@@ -30,11 +30,11 @@ const plugins = [
   terser({ ie8: true })
 ]
 
-const createConfig = (filename, outputFile) => ({
+const createConfig = (filename, outputPath, outputFile) => ({
   input: `assets/${filename}.js`,
   output: [
     {
-      file: `static/js/${outputFile}.js`,
+      file: `${outputPath}/js/${outputFile}.js`,
       format: 'umd',
       name: 'GOVUKFrontend',
       // The GOVUKFrontend bundle is inited in this file, which also contains
@@ -46,5 +46,6 @@ const createConfig = (filename, outputFile) => ({
 });
 
 module.exports = [
-  createConfig('all', 'ui-ds1500-frontend')
+  createConfig('all', 'static', 'ui-ds1500-frontend'),
+  createConfig('govuk-frontend', 'static/public', 'govuk-frontend')
 ]

@@ -43,11 +43,11 @@ describe('Middleware: session-timeout', () => {
   it('should add signOutUrl to timeoutDialog', () => {
     const req = new Request();
     const res = new Response(req);
-    sessionTimeout(app, '/', { SESSION_RESTART: 'ds1500-start' });
+    sessionTimeout(app, '/', { SESSION_RESTART: '' });
     res.locals.casa.mountUrl = '/test/';
 
     app.mw(req, res, () => { });
-    expect(res.locals.timeoutDialog).to.have.property('signOutUrl').that.equals('/test/ds1500-start');
+    expect(res.locals.timeoutDialog).to.have.property('signOutUrl').that.equals('/test/?ref=sign-out');
   });
 
   it('should add timeoutUrl of current path to timeoutDialog', () => {

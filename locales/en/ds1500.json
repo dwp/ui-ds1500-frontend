@@ -179,7 +179,7 @@
     "pattern": "GMC Numbers can only contain digits which cannot all be zeros"
   },
   "declarationAdditionalDetail": {
-    "label": "Please specify",
+    "label": "Please specify your role",
     "empty": "Please specify your relationship to the patient",
     "invalid": "Relationship to patient field contains invalid characters",
     "wordTooLong": "Please specify must contain words with fewer than 59 characters"

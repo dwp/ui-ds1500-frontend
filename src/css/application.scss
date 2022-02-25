@@ -2,7 +2,6 @@
 @import "_grid_layout.scss";
 @import 'typography';
 @import "node_modules/govuk-frontend/govuk/all";
-//@import "node_modules/hmrc-frontend-src/src/components/timeout-dialog/timeout-dialog";
 
 @import 'cookie-banner';
 
@@ -196,9 +195,18 @@ textarea {
   @extend .govuk-link;
 }
 
+#main-content {
+  padding-top: govuk-spacing(4);
+  padding-bottom: govuk-spacing(4);
+}
+
 @media (min-width: 641px){
   .easy-autocomplete-container {
     width: 75%;
+  }
+  #main-content {
+    padding-top: govuk-spacing(7);
+    padding-bottom: govuk-spacing(7);
   }
 }
 

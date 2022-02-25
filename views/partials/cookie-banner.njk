@@ -2,8 +2,8 @@
 
 {% if not consentCookieValue or cookieChoiceMade %}
   {% set html %}
-    <p>{{ t("common:cookieBanner.essentialCookies") }}</p>
-    <p>{{ t("common:cookieBanner.analyticsCookies") }}</p>
+    <p class="govuk-body">{{ t("common:cookieBanner.essentialCookies") }}</p>
+    <p class="govuk-body">{{ t("common:cookieBanner.analyticsCookies") }}</p>
   {% endset %}
 
   <form method="POST" action="{{ cookiePolicyUrl }}">

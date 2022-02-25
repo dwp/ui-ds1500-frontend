@@ -15,7 +15,7 @@ describe('Notify service', () => {
     emailAddress: ''
   };
   let notifyApiKey = 'dwp_ds1500test-f0cde76d-05b0-4a1e-a8eb-6fe18dbc58fc-2528b5b6-8508-4cf5-81c4-8bc28301c051';
-  let notifyEmailTo = 'dwp.digitalds1500@dwp.gsi.gov.uk';
+  let notifyEmailTo = 'dwp.digitalds1500@dwp.gov.uk';
   const notifyProxy = null;
 
   it('should set up the notify service, send a feedback email, and return a resolved promise', async () => {

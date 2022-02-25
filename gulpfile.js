@@ -9,6 +9,7 @@ const uglify = require('gulp-uglify');
 const pump = require('pump');
 const srcdir = './src/';
 const dstdir = './static/';
+const pubDir = './static/public'
 
 /* ---------------------------------------------------------------------- CSS */
 
@@ -24,7 +25,22 @@ gulp.task('sass', function () {
         'node_modules/govuk-elements-sass/public/sass'
       ]
     }).on('error', sass.logError))
-    .pipe(gulp.dest(npath.resolve(dstdir, 'css/')));
+    .pipe(gulp.dest(npath.resolve(dstdir, 'css/')))
+    .pipe(gulp.dest(npath.resolve(pubDir, 'css/')));
+});
+
+gulp.task('sass-ie8', function () {
+  return gulp
+    .src(npath.resolve(srcdir, 'css/application-ie8.scss'))
+    .pipe(sass({
+      errLogToConsole: true,
+      outputStyle: 'compressed',
+      includePaths: [
+        'node_modules/govuk_frontend_toolkit/stylesheets',
+        'node_modules/govuk-elements-sass/public/sass'
+      ]
+    }).on('error', sass.logError))
+    .pipe(gulp.dest(npath.resolve(pubDir, 'css/')));
 });
 
 /* ----------------------------------------------------------------------- JS */
@@ -87,4 +103,4 @@ gulp.task('data', function (callback) {
 
 /* -------------------------------------------------------------------- Tasks */
 
-gulp.task('default', gulp.series('sass', 'js', 'img', 'public', 'data', 'copy'));
+gulp.task('default', gulp.series('sass', 'sass-ie8', 'js', 'img', 'public', 'data', 'copy'));
