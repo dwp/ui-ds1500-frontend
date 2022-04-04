@@ -1,3 +1,13 @@
+## 0.51.0 (2022-04-04)
+
+* feature: update content on check answers page ([4663d5af](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/4663d5af))
+* feature: create new select form and sr1 form request pages ([12d0313c](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/12d0313c))
+* feature: update additional guidance page ([879726b2](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/879726b2))
+* feature: update get help section ([66768b51](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/66768b51))
+* feature: update content on ds1500 start page ([c5f3142f](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/c5f3142f))
+* feature: move to suggested syntax for download page ([0009cc59](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/0009cc59))
+
+
 ## 0.50.0 (2022-02-24)
 
 * build(new-version): update hmrc frontend dependency ([73771f12](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/73771f12))

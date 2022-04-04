@@ -6,5 +6,6 @@
     "confirmation1": "the person named in this report is your patient",
     "confirmation2": "this is a full report of their condition and treatment",
     "btn": "I agree - send the report"
-  }
+  },
+  "additionalGuidance": "<a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">Guidance for DS1500 and SR1 (opens in new tab)</a>"
 }

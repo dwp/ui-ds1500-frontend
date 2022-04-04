@@ -1,0 +1,43 @@
+{% extends "layouts/app-journey.njk" %}
+{% from "casa/components/radios/macro.njk" import casaGovukRadios with context %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% block casaPageTitle %}
+  {{ t('select-form:pageTitle') }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ super() }}
+<nav>
+  {{ govukBackLink({
+    text: "Back",
+    href: casa.mountUrl + '?ref=sign-out'
+  }) }}
+</nav>
+{% endblock %}
+
+{% block journey_form %}
+  <h1 class="govuk-heading-l">
+    {{ t('select-form:h1') }}
+  </h1>
+  {{ casaGovukRadios({
+        name: 'selectForm',
+        id: "select-form",
+        casaValue: formData.selectForm,
+        items: [
+            {text: t('select-form:radios.text1'), value: t('select-form:radios.value1')},
+            {text: t('select-form:radios.text2'), value: t('select-form:radios.value2')}
+        ],
+        attributes: {
+            required: 'required'
+        },
+        casaErrors: formErrors
+        }) }}
+  {{ govukInsetText({
+        text: t('select-form:insetText')
+    }) }}
+  {{ govukButton({
+        text: t('common:btnContinue'),
+        type: 'submit'
+      }) }}
+{% endblock %}

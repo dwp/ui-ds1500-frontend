@@ -104,30 +104,96 @@ textarea {
     font-size: 1.4em;
 }
 
-.attachment-details {
-    display: inline;
+.govspeak .attachment:first-child, .gem-c-govspeak .attachment:first-child {
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
-.attachment-thumb {
-    display: inline;
-    float: left;
-    margin-right: 20px;
-    width: 150px
-}
-
-.thumbnail {
-  max-width: 100%;
-  height: auto;
-}
-
-.attachment-thumb a img {
-    display: block;
-    -webkit-box-shadow: 1px 1px 1px #6F777B;
-    box-shadow: 1px 1px 1px #6F777B;
+.govspeak .attachment, .gem-c-govspeak .attachment {
+  position: relative;
+  margin: 30px 0px;
+  padding: 15px 0px 0px 129px;
 }
 
 .attachment {
-    margin: 40px 20px 140px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 40.0625em) {
+  .govspeak, .gem-c-govspeak {
+      font-size: 16px;
+      line-height: 1.25;
+  }
+}
+
+.govspeak, .gem-c-govspeak {
+  color: rgb(11, 12, 12);
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14286;
+}
+
+.govspeak .attachment::after, .gem-c-govspeak .attachment::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.govspeak .attachment .attachment-thumb, .gem-c-govspeak .attachment .attachment-thumb {
+  position: relative;
+  float: left;
+  margin-top: 5px;
+  margin-left: -124px;
+  padding-bottom: 15px;
+}
+
+.govspeak a:link, .gem-c-govspeak a:link {
+  color: rgb(29, 112, 184);
+}
+
+.govspeak a, .gem-c-govspeak a {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-underline-offset: 0.1em;
+  text-decoration: underline max(1px, 0.0625rem);
+}
+
+.govspeak img, .gem-c-govspeak img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.govspeak .attachment .attachment-thumb img, .gem-c-govspeak .attachment .attachment-thumb img {
+  display: block;
+  width: 99px;
+  height: 140px;
+  box-shadow: rgba(11, 12, 12, 0.4) 0px 2px 2px;
+  background: rgb(255, 255, 255);
+  outline: rgba(11, 12, 12, 0.1) solid 5px;
+}
+
+.govspeak h3, .gem-c-govspeak h3 {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-top: 35px;
+  margin-bottom: 0px;
+}
+
+.gem-c-govspeak h3:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 40.0625em) {
+  .govspeak h3, .gem-c-govspeak h3 {
+      font-size: 19px;
+      line-height: 1.31579;
+  }
 }
 
 .increase-bottom-margin {

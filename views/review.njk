@@ -4,6 +4,7 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "macros/site.njk" import fmtTitle with context %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% block casaPageTitle %}
   {{ fmtTitle('review:pageTitle') }}
@@ -81,7 +82,7 @@
     })
   }}
 
-<p class="govuk-body">
-  <a href="/additional-guidance" target="_blank" class="govuk-link govuk-body">{{ t('common:talkToAdvisor.additionalGuidance')}}</a>
-</p>
+{{ govukInsetText({
+    text: t('review:additionalGuidance', { url: '/additional-guidance' }) | safe
+}) }}
 {% endblock %}

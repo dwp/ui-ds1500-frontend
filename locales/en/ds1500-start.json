@@ -1,12 +1,10 @@
 {
-  "pageTitle": "Report a terminally ill patient (form DS1500) -  GOV.UK",
-  "h1": "Report a terminally ill patient (form DS1500)",
-  "p1": "Use this service to tell the Department for Work and Pensions (DWP) that:",
-  "li1": "a patient has a severe progressive condition",
-  "and": "and",
-  "li2": "you would not be surprised if they were to live for less than 6 months",
-  "p2": "Also use this service to download a copy of the DS1500 to save securely for your patient's records.",
-  "p3": "DWP will prioritise any benefit applications it gets from this patient.",
+  "pageTitle": "Report a terminally ill patient (DS1500) -  GOV.UK",
+  "notificationText": "Find out about the <a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">changes to the Special Rules process (opens in a new tab)</a> in the benefit system.",
+  "h1": "Report a terminally ill patient (DS1500)",
+  "p1": "Use this service to tell the Department of Work and Pensions (DWP) that you have a patient who:",
+  "li1": "has a progressive disease and you would not be surprised if your patient were to live for less than 6 months",
+  "insetText": "If you think your patient may have 6 to 12 months left to live, you must complete an SR1 form. You can use this service to get guidance on how to get an SR1 form.",
   "startNow": "Start now",
   "additionalGuidance": "Additional guidance"
 }

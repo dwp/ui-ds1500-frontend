@@ -14,6 +14,15 @@ const pages = {
       }
     }
   },
+  'select-form': {
+    view: 'select-form.njk',
+    fieldValidators: require('./field-validators/select-form.js'),
+    id: 'select-form'
+  },
+  'sr1-form-request': {
+    view: 'sr1-form-request.njk',
+    id: 'sr1-form-request'
+  },
   review: require('./pageDefinitions/review'),
   'ds1500-download': {
     view: 'download.njk',

@@ -14,22 +14,26 @@
             {{ govukInsetText({
                 text: t('download:warning')
             }) }}
-            {{ downloadBlock({
-                name: 'ds1500',
-                downloadUrl: '/download',
-                imageUrl: 'img/ds1500-form.png',
-                data: json,
-                id: 'ds1500-form'
-            }) }}
-            {% if showFeeForm %}
-                {{ downloadBlock({
-                    name: 'claimForm',
-                    downloadUrl: '/downloadFee',
-                    imageUrl: 'img/fee-form.png',
-                    data: json,
-                    id: 'fee-form'
-                }) }}
-            {% endif %}
+            <section id="documents">
+                <div class="gem-c-govspeak govuk-govspeak direction-ltr" data-module="govspeak">
+                    {{ downloadBlock({
+                        name: 'ds1500',
+                        downloadUrl: '/download',
+                        imageUrl: 'img/ds1500-form.png',
+                        data: json,
+                        id: 'ds1500-form'
+                    }) }}
+                    {% if showFeeForm %}
+                        {{ downloadBlock({
+                            name: 'claimForm',
+                            downloadUrl: '/downloadFee',
+                            imageUrl: 'img/fee-form.png',
+                            data: json,
+                            id: 'fee-form'
+                        }) }}
+                    {% endif %}
+                </div>
+            </section>
             {{ govukButton({
                 classes: "govuk-!-margin-top-6",
                 text: t('common:btnContinue'),

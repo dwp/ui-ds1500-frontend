@@ -1,143 +1,143 @@
 {
-    "pageTitle": "Additional guidance for the DS1500",
-    "h1": "Additional guidance for the DS1500",
+    "pageTitle": "Guidance for the DS1500 and SR1 forms",
+    "h1": "Guidance for the DS1500 and SR1 forms",
     "links": {
-        "link1": "When you should complete the DS1500 Report Form",
-        "link2": "Who should complete the DS1500 Report Form",
-        "link3": "How this form will be used by DWP",
-        "link4": "What to do with the completed form",
-        "link5": "Claiming a fee",
-        "link6": "Benefits that can be claimed under special rules",
-        "link7": "Additional requirements and confirmation"
+        "link1": "Changes to the Special Rules process in 2022",
+        "link2": "When to complete a DS1500",
+        "link3": "When to complete an SR1",
+        "link4": "About your patient",
+        "link5": "Benefits that can be claimed under the special rules",
+        "link6": "How this form will be used by DWP",
+        "link7": "Telephone contact",
+        "link8": "Claiming a fee"
     },
     "section1": {
-        "p1": "You should complete this form to support your patient's finances and to encourage your patient to see which benefits they may be entitled to. This can be done as part of a discussion about future care planning or if requested by your patient or their representative.",
-        "h1": "Your patient’s prognosis",
-        "p2": "It is understood that determining life expectancy in these circumstances is not an exact science and so you will not face any negative consequences from the factual information you supply, for example if your patient lives longer than 6 months.",
-        "h2": "Third party claims",
-        "p3": "For Disability Living Allowance, Attendance Allowance and Personal Independence Payment only, any person representing the patient can make a 3rd party claim on their behalf, even if the patient is unaware that a claim is being made. In this circumstance the form should be issued on request to the representative.",
-        "h3": "Patients who may not know the true nature of their illness",
-        "p4": "When a patient asks you for a DS1500 form, please do not assume that they understand the special rules criteria or that these apply in certain circumstances to people with progressive, life-limiting disease."
+        "p1": "The Special Rules criteria are changing from applying to people with less than 6 months to live to applying to people with less than 12 months to live.",
+        "p2": "Due to parliamentary constraints, the Department of Work and Pensions (DWP) can only change the rules for 2 out of 5 benefits from April 2022.",
+        "p3": "These are Universal Credit (UC) and New Style Employment Support (ESA).",
+        "p4": "There will be:",
+        "ul": {
+            "li1": "criteria for 2 sets of special rules to consider",
+            "li2": "a new medical evidence form SR1, which will operate alongside the form DS1500"
+        },
+        "p5": "This is a transitional period until the new rules are extended to all 5 benefits.",
+        "p6": "Find out more about the <a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">changes to the Special Rules and completing the forms (opens in a new tab).</a>"
     },
     "section2": {
-        "p": "This form can be completed by a registered clinician such as a:",
+        "h3": "You should complete the DS1500 form promptly if you believe that your patient:",
         "ul": {
-            "li1": "general practitioner",
-            "li2": "hospital doctor",
-            "li3": "registered nurse"
+            "li1": "has a progressive disease, and",
+            "li2": "as a consequence of that disease, you would not be surprised if your patient were to die within 6 months"
         },
-        "inset-text": "A registered nurse needs to have acquired the expert knowledge and clinical competencies to undertake the assessment. They may be working in a role such as an advanced nurse practitioner, a Macmillan nurse, a clinical specialist nurse or a practice nurse with expertise in long term conditions management."
+        "p1": "When you provide a DS1500 to DWP, it will be shared across all necessary benefit platforms. You do not need to complete a SR1 form as well."
     },
     "section3": {
-        "p": "This form allows you to provide further evidence to enable us to make a decision on your patient's claim. It is not a claim form, as you cannot claim on behalf of your patients. It will not normally be necessary for you to examine the patient. You may use your own knowledge and the patient's records to get the information you need."
+        "h3": "You should complete the SR1 form promptly if you believe that your patient:",
+        "ul": {
+            "li1": "has a progressive disease, and",
+            "li2": "as a consequence of that disease you would not be surprised if your patient were to die within 12 months"
+        },
+        "p1": "If you think that your patient has a shorter prognosis, for example, less than 6 months to live, complete a DS1500 instead."
     },
     "section4": {
-        "h1": "Electronic return",
-        "p1": "The digital DS1500 service allows you to access and complete this form online. This means the form arrives instantly, which reduces waiting time for your patient.",
-        "h2": "Personal Independence Payment",
-        "p2": "Alternatively, for Personal Independence Payment (England and Scotland) only, you can complete form DS1500 and the fee form electronically and submit it to us by using the NHSmail system. No signature is required. We can provide you with an electronic PDF version of the DS1500 and DS1500 fee form.",
-        "p3": "We need you to provide the following information by email from your current NHS.net email address:",
-        "ul": {
-            "li1": "your NHS.net email address or addresses",
-            "li2": "your surgery/hospital/office postal address and telephone number",
-            "li3": "a list of medical professionals using the same NHS.net email address who complete the DS1500 and/or DS1500 fee form",
-            "li4": "whether you need the DS1500 and DS1500 fee form, or the DS1500 only"
+        "headers": {
+            "1": "Your patient’s prognosis",
+            "2": "Patients who may not know the true nature of their illness",
+            "3": "Who should complete the SR1 or DS1500 form",
+            "4": "Third party claims"
         },
-        "p4": "Send this information to:",
-        "email": "pip.e-ds1500@dwp.gov.uk",
-        "p5bold":"Do not encrypt any part of the email.",
-        "p5": "Any email from a non-NHS.net account will be automatically deleted. If you do not have an NHS.net email address, contact your local IT helpdesk to request an account.",
-        "h3": "Clerical return",
-        "p6": "To use the clerical return service, send your completed DS1500 form and claim fee form to us (see the Claiming a fee section).",
-        "p7": "When returning DS1500 forms, ensure a separate envelope is used for each individual patient. Do not stable documents together."
+        "p1": "It is understood that determining life expectancy in these circumstances is not an exact science. You will not face any negative consequences from the factual information you supply, for example if your patient lives longer than expected.",
+        "p2": "When a patient asks you to complete a DS1500 or SR1 form, do not assume that they understand the special rules criteria or that these criteria may apply to them. It may be an opportunity to initiate a conversation about advance care planning.",
+        "p3": "This form can be completed by a registered clinician such as:",
+        "ul": {
+            "li1": "a GP",
+            "li2": "a hospital doctor",
+            "li3": "a registered nurse such as a Macmillian nurse, advanced nurse practitioner, clinical specialist nurse or practice nurse"
+        },
+        "p4": "For Universal Credit and New Style Employment Support Allowance, only an appointee or a person who has power of attorney can make a third party claim on the patient’s behalf.",
+        "p5": "For Disability Living Allowance, Attendance Allowance and Personal Independence Payment, any person representing the patient can make a third party claim on their behalf, even if the patient is unaware that a claim is being made. In this circumstance the form should be issued to the person that requested it."
     },
     "section5": {
-        "p1": "You can claim a fee if you are a GP or GMC registered consultant, but only if you have authorised this form by signing it at the end.",
-        "p2": "To claim your fee, fill out the fee claim form which will be presented at the end of the digital DS1500 form.",
-        "p3": "We will pay your fee into your bank or building society account.",
-        "inset-text": "MacMillan nurses, Nurse Specialists and practice nurses can complete the DS1500, but only GPs and GMC registered consultants may claim a fee.",
-        "p4": "For claims to Employment and Support Allowance or Universal Credit",
-        "p5": "Send the fee form to the nearest",
-        "link": "Jobcentre Plus office.",
-        "p6": "For claims to Personal Independence Payment, Disability Living Allowance or Attendance Allowance",
-        "relevantAddresses": {
-            "headline": "Relevant addresses",
-            "address1": {
-                "h6": "Personal Independence Payment",
-                "hint": "16 – 64",
-                "ul": {
-                    "li1": "Personal Independence Payment (10)",
-                    "li2": "Mail Handling Site A",
-                    "li3": "Wolverhampton WV98 1AE",
-                    "li4": "New claims: 0800 917 2222",
-                    "li5": "Enquiries: 0800 121 4433"
-                }
-            },
-            "address2": {
-                "h6": "Disability Living Allowance Adult",
-                "hint": "Born on or before 8/4/1948",
-                "ul": {
-                    "li1": "Disability Living Allowance 65+",
-                    "li2": "Mail Handling Site A",
-                    "li3": "Wolverhampton",
-                    "li4": "WV98 2AH",
-                    "li5": "Telephone: 0800 731 0122"
-                }
-            },
-            "address3": {
-                "h6": "Disability Living Allowance Adult",
-                "hint": "Born on or after 9/4/1948",
-                "ul": {
-                    "li1": "Disability Living Allowance",
-                    "li2": "Warbreck House",
-                    "li3": "Warbreck Hill",
-                    "li4": "Blackpool",
-                    "li5": "FY2 0YE",
-                    "li6": "Telephone: 0800 121 4600"
-                }
-            },
-            "address4": {
-                "h6": "Disability Living Allowance Child",
-                "hint": "",
-                "ul": {
-                    "li1": "Disability Benefit Centre 4",
-                    "li2": "Post Handling Site B",
-                    "li3": "Wolverhampton",
-                    "li4": "WV99 1BY",
-                    "li5": "Telephone: 0800 121 4600"
-                }
-            },
-            "address5": {
-                "h6": "Attendance Allowance",
-                "hint": "",
-                "ul": {
-                    "li1": "Attendance Allowance Unit",
-                    "li2": "Mail Handling Site A",
-                    "li3": "Wolverhampton",
-                    "li4": "WV98 2AD",
-                    "li5": "Telephone: 0800 731 0122"
-                }
-            }
-        }
-    },
-    "section6": {
-        "p1": "Special rules claims can be made in the following benefits:",
-        "ul": {
+        "p1": "If your patient meets the 6-month special rules criteria, they can make claims for the following benefits:",
+        "ul1": {
             "li1": "Universal Credit",
-            "li2": "Employment and Support Allowance",
+            "li2": "New Style Employment and Support Allowance",
             "li3": "Personal Independence Payment",
             "li4": "Disability Living Allowance",
             "li5": "Attendance Allowance"
         },
-        "p2": "If your patient meets the special rules criteria, their benefit claim will be processed as a priority and in the majority of cases they will receive the highest rate of benefit."
+        "p2": "If your patient meets the new 12-month special rule criteria they can make claims for:",
+        "ul2": {
+            "li1": "Universal Credit",
+            "li2": "New Style Employment and Support Allowance"
+        },
+        "p3": "If your patient meets the Special Rules criteria, their benefit claim will be processed as a priority and they will not be required to attend an assessment."
+    },
+    "section6": {
+        "p1": "This form allows you to provide further evidence to enable us to make a decision on your patient’s claim. It is not a claim form, as you cannot claim on behalf of your patients. It will not normally be necessary for you to examine the patient. You may use your own knowledge and the patient’s records to get the information you need."
     },
     "section7": {
         "p1": "As we need to deal with these claims urgently, the healthcare professional will usually contact you by telephone.",
-        "h1": "Telephone contact",
-        "p2": "You may be contacted by a healthcare professional working for one of our clinical assessment providers:",
+        "p2": "You may be contacted by a healthcare professional working for one of our clinical assessment providers if:",
         "ul": {
             "li1": "if we need clarification of some of the information on the DS1500 to help with our decision about the claim, or",
-            "li2": "if the patient has made a claim under the Special Rules procedures but has not submitted a DS1500 and we need clinical information to support the claim"
+            "li2": "the patient has made a claim under the Special Rules process but has not submitted a DS1500 or SR1 form and we need clinical information to support the claim"
+        }
+    },
+    "section8": {
+        "p1": "You can claim a fee if you are a GP or GMC registered consultant, but only if you have authorised the fee form by signing it.",
+        "p2": "To claim your fee, download and fill out the form at the end.",
+        "p3": "We will pay it into your bank or building society account.",
+        "p4": "For claims to New Style Employment and Support Allowance or Universal Credit send the fee form to the nearest <a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">Jobcentre Plus office (opens in a new tab).</a>",
+        "p5": "For all other benefits, send to the relevant address:",
+        "relevantAddresses": {
+            "address1": {
+                "ul": {
+                    "li1": "Personal Independence Payment (10)",
+                    "li2": "Mail Handling Site A",
+                    "li3": "Wolverhampton",
+                    "li4": "WV98 1AE"
+                }
+            },
+            "address2": {
+                "ul": {
+                    "li1": "Disability Living Allowance Adult",
+                    "li2": "For claimants born on or before 8 April 1948",
+                    "li3": "Disability Living Allowance 65+",
+                    "li4": "Mail Handling Site A",
+                    "li5": "Wolverhampton",
+                    "li6": "WV98 2AH"
+                }
+            },
+            "address3": {
+                "ul": {
+                    "li1": "Disability Living Allowance Adult",
+                    "li2": "For claimants born on or before 9 April 1948",
+                    "li3": "Disability Living Allowance",
+                    "li4": "Warbreck House",
+                    "li5": "Warbreck Hill",
+                    "li6": "Blackpool",
+                    "li7": "FY2 0YE"
+                }
+            },
+            "address4": {
+                "ul": {
+                    "li1": "Disability Living Allowance Child",
+                    "li2": "Disability Benefit Centre 4",
+                    "li3": "Post Handling Site B",
+                    "li4": "Wolverhampton",
+                    "li5": "WV99 1BY"
+                }
+            },
+            "address5": {
+                "ul": {
+                    "li1": "Attendance Allowance",
+                    "li2": "Attendance Allowance Unit",
+                    "li3": "Mail Handling Site A",
+                    "li4": "Wolverhampton",
+                    "li5": "WV98 2AD"
+                }
+            }
         }
     }
 }

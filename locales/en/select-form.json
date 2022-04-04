@@ -1,0 +1,14 @@
+{
+    "pageTitle": "Which form do you need? - Report a terminally ill patient - GOV.UK",
+    "h1": "Which form do you need?",
+    "radios": {
+        "text1": "DS1500 (patient may have 0 to 6 months left to live)",
+        "value1": "ds1500",
+        "text2": "SR1 (patient may have 6 to 12 months left to live)",
+        "value2": "sr1-form-request" 
+    },
+    "insetText": "You will not face any negative consequences from the factual information you supply.",
+    "selectForm": {
+        "empty": "Select if you need to complete a DS1500 or an SR1 for your patient"
+    }
+}
