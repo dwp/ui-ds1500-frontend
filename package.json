@@ -1,6 +1,6 @@
 {
   "name": "ds1500-frontend",
-  "version": "0.51.0",
+  "version": "0.52.0",
   "description": "Citizen-facing CASA application",
   "main": "app.js",
   "scripts": {
@@ -49,12 +49,12 @@
     "gulp-jsonmin": "1.2.0",
     "gulp-rename": "2.0.0",
     "gulp-uglify": "3.0.2",
-    "hmrc-frontend": "5.0.0",
-    "ioredis": "5.0.2",
+    "hmrc-frontend": "5.0.3",
+    "ioredis": "5.0.3",
     "jquery": "3.6.0",
     "luxon": "2.3.1",
     "memorystore": "1.6.7",
-    "moment": "2.29.1",
+    "moment": "2.29.2",
     "node-gyp": "9.0.0",
     "notifications-node-client": "5.1.1",
     "num2fraction": "^1.2.2",

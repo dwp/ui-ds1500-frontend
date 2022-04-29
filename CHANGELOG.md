@@ -1,3 +1,8 @@
+## 0.52.0 (2022-04-28)
+
+* accessibility: updated meaningful link and grouping of form fields([074891f9](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/074891f9))
+* fix: add session time out to select form page([2914d017](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/2914d017))
+
 ## 0.51.0 (2022-04-04)
 
 * feature: update content on check answers page ([4663d5af](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/4663d5af))

@@ -15,7 +15,7 @@
         "2": "a list of medical professionals who may complete the SR1 forms",
         "3": "whether you need the SR1 form and the fee form, or the SR1 form only"
     },
-    "p6": "You can <a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">order a book of blank paper copies</a>",
+    "p6": "You can <a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">order a book of blank paper copies (opens in a new tab)</a>",
     "p7": "Tell us on headed paper:",
     "list2": {
         "1": "your surgery, hospital or office postal address and telephone number",
