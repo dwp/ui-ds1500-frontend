@@ -2,7 +2,6 @@
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const legacy = require('@rollup/plugin-legacy');
-const fs = require('fs');
 const { babel } = require('@rollup/plugin-babel');
 const alias = require('@rollup/plugin-alias');
 
@@ -36,10 +35,7 @@ const createConfig = (filename, outputPath, outputFile) => ({
     {
       file: `${outputPath}/js/${outputFile}.js`,
       format: 'umd',
-      name: 'GOVUKFrontend',
-      // The GOVUKFrontend bundle is inited in this file, which also contains
-      // non-bundleable custom CASA js.
-      outro: fs.readFileSync(require.resolve('@dwp/govuk-casa/src/js/casa.js'))
+      name: 'GOVUKFrontend'
     }
   ],
   plugins

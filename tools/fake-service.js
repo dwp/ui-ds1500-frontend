@@ -8,10 +8,9 @@
 
 // Setup app middleware. Order is important.
 var express = require('express');
-var bodyParser = require('body-parser');
 
 var app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 
 app.post('/controller', function(req, res) {

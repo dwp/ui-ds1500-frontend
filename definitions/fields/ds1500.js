@@ -1,27 +1,35 @@
-const { validationRules: r, simpleFieldValidation: sf } = require('@dwp/govuk-casa')
+const { field, validators: r } = require('@dwp/govuk-casa');
+const { DateTime } = require('luxon');
 
 const { isValidPhoneNumber, isValidPatientName, hasValidWords, hasValidWordsPatientName } = require('../../lib/validation-rules/ds1500');
 const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../lib/validation-rules/ds1500DateOfBirth')
 const { isEmptyDateOfDiagnosis, isDateNumeric, isValidDateRange, isDateOfDiagnosisInFuture, isDateBeforeDoB } = require('../../lib/validation-rules/ds1500DateOfDiagnosis')
-const { DateTime } = require('luxon');
-
 const { VALID_POSTCODE } = require('../../lib/constants')
-const fieldValidators = {
-  patientName: sf([
+
+module.exports = () => [
+  field('patientName').validators([
     r.required.make({
       errorMsg: 'ds1500:patientName.empty'
     }),
-    hasValidWordsPatientName,
-    isValidPatientName
+    {
+      name: 'hasValidWordsPatientName',
+      validate: hasValidWordsPatientName
+    },
+    {
+      name: 'isValidPatientName',
+      validate: isValidPatientName
+    }
+  ]).processors([
+    (value) => {
+      return String(value).trim();
+    }
   ]),
-
-  patientAddress: sf([
+  field('patientAddress').validators([
     r.required.make({
       errorMsg: 'ds1500:patientAddress.empty'
     })
   ]),
-
-  patientPostcode: sf([
+  field('patientPostcode').validators([
     r.required.make({
       errorMsg: 'ds1500:patientPostcode.empty'
     }),
@@ -33,13 +41,31 @@ const fieldValidators = {
       pattern: VALID_POSTCODE,
       errorMsg: 'ds1500:patientPostcode.invalid'
     })
+  ]).processors([
+    (value) => {
+      return String(value).trim();
+    }
   ]),
+  field('patientDateOfBirth').validators([
+    {
+      name: 'isEmptyDateOfBirth',
+      validate: isEmptyDateOfBirth
+    },
+    {
+      name: 'isDateNumericDob',
+      validate: isDateNumericDob
 
-  patientDateOfBirth: sf([
-    isEmptyDateOfBirth,
-    isDateNumericDob,
-    isValidDateRangeDob,
-    isTooLongDob,
+    },
+    {
+      name: 'isValidDateRangeDob',
+      validate: isValidDateRangeDob
+
+    },
+    {
+      name: 'isTooLongDob',
+      validate: isTooLongDob
+
+    },
     r.dateObject.make({
       allowSingleDigitDay: true,
       allowSingleDigitMonth: true,
@@ -59,16 +85,17 @@ const fieldValidators = {
       }
     })
   ]),
-
-  patientNino: sf([
-    r.optional,
+  field('patientNino', { optional: true }).validators([
     r.nino.make({
       allowWhitespace: true,
       errorMsg: 'ds1500:patientNino.invalid'
     })
+  ]).processors([
+    (value) => {
+      return String(value).trim();
+    }
   ]),
-
-  diagnosis: sf([
+  field('diagnosis').validators([
     r.required.make({
       errorMsg: 'ds1500:diagnosis.empty'
     }),
@@ -76,28 +103,40 @@ const fieldValidators = {
       max: 126,
       errorMsgMax: 'ds1500:diagnosis.tooLong'
     }),
-    hasValidWords
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    }
   ]),
-
-  dateOfDiagnosis: sf([
-    isEmptyDateOfDiagnosis,
-    isDateNumeric,
-    isValidDateRange,
-    isDateOfDiagnosisInFuture,
-    isDateBeforeDoB.bind({
-      otherFieldName: 'patientDateOfBirth'
-    })
+  field('dateOfDiagnosis').validators([
+    {
+      name: 'isEmptyDateOfDiagnosis',
+      validate: isEmptyDateOfDiagnosis
+    },
+    {
+      name: 'isDateNumeric',
+      validate: isDateNumeric
+    },
+    {
+      name: 'isValidDateRange',
+      validate: isValidDateRange
+    },
+    {
+      name: 'isDateOfDiagnosisInFuture',
+      validate: isDateOfDiagnosisInFuture
+    },
+    {
+      name: 'isDateBeforeDoB',
+      validate: isDateBeforeDoB
+    }
   ]),
-
-  otherDiagnoses: sf([
-    r.optional,
+  field('otherDiagnoses', { optional: true }).validators([
     r.strlen.make({
       max: 132,
       errorMsgMax: 'ds1500:otherDiagnoses.tooLong'
     })
   ]),
-
-  patientAware: sf([
+  field('patientAware').validators([
     r.required.make({
       errorMsg: 'ds1500:patientAware.empty'
     }),
@@ -106,8 +145,7 @@ const fieldValidators = {
       errorMsg: 'ds1500:patientAware.empty'
     })
   ]),
-
-  formRequester: sf([
+  field('formRequester').validators([
     r.required.make({
       errorMsg: 'ds1500:formRequester.empty'
     }),
@@ -116,14 +154,9 @@ const fieldValidators = {
       errorMsg: 'ds1500:formRequester.empty'
     })
   ]),
-  representativeName: sf([
-    r.optional
-  ]),
-  representativeAddress: sf([
-    r.optional
-  ]),
-  representativePostcode: sf([
-    r.optional,
+  field('representativeName', { optional: true }),
+  field('representativeAddress', { optional: true }),
+  field('representativePostcode', { optional: true }).validators([
     r.strlen.make({
       max: 8,
       errorMsgMax: 'ds1500:representativePostcode.tooLong'
@@ -132,37 +165,48 @@ const fieldValidators = {
       pattern: VALID_POSTCODE,
       errorMsg: 'ds1500:representativePostcode.invalid'
     })
+  ]).processors([
+    (value) => {
+      return String(value).trim();
+    }
   ]),
-  clinicalFeatures: sf([
+  field('clinicalFeatures').validators([
     r.required.make({
       errorMsg: 'ds1500:clinicalFeatures.empty'
     }),
-    hasValidWords,
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    },
     r.strlen.make({
       max: 236,
       errorMsgMax: 'ds1500:clinicalFeatures.tooLong'
     })
   ]),
-  treatment: sf([
+  field('treatment').validators([
     r.required.make({
       errorMsg: 'ds1500:treatment.empty'
     }),
-    hasValidWords,
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    },
     r.strlen.make({
       max: 160,
       errorMsgMax: 'ds1500:treatment.tooLong'
     })
   ]),
-  otherIntervention: sf([
-    r.optional,
-    hasValidWords,
+  field('otherIntervention', { optional: true }).validators([
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    },
     r.strlen.make({
       max: 120,
       errorMsgMax: 'ds1500:otherIntervention.tooLong'
     })
   ]),
-
-  declaration: sf([
+  field('declaration').validators([
     r.required.make({
       errorMsg: 'ds1500:declaration.empty'
     }),
@@ -171,8 +215,7 @@ const fieldValidators = {
       errorMsg: 'ds1500:declaration.empty'
     })
   ]),
-
-  gmcNumber: sf([
+  field('gmcNumber').validators([
     r.required.make({
       errorMsg: 'ds1500:gmcNumber.empty'
     }),
@@ -186,13 +229,15 @@ const fieldValidators = {
       pattern: /^(?!0000000)[0-9]*$/,
       errorMsg: 'ds1500:gmcNumber.pattern'
     })
-  ], (dataContext) => {
-    const { waypointId, journeyContext } = dataContext
-    const formData = journeyContext.getDataForPage(waypointId);
+  ]).condition(({ journeyContext, waypoint }) => {
+    const formData = journeyContext.getDataForPage(waypoint);
     return formData.declaration === 'General Practitioner';
-  }),
-
-  gmcNumberConsultant: sf([
+  }).processors([
+    (value) => {
+      return String(value).trim();
+    }
+  ]),
+  field('gmcNumberConsultant').validators([
     r.required.make({
       errorMsg: 'ds1500:gmcNumberConsultant.empty'
     }),
@@ -206,43 +251,57 @@ const fieldValidators = {
       pattern: /^(?!0000000)[0-9]*$/,
       errorMsg: 'ds1500:gmcNumberConsultant.pattern'
     })
-  ], (dataContext) => {
-    const { waypointId, journeyContext } = dataContext
-    const formData = journeyContext.getDataForPage(waypointId);
-    return formData.declaration === 'GMC registered consultant';
-  }),
-
-  declarationAdditionalDetail: sf([
+  ])
+    .condition(({ journeyContext, waypoint }) => {
+      const formData = journeyContext.getDataForPage(waypoint);
+      return formData.declaration === 'GMC registered consultant';
+    })
+    .processors([
+      (value) => {
+        return String(value).trim();
+      }
+    ]),
+  field('declarationAdditionalDetail').validators([
     r.required.make({
       errorMsg: 'ds1500:declarationAdditionalDetail.empty'
     }),
-    hasValidWords
-  ], (dataContext) => {
-    const { waypointId, journeyContext } = dataContext
-    const formData = journeyContext.getDataForPage(waypointId);
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    }
+  ]).condition(({ journeyContext, waypoint }) => {
+    const formData = journeyContext.getDataForPage(waypoint);
     return formData.declaration === 'Other';
   }),
-
-  gpName: sf([
+  field('gpName').validators([
     r.required.make({
       errorMsg: 'ds1500:gpName.empty'
     }),
-    hasValidWords
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    }
   ]),
-
-  gpAddress: sf([
+  field('gpAddress').validators([
     r.required.make({
       errorMsg: 'ds1500:gpAddress.empty'
     }),
-    hasValidWords
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    }
   ]),
-
-  gpPhone: sf([
+  field('gpPhone').validators([
     r.required.make({
       errorMsg: 'ds1500:gpPhone.empty'
     }),
-    isValidPhoneNumber
+    {
+      name: 'isValidPhoneNumber',
+      validate: isValidPhoneNumber
+    }
+  ]).processors([
+    (value) => {
+      return String(value).trim();
+    }
   ])
-};
-
-module.exports = fieldValidators;
+];

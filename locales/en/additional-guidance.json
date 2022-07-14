@@ -21,7 +21,7 @@
             "li2": "a new medical evidence form SR1, which will operate alongside the form DS1500"
         },
         "p5": "This is a transitional period until the new rules are extended to all 5 benefits.",
-        "p6": "Find out more about the <a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">changes to the Special Rules and completing the forms (opens in a new tab).</a>"
+        "p6": "Find out more about the <a class=\"govuk-link\" href=\"{{url}}\" target=\"_blank\">changes to the Special Rules and completing the forms (opens in a new tab).</a>"
     },
     "section2": {
         "h3": "You should complete the DS1500 form promptly if you believe that your patient:",
@@ -88,7 +88,7 @@
         "p1": "You can claim a fee if you are a GP or GMC registered consultant, but only if you have authorised the fee form by signing it.",
         "p2": "To claim your fee, download and fill out the form at the end.",
         "p3": "We will pay it into your bank or building society account.",
-        "p4": "For claims to New Style Employment and Support Allowance or Universal Credit send the fee form to the nearest <a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">Jobcentre Plus office (opens in a new tab).</a>",
+        "p4": "For claims to New Style Employment and Support Allowance or Universal Credit send the fee form to the nearest <a class=\"govuk-link\" href=\"{{url}}\" target=\"_blank\">Jobcentre Plus office (opens in a new tab).</a>",
         "p5": "For all other benefits, send to the relevant address:",
         "relevantAddresses": {
             "address1": {
@@ -101,7 +101,7 @@
             },
             "address2": {
                 "ul": {
-                    "li1": "Disability Living Allowance Adult",
+                    "li1": "Disability Living Allowance Adult 1",
                     "li2": "For claimants born on or before 8 April 1948",
                     "li3": "Disability Living Allowance 65+",
                     "li4": "Mail Handling Site A",
@@ -111,8 +111,8 @@
             },
             "address3": {
                 "ul": {
-                    "li1": "Disability Living Allowance Adult",
-                    "li2": "For claimants born on or before 9 April 1948",
+                    "li1": "Disability Living Allowance Adult 2",
+                    "li2": "For claimants born on or after 9 April 1948",
                     "li3": "Disability Living Allowance",
                     "li4": "Warbreck House",
                     "li5": "Warbreck Hill",

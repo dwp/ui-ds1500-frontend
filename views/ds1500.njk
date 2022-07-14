@@ -344,7 +344,7 @@
           }
           }
       ],
-      classes: "govuk-!-width-two-thirds govuk-radios--inline",
+      classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors
     }) }}
   </div>
@@ -572,7 +572,7 @@
           }
         }
       ],
-      classes: "govuk-!-width-two-thirds govuk-radios--inline",
+      classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors
     }) }}
 
@@ -652,6 +652,6 @@
 
 {% block bodyEnd %}
   {{super()}}
-  <script nonce="{{nonce}}" src="{{ casa.mountUrl }}js/validation-declaration.js"></script>
-  <script nonce="{{ nonce }}" src="{{ casa.mountUrl }}js/conditional-radios-accessibility.js"></script>
+  <script nonce="{{cspNonce}}" src="{{ casa.mountUrl }}js/validation-declaration.js"></script>
+  <script nonce="{{ cspNonce }}" src="{{ casa.mountUrl }}js/conditional-radios-accessibility.js"></script>
 {% endblock %}

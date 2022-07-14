@@ -1,42 +1,68 @@
-const expressjs = require('express');
-const npath = require('path');
+const ExpressJS = require('express');
+const { static: expressStatic } = ExpressJS;
+const { resolve } = require('path');
 
-module.exports = function (casaApp) {
-  const { router } = casaApp
-  const { compiledAssetsDir: staticDir } = casaApp.config
-  // Deliver project-specific CSS resources
-  router.use('/css',
-    expressjs.static(
-      npath.resolve(staticDir, 'css'), {
-        etag: false
+module.exports = (staticRouter, aggresivelyCache) => {
+  const staticDir = resolve(__dirname, '../static/')
+  const oneDay = 86400000;
+  const setHeaders = (req, res, next) => {
+    res.set('cache-control', 'public');
+    res.set('pragma', 'cache');
+    res.set('expires', new Date(Date.now() + oneDay).toUTCString());
+    const { pathname } = new URL(req?.originalUrl ?? '', 'https://placeholder.test/');
+    if (pathname.substr(-4) === '.css') {
+      // Just needed for our in-memory CSS assets
+      res.set('content-type', 'text/css');
+    }
+    next();
+  };
+
+  const cacheOptions = aggresivelyCache
+    ? {
+        etag: false,
+        lastModified: false,
+        immutable: true,
+        maxAge: 31536000000,
+        setHeaders: (res) => {
+          setHeaders(null, res, () => {});
+        }
       }
+    : {
+        etag: true,
+        lastModified: true,
+        setHeaders: (res) => {
+          setHeaders(null, res, () => {});
+        }
+      };
+
+  // Deliver project-specific CSS resources
+  staticRouter.use('/css',
+    expressStatic(
+      resolve(staticDir, 'css'), cacheOptions
     )
   );
 
   // Deliver project-specific JS resources
-  router.use('/js',
-    expressjs.static(
-      npath.resolve(staticDir, 'js'), {
-        etag: false
-      }
+  staticRouter.use('/js',
+    expressStatic(
+      resolve(staticDir, 'js'), cacheOptions
     )
   );
 
   // Deliver project-specific img resources
-  router.use('/img',
-    expressjs.static(
-      npath.resolve(staticDir, 'img'), {
-        etag: false
-      }
+  staticRouter.use('/img',
+    expressStatic(
+      resolve(staticDir, 'img'), cacheOptions
     )
   );
 
   // Deliver project-specific data resources
-  router.use('/data',
-    expressjs.static(
-      npath.resolve(staticDir, 'data'), {
-        etag: false
-      }
+  staticRouter.use('/data',
+    expressStatic(
+      resolve(staticDir, 'data'), cacheOptions
     )
   );
+
+  staticRouter.use('/public', expressStatic(resolve('./static/', 'public'), cacheOptions));
+  staticRouter.use('/assets', expressStatic('./node_modules/govuk-frontend/govuk/assets', cacheOptions));
 };

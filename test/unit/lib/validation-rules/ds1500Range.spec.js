@@ -1,10 +1,20 @@
 const chai = require('chai');
 const expect = chai.expect;
-const chaiAsPromised = require('chai-as-promised');
-
-chai.use(chaiAsPromised);
-
 const ds1500Range = require('../../../../lib/validation-rules/ds1500Range');
+
+const expectedErrorMsg = (fieldName) => {
+  return [{
+    focusSuffix: [],
+    inline: `validation:rule.${fieldName}.inline`,
+    message: `validation:rule.${fieldName}.summary`,
+    summary: `validation:rule.${fieldName}.summary`,
+    variables: {},
+    field: undefined,
+    fieldHref: undefined,
+    fieldKeySuffix: undefined,
+    validator: undefined
+  }]
+}
 
 describe('Validation rule: ds1500Range', function () {
   const r1 = ds1500Range.bind({
@@ -16,20 +26,16 @@ describe('Validation rule: ds1500Range', function () {
       expect(ds1500Range).to.exist; // eslint-disable-line
   });
 
-  it('should resolve values within range', function () {
-    const queue = [];
-    queue.push(expect(r1('2017')).to.be.fulfilled);
-    queue.push(expect(r1('1890')).to.be.fulfilled);
-    queue.push(expect(r1('2018')).to.be.fulfilled);
-    return Promise.all(queue);
+  it('should not throw error message if values are within range', function () {
+    expect(r1('2017')).to.eql([]);
+    expect(r1('1890')).to.eql([]);
+    expect(r1('2018')).to.eql([]);
   });
 
-  it('should reject values outside of range', function () {
-    const queue = [];
-    queue.push(expect(r1('1889')).to.be.rejected);
-    queue.push(expect(r1('1747')).to.be.rejected);
-    queue.push(expect(r1('2019')).to.be.rejected);
-    queue.push(expect(r1('3020')).to.be.rejected);
-    return Promise.all(queue);
+  it('should throw error messages if values are outside of range', function () {
+    expect(r1('1889')).to.eql(expectedErrorMsg('dateObject'))
+    expect(r1('1747')).to.eql(expectedErrorMsg('dateObject'))
+    expect(r1('2019')).to.eql(expectedErrorMsg('dateObject'))
+    expect(r1('3020')).to.eql(expectedErrorMsg('dateObject'))
   });
 });

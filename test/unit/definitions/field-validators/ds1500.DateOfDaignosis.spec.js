@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const { expectValidatorToFail, expectValidatorToPass } = require('../../../helpers/validator-assertions');
-const validators = require('../../../../definitions/field-validators/ds1500');
+const validators = require('../../../../definitions/fields/ds1500')();
 
 const defaultValidators = {
   patientName: '',
@@ -12,75 +12,75 @@ const defaultValidators = {
 describe('ds1500 field: dateOfDiagnosis', () => {
   describe('validator: isEmptyDateOfDiagnosis', () => {
     it('should fail "isEmptyDateOfDiagnosis" validator if no "mm yyyy" is provided', async () => {
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isEmptyDateOfDiagnosis', { ...defaultValidators }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isEmptyDateOfDiagnosis', { mm: '', yyyy: '' }, { ...defaultValidators }, {
         summary: 'ds1500:dateOfDiagnosis.empty'
       });
     });
     it('should fail "isEmptyDateOfDiagnosis" validator if no "mm" is provided', async () => {
       const dateOfDiagnosis = { mm: '', yyyy: '2020' }
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isEmptyDateOfDiagnosis', { ...defaultValidators, dateOfDiagnosis }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isEmptyDateOfDiagnosis', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis }, {
         summary: 'ds1500:dateOfDiagnosis[mm].empty'
       });
     });
     it('should fail "isEmptyDateOfDiagnosis" validator if no "yyyy" is provided', async () => {
       const dateOfDiagnosis = { mm: '12', yyyy: '' }
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isEmptyDateOfDiagnosis', { ...defaultValidators, dateOfDiagnosis }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isEmptyDateOfDiagnosis', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis }, {
         summary: 'ds1500:dateOfDiagnosis[yyyy].empty'
       });
     });
     it('should pass "isEmptyDateOfDiagnosis" validator if a valid value is provided', async () => {
       const dateOfDiagnosis = { mm: '12', yyyy: '2020' }
-      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isEmptyDateOfDiagnosis', { ...defaultValidators, dateOfDiagnosis });
+      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isEmptyDateOfDiagnosis', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis });
     });
   })
 
   describe('validator: isDateNumeric', () => {
     it('should fail "isDateNumeric" validator if "mm yyyy" is not numeric', async () => {
       const dateOfDiagnosis = { mm: '2b', yyyy: '202c' }
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateNumeric', { ...defaultValidators, dateOfDiagnosis }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateNumeric', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis }, {
         summary: 'ds1500:dateOfDiagnosis.isNumeric'
       });
     });
     it('should fail "isDateNumeric" validator if "mm" is not numeric', async () => {
       const dateOfDiagnosis = { mm: '2a', yyyy: '2020' }
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateNumeric', { ...defaultValidators, dateOfDiagnosis }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateNumeric', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis }, {
         summary: 'ds1500:dateOfDiagnosis.isNumeric'
       });
     });
     it('should fail "isDateNumeric" validator if "yyyy" is not numeric', async () => {
       const dateOfDiagnosis = { mm: '02', yyyy: '202c' }
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateNumeric', { ...defaultValidators, dateOfDiagnosis }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateNumeric', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis }, {
         summary: 'ds1500:dateOfDiagnosis.isNumeric'
       });
     });
     it('should pass "isDateNumeric" validator if "mm yyyy" is numeric', async () => {
       const dateOfDiagnosis = { mm: '02', yyyy: '2020' }
-      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isDateNumeric', { ...defaultValidators, dateOfDiagnosis });
+      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isDateNumeric', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis });
     });
   })
 
   describe('validator: isValidDateRange', () => {
     it('should fail "isValidDateRange" validator if "mm yyyy" is not in range', async () => {
       const dateOfDiagnosis = { mm: '13', yyyy: '1888' };
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isValidDateRange', { ...defaultValidators, dateOfDiagnosis }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isValidDateRange', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis }, {
         summary: 'ds1500:dateOfDiagnosis.range'
       });
     });
     it('should fail "isValidDateRange" validator if "mm" is not in range', async () => {
       const dateOfDiagnosis = { mm: '14', yyyy: '2019' };
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isValidDateRange', { ...defaultValidators, dateOfDiagnosis }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isValidDateRange', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis }, {
         summary: 'ds1500:dateOfDiagnosis[mm].range'
       });
     });
     it('should fail "isValidDateRange" validator if "yyyy" is not in range', async () => {
       const dateOfDiagnosis = { mm: '12', yyyy: '1684' };
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isValidDateRange', { ...defaultValidators, dateOfDiagnosis }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isValidDateRange', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis }, {
         summary: 'ds1500:dateOfDiagnosis[yyyy].range'
       });
     });
     it('should pass "isValidDateRange" validator if "mm yyyy" is in range', async () => {
       const dateOfDiagnosis = { mm: '12', yyyy: '2020' };
-      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isValidDateRange', { ...defaultValidators, dateOfDiagnosis });
+      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isValidDateRange', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis });
     });
   })
 
@@ -101,7 +101,7 @@ describe('ds1500 field: dateOfDiagnosis', () => {
         patientDateOfBirth: { dd: '01', mm: '01', yyyy: '1970' }
       }
 
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateOfDiagnosisInFuture', { ...defaultValidators, ...setValidators }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateOfDiagnosisInFuture', setValidators.dateOfDiagnosis, { ...defaultValidators, ...setValidators }, {
         summary: 'ds1500:dateOfDiagnosis.future',
         focusSuffix: ['[mm]', '[yyyy]']
       });
@@ -109,7 +109,7 @@ describe('ds1500 field: dateOfDiagnosis', () => {
 
     it('should pass "isDateOfDiagnosisInFuture" validator if value is before today', async () => {
       const dateOfDiagnosis = { mm: '1', yyyy: '1970' }
-      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isDateOfDiagnosisInFuture', { ...defaultValidators, dateOfDiagnosis });
+      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isDateOfDiagnosisInFuture', dateOfDiagnosis, { ...defaultValidators, dateOfDiagnosis });
     });
   })
 
@@ -130,7 +130,7 @@ describe('ds1500 field: dateOfDiagnosis', () => {
         patientDateOfBirth: { dd: '01', mm: '01', yyyy: '1970' }
       }
 
-      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateBeforeDoB', { ...defaultValidators, ...setValidators }, {
+      await expectValidatorToFail(validators, 'dateOfDiagnosis', 'isDateBeforeDoB', setValidators.dateOfDiagnosis, { ...defaultValidators, ...setValidators }, {
         summary: 'ds1500:dateOfDiagnosis.beforeDob',
         focusSuffix: ['[mm]', '[yyyy]']
       });
@@ -141,7 +141,7 @@ describe('ds1500 field: dateOfDiagnosis', () => {
         dateOfDiagnosis: { mm: '01', yyyy: '1969' },
         patientDateOfBirth: { dd: '01', mm: '01', yyyy: '1968' }
       }
-      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isDateBeforeDoB', { ...defaultValidators, ...setValidators });
+      await expectValidatorToPass(validators, 'dateOfDiagnosis', 'isDateBeforeDoB', setValidators.dateOfDiagnosis, { ...defaultValidators, ...setValidators });
     });
   })
 })

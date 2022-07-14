@@ -27,7 +27,6 @@ describe('routes/feedback', () => {
 
   const router = {};
 
-  const casaApp = { router, config: { mountUrl: '/' } }
   it('should setup "get" route for feedback', (done) => {
     res.render = (template) => {
       assert.equal(template, 'feedback');
@@ -37,7 +36,7 @@ describe('routes/feedback', () => {
       callback(req, res);
       done();
     };
-    route(casaApp);
+    route(router);
   });
 
   it('should set up a POST route for feedback and redirects to thankyou page', (done) => {
@@ -58,7 +57,7 @@ describe('routes/feedback', () => {
         callback(req, res);
         done()
       };
-      route(casaApp);
+      route(router);
     } catch (e) {
       done(e);
     }
@@ -109,7 +108,7 @@ describe('routes/feedback', () => {
         callback(req, res);
         done()
       };
-      route(casaApp);
+      route(router);
     } catch (e) {
       done(e);
     }
@@ -160,7 +159,7 @@ describe('routes/feedback', () => {
         callback(req, res);
         done()
       };
-      route(casaApp);
+      route(router);
     } catch (e) {
       done(e);
     }
@@ -187,7 +186,7 @@ describe('routes/feedback', () => {
         callback(req, res);
         done()
       };
-      route(casaApp);
+      route(router);
     } catch (e) {
       done(e);
     }
@@ -220,7 +219,7 @@ describe('routes/feedback', () => {
         callback(req, res);
         done()
       };
-      route(casaApp);
+      route(router);
     } catch (e) {
       done(e);
     }
@@ -252,7 +251,7 @@ describe('routes/feedback', () => {
         assert.equal(path, '/feedback');
         callback(req, res);
       };
-      route(casaApp);
+      route(router);
     } catch (e) {
       done(e);
     }
@@ -279,7 +278,7 @@ describe('routes/feedback', () => {
         assert.equal(path, '/feedback');
         callback(req, res);
       };
-      route(casaApp);
+      route(router);
     } catch (e) {
       done(e);
     }

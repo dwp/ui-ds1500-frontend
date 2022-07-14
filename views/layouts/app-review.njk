@@ -38,6 +38,7 @@
 {% block bodyEnd %}
   {{super()}}
   {% include "partials/end-common.njk" %}
+  {% include "partials/timeout-dialog/scripts.njk" %}
 {% endblock %}
 
 {% block beforeContent %}

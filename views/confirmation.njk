@@ -20,9 +20,7 @@
             <p class="govuk-body">{{ t('confirmation:p1') }}</p>
             <p class="govuk-body">{{ t('confirmation:p2') }}</p>
             <p class="govuk-body govuk-!-padding-bottom-5">
-                <form action="ds1500-start" method="post" class="form" autocomplete="off" novalidate>
-                    <button type="submit" class="submit-link govuk-link">{{ t('confirmation:sendAnother') }}</button>
-                </form>
+                <a href="{{ casa.mountUrl }}" class="govuk-link">{{ t('confirmation:sendAnother') }}</a>
             </p>
             <p class="govuk-body">
                 <a href="{{ casa.mountUrl }}feedback" class="govuk-link" target="_blank">{{ t('confirmation:feedbackLinkText') }}</a>

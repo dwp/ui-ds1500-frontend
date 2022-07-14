@@ -15,8 +15,8 @@ describe('Middleware: cookie-message', () => {
 
   beforeEach(() => {
     app = {
-      use (mw) {
-        this.use = mw;
+      prependUse (mw) {
+        this.prependUse = mw;
       },
       post (p, mw) {
         this.all = mw;
@@ -24,9 +24,9 @@ describe('Middleware: cookie-message', () => {
     };
   });
 
-  it('should add a "use" middleware', () => {
+  it('should add a "prependUse" middleware', () => {
     cookieMessage(app, cookieName, waypoints, mountUrl, proxymountUrl);
-    expect(app.use).to.be.an.instanceOf(Function);
+    expect(app.prependUse).to.be.an.instanceOf(Function);
   });
 
   it('should set cookieChoiceMade template variable', () => {
@@ -34,7 +34,7 @@ describe('Middleware: cookie-message', () => {
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl, proxymountUrl);
     req.session.cookieChoiceMade = true;
-    app.use(req, res, () => {});
+    app.prependUse(req, res, () => {});
     expect(res.locals).to.have.property('cookieChoiceMade').that.deep.equals(true);
   });
 
@@ -43,7 +43,7 @@ describe('Middleware: cookie-message', () => {
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl, proxymountUrl);
     req.session.cookieChoiceMade = true;
-    app.use(req, res, () => {});
+    app.prependUse(req, res, () => {});
     expect(req.session.cookieChoiceMade).to.equal(undefined);
   });
 
@@ -52,7 +52,7 @@ describe('Middleware: cookie-message', () => {
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl, proxymountUrl);
     req.cookies[cookieName] = 'test';
-    app.use(req, res, () => {});
+    app.prependUse(req, res, () => {});
     expect(res.locals).to.have.property('consentCookieValue').that.equals('test');
   });
 
@@ -60,7 +60,7 @@ describe('Middleware: cookie-message', () => {
     const req = new Request();
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl, proxymountUrl);
-    app.use(req, res, () => {});
+    app.prependUse(req, res, () => {});
     expect(res.locals).to.have.property('cookieConsentSubmit').that.equals(waypoints.COOKIE_CONSENT);
   });
 
@@ -69,7 +69,7 @@ describe('Middleware: cookie-message', () => {
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl, '/proxy/');
     req.url = '/proxy/ds1500-start';
-    app.use(req, res, () => {});
+    app.prependUse(req, res, () => {});
     expect(res.locals).to.have.property('cookiePolicyUrl').that.equals(`${mountUrl}${waypoints.COOKIE_POLICY}?backto=%2Fds1500-start`);
   });
 
@@ -78,7 +78,7 @@ describe('Middleware: cookie-message', () => {
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl);
     req.url = `${mountUrl}${waypoints.COOKIE_POLICY}?backto=%2Fds1500-start`;
-    app.use(req, res, () => {});
+    app.prependUse(req, res, () => {});
     expect(res.locals).to.have.property('cookiePolicyUrl').that.equals(req.url);
   });
 
@@ -87,7 +87,7 @@ describe('Middleware: cookie-message', () => {
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, '/mountUrl/', '/proxy/');
     req.url = `/proxy/${waypoints.COOKIE_POLICY}?backto=%2Fds1500-start`;
-    app.use(req, res, () => {});
+    app.prependUse(req, res, () => {});
     expect(res.locals).to.have.property('cookiePolicyUrl').that.equals(`/mountUrl/${waypoints.COOKIE_POLICY}?backto=%2Fds1500-start`);
   });
 
@@ -95,6 +95,6 @@ describe('Middleware: cookie-message', () => {
     const req = new Request();
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl, proxymountUrl);
-    app.use(req, res, done);
+    app.prependUse(req, res, done);
   });
 });

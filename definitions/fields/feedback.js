@@ -1,7 +1,7 @@
-const { validationRules: r, simpleFieldValidation: sf } = require('@dwp/govuk-casa')
+const { field, validators: r } = require('@dwp/govuk-casa');
 
-const fieldValidators = {
-  rating: sf([
+module.exports = () => [
+  field('rating').validators([
     r.required.make({
       errorMsg: 'feedback:errors.required'
     }),
@@ -10,8 +10,7 @@ const fieldValidators = {
       errorMsg: 'feedback:errors.required'
     })
   ]),
-
-  improvements: sf([
+  field('improvements').validators([
     r.required.make({
       errorMsg: 'feedback:errors.maxLength'
     }),
@@ -20,6 +19,4 @@ const fieldValidators = {
       errorMsgMax: 'feedback:errors.maxLength'
     })
   ])
-};
-
-module.exports = fieldValidators;
+];

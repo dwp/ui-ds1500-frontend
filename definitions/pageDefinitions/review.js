@@ -1,9 +1,11 @@
 const SubmissionService = require('../../lib/SubmissionService');
-const logger = require('@dwp/govuk-casa/lib/Logger')('ds1500');
+const dwpNodeLogger = require('@dwp/node-logger');
+const logger = dwpNodeLogger('api');
 const { formatServiceData } = require('../../utils/submission-service')
 const { createSummaryItem } = require('../../utils/review')
 const appVersion = require('../../package.json').version;
 const whiteListValidateRedirect = require('../../lib/whiteListValidateRedirect')
+const emptyFields = require('../fields/empty')
 
 // Load app config from `.env`
 const appConfig = Object.assign({}, process.env);
@@ -29,11 +31,13 @@ const submissionService = new SubmissionService(
 );
 
 module.exports = {
+  waypoint: 'review',
   view: 'review.njk',
   id: 'review',
-  fieldValidators: require('../field-validators/empty'),
-  hooks: {
-    prerender: function (req, res, next) {
+  fields: emptyFields(),
+  hooks: [{
+    hook: 'prerender',
+    middleware: (req, res, next) => {
       const waypointEditUrl = '/ds1500'
       const fieldSections = {
         patientDetails: [
@@ -77,10 +81,8 @@ module.exports = {
 
       const jData = req.casa.journeyContext.getData().ds1500
 
-      // const t = req.i18nTranslator.t.bind(req.i18nTranslator);
-
       const createOptions = {
-        t: req.i18nTranslator.t.bind(req.i18nTranslator),
+        t: req.t.bind(req),
         journeyData: jData,
         waypointEditUrl
       }
@@ -98,8 +100,10 @@ module.exports = {
         reviewSections
       }
       next()
-    },
-    postvalidate: async function (req, res, next) {
+    }
+  }, {
+    hook: 'postvalidate',
+    middleware: async (req, res, next) => {
       const serviceUrl = appConfig.DS1500_CONTROLLER_URL
       const formData = req.casa.journeyContext.getData().ds1500
       const serviceData = formatServiceData(formData)
@@ -155,5 +159,5 @@ module.exports = {
         }
       }
     }
-  }
+  }]
 }

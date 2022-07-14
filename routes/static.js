@@ -3,33 +3,10 @@ const { addStaticRoute } = require('../utils/routes');
 // list of static routes
 const staticRoutes = ['cookies', 'cookies-table', 'accessibility-statement', 'feedback-sent', 'additional-guidance']
 
-module.exports = function (casaApp) {
-  const { router } = casaApp
+module.exports = function (ancillaryRouter, csrfMiddleware) {
   // Submission handlers
-  const submissionCommonMw = [casaApp.csrfMiddleware];
-  router.get('/ds1500-start', submissionCommonMw, function (req, res) {
-    const newSession = 'newSession' in req.query
-    req.session.previousPage = 'ds1500-start';
-    if (typeof req.session.validSession === 'undefined' || req.session.validSession) {
-      req.session.validSession = true;
-      res.render('ds1500-start', {
-        sessionid: encodeURIComponent(req.session.id),
-        appVersion,
-        newSession
-      });
-    } else {
-      res.redirect('/session-timeout')
-    }
-  });
-  router.post('/ds1500-start', function (req, res) {
-    req.session.validSession = true;
-    res.render('ds1500-start', {
-      sessionid: encodeURIComponent(req.session.id),
-      appVersion: appVersion,
-      newSession: true
-    });
-  });
+  const submissionCommonMw = [csrfMiddleware];
   staticRoutes.forEach((endpoint) => {
-    addStaticRoute(router, endpoint, submissionCommonMw, appVersion)
+    addStaticRoute(ancillaryRouter, endpoint, submissionCommonMw, appVersion)
   })
 };

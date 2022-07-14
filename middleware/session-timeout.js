@@ -1,11 +1,9 @@
-module.exports = (app, proxyUrl, waypoints, sessionTtl, timeoutDialogCountdown) => {
-  app.use(proxyUrl, (req, res, next) => {
-    const { mountUrl } = res.locals.casa;
-
+module.exports = (router, mountUrl, proxyUrl, waypoints, sessionTtl, timeoutDialogCountdown) => {
+  router.prependUse(proxyUrl, (req, res, next) => {
     res.locals.timeoutDialog = {
       keepAliveUrl: `${mountUrl}${waypoints.SESSION_KEEP_ALIVE}`,
-      signOutUrl: `${mountUrl}?ref=sign-out`,
-      timeoutUrl: `${mountUrl}${waypoints.SESSION_ENDED}`,
+      signOutUrl: `${mountUrl}${waypoints.SESSION_ENDED}`,
+      timeoutUrl: `${mountUrl}${waypoints.SESSION_TIMEOUT}`,
       countdown: sessionTtl - timeoutDialogCountdown,
       timeout: sessionTtl
     };

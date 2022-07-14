@@ -1,6 +1,6 @@
 {
   "pageTitle": "Report a terminally ill patient (DS1500) -  GOV.UK",
-  "notificationText": "Find out about the <a class=\"govuk-link\" href=\"${url}\" target=\"_blank\">changes to the Special Rules process (opens in a new tab)</a> in the benefit system.",
+  "notificationText": "Find out about the <a class=\"govuk-link\" href=\"{{url}}\" target=\"_blank\">changes to the Special Rules process (opens in a new tab)</a> in the benefit system.",
   "h1": "Report a terminally ill patient (DS1500)",
   "p1": "Use this service to tell the Department of Work and Pensions (DWP) that you have a patient who:",
   "li1": "has a progressive disease and you would not be surprised if your patient were to live for less than 6 months",

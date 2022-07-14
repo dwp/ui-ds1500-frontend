@@ -5,13 +5,14 @@
 <![endif]-->
 
 <!--[if !IE]><!-->
-    <script nonce="{{ nonce }}" src="{{ casa.mountUrl }}js/ui-ds1500-frontend.js?{{ version }}"></script>
+    <script nonce="{{ cspNonce }}" src="{{ casa.mountUrl }}js/ui-ds1500-frontend.js?{{ version }}"></script>
 <!--<![endif]-->
 
-<script nonce="{{ nonce }}" type="application/javascript">
+<script nonce="{{ cspNonce }}" type="application/javascript">
     var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
     if (isIE11) {
-        document.write('<script nonce="{{ nonce }}" src="{{ casa.mountUrl }}js/ui-ds1500-frontend.js?{{ version }}"><\/script>');
+        document.write('<script nonce="{{ cspNonce }}" src="{{ casa.mountUrl }}js/ui-ds1500-frontend.js?{{ version }}"><\/script>');
     }
 </script>
+<script{%- if cspNonce %} nonce="{{ cspNonce }}"{% endif -%}>GOVUKFrontend.initAll()</script>

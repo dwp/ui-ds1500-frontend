@@ -1,6 +1,6 @@
 const qs = require('querystring');
 
-module.exports = (app, consentCookieName, waypoints, mountUrl = '/', proxyMountUrl = mountUrl) => {
+module.exports = (router, consentCookieName, waypoints, mountUrl = '/', proxyMountUrl = mountUrl) => {
   const reProxyMountUrl = new RegExp(`^${proxyMountUrl}`);
   const sanitiseUrl = (url) => url.replace(reProxyMountUrl, mountUrl).replace(/\/+/g, '/');
 
@@ -8,7 +8,7 @@ module.exports = (app, consentCookieName, waypoints, mountUrl = '/', proxyMountU
   const cookiePolicyUrl = `${mountUrl}${waypoints.COOKIE_POLICY}`;
 
   // Set template options for cookie consent banner
-  app.use((req, res, next) => {
+  router.prependUse((req, res, next) => {
     // Get cookie banner flash messages (did you accept / reject)
     if (req.session) {
       res.locals.cookieChoiceMade = req.session.cookieChoiceMade;

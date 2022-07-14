@@ -1,7 +1,7 @@
 const chai = require('chai');
 chai.use(require('sinon-chai'));
 
-const { assert, expect } = chai;
+const { assert } = chai;
 
 const route = require('../../../routes/static');
 
@@ -22,59 +22,31 @@ describe('routes/static', () => {
 
   const router = {};
 
-  const casaApp = { router }
-  it('should setup "get" route for ds1500-start', (done) => {
+  it('should setup "get" route for any static routes (cookies)', (done) => {
     res.render = (template) => {
-      assert.equal(template, 'ds1500-start');
+      assert.equal(template, 'cookies');
     };
     router.get = (path, csrfMiddleware, callback) => {
-      assert.equal(path, '/ds1500-start');
+      assert.equal(path, '/cookies');
       callback(req, res);
       done();
     };
-    route(casaApp);
+    route(router);
   });
 
-  it('should render ds1500-start page if validSession', (done) => {
-    req.session.validSession = true
-    res.render = (template) => {
-      assert.equal(template, 'ds1500-start');
-    };
-    router.get = (path, csrfMiddleware, callback) => {
-      assert.equal(path, '/ds1500-start');
-      callback(req, res);
-      done();
-    };
-    route(casaApp);
-  });
-
-  it('should redirect to "session-timeout" page if validSession false', (done) => {
-    req.session.validSession = false
-    res.redirect = (path) => {
-      assert.equal(path, '/session-timeout');
-    };
-    router.get = (path, csrfMiddleware, callback) => {
-      assert.equal(path, '/ds1500-start');
-      callback(req, res);
-      done();
-    };
-    route(casaApp);
-  });
-
-  it('should render ds1500-start page', (done) => {
+  it('should render cookies page', (done) => {
     try {
       res.render = (path, options) => {
-        assert.equal(path, 'ds1500-start');
-        expect(options).to.have.property('sessionid');
-        expect(options).to.have.property('appVersion');
+        assert.equal(path, 'cookies');
         done();
       };
       router.get = () => {};
       router.post = (path, callback) => {
-        assert.equal(path, '/ds1500-start');
+        assert.equal(path, '/cookies');
         callback(req, res);
       };
-      route(casaApp);
+      route(router);
+      done()
     } catch (e) {
       done(e);
     }

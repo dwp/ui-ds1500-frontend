@@ -1,12 +1,11 @@
-const logger = require('@dwp/govuk-casa/lib/Logger')('ds1500');
+const dwpNodeLogger = require('@dwp/node-logger');
+const logger = dwpNodeLogger('api');
 const appVersion = require('../package.json').version;
 const notifyService = require('../lib/NotifyService');
 const whiteListValidateRedirect = require('../lib/whiteListValidateRedirect')
 
-module.exports = function (casaApp, notifyEmailTo, notifyApiKey, notifyProxyHost, notifyProxyPort) {
-  const { router, csrfMiddleware } = casaApp
-  const { mountUrl } = casaApp.config
-
+module.exports = function (ancillaryRouter, csrfMiddleware, ...args) {
+  const [mountUrl, notifyEmailTo, notifyApiKey, notifyProxyHost, notifyProxyPort] = args
   let notifyProxyConfig = null
 
   if (notifyProxyHost != null && notifyProxyPort != null) {
@@ -16,10 +15,10 @@ module.exports = function (casaApp, notifyEmailTo, notifyApiKey, notifyProxyHost
     }
   }
 
-  router.get('/feedback', csrfMiddleware, function (req, res) {
+  ancillaryRouter.get('/feedback', csrfMiddleware, function (req, res) {
     res.render('feedback');
   });
-  router.post('/feedback', csrfMiddleware, async function (req, res) {
+  ancillaryRouter.post('/feedback', csrfMiddleware, async function (req, res) {
     const formData = req.body || {};
     const { t } = res.locals;
     const errors = {}

@@ -1,40 +1,52 @@
 const chai = require('chai');
 const expect = chai.expect;
-const chaiAsPromised = require('chai-as-promised');
-
-chai.use(chaiAsPromised);
 
 const { isValidPhoneNumber, hasValidWords, isValidPatientName, specialCharCheck, hasValidWordsPatientName } = require('../../../../lib/validation-rules/ds1500');
 const { validNumbers } = require('../../../helpers/commonValues');
 
+const expectedErrorMsg = (fieldName, errKey) => {
+  return [{
+    focusSuffix: [],
+    inline: `ds1500:${fieldName}.${errKey}`,
+    message: `ds1500:${fieldName}.${errKey}`,
+    summary: `ds1500:${fieldName}.${errKey}`,
+    variables: {},
+    field: undefined,
+    fieldHref: undefined,
+    fieldKeySuffix: undefined,
+    validator: undefined
+  }]
+}
+
 describe('isValidPatientName', () => {
-  it('should reject if name contain invalid characters at end', () => {
+  const field = { fieldName: 'patientName' }
+  it('should throw error message if name contain invalid characters at end', () => {
     const fieldValue = 'test@';
-    return expect(isValidPatientName(fieldValue)).to.be.rejected
+    return expect(isValidPatientName(fieldValue, field)).to.eql(expectedErrorMsg(field.fieldName, 'endCharInvalid'))
   })
-  it('should reject if it contains special chars ', () => {
+  it('should throw error message if it contains special chars ', () => {
     const fieldValue = 'te@st';
-    return expect(isValidPatientName(fieldValue)).to.be.rejected
+    return expect(isValidPatientName(fieldValue, field)).to.eql(expectedErrorMsg(field.fieldName, 'pattern'))
   })
-  it('should reject if name contains other than letters, spaces, hyphens, apostrophes and full stops', () => {
+  it('should throw error if name contains other than letters, spaces, hyphens, apostrophes and full stops', () => {
     const fieldValue = 'test=?+tester';
-    return expect(isValidPatientName(fieldValue)).to.be.rejected
+    return expect(isValidPatientName(fieldValue, field)).to.eql(expectedErrorMsg(field.fieldName, 'pattern'))
   })
-  it('should resolve if name contains spaces', () => {
+  it('should not throw error if name contains spaces', () => {
     const fieldValue = 'john smith';
-    return expect(isValidPatientName(fieldValue)).to.be.fulfilled
+    return expect(isValidPatientName(fieldValue, field)).to.eql([])
   })
-  it('should resolve if name contains hyphens', () => {
+  it('should not throw error if name contains hyphens', () => {
     const fieldValue = 'john-smith';
-    return expect(isValidPatientName(fieldValue)).to.be.fulfilled
+    return expect(isValidPatientName(fieldValue, field)).to.eql([])
   })
-  it('should resolve if name contains apostrophes', () => {
+  it('should not throw error if name contains apostrophes', () => {
     const fieldValue = "Nei'l";
-    return expect(isValidPatientName(fieldValue)).to.be.fulfilled
+    return expect(isValidPatientName(fieldValue, field)).to.eql([])
   })
-  it('should resolve if it is valid name', () => {
+  it('should not throw error if it is valid name', () => {
     const fieldValue = "Nei'l armstrong";
-    return expect(isValidPatientName(fieldValue)).to.be.fulfilled
+    return expect(isValidPatientName(fieldValue, field)).to.eql([])
   })
 })
 
@@ -59,23 +71,23 @@ describe('specialCharCheck', () => {
 
 describe('ds1500 validations: GP Phone Number', () => {
   describe('isValidPhoneNumber', () => {
-    it('should reject if number contain non numeric characters', () => {
-      const fieldValue = '+07432-1234';
-      return expect(isValidPhoneNumber(fieldValue)).to.be.rejected
+    const field = { fieldName: 'gpPhone' }
+    it('should throw error if number contain non numeric characters', () => {
+      const fieldValue = '07432-1234';
+      return expect(isValidPhoneNumber(fieldValue)).to.eql(expectedErrorMsg(field.fieldName, 'invalid'))
     })
-    it('should reject if fewer than 9 digits', () => {
+    it('should throw error if fewer than 9 digits', () => {
       const fieldValue = '01234567';
-      return expect(isValidPhoneNumber(fieldValue)).to.be.rejected
+      return expect(isValidPhoneNumber(fieldValue)).to.eql(expectedErrorMsg(field.fieldName, 'invalid'))
     })
-    it('should reject if more than 15 digits', () => {
+    it('should throw error if more than 15 digits', () => {
       const fieldValue = '01234567891234567';
-      return expect(isValidPhoneNumber(fieldValue)).to.be.rejected
+      return expect(isValidPhoneNumber(fieldValue)).to.eql(expectedErrorMsg(field.fieldName, 'invalid'))
     })
 
     validNumbers.forEach((fieldValue) => {
-      console.log({ fieldValue })
-      it('should resolve if it is valid number', () => {
-        return expect(isValidPhoneNumber(fieldValue)).to.be.fulfilled
+      it('should not throw error if it is valid number', () => {
+        return expect(isValidPhoneNumber(fieldValue)).to.eql([])
       })
     })
   })
@@ -103,17 +115,17 @@ describe('ds1500 validations: Diagnosis', () => {
 
     const sentencePrefix = 'This is a test sentence '
 
-    it('should reject if contains words greater than 58 characters long', () => {
-      return expect(hasValidWords(sentencePrefix + testValues.upperLimit, dataContext)).to.be.rejected
+    it('should throw error if contains words greater than 58 characters long', () => {
+      return expect(hasValidWords(sentencePrefix + testValues.upperLimit, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'wordTooLong'))
     })
-    it('should resolve if words are within pass limit', () => {
-      return expect(hasValidWords(sentencePrefix + testValues.pastLimit, dataContext)).to.be.fulfilled
+    it('should not throw error if words are within pass limit', () => {
+      return expect(hasValidWords(sentencePrefix + testValues.pastLimit, dataContext)).to.eql([])
     })
-    it('should resolve if words are within lower limit', () => {
-      return expect(hasValidWords(sentencePrefix + testValues.lowerLmit, dataContext)).to.be.fulfilled
+    it('should not throw error if words are within lower limit', () => {
+      return expect(hasValidWords(sentencePrefix + testValues.lowerLmit, dataContext)).to.eql([])
     })
-    it('should resolve if string is empty', () => {
-      return expect(hasValidWords('', dataContext)).to.be.fulfilled
+    it('should not throw error if string is empty', () => {
+      return expect(hasValidWords('', dataContext)).to.eql([])
     })
   })
 });
@@ -131,24 +143,24 @@ describe('hasValidWordsPatientName', () => {
       }
     }
   }
-  it('should reject if both first words greater than 58 characters long and last word greater than 35 characters', () => {
+  it('should throw error if both first words greater than 58 characters long and last word greater than 35 characters', () => {
     const fieldValue = 'a'.repeat(59) + ' ' + 'b'.repeat(36)
-    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.rejected
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'firstLastTooLong'))
   })
-  it('should reject if first word is less than 2 characters', () => {
+  it('should throw error if first word is less than 2 characters', () => {
     const fieldValue = 'a';
-    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.rejected
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'wordTooShort'))
   })
-  it('should reject if first words greater than 58 characters long', () => {
+  it('should throw error if first words greater than 58 characters long', () => {
     const fieldValue = 'a'.repeat(59);
-    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.rejected
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'lastWordTooLong'))
   })
-  it('should reject if last word greater than 35 characters long', () => {
+  it('should throw error if last word greater than 35 characters long', () => {
     const fieldValue = 'a'.repeat(50) + ' ' + 'b'.repeat(36)
-    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.rejected
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'lastWordTooLong'))
   })
-  it('should resolve if it is valid name, first words less than 58 characters long and last word less than 35 characters long', () => {
+  it('should not throw error if it is valid name, first words less than 58 characters long and last word less than 35 characters long', () => {
     const fieldValue = 'a'.repeat(10) + ' ' + 'b'.repeat(5)
-    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.be.fulfilled
+    return expect(hasValidWordsPatientName(fieldValue, dataContext)).to.eql([])
   })
 })

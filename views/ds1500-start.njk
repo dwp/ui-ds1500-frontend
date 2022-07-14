@@ -1,4 +1,4 @@
-{% extends "layouts/app-main.njk" %}
+{% extends "layouts/app-journey.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
@@ -8,13 +8,11 @@
 
 {% set notificationHtml %}
   <p class="govuk-notification-banner__heading">
-    {{ t('ds1500-start:notificationText', { url: '/additional-guidance' }) | safe }}
+    {{ t('ds1500-start:notificationText', { url: '/additional-guidance#changes-to-special-rules' }) | safe }}
   </p>
 {% endset %}
 
-{% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+{% block journey_form %}
       {{ govukNotificationBanner({
         html: notificationHtml
       }) }}
@@ -30,17 +28,8 @@
       </div>
     </div>
 
-    <div class="form-group">
       {{ govukButton({
         text: t('ds1500-start:startNow'),
-        href: casa.mountUrl + 'select-form',
         isStartButton: true
       }) }}
-    </div>
-  </div>
-  
-  <div class="govuk-grid-column-one-third">
-    {% include "partials/inset-talk-to-advisor.njk" %}
-  </div>
-</div>
 {% endblock %}

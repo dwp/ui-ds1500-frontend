@@ -36,6 +36,7 @@ module.exports = class Request {
     this.i18nTranslator = {
       t: (key, value) => `${key}${value ? `:${value}` : ''}`
     };
+    this.t = () => 'test'
   }
 
   get (header) {

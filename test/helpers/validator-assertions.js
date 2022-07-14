@@ -1,42 +1,35 @@
 const { expect } = require('chai');
 const { JourneyContext } = require('@dwp/govuk-casa');
-const { validationProcessor } = require('@dwp/govuk-casa');
 
 /**
  * Expect a validator to fail.
  *
  * @param {array} fieldValidators List of validators to test
- * @param {string} waypointId Waypoint of page being validated
  * @param {string} fieldName Name of field to vextract from page data context
  * @param {string} validatorName Validator expected to have failed in errors
- * @param {mixed} journeyContext Value to pass into processor to trigger validation fail
+ * @param {mixed} values values you actually want to test, in the form {fieldName:value,...}
+ * @param {mixed} validationContext Value to pass into runValidators to trigger validation fail
  * @param {object} errorObj Expected partial error object to be returned
  * @returns {Promise} Pending processor
  */
 async function expectValidatorToFailWithJourney (
   fieldValidators,
-  waypointId,
   fieldName,
   validatorName,
-  journeyContext = new JourneyContext({}),
+  values,
+  validationContext,
   errorObj = {}
 ) {
-  try {
-    await validationProcessor({
-      pageMeta: {
-        fieldValidators
-      },
-      waypointId,
-      journeyContext,
-      reduceErrors: true
+  let errors
+  if (Array.isArray(fieldValidators) && fieldValidators.length > 0) {
+    fieldValidators.filter((validator) => validator.name === fieldName).forEach((validator) => {
+      errors = validator.runValidators(values, validationContext);
     });
-    throw new Error('UNEXPECTED_PASS');
-  } catch (errors) {
-    const result = (errors[fieldName] || []).filter((r) => (r.validator === validatorName))[0];
-    /* eslint-disable-next-line no-unused-expressions */
-    expect(result).to.not.be.undefined;
-    expect(result).to.deep.include(errorObj);
   }
+  const result = (errors && errors.length > 0) ? errors.filter((r) => r.validator.toLowerCase() === validatorName.toLowerCase()).filter((r) => r.field.toLowerCase() === fieldName.toLowerCase())[0] : undefined;
+  /* eslint-disable-next-line no-unused-expressions */
+  expect(result).to.not.be.undefined;
+  expect(result).to.deep.include(errorObj);
 }
 
 /**
@@ -45,6 +38,7 @@ async function expectValidatorToFailWithJourney (
  * @param {array} fieldValidators List of validators to test
  * @param {string} fieldName Name of field to vextract from page data context
  * @param {string} validatorName Validator expected to have failed in errors
+ * @param {mixed} values these are the values you actually want to test, in the form {fieldName:value,...}
  * @param {{}} pageDataContext Value to pass into processor to trigger validation fail
  * @param {object} errorObj Expected partial error object to be returned
  * @returns {Promise} Pending processor
@@ -53,18 +47,21 @@ async function expectValidatorToFail (
   fieldValidators,
   fieldName,
   validatorName,
+  values = {},
   pageDataContext = {},
-  errorObj = {}
+  errors = {}
 ) {
   const fakeWaypoint = 'test';
   const journeyContext = new JourneyContext({ [fakeWaypoint]: pageDataContext });
+  const context = { journeyContext, waypoint: fakeWaypoint, fieldName };
+
   await expectValidatorToFailWithJourney(
     fieldValidators,
-    fakeWaypoint,
     fieldName,
     validatorName,
-    journeyContext,
-    errorObj
+    values,
+    context,
+    errors
   );
 }
 
@@ -72,59 +69,57 @@ async function expectValidatorToFail (
  * Expect a validator to pass.
  *
  * @param {array} fieldValidators List of validators to test
- * @param {string} waypointId Waypoint of page being validated
  * @param {string} fieldName Name of field to vextract from page data context
  * @param {string} validatorName Validator expected to not to be present
- * @param {mixed} journeyContext Value to pass into processor
+ * @param {mixed} values values you actually want to test, in the form {fieldName:value,...}
+ * @param {mixed} validationContext Value to pass into runValidators
  * @returns {Promise} Pending processor
  */
 async function expectValidatorToPassWithJourney (
   fieldValidators,
-  waypointId,
   fieldName,
   validatorName,
-  journeyContext = new JourneyContext({})
+  values,
+  validationContext
 ) {
-  try {
-    await validationProcessor({
-      pageMeta: {
-        fieldValidators
-      },
-      waypointId,
-      journeyContext,
-      reduceErrors: true
+  let errors = [];
+  if (Array.isArray(fieldValidators) && fieldValidators.length > 0) {
+    fieldValidators.filter((validator) => validator.name === fieldName).forEach((validator) => {
+      errors = validator.runValidators(values, validationContext);
     });
-  } catch (errors) {
-    const result = (errors[fieldName] || []).filter((r) => (r.validator === validatorName))[0];
-    /* eslint-disable-next-line no-unused-expressions */
-    expect(result).to.be.undefined;
   }
+  const result = (errors && errors.length > 0) ? errors.filter((r) => r.validator === validatorName).filter((r) => r.field === fieldName)[0] : undefined;
+  // eslint-disable-next-line no-unused-expressions
+  expect(result).to.be.undefined;
 }
 
 /**
- * Expect a validator to fail.
+ * Expect a validator to pass.
  *
  * @param {array} fieldValidators List of validators to test
  * @param {string} fieldName Name of field to vextract from page data context
  * @param {string} validatorName Validator expected to have failed in errors
+ * @param {mixed} values these are the values you actually want to test, in the form {fieldName:value,...}
  * @param {{}} pageDataContext Value to pass into processor to trigger validation fail
- * @param {object} errorObj Expected partial error object to be returned
  * @returns {Promise} Pending processor
  */
 async function expectValidatorToPass (
   fieldValidators,
   fieldName,
   validatorName,
-  pageDataContext = {}
+  values = {}, // these are the values you actually want to test, in the form {fieldName:value,...}
+  pageDataContext = {} // extra values which might be required in the data context within the journey
 ) {
   const fakeWaypoint = 'test';
   const journeyContext = new JourneyContext({ [fakeWaypoint]: pageDataContext });
+  const context = { journeyContext, waypoint: fakeWaypoint, fieldName };
+
   await expectValidatorToPassWithJourney(
     fieldValidators,
-    fakeWaypoint,
     fieldName,
     validatorName,
-    journeyContext
+    values,
+    context
   );
 }
 

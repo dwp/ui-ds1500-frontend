@@ -26,10 +26,16 @@
       }) }}
       {% endif %}
 
-      {% call casaJourneyForm({csrfToken: casa.csrfToken, inEditMode: inEditMode, editOriginUrl: editOriginUrl, casaMountUrl: casa.mountUrl, buttonBarHidden: true}) %}
+      {% call casaJourneyForm({
+        csrfToken: casa.csrfToken,
+        inEditMode: inEditMode,
+        editOriginUrl: editOriginUrl,
+        casaMountUrl: casa.mountUrl,
+        buttonBarHidden: true
+      }) %}
 
-      {% block journey_form %}{% endblock %}
-      {% block journey_button %}{% endblock %}
+        {% block journey_form %}{% endblock %}
+        {% block journey_button %}{% endblock %}
       {% endcall %}
     </div>
 
@@ -42,6 +48,7 @@
 {% block bodyEnd %}
   {{super()}}
   {% include "partials/end-common.njk" %}
+  {% include "partials/timeout-dialog/scripts.njk" %}
 {% endblock %}
 
 {% block beforeContent %}
