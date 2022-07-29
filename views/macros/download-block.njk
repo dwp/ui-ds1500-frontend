@@ -1,31 +1,23 @@
 {% macro downloadBlock(options) %}
-<section class="attachment embedded" id="{{ id }}">
-    <form id="{{ options.id }}" action="{{ options.downloadUrl }}" method="post" class="form" autocomplete="off" novalidate>
-        <input class="govuk-visually-hidden" id="json_value_{{ options.id }}" type="hidden" name="json" value="{{ options.data }}">
-        <div class="attachment-thumb">
-            <div aria-hidden="true">
-                <button
-                    tabindex="-1"
-                    aria-label="Click to {{ t('download:attachments.' + options.name + '.label') }}"
-                    type="submit"
-                    class="submit-link thumbnail"
-                    id="img_btn_{{ options.id }}"
-                >
-                    <img alt="" src="{{ options.imageUrl }}">
-                </button>
-            </div>
-        </div>
-        <div class="attachment-details">
-            <h2 class="title govuk-!-font-size-27 govuk-!-font-weight-regular">
-                <button
-                    aria-label="Click to {{ t('download:attachments.' + options.name + '.label') }}"
-                    type="submit"
-                    class="submit-link govuk-link govuk-!-font-size-27"
-                    id="btn_{{ options.id }}">{{ t('download:attachments.' + options.name + '.headline') }}
-                </button>
-            </h2>
-            <p>{{ t('download:attachments.' + options.name + '.hintText') }}</p>
-        </div>
-    </form>
-</section>
-{% endmacro %}
+    <section class="attachment embedded" id="{{ id }}">
+        <form id="{{ options.id }}" action="{{ options.downloadUrl }}" method="post" class="form" autocomplete="off" novalidate>
+            <input class="govuk-visually-hidden" id="json_value_{{ options.id }}" type="hidden" name="json" value="{{ options.data }}">
+                <div class="attachment-thumb">
+                    <a
+                        aria-hidden="true"
+                        tabindex="-1"
+                        class="submit-link thumbnail"
+                        id="img_btn_{{ options.id }}">
+                        <img alt="" src="{{ options.imageUrl }}"></a>
+                    </div>
+                    <div class="attachment-details">
+                        <h2 class="title govuk-!-font-weight-regular">
+                            <a class="submit-link govuk-link govuk-!-font-size-27" id="btn_{{ options.id }}" tabindex="0">
+                                {{ t('download:attachments.' + options.name + '.headline') }}
+                            </a>
+                        </h2>
+                        <p>{{ t('download:attachments.' + options.name + '.hintText') }}</p>
+                    </div>
+                </form>
+            </section>
+        {% endmacro %}

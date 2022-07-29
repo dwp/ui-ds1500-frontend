@@ -46,3 +46,26 @@
         </div>
     </div>
 {% endblock %}
+{% block bodyEnd %}
+{{super()}}
+    <script nonce="{{cspNonce}}">
+        var isFeeForm = document.querySelector('#fee-form') || false
+        function submitForm(elemId, formId) {
+            document.querySelector(elemId).addEventListener("click", function () {
+                document.querySelector(formId).submit();
+            });
+            // on press enter key
+            document.querySelector(elemId).addEventListener("keyup", function () {
+                if (event.keyCode === 13) {
+                    document.querySelector(formId).submit();
+                }   
+            });
+        }
+        submitForm('#img_btn_ds1500-form', '#ds1500-form')
+        submitForm('#btn_ds1500-form', '#ds1500-form')
+        if (isFeeForm) {
+            submitForm('#img_btn_fee-form', '#fee-form')
+            submitForm('#btn_fee-form', '#fee-form')
+        }
+    </script>
+{% endblock %}

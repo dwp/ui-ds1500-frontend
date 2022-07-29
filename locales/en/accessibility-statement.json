@@ -3,7 +3,7 @@
     "p1": "This accessibility statement applies to Report a terminally ill patient (DS1500) service.",
     "usingThisService": {
         "h2": "Using this service",
-        "p1": "This service is run by the Department for Work and Pensions. We want as many people as possible to be able to use this service. For example, that means you should be able to:",
+        "p1": "This service is run by the Department for Work and Pensions (DWP). We want as many people as possible to be able to use this service. For example, that means you should be able to:",
         "li1": "change colours, contrast levels and fonts",
         "li2": "zoom in up to 300% without the text spilling off the screen",
         "li3": "get from the start of the service to the end using just a keyboard",
@@ -37,11 +37,11 @@
     },
     "howWeTested": {
         "h2": "How we tested this service",
-        "p1": "The service was last tested on 18 March 2021 and was checked for compliance with WCAG 2.1 AA. The tests were carried out by the Department for Work and Pensions.",
+        "p1": "The service was last tested on 19 April 2022 and was checked for compliance with WCAG 2.1 AA. The tests were carried out by the Department for Work and Pensions.",
         "p2": "The service was tested using both manual and automated testing."
     },
     "preparation": {
         "h2": "Preparation of this accessibility statement",
-        "p1": "This page was prepared on 18 March 2021 and last updated on 18 March 2021."
+        "p1": "This page was prepared on 14 July 2022 and last updated on 14 July 2022."
     }
 }

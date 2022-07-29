@@ -1,6 +1,6 @@
 {
   "name": "ds1500-frontend",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Citizen-facing CASA application",
   "main": "app.js",
   "scripts": {
@@ -32,7 +32,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@dwp/govuk-casa": "8.3.0",
+    "@dwp/govuk-casa": "8.4.0",
     "@dwp/node-logger": "1.1.1",
     "bunyan": "1.8.15",
     "bunyan-syslog-udp": "0.2.0",
@@ -51,12 +51,12 @@
     "gulp-rename": "2.0.0",
     "gulp-uglify": "3.0.2",
     "hmrc-frontend": "5.3.0",
-    "ioredis": "5.2.0",
+    "ioredis": "5.2.1",
     "jquery": "3.6.0",
     "luxon": "3.0.1",
     "memorystore": "1.6.7",
     "moment": "2.29.4",
-    "node-gyp": "9.0.0",
+    "node-gyp": "9.1.0",
     "notifications-node-client": "5.1.1",
     "num2fraction": "^1.2.2",
     "parsleyjs": "2.9.2",

@@ -1,14 +1,19 @@
+## 1.1.0 (2022-07-27)
+
+* accessibility: update download buttons to links ([28af6a40](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/28af6a40))
+* accessibility: Update accessibility statement ([ed00aa73](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ed00aa73))
+
 ## 1.0.0 (2022-07-14)
 
-* accessibility: update link to specific section on guidance page([0d57c23f](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/0d57c23f))
-* accessibility: Update "Report another terminally ill patient" link on /complete page([c535bf34](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/c535bf34))
-* feature: update govuk casa v8([701eb0b5](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/701eb0b5))
-* feature: units tests for ds1500 hooks folder([d6ff9a97](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/d6ff9a97))
+* accessibility: update link to specific section on guidance page ([0d57c23f](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/0d57c23f))
+* accessibility: Update "Report another terminally ill patient" link on /complete page ([c535bf34](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/c535bf34))
+* feature: update govuk casa v8 ([701eb0b5](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/701eb0b5))
+* feature: units tests for ds1500 hooks folder ([d6ff9a97](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/d6ff9a97))
 
 ## 0.52.0 (2022-04-28)
 
-* accessibility: updated meaningful link and grouping of form fields([074891f9](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/074891f9))
-* fix: add session time out to select form page([2914d017](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/2914d017))
+* accessibility: updated meaningful link and grouping of form fields ([074891f9](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/074891f9))
+* fix: add session time out to select form page ([2914d017](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/2914d017))
 
 ## 0.51.0 (2022-04-04)
 
