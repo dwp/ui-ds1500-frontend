@@ -1,3 +1,7 @@
+## 1.2.0 (2022-08-18)
+
+* feature: show error for single word limit ([5fd97345](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/5fd97345))
+
 ## 1.1.0 (2022-07-27)
 
 * accessibility: update download buttons to links ([28af6a40](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/28af6a40))

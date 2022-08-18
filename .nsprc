@@ -1,18 +1,6 @@
 {
-  "1070273": {
+  "1081982": {
     "active": true,
-    "notes": "Ignoring while package is not updated. Does not affect the service."
-  },
-  "1080969": {
-    "active": true,
-    "notes": "Ignoring while package is not updated. Does not affect the service."
-  },
-  "1081346": {
-    "active": true,
-    "notes": "Ignoring while package is not updated. Does not affect the service."
-  },
-  "1081346": {
-    "active": true,
-    "notes": "Ignoring while package is not updated. Does not affect the service."
+    "notes": "Inefficient Regular Expression Complexity in gulp-dart-sass>strip-ansi>ansi-regex - Ignoring while package is not updated. Does not affect the service."
   }
 }

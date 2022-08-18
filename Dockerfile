@@ -3,7 +3,7 @@ ARG PORT
 
 FROM node:${NODE_VERSION} AS builder
 ENV PORT=${PORT}
-RUN apk --no-cache add git=2.24.4-r0
+RUN apk --no-cache add git=2.36.2-r0
 WORKDIR /src
 COPY package.json /src/package.json
 COPY package-lock.json /src/package-lock.json
@@ -27,9 +27,4 @@ COPY --from=builder /src/app.js /
 COPY --from=builder /src/gulpfile.js /
 COPY --from=builder /src/package.json /
 EXPOSE ${PORT}
-RUN apk --no-cache add libcrypto1.1=1.1.1l-r0 \
-    libssl1.1=1.1.1l-r0 \
-    apk-tools=2.10.8-r0 \
-    busybox=1.31.1-r11 \
-    ssl_client=1.31.1-r11
 CMD ["npm", "start"]

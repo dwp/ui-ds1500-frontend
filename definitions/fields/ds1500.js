@@ -1,7 +1,7 @@
 const { field, validators: r } = require('@dwp/govuk-casa');
 const { DateTime } = require('luxon');
 
-const { isValidPhoneNumber, isValidPatientName, hasValidWords, hasValidWordsPatientName } = require('../../lib/validation-rules/ds1500');
+const { isValidPhoneNumber, isValidPatientName, hasValidWords, hasValidWordsPatientName, hasValidWordsRepresentativeDetails } = require('../../lib/validation-rules/ds1500');
 const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../lib/validation-rules/ds1500DateOfBirth')
 const { isEmptyDateOfDiagnosis, isDateNumeric, isValidDateRange, isDateOfDiagnosisInFuture, isDateBeforeDoB } = require('../../lib/validation-rules/ds1500DateOfDiagnosis')
 const { VALID_POSTCODE } = require('../../lib/constants')
@@ -27,7 +27,11 @@ module.exports = () => [
   field('patientAddress').validators([
     r.required.make({
       errorMsg: 'ds1500:patientAddress.empty'
-    })
+    }),
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    }
   ]),
   field('patientPostcode').validators([
     r.required.make({
@@ -131,6 +135,10 @@ module.exports = () => [
     }
   ]),
   field('otherDiagnoses', { optional: true }).validators([
+    {
+      name: 'hasValidWords',
+      validate: hasValidWords
+    },
     r.strlen.make({
       max: 132,
       errorMsgMax: 'ds1500:otherDiagnoses.tooLong'
@@ -154,8 +162,18 @@ module.exports = () => [
       errorMsg: 'ds1500:formRequester.empty'
     })
   ]),
-  field('representativeName', { optional: true }),
-  field('representativeAddress', { optional: true }),
+  field('representativeName', { optional: true }).validators([
+    {
+      name: 'hasValidWordsRepresentativeDetails',
+      validate: hasValidWordsRepresentativeDetails
+    }
+  ]),
+  field('representativeAddress', { optional: true }).validators([
+    {
+      name: 'hasValidWordsRepresentativeDetails',
+      validate: hasValidWordsRepresentativeDetails
+    }
+  ]),
   field('representativePostcode', { optional: true }).validators([
     r.strlen.make({
       max: 8,

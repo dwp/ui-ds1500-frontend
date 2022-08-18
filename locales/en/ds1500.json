@@ -21,7 +21,8 @@
   "patientAddress": {
     "label": "Address",
     "empty": "Enter your patient's address",
-    "invalid": "Contains invalid characters"
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Patient's address must contain words with fewer than 59 characters"
   },
   "patientPostcode": {
     "label": "Postcode",
@@ -97,6 +98,7 @@
   },
   "otherDiagnoses": {
     "label": "Other relevant diagnoses? (optional)",
+    "wordTooLong": "Other relevant diagnoses must contain words with fewer than 59 characters",
     "tooLong": "Other relevant diagnoses has a maximum length of 132 characters",
     "invalid": "Contains invalid characters"
   },
@@ -115,11 +117,13 @@
   "repDetailsHeading": "Representative details",
   "representativeName": {
     "label": "Representative name",
-    "invalid": "Contains invalid characters"
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Representative name must contain words with fewer than 44 characters"
   },
   "representativeAddress": {
     "label": "Representative address",
-    "invalid": "Contains invalid characters"
+    "invalid": "Contains invalid characters",
+    "wordTooLong": "Representative address must contain words with fewer than 44 characters"
   },
   "representativePostcode": {
     "label": "Representative postcode",

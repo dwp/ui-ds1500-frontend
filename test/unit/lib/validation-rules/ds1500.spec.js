@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const { isValidPhoneNumber, hasValidWords, isValidPatientName, specialCharCheck, hasValidWordsPatientName } = require('../../../../lib/validation-rules/ds1500');
+const { isValidPhoneNumber, hasValidWords, isValidPatientName, specialCharCheck, hasValidWordsPatientName, hasValidWordsRepresentativeDetails, checkWordsValid } = require('../../../../lib/validation-rules/ds1500');
 const { validNumbers } = require('../../../helpers/commonValues');
 
 const expectedErrorMsg = (fieldName, errKey) => {
@@ -107,26 +107,101 @@ describe('ds1500 validations: Diagnosis', () => {
         }
       }
     }
+    const wordLengthLimit = 58
     const testValues = {
-      upperLimit: 'a'.repeat(59),
-      pastLimit: 'a'.repeat(57),
-      lowerLmit: 'a'
+      upperLimit: 'a'.repeat(wordLengthLimit + 1),
+      passLimit: 'a'.repeat(wordLengthLimit),
+      lowerLimit: 'a'
     }
 
     const sentencePrefix = 'This is a test sentence '
 
-    it('should throw error if contains words greater than 58 characters long', () => {
+    it('should throw error if contains words greater than word length limit', () => {
       return expect(hasValidWords(sentencePrefix + testValues.upperLimit, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'wordTooLong'))
     })
-    it('should not throw error if words are within pass limit', () => {
-      return expect(hasValidWords(sentencePrefix + testValues.pastLimit, dataContext)).to.eql([])
+    it('should not throw error if words are on the boundary of the word length limit', () => {
+      return expect(hasValidWords(sentencePrefix + testValues.passLimit, dataContext)).to.eql([])
     })
-    it('should not throw error if words are within lower limit', () => {
-      return expect(hasValidWords(sentencePrefix + testValues.lowerLmit, dataContext)).to.eql([])
+    it('should not throw error if words are well within the word length limit', () => {
+      return expect(hasValidWords(sentencePrefix + testValues.lowerLimit, dataContext)).to.eql([])
     })
     it('should not throw error if string is empty', () => {
       return expect(hasValidWords('', dataContext)).to.eql([])
     })
+  })
+});
+
+describe('ds1500 validations: RepresentativeName', () => {
+  describe('hasValidWordsRepresentativeDetails', () => {
+    const dataContext = {
+      waypointId: 'testPage',
+      fieldName: 'representativeName',
+      journeyContext: {
+        getDataForPage: function () {
+          return this.testPage
+        },
+        testPage: {
+          representativeName: ''
+        }
+      }
+    }
+    const wordLengthLimit = 43
+    const testValues = {
+      upperLimit: 'a'.repeat(wordLengthLimit + 1),
+      passLimit: 'a'.repeat(wordLengthLimit),
+      lowerLimit: 'a'
+    }
+
+    const sentencePrefix = 'This is a test sentence '
+
+    it('should throw error if contains words greater than word length limit', () => {
+      return expect(hasValidWordsRepresentativeDetails(sentencePrefix + testValues.upperLimit, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'wordTooLong'))
+    })
+    it('should not throw error if words are on the boundary of the word length limit', () => {
+      return expect(hasValidWordsRepresentativeDetails(sentencePrefix + testValues.passLimit, dataContext)).to.eql([])
+    })
+    it('should not throw error if words are well within the word length limit', () => {
+      return expect(hasValidWordsRepresentativeDetails(sentencePrefix + testValues.lowerLimit, dataContext)).to.eql([])
+    })
+    it('should not throw error if string is empty', () => {
+      return expect(hasValidWordsRepresentativeDetails('', dataContext)).to.eql([])
+    })
+  })
+});
+
+describe('checkWordsValid', () => {
+  const dataContext = {
+    waypointId: 'testPage',
+    fieldName: 'diagnosis',
+    journeyContext: {
+      getDataForPage: function () {
+        return this.testPage
+      },
+      testPage: {
+        diagnosis: ''
+      }
+    }
+  }
+  const wordLengthLimit = 58
+  const testValues = {
+    upperLimit: 'a'.repeat(wordLengthLimit + 1),
+    passLimit: 'a'.repeat(wordLengthLimit),
+    lowerLimit: 'a'
+  }
+
+  const sentencePrefix = 'This is a test sentence '
+
+  it('should throw error if contains words greater than word length limit', () => {
+    return expect(checkWordsValid(sentencePrefix + testValues.upperLimit, wordLengthLimit, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'wordTooLong'))
+  })
+  it('should not throw error if words are on the boundary of the word length limit', () => {
+    return expect(checkWordsValid(sentencePrefix + testValues.passLimit, wordLengthLimit, dataContext)).to.eql([])
+  })
+  it('should not throw error if words are well within the word length limit', () => {
+    return expect(checkWordsValid(sentencePrefix + testValues.lowerLimit, wordLengthLimit, dataContext)).to.eql([])
+  })
+  it('should not throw error if string is empty', () => {
+    return expect(checkWordsValid('', wordLengthLimit, dataContext)).to.eql([])
   })
 });
 

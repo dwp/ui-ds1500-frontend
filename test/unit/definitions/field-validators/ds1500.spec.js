@@ -99,6 +99,18 @@ describe('Validators: ds1500', () => {
       await expectValidatorToPass(validators, 'patientAddress', 'Required', patientAddress, { ...defaultValidators, patientAddress });
     });
 
+    it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
+      const patientAddress = 'a'.repeat(59)
+      await expectValidatorToFail(validators, 'patientAddress', 'hasValidWords', patientAddress, { ...defaultValidators, patientAddress }, {
+        summary: 'ds1500:patientAddress.wordTooLong'
+      });
+    });
+
+    it('should pass "hasValidWords" validator if words less than 59 characters long', async () => {
+      const patientAddress = 'a'.repeat(10)
+      await expectValidatorToPass(validators, 'patientAddress', 'hasValidWords', patientAddress, { ...defaultValidators, patientAddress });
+    });
+
     it('should pass "regex" validator if a valid value is provided', async () => {
       const patientAddress = '12 London road'
       await expectValidatorToPass(validators, 'patientAddress', 'Regex', patientAddress, { ...defaultValidators, patientAddress });
@@ -190,7 +202,7 @@ describe('Validators: ds1500', () => {
       });
     });
 
-    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
+    it('should pass "hasValidWords" validator if words less than 59 characters long', async () => {
       const diagnosis = 'a'.repeat(10)
       await expectValidatorToPass(validators, 'diagnosis', 'hasValidWords', diagnosis, { ...defaultValidators, diagnosis });
     });
@@ -216,6 +228,18 @@ describe('Validators: ds1500', () => {
     it('should pass "strlen" validator if a valid length is provided', async () => {
       const otherDiagnoses = 'a'.repeat(50) + '' + 'b'.repeat(50)
       await expectValidatorToPass(validators, 'otherDiagnoses', 'Strlen', otherDiagnoses, { ...defaultValidators, otherDiagnoses });
+    });
+
+    it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
+      const otherDiagnoses = 'a'.repeat(59)
+      await expectValidatorToFail(validators, 'otherDiagnoses', 'hasValidWords', otherDiagnoses, { ...defaultValidators, otherDiagnoses }, {
+        summary: 'ds1500:otherDiagnoses.wordTooLong'
+      });
+    });
+
+    it('should pass "hasValidWords" validator if words less than 59 characters long', async () => {
+      const otherDiagnoses = 'a'.repeat(58)
+      await expectValidatorToPass(validators, 'otherDiagnoses', 'hasValidWords', otherDiagnoses, { ...defaultValidators, otherDiagnoses });
     });
 
     it('should pass "regex" validator if a valid pattern is provided', async () => {
@@ -269,6 +293,18 @@ describe('Validators: ds1500', () => {
       await expectValidatorToPass(validators, 'representativeName', 'optional', '', { ...defaultValidators });
     });
 
+    it('should fail "hasValidWordsRepresentativeDetails" validator if words greater than 43 characters long', async () => {
+      const representativeName = 'a'.repeat(44)
+      await expectValidatorToFail(validators, 'representativeName', 'hasValidWordsRepresentativeDetails', representativeName, { ...defaultValidators, representativeName }, {
+        summary: 'ds1500:representativeName.wordTooLong'
+      });
+    });
+
+    it('should pass "hasValidWordsRepresentativeDetails" validator if words less than 44 characters long', async () => {
+      const representativeName = 'a'.repeat(43)
+      await expectValidatorToPass(validators, 'representativeName', 'hasValidWordsRepresentativeDetails', representativeName, { ...defaultValidators, representativeName });
+    });
+
     it('should pass "regex" validator if a valid pattern is provided', async () => {
       const representativeName = 'test test'
       await expectValidatorToPass(validators, 'representativeName', 'Regex', representativeName, { ...defaultValidators, representativeName });
@@ -278,6 +314,18 @@ describe('Validators: ds1500', () => {
   describe('field: representativeAddress', () => {
     it('should pass "optional" validator if no value provided', async () => {
       await expectValidatorToPass(validators, 'representativeAddress', 'optional', '', { ...defaultValidators });
+    });
+
+    it('should fail "hasValidWordsRepresentativeDetails" validator if words greater than 43 characters long', async () => {
+      const representativeAddress = 'a'.repeat(44)
+      await expectValidatorToFail(validators, 'representativeAddress', 'hasValidWordsRepresentativeDetails', representativeAddress, { ...defaultValidators, representativeAddress }, {
+        summary: 'ds1500:representativeAddress.wordTooLong'
+      });
+    });
+
+    it('should pass "hasValidWordsRepresentativeDetails" validator if words less than 44 characters long', async () => {
+      const representativeAddress = 'a'.repeat(43)
+      await expectValidatorToPass(validators, 'representativeAddress', 'hasValidWordsRepresentativeDetails', representativeAddress, { ...defaultValidators, representativeAddress });
     });
 
     it('should pass "regex" validator if a valid pattern is provided', async () => {
@@ -334,7 +382,7 @@ describe('Validators: ds1500', () => {
       });
     });
 
-    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
+    it('should pass "hasValidWords" validator if words less than 59 characters long', async () => {
       const clinicalFeatures = 'a'.repeat(10)
       await expectValidatorToPass(validators, 'clinicalFeatures', 'hasValidWords', clinicalFeatures, { ...defaultValidators, clinicalFeatures });
     });
@@ -375,7 +423,7 @@ describe('Validators: ds1500', () => {
       });
     });
 
-    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
+    it('should pass "hasValidWords" validator if words less than 59 characters long', async () => {
       const treatment = 'a'.repeat(10)
       await expectValidatorToPass(validators, 'treatment', 'hasValidWords', treatment, { ...defaultValidators, treatment });
     });
@@ -608,7 +656,7 @@ describe('Validators: ds1500', () => {
       });
     });
 
-    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
+    it('should pass "hasValidWords" validator if words less than 59 characters long', async () => {
       const setValidators = {
         declaration: 'Other',
         declarationAdditionalDetail: 'a'.repeat(10)
@@ -641,7 +689,7 @@ describe('Validators: ds1500', () => {
       });
     });
 
-    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
+    it('should pass "hasValidWords" validator if words less than 59 characters long', async () => {
       const gpName = 'a'.repeat(10)
       await expectValidatorToPass(validators, 'gpName', 'hasValidWords', gpName, { ...defaultValidators, gpName });
     });
@@ -671,7 +719,7 @@ describe('Validators: ds1500', () => {
       });
     });
 
-    it('should pass "hasValidWords" validator if words less than 58 characters long', async () => {
+    it('should pass "hasValidWords" validator if words less than 59 characters long', async () => {
       const gpAddress = 'a'.repeat(10)
       await expectValidatorToPass(validators, 'gpAddress', 'hasValidWords', gpAddress, { ...defaultValidators, gpAddress });
     });
