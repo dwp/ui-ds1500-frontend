@@ -1,10 +1,26 @@
 {
-  "pageTitle": "500 - Error",
-  "h1": "Something's gone wrong",
-  "lede": "Sorry - you can't complete a DS1500 online at this time",
+  "pageTitle": "There's a problem with the service - error 500 - Send an SR1 - GOV.UK",
+  "h1": "There's a problem with the service - error 500",
   "p1": "Please try again later.",
-  "p2": "If you continue to have problems please contact the NHS Service Desk at:",
-  "serviceDeskUrl": "https://nww.nhscfhservicedesk.nhs.uk",
-  "p3": "If you do not already have an account to log incidents with the NHS Service Desk please ring the NHS National Desk on 0300 303 5035",
-  "p4": "If you still need to complete a DS1500 for your patient please use the clerical process"
+  "p2": "We have not saved your answers. When the service is available, you will have to start again.",
+  "p3": "If you continue to have problems please contact the NHS Service Desk at: <a class=\"govuk-link\" href=\"mailto:ssd.nationalservicedesk@nhs.net\" title=\"Click here to send email to the National Service Desk\">ssd.nationalservicedesk@nhs.net</a>",
+  "p4": "If you do not have an account to log incidents with the NHS National Service Desk call 0300 303 5035.",
+  "h2": "If you need to complete an SR1 form now",
+  "p5": "You can complete PDF versions of the SR1 and the fee claim forms online. They do not need to be signed, but you’ll need to return them to us from a secure email address. Any email that does not come from a secure email address will be automatically deleted.",
+  "section1": {
+    "p1": "Secure email addresses end in:",
+    "ul1": {
+      "li1": "@nhs.net",
+      "li2": "@nhs.uk",
+      "li3": "@nhs.scot",
+      "li4": "@nhs.wales.uk",
+      "li5": "@gov.uk"
+    },
+    "p2": "Send the request for a PDF version of the SR1 form, and fee claim form if needed, from your secure email address to <a class=\"govuk-link\" href=\"mailto:form.e-sr1@dwp.gov.uk\" title=\"Click here to send the request for a PDF version of the SR1 form\">form.e-sr1@dwp.gov.uk</a>. Please include your:",
+    "ul2": {
+      "li1": "surgery/hospital/postal address",
+      "li2": "phone number"
+    }
+  },
+  "p6": "Do not encrypt any part of the email."
 }

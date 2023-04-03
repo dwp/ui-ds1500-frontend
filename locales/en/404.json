@@ -1,6 +1,6 @@
 {
-    "pageTitle": "404 - Not found",
-    "h1": "You can't view this page",
-    "p1": "This could be because it doesn't exist",
-    "p2": "<p><a href=\"/\">Go back a page and try again.</a>"
+    "pageTitle": "Page not found - Send an SR1 - GOV.UK",
+    "h1": "Page not found",
+    "p1": "If you typed the web address, check it's correct. If you copied and pasted the web address, make sure you copied all of the address.",
+    "p2": "<p><a href=\"/\">Return to start page</a>"
 }

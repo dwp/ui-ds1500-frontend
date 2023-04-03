@@ -1,7 +1,7 @@
 const { expectValidatorToPass } = require('../../../helpers/validator-assertions');
-const validators = require('../../../../definitions/fields/ds1500-start');
+const validators = require('../../../../definitions/fields/sr1-start');
 
-describe('ds1500-start field: pageId', () => {
+describe('sr1-start field: pageId', () => {
   it('should pass "optional" validator if no value provided', async () => {
     await expectValidatorToPass(validators, 'pageId', 'optional', { pageId: '' });
   });

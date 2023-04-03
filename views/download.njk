@@ -17,11 +17,11 @@
             <section id="documents">
                 <div class="gem-c-govspeak govuk-govspeak direction-ltr" data-module="govspeak">
                     {{ downloadBlock({
-                        name: 'ds1500',
+                        name: 'sr1',
                         downloadUrl: '/download',
-                        imageUrl: 'img/ds1500-form.png',
+                        imageUrl: 'img/sr1-form.png',
                         data: json,
-                        id: 'ds1500-form'
+                        id: 'sr1-form'
                     }) }}
                     {% if showFeeForm %}
                         {{ downloadBlock({
@@ -61,8 +61,8 @@
                 }   
             });
         }
-        submitForm('#img_btn_ds1500-form', '#ds1500-form')
-        submitForm('#btn_ds1500-form', '#ds1500-form')
+        submitForm('#img_btn_sr1-form', '#sr1-form')
+        submitForm('#btn_sr1-form', '#sr1-form')
         if (isFeeForm) {
             submitForm('#img_btn_fee-form', '#fee-form')
             submitForm('#btn_fee-form', '#fee-form')

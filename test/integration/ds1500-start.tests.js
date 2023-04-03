@@ -7,7 +7,7 @@ describe('ds1500 start page', function () {
   const browser = new Browser();
 
   before(function () {
-    return browser.visit('/ds1500-start');
+    return browser.visit('/sr1-start');
   });
 
   it('should be successful', function () {

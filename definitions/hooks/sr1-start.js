@@ -1,5 +1,5 @@
 const prerender = (req, res, next) => {
-  req.session.previousPage = 'ds1500-start';
+  req.session.previousPage = 'sr1-start';
   if (typeof req.session.validSession === 'undefined' || req.session.validSession) {
     req.session.validSession = true;
     next()

@@ -1,7 +1,35 @@
 {
-  "pageTitle": "Sorry, there is a problem with the service – DS1500 Report a terminally ill patient – GOV.UK",
-  "h1": "Sorry, there is a problem",
-  "p1": "We were unable to authenticate you from the NHS Spine portal.",
-  "p2": "Please contact your NHS IT Service Desk to ensure that DS1500 is added as a 'Trusted Site' to your web browser. Then try again.",
-  "p3": "If the problem persists, please contact <a class=\"govuk-link\" title=\"Click to email the NHS service desk\" href=\"mailto:{{url}}\">{{url}}</a>"
+  "pageTitle": "Sorry, we cannot authorise you to use this service - Send an SR1 - GOV.UK",
+  "h1": "Sorry, we cannot authorise you to use this service - error 401",
+  "p1": "Only specific job roles are authorised to complete an SR1 form.",
+  "section1": {
+    "p1": "These are:",
+    "ul": {
+      "li1": "GP",
+      "li2": "hospital consultant",
+      "li3": "specialty doctor",
+      "li4": "hospice doctor",
+      "li5": "senior specialist nurse (such as a clinical nurse specialist, advanced nurse practitioner or similar)"
+    }
+  },
+  "p2": "Your job role is checked against the job role on your NHS smartcard. If you should have access to this service, make sure your smartcard is correct. If it’s wrong, your IT support team will be able to help.",
+  "p3": "If you do not have access to the NHS National Service Desk, you can email them at <a class=\"govuk-link\" href=\"mailto:ssd.nationalservicedesk@nhs.net\" title=\"Click here to send email to the National Service Desk\">ssd.nationalservicedesk@nhs.net</a> or call them on 0300 303 5035.",
+  "h2": "What you can do if the problem continues",
+  "p4": "You can complete PDF versions of the SR1 and the fee claim forms online. They do not need to be signed, but you’ll need to return them to us from a secure email address. Any email that does not come from a secure email address will be automatically deleted.",
+  "section2": {
+    "p1": "Secure email addresses end in:",
+    "ul1": {
+      "li1": "@nhs.net",
+      "li2": "@nhs.uk",
+      "li3": "@nhs.scot",
+      "li4": "@nhs.wales.uk",
+      "li5": "@gov.uk"
+    },
+    "p2": "Send the request for a PDF version of the SR1 form, and fee claim form if needed, from your secure email address to <a class=\"govuk-link\" href=\"mailto:form.e-sr1@dwp.gov.uk\" title=\"Click here to send the request for a PDF version of the SR1 form\">form.e-sr1@dwp.gov.uk</a>. Please include your:",
+    "ul2": {
+      "li1": "surgery/hospital/postal address",
+      "li2": "phone number"
+    }
+  },
+  "p5": "Do not encrypt any part of the email."
 }

@@ -1,15 +1,15 @@
 const { field, validators: r } = require('@dwp/govuk-casa');
 const { DateTime } = require('luxon');
 
-const { isValidPhoneNumber, isValidPatientName, hasValidWords, hasValidWordsPatientName, hasValidWordsRepresentativeDetails } = require('../../lib/validation-rules/ds1500');
-const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../lib/validation-rules/ds1500DateOfBirth')
-const { isEmptyDateOfDiagnosis, isDateNumeric, isValidDateRange, isDateOfDiagnosisInFuture, isDateBeforeDoB } = require('../../lib/validation-rules/ds1500DateOfDiagnosis')
+const { isValidPhoneNumber, isValidPatientName, hasValidWords, hasValidWordsPatientName, hasValidWordsRepresentativeDetails } = require('../../lib/validation-rules/sr1');
+const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../lib/validation-rules/sr1DateOfBirth')
+const { isEmptyDateOfDiagnosis, isDateNumeric, isValidDateRange, isDateOfDiagnosisInFuture, isDateBeforeDoB } = require('../../lib/validation-rules/sr1DateOfDiagnosis')
 const { VALID_POSTCODE } = require('../../lib/constants')
 
 module.exports = () => [
   field('patientName').validators([
     r.required.make({
-      errorMsg: 'ds1500:patientName.empty'
+      errorMsg: 'sr1:patientName.empty'
     }),
     {
       name: 'hasValidWordsPatientName',
@@ -26,7 +26,7 @@ module.exports = () => [
   ]),
   field('patientAddress').validators([
     r.required.make({
-      errorMsg: 'ds1500:patientAddress.empty'
+      errorMsg: 'sr1:patientAddress.empty'
     }),
     {
       name: 'hasValidWords',
@@ -35,15 +35,15 @@ module.exports = () => [
   ]),
   field('patientPostcode').validators([
     r.required.make({
-      errorMsg: 'ds1500:patientPostcode.empty'
+      errorMsg: 'sr1:patientPostcode.empty'
     }),
     r.strlen.make({
       max: 8,
-      errorMsgMax: 'ds1500:patientPostcode.tooLong'
+      errorMsgMax: 'sr1:patientPostcode.tooLong'
     }),
     r.regex.make({
       pattern: VALID_POSTCODE,
-      errorMsg: 'ds1500:patientPostcode.invalid'
+      errorMsg: 'sr1:patientPostcode.invalid'
     })
   ]).processors([
     (value) => {
@@ -76,15 +76,15 @@ module.exports = () => [
       beforeOffsetFromNow: { days: 0 },
       afterOffsetFromNow: DateTime.fromISO('1890-01-01').diff(DateTime.now()),
       errorMsg: {
-        summary: 'ds1500:patientDateOfBirth.invalid',
+        summary: 'sr1:patientDateOfBirth.invalid',
         focusSuffix: '[dd]'
       },
       errorMsgAfterOffset: {
-        summary: 'ds1500:patientDateOfBirth.rangePast',
+        summary: 'sr1:patientDateOfBirth.rangePast',
         focusSuffix: ['[dd]', '[mm]', '[yyyy]']
       },
       errorMsgBeforeOffset: {
-        summary: 'ds1500:patientDateOfBirth.future',
+        summary: 'sr1:patientDateOfBirth.future',
         focusSuffix: ['[dd]', '[mm]', '[yyyy]']
       }
     })
@@ -92,7 +92,7 @@ module.exports = () => [
   field('patientNino', { optional: true }).validators([
     r.nino.make({
       allowWhitespace: true,
-      errorMsg: 'ds1500:patientNino.invalid'
+      errorMsg: 'sr1:patientNino.invalid'
     })
   ]).processors([
     (value) => {
@@ -101,11 +101,11 @@ module.exports = () => [
   ]),
   field('diagnosis').validators([
     r.required.make({
-      errorMsg: 'ds1500:diagnosis.empty'
+      errorMsg: 'sr1:diagnosis.empty'
     }),
     r.strlen.make({
       max: 126,
-      errorMsgMax: 'ds1500:diagnosis.tooLong'
+      errorMsgMax: 'sr1:diagnosis.tooLong'
     }),
     {
       name: 'hasValidWords',
@@ -141,25 +141,25 @@ module.exports = () => [
     },
     r.strlen.make({
       max: 132,
-      errorMsgMax: 'ds1500:otherDiagnoses.tooLong'
+      errorMsgMax: 'sr1:otherDiagnoses.tooLong'
     })
   ]),
   field('patientAware').validators([
     r.required.make({
-      errorMsg: 'ds1500:patientAware.empty'
+      errorMsg: 'sr1:patientAware.empty'
     }),
     r.inArray.make({
       source: ['Yes', 'No'],
-      errorMsg: 'ds1500:patientAware.empty'
+      errorMsg: 'sr1:patientAware.empty'
     })
   ]),
   field('formRequester').validators([
     r.required.make({
-      errorMsg: 'ds1500:formRequester.empty'
+      errorMsg: 'sr1:formRequester.empty'
     }),
     r.inArray.make({
       source: ['Patient', 'Representative'],
-      errorMsg: 'ds1500:formRequester.empty'
+      errorMsg: 'sr1:formRequester.empty'
     })
   ]),
   field('representativeName', { optional: true }).validators([
@@ -177,11 +177,11 @@ module.exports = () => [
   field('representativePostcode', { optional: true }).validators([
     r.strlen.make({
       max: 8,
-      errorMsgMax: 'ds1500:representativePostcode.tooLong'
+      errorMsgMax: 'sr1:representativePostcode.tooLong'
     }),
     r.regex.make({
       pattern: VALID_POSTCODE,
-      errorMsg: 'ds1500:representativePostcode.invalid'
+      errorMsg: 'sr1:representativePostcode.invalid'
     })
   ]).processors([
     (value) => {
@@ -190,7 +190,7 @@ module.exports = () => [
   ]),
   field('clinicalFeatures').validators([
     r.required.make({
-      errorMsg: 'ds1500:clinicalFeatures.empty'
+      errorMsg: 'sr1:clinicalFeatures.empty'
     }),
     {
       name: 'hasValidWords',
@@ -198,12 +198,12 @@ module.exports = () => [
     },
     r.strlen.make({
       max: 236,
-      errorMsgMax: 'ds1500:clinicalFeatures.tooLong'
+      errorMsgMax: 'sr1:clinicalFeatures.tooLong'
     })
   ]),
   field('treatment').validators([
     r.required.make({
-      errorMsg: 'ds1500:treatment.empty'
+      errorMsg: 'sr1:treatment.empty'
     }),
     {
       name: 'hasValidWords',
@@ -211,7 +211,7 @@ module.exports = () => [
     },
     r.strlen.make({
       max: 160,
-      errorMsgMax: 'ds1500:treatment.tooLong'
+      errorMsgMax: 'sr1:treatment.tooLong'
     })
   ]),
   field('otherIntervention', { optional: true }).validators([
@@ -221,31 +221,31 @@ module.exports = () => [
     },
     r.strlen.make({
       max: 120,
-      errorMsgMax: 'ds1500:otherIntervention.tooLong'
+      errorMsgMax: 'sr1:otherIntervention.tooLong'
     })
   ]),
   field('declaration').validators([
     r.required.make({
-      errorMsg: 'ds1500:declaration.empty'
+      errorMsg: 'sr1:declaration.empty'
     }),
     r.inArray.make({
       source: ['Specialist nurse', 'General Practitioner', 'GMC registered consultant', 'Other'],
-      errorMsg: 'ds1500:declaration.empty'
+      errorMsg: 'sr1:declaration.empty'
     })
   ]),
   field('gmcNumber').validators([
     r.required.make({
-      errorMsg: 'ds1500:gmcNumber.empty'
+      errorMsg: 'sr1:gmcNumber.empty'
     }),
     r.strlen.make({
       max: 7,
       min: 7,
-      errorMsgMax: 'ds1500:gmcNumber.tooLong',
-      errorMsgMin: 'ds1500:gmcNumber.tooShort'
+      errorMsgMax: 'sr1:gmcNumber.tooLong',
+      errorMsgMin: 'sr1:gmcNumber.tooShort'
     }),
     r.regex.make({
       pattern: /^(?!0000000)[0-9]*$/,
-      errorMsg: 'ds1500:gmcNumber.pattern'
+      errorMsg: 'sr1:gmcNumber.pattern'
     })
   ]).condition(({ journeyContext, waypoint }) => {
     const formData = journeyContext.getDataForPage(waypoint);
@@ -257,17 +257,17 @@ module.exports = () => [
   ]),
   field('gmcNumberConsultant').validators([
     r.required.make({
-      errorMsg: 'ds1500:gmcNumberConsultant.empty'
+      errorMsg: 'sr1:gmcNumberConsultant.empty'
     }),
     r.strlen.make({
       max: 7,
       min: 7,
-      errorMsgMax: 'ds1500:gmcNumberConsultant.tooLong',
-      errorMsgMin: 'ds1500:gmcNumberConsultant.tooShort'
+      errorMsgMax: 'sr1:gmcNumberConsultant.tooLong',
+      errorMsgMin: 'sr1:gmcNumberConsultant.tooShort'
     }),
     r.regex.make({
       pattern: /^(?!0000000)[0-9]*$/,
-      errorMsg: 'ds1500:gmcNumberConsultant.pattern'
+      errorMsg: 'sr1:gmcNumberConsultant.pattern'
     })
   ])
     .condition(({ journeyContext, waypoint }) => {
@@ -281,7 +281,7 @@ module.exports = () => [
     ]),
   field('declarationAdditionalDetail').validators([
     r.required.make({
-      errorMsg: 'ds1500:declarationAdditionalDetail.empty'
+      errorMsg: 'sr1:declarationAdditionalDetail.empty'
     }),
     {
       name: 'hasValidWords',
@@ -293,7 +293,7 @@ module.exports = () => [
   }),
   field('gpName').validators([
     r.required.make({
-      errorMsg: 'ds1500:gpName.empty'
+      errorMsg: 'sr1:gpName.empty'
     }),
     {
       name: 'hasValidWords',
@@ -302,7 +302,7 @@ module.exports = () => [
   ]),
   field('gpAddress').validators([
     r.required.make({
-      errorMsg: 'ds1500:gpAddress.empty'
+      errorMsg: 'sr1:gpAddress.empty'
     }),
     {
       name: 'hasValidWords',
@@ -311,7 +311,7 @@ module.exports = () => [
   ]),
   field('gpPhone').validators([
     r.required.make({
-      errorMsg: 'ds1500:gpPhone.empty'
+      errorMsg: 'sr1:gpPhone.empty'
     }),
     {
       name: 'isValidPhoneNumber',

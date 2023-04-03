@@ -8,13 +8,13 @@
       "label": "Portable Document Format"
     },
     "claimForm": {
-      "headline": "DS1500 claim fee form",
-      "label": "Download claim fee form PDF",
-      "hintText": "Claim your fee for completing the DS1500"
+      "headline": "Download SR1 claim fee form",
+      "label": "Download SR1 claim fee form PDF",
+      "hintText": "Claim your fee for completing the SR1"
     },
-    "ds1500": {
-      "headline": "DS1500 form",
-      "label": "Download DS1500 PDF",
+    "sr1": {
+      "headline": "Download SR1 form",
+      "label": "Download SR1 form PDF",
       "hintText": "You must download the form and store it securely in your patient records."
     }
   }

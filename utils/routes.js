@@ -6,7 +6,7 @@
  */
 const addStaticRoute = (r, endpoint, submissionCommonMw, appVersion) => {
   const route = function (req, res) {
-    req.session.previousPage = 'ds1500-start';
+    req.session.previousPage = 'sr1-start';
     res.render(endpoint, {
       sessionid: encodeURIComponent(req.session.id),
       appVersion

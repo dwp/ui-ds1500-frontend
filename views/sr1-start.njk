@@ -3,12 +3,12 @@
 {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
 {% block casaPageTitle %}
-  {{ t('ds1500-start:pageTitle') }}
+  {{ t('sr1-start:pageTitle') }}
 {% endblock %}
 
 {% set notificationHtml %}
   <p class="govuk-notification-banner__heading">
-    {{ t('ds1500-start:notificationText', { url: '/additional-guidance#changes-to-special-rules' }) | safe }}
+    {{ t('sr1-start:notificationText', { url: '/additional-guidance#changes-to-special-rules' }) | safe }}
   </p>
 {% endset %}
 
@@ -16,20 +16,20 @@
       {{ govukNotificationBanner({
         html: notificationHtml
       }) }}
-    <h1 class="govuk-heading-l">{{ t('ds1500-start:h1') }} </h1>
-
+    <h1 class="govuk-heading-l">{{ t('sr1-start:h1') }} </h1>
+    <div class="govuk-inset-text">
+        {{ t('sr1-start:insetText') }}
+    </div>
     <div class="form-group">
-      <p>{{ t('ds1500-start:p1') }}</p>
-      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
-        <li class="govuk-!-margin-bottom-0">{{ t('ds1500-start:li1') }}</li>
+      <p>{{ t('sr1-start:p1') }}</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ t('sr1-start:li1') }}</li>
+        <li>{{ t('sr1-start:li2') }}</li>
       </ul>
-      <div class="govuk-inset-text">
-        {{ t('ds1500-start:insetText') }}
-      </div>
     </div>
 
       {{ govukButton({
-        text: t('ds1500-start:startNow'),
+        text: t('sr1-start:startNow'),
         isStartButton: true
       }) }}
 {% endblock %}

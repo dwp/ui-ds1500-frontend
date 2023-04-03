@@ -1,3 +1,22 @@
+## 2.0.0 (2023-04-03)
+
+* feature: update ds1500 to sr1 ([68eb1053](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/68eb1053))
+* feature: removal of select form page ([bdd4b601](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/bdd4b601))
+* feature: update confirmation page ([83eb28dc](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/83eb28dc))
+* feature: update content on accessibility page ([b551e150](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/b551e150))
+* feature: update content on sr1 page ([ac02c3df](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ac02c3df))
+* feature: update cookie banner page ([2a5d7f3d](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/2a5d7f3d))
+* feature: create healthcheck path ([3b9c94fa](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/3b9c94fa))
+* feature: update 404 error page ([d85ce35a](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/d85ce35a))
+* feature: update 503 error page ([8423406c](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/8423406c))
+* feature: update 502 error page ([708d59a5](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/708d59a5))
+* feature: update 500 error page ([aa205fdb](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/aa205fdb))
+* feature: update 403 error page ([b8b47b80](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/b8b47b80))
+* feature: update 401 error page ([71c1d653](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/71c1d653))
+* feature: removal of error page ([f805574f](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/f805574f))
+* feature: update error pages ([b7f1d931](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/b7f1d931))
+* feature: update addtional guidance page ([16e1acb4](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/16e1acb4))
+
 ## 1.2.0 (2022-08-18)
 
 * feature: show error for single word limit ([5fd97345](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/5fd97345))

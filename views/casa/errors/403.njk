@@ -9,10 +9,39 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ t('403:h1') }}</h1>
       <p class="govuk-body">{{ t('403:p1') }}</p>
+        <p class="govuk-body">{{ t('403:section1.p1') }}</p>
+            <ul class="govuk-list govuk-list--bullet form-group">
+                <li>{{ t('403:section1.ul.li1')}}</li>
+                <li>{{ t('403:section1.ul.li2')}}</li>
+                <li>{{ t('403:section1.ul.li3')}}</li>
+                <li>{{ t('403:section1.ul.li4')}}</li>
+                <li>{{ t('403:section1.ul.li5')}}</li>
+            </ul>
       <p class="govuk-body">{{ t('403:p2') }}</p>
-    </div>
-    <div class="govuk-grid-column-one-third">
-    {% include "casa/partials/journey-sidebar.njk" %}
+      <p class="govuk-body">{{ t('403:p3') | safe }}</p>
+      <h2 class="govuk-heading-m">{{ t('403:h2') }}</h2>
+      <p class="govuk-body">{{ t('403:p4') }}</p>
+        <p class="govuk-body">{{t('403:section2.p1') }}</p>
+            <ul class="govuk-list govuk-list--bullet form-group">
+                <li><kbd>{{ t('403:section2.ul1.li1')}}</kbd></li>
+                <li><kbd>{{ t('403:section2.ul1.li2')}}</kbd></li>
+                <li><kbd>{{ t('403:section2.ul1.li3')}}</kbd></li>
+                <li><kbd>{{ t('403:section2.ul1.li4')}}</kbd></li>
+                <li><kbd>{{ t('403:section2.ul1.li5')}}</kbd></li>
+            </ul>
+        <p class="govuk-body">{{t('403:section2.p2') | safe }}</p>
+            <ul class="govuk-list govuk-list--bullet form-group">
+                <li>{{ t('403:section2.ul2.li1')}}</li>
+                <li>{{ t('403:section2.ul2.li2')}}</li>
+            </ul>
+      <p class="govuk-body">{{ t('403:p5') }}</p>
+      <h2 class="govuk-heading-m">{{ t('403:h3') }}</h2>
+        <p class="govuk-body">{{t('403:section3.p1') }}</p>
+            <ul class="govuk-list govuk-list--bullet form-group">
+                <li>{{ t('403:section3.ul3.li1')}}</li>
+                <li>{{ t('403:section3.ul3.li2')}}</li>
+            </ul>
+      <p class="govuk-body">{{ t('403:p6') }}</p>
     </div>
   </div>
 {% endblock %}

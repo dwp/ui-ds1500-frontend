@@ -21,7 +21,7 @@ const createSummaryItem = function (options, fieldName) {
 
   return {
     key: {
-      text: t(`ds1500:${fieldName}.label`)
+      text: t(`sr1:${fieldName}.label`)
     },
     value: {
       text: value
@@ -31,7 +31,7 @@ const createSummaryItem = function (options, fieldName) {
         {
           href: href,
           text: t('review:block.changeLink'),
-          visuallyHiddenText: t(`ds1500:${fieldName}.label`).toLowerCase(),
+          visuallyHiddenText: t(`sr1:${fieldName}.label`).toLowerCase(),
           classes: 'govuk-link--no-visited-state'
         }
       ]

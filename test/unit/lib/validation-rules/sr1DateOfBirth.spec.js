@@ -1,13 +1,13 @@
 const chai = require('chai');
 const expect = chai.expect;
-const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../../../lib/validation-rules/ds1500DateOfBirth');
+const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../../../lib/validation-rules/sr1DateOfBirth');
 
 const expectedErrorMsg = (fieldName, errKey, focusSfx = []) => {
   return [{
     focusSuffix: focusSfx,
-    inline: `ds1500:${fieldName}.${errKey}`,
-    message: `ds1500:${fieldName}.${errKey}`,
-    summary: `ds1500:${fieldName}.${errKey}`,
+    inline: `sr1:${fieldName}.${errKey}`,
+    message: `sr1:${fieldName}.${errKey}`,
+    summary: `sr1:${fieldName}.${errKey}`,
     variables: {},
     field: undefined,
     fieldHref: undefined,
@@ -16,7 +16,7 @@ const expectedErrorMsg = (fieldName, errKey, focusSfx = []) => {
   }]
 }
 
-describe('ds1500 validations: Date of Birth', () => {
+describe('sr1 validations: Date of Birth', () => {
   let dataContext = { fieldName: 'patientDateOfBirth' }
   describe('isEmptyDateOfBirth', () => {
     it('should throw error message if all DD, MM and YYYY are empty', () => {

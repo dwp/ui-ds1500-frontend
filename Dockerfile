@@ -3,7 +3,7 @@ ARG PORT
 
 FROM node:${NODE_VERSION} AS builder
 ENV PORT=${PORT}
-RUN apk --no-cache add git=2.36.2-r0
+RUN apk --no-cache add git=2.38.4-r1
 WORKDIR /src
 COPY package.json /src/package.json
 COPY package-lock.json /src/package-lock.json

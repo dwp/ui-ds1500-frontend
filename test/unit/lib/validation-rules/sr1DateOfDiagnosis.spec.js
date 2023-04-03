@@ -7,14 +7,14 @@ const {
   isValidDateRange,
   isDateOfDiagnosisInFuture,
   isDateBeforeDoB
-} = require('../../../../lib/validation-rules/ds1500DateOfDiagnosis');
+} = require('../../../../lib/validation-rules/sr1DateOfDiagnosis');
 
 const expectedErrorMsg = (fieldName, errKey, focusSfx = []) => {
   return [{
     focusSuffix: focusSfx,
-    inline: `ds1500:${fieldName}.${errKey}`,
-    message: `ds1500:${fieldName}.${errKey}`,
-    summary: `ds1500:${fieldName}.${errKey}`,
+    inline: `sr1:${fieldName}.${errKey}`,
+    message: `sr1:${fieldName}.${errKey}`,
+    summary: `sr1:${fieldName}.${errKey}`,
     variables: {},
     field: undefined,
     fieldHref: undefined,
@@ -23,7 +23,7 @@ const expectedErrorMsg = (fieldName, errKey, focusSfx = []) => {
   }]
 }
 
-describe('ds1500 validations: Date of Diagnosis', () => {
+describe('sr1 validations: Date of Diagnosis', () => {
   let dataContext = { fieldName: 'dateOfDiagnosis' }
   describe('isEmptyDateOfDiagnosis', () => {
     it('should throw error message if both MM and YYYY are empty', () => {

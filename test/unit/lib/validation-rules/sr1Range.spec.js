@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const ds1500Range = require('../../../../lib/validation-rules/ds1500Range');
+const sr1Range = require('../../../../lib/validation-rules/sr1Range');
 
 const expectedErrorMsg = (fieldName) => {
   return [{
@@ -16,14 +16,14 @@ const expectedErrorMsg = (fieldName) => {
   }]
 }
 
-describe('Validation rule: ds1500Range', function () {
-  const r1 = ds1500Range.bind({
+describe('Validation rule: sr1Range', function () {
+  const r1 = sr1Range.bind({
     min: 1890,
     max: 2018
   })
 
   it('should exist', function () {
-      expect(ds1500Range).to.exist; // eslint-disable-line
+      expect(sr1Range).to.exist; // eslint-disable-line
   });
 
   it('should not throw error message if values are within range', function () {

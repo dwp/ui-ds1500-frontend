@@ -11,7 +11,7 @@
 {% from "macros/site.njk" import fmtTitle with context %}
 
 {% block casaPageTitle %}
-  {{ fmtTitle('ds1500:pageTitle') }}
+  {{ fmtTitle('sr1:pageTitle') }}
 {% endblock %}
 
 {% macro dateInput(name, formData, formErrors, parts=['day', 'month', 'year']) %}
@@ -20,11 +20,11 @@
       namePrefix: name,
       casaValue: formData[name],
       hint: {
-        text: t('ds1500:' + name + '.hint')
+        text: t('sr1:' + name + '.hint')
       },
       fieldset: {
         legend: {
-          text: t('ds1500:' + name + '.label'),
+          text: t('sr1:' + name + '.label'),
           classes: "govuk-label--m"
         }
       },
@@ -33,13 +33,13 @@
           name: 'day',
           attributes: {
             'data-parsley-required': true,
-            'data-parsley-required-message': t('ds1500:' + name + '[dd].empty'),
+            'data-parsley-required-message': t('sr1:' + name + '[dd].empty'),
             'data-parsley-range': "[1,31]",
-            'data-parsley-range-message': t('ds1500:' + name + '[dd].range'),
+            'data-parsley-range-message': t('sr1:' + name + '[dd].range'),
             'data-parsley-type': "number",
-            'data-parsley-type-message': t('ds1500:' + name + '[dd].range'),
-            'data-parsley-invalid-message':t('ds1500:' + name + '.invalid'),
-            'data-parsley-future-message':t('ds1500:' + name + '.future'),
+            'data-parsley-type-message': t('sr1:' + name + '[dd].range'),
+            'data-parsley-invalid-message':t('sr1:' + name + '.invalid'),
+            'data-parsley-future-message':t('sr1:' + name + '.future'),
             'data-parsley-errors-container': '#' + name + '-error',
             'data-parsley-trigger': "focusout"
           }
@@ -48,11 +48,11 @@
           name: 'month',
           attributes: {
             'data-parsley-required': true,
-            'data-parsley-required-message': t('ds1500:' + name + '[mm].empty'),
+            'data-parsley-required-message': t('sr1:' + name + '[mm].empty'),
             'data-parsley-range': "[1,12]",
-            'data-parsley-range-message': t('ds1500:' + name + '[mm].range'),
+            'data-parsley-range-message': t('sr1:' + name + '[mm].range'),
             'data-parsley-type': "number",
-            'data-parsley-type-message': t('ds1500:' + name + '[mm].range'),
+            'data-parsley-type-message': t('sr1:' + name + '[mm].range'),
             'data-parsley-errors-container': '#' + name + '-error',
             'data-parsley-trigger': "focusout"
           }
@@ -61,11 +61,11 @@
           name: 'year',
           attributes: {
             'data-parsley-required': true,
-            'data-parsley-required-message': t('ds1500:' + name + '[yyyy].empty'),
+            'data-parsley-required-message': t('sr1:' + name + '[yyyy].empty'),
             'data-parsley-range': "[1890,2115]",
-            'data-parsley-range-message': t('ds1500:' + name + '[yyyy].range'),
+            'data-parsley-range-message': t('sr1:' + name + '[yyyy].range'),
             'data-parsley-type': "number",
-            'data-parsley-type-message': t('ds1500:' + name + '[yyyy].range'),
+            'data-parsley-type-message': t('sr1:' + name + '[yyyy].range'),
             'data-parsley-errors-container': '#' + name + '-error',
             'data-parsley-trigger': "focusout"
           }
@@ -90,10 +90,10 @@
 {% block journey_form %}
   {# Wrap your form in a CASA <form>, complete with submit/cancel buttons #}
     <h1 class="govuk-heading-xl">
-      {{t('ds1500:pageHeader')}}
+      {{t('sr1:pageHeader')}}
     </h1>
-    <p>{{t('ds1500:p')}}</p>
-    <h2 class="govuk-heading-l">{{t('ds1500:patientDetailsHeader')}}</h2>
+    <p>{{t('sr1:p')}}</p>
+    <h2 class="govuk-heading-l">{{t('sr1:patientDetailsHeader')}}</h2>
     {# A simple input to gather the name #}
     {# <div id="patientName-error" class="validation-message"></div> #}
     {{ casaGovukInput({
@@ -101,15 +101,15 @@
       value: formData.patientName,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:patientName.label')
+        text: t('sr1:patientName.label')
       },
       pattern: "^([A-Za-z](([A-Za-z]|'|\.|-|\s)?[A-Za-z])*)?",
       casaErrors: formErrors,
       attributes: {
         'data-parsley-required': "true",
-        'data-parsley-required-message': t('ds1500:patientName.empty'),
+        'data-parsley-required-message': t('sr1:patientName.empty'),
         'data-parsley-pattern': "^([A-Za-z](([A-Za-z]|'|\.|-|\s)?[A-Za-z])*)?",
-        'data-parsley-pattern-message': t('ds1500:patientName.pattern'),
+        'data-parsley-pattern-message': t('sr1:patientName.pattern'),
         'data-parsley-class-handler': "#patientName-group",
         'data-parsley-errors-container': "#patientName-error",
         'data-parsley-trigger': "focusout"
@@ -121,13 +121,13 @@
       value: formData.patientAddress,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:patientAddress.label')
+        text: t('sr1:patientAddress.label')
       },
       attributes: {
         'data-parsley-required':"true",
-        'data-parsley-required-message': t('ds1500:patientAddress.empty'),
+        'data-parsley-required-message': t('sr1:patientAddress.empty'),
         'data-parsley-invalidcharacters':"patientAddress",
-        'data-parsley-invalidcharacters-message': t('ds1500:patientAddress.invalid'),
+        'data-parsley-invalidcharacters-message': t('sr1:patientAddress.invalid'),
         'data-parsley-class-handler':"#patientAddress-group",
         'data-parsley-errors-container':"#patientAddress-error",
         'data-parsley-trigger':"focusout keyup"
@@ -141,17 +141,17 @@
       value: formData.patientPostcode,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:patientPostcode.label')
+        text: t('sr1:patientPostcode.label')
       },
       attributes: {
         'data-parsley-required':"true",
-        'data-parsley-required-message': t('ds1500:patientPostcode.empty'),
+        'data-parsley-required-message': t('sr1:patientPostcode.empty'),
         'data-parsley-maxlength':"8",
-        'data-parsley-maxlength-message': t('ds1500:patientPostcode.tooLong'),
+        'data-parsley-maxlength-message': t('sr1:patientPostcode.tooLong'),
         'data-parsley-pattern':"/^(?![QVX])[A-Z]((?![IJZ])[A-Z][0-9](([0-9]?)|([ABEHMNPRVWXY]?))|([0-9]([0-9]?|[ABCDEFGHJKPSTUW]?))) ?[0-9]((?![CIKMOV])[A-Z]){2}$|^(BFPO)[ ]?[0-9]{1,4}$/i",
-        'data-parsley-pattern-message': t('ds1500:patientPostcode.invalid'),
+        'data-parsley-pattern-message': t('sr1:patientPostcode.invalid'),
         'data-parsley-invalidcharacters':"patientPostcode",
-        'data-parsley-invalidcharacters-message': t('ds1500:patientPostcode.invalidChars'),
+        'data-parsley-invalidcharacters-message': t('sr1:patientPostcode.invalidChars'),
         'data-parsley-class-handler':"#patientPostcode-group",
         'data-parsley-errors-container':"#patientPostcode-error",
         'data-parsley-trigger':"focusout"
@@ -167,23 +167,23 @@
       value: formData.patientNino,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:patientNino.label')
+        text: t('sr1:patientNino.label')
       },
       attributes: {
         'data-parsley-pattern':"/^(?!BG|GB|NK|KN|TN|NT|ZZ)[A-CEGHJ-PR-TW-Za-ceghj-pr-tw-z]{1}[A-CEGHJ-NPR-TW-Za-ceghj-npr-tw-z]{1}[0-9]{6}[A-Da-d]{1}$/",
-        'data-parsley-pattern-message': t('ds1500:patientNino.pattern'),
+        'data-parsley-pattern-message': t('sr1:patientNino.pattern'),
         'data-parsley-class-handler':"#patientNino-group",
         'data-parsley-errors-container':"#patientNino-error",
         'data-parsley-trigger':"focusout"
       },
       classes: "govuk-!-width-two-thirds",
       hint: {
-        text: t('ds1500:patientNino.hint')
+        text: t('sr1:patientNino.hint')
       },
       casaErrors: formErrors
     }) }}
 
-  <h2 class="govuk-heading-l">{{ t('ds1500:diagnosisHeading') }}</h2>
+  <h2 class="govuk-heading-l">{{ t('sr1:diagnosisHeading') }}</h2>
 
   <div class="form-group">
 
@@ -193,7 +193,7 @@
       maxlength: 126,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:diagnosis.label')
+        text: t('sr1:diagnosis.label')
       },
       classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors
@@ -205,11 +205,11 @@
       name: 'dateOfDiagnosis',
       namePrefix: 'dateOfDiagnosis',
       hint: {
-        text: t('ds1500:dateOfDiagnosis.hint')
+        text: t('sr1:dateOfDiagnosis.hint')
       },
       fieldset: {
         legend: {
-          text: t('ds1500:dateOfDiagnosis.label'),
+          text: t('sr1:dateOfDiagnosis.label'),
           classes: "govuk-label--m"
         }
       },
@@ -224,7 +224,7 @@
       value: formData.otherDiagnoses,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:otherDiagnoses.label')
+        text: t('sr1:otherDiagnoses.label')
       },
       classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors
@@ -236,7 +236,7 @@
       fieldset: {
         legend: {
           classes: "govuk-label--m",
-          text: t('ds1500:patientAware.label')
+          text: t('sr1:patientAware.label')
         }
       },
       items: [
@@ -246,7 +246,7 @@
       attributes: {
         'data-parsley-multiple':"patientAware",
         'data-parsley-required':"true",
-        'data-parsley-required-message': t('ds1500:patientAware.empty'),
+        'data-parsley-required-message': t('sr1:patientAware.empty'),
         'data-parsley-class-handler':"#patientAware-group",
         'data-parsley-errors-container':"#patientAware-error",
         'data-parsley-trigger':"focusout"
@@ -257,17 +257,17 @@
 
     {# representativeFields #}
     {% set representativeFields %}
-    <h3 class="govuk-heading-m" >{{ t('ds1500:repDetailsHeading') }}</h3>
+    <h3 class="govuk-heading-m" >{{ t('sr1:repDetailsHeading') }}</h3>
     {{ casaGovukInput({
       name: 'representativeName',
       value: formData.representativeName,
       label: {
         classes: "govuk-label--s",
-        text: t('ds1500:representativeName.label')
+        text: t('sr1:representativeName.label')
       },
       attributes: {
         'data-parsley-invalidcharacters':"representativeName",
-        'data-parsley-invalidcharacters-message': t('ds1500:representativeName.invalid'),
+        'data-parsley-invalidcharacters-message': t('sr1:representativeName.invalid'),
         'data-parsley-class-handler':"#representativeName-group",
         'data-parsley-errors-container':"#representativeName-error",
         'data-parsley-trigger':"focusout"
@@ -280,11 +280,11 @@
       value: formData.representativeAddress,
       label: {
         classes: "govuk-label--s",
-        text: t('ds1500:representativeAddress.label')
+        text: t('sr1:representativeAddress.label')
       },
       attributes: {
         'data-parsley-invalidcharacters':"representativeAddress",
-        'data-parsley-invalidcharacters-message': t('ds1500:representativeAddress.invalid'),
+        'data-parsley-invalidcharacters-message': t('sr1:representativeAddress.invalid'),
         'data-parsley-class-handler':"#representativeAddress-group",
         'data-parsley-errors-container':"#representativeAddress-error",
         'data-parsley-trigger':"focusout"
@@ -297,15 +297,15 @@
       value: formData.representativePostcode,
       label: {
         classes: "govuk-label--s",
-        text: t('ds1500:representativePostcode.label')
+        text: t('sr1:representativePostcode.label')
       },
       attributes: {
         'data-parsley-maxlength':"8",
-        'data-parsley-maxlength-message':t('ds1500:representativePostcode.tooLong'),
+        'data-parsley-maxlength-message':t('sr1:representativePostcode.tooLong'),
         'data-parsley-pattern':"/^(?![QVX])[A-Z]((?![IJZ])[A-Z][0-9](([0-9]?)|([ABEHMNPRVWXY]?))|([0-9]([0-9]?|[ABCDEFGHJKPSTUW]?))) ?[0-9]((?![CIKMOV])[A-Z]){2}$|^(BFPO)[ ]?[0-9]{1,4}$/i",
-        'data-parsley-pattern-message': t('ds1500:representativePostcode.invalid'),
+        'data-parsley-pattern-message': t('sr1:representativePostcode.invalid'),
         'data-parsley-invalidcharacters':"representativePostcode",
-        'data-parsley-invalidcharacters-message': t('ds1500:representativePostcode.invalidChars'),
+        'data-parsley-invalidcharacters-message': t('sr1:representativePostcode.invalidChars'),
         'data-parsley-class-handler':"#representativePostcode-group",
         'data-parsley-errors-container':"#representativePostcode-error",
         'data-parsley-trigger':"focusout"
@@ -320,7 +320,7 @@
       attributes: {
         'data-parsley-multiple':"formRequester",
         'data-parsley-required':"true",
-        'data-parsley-required-message': t('ds1500:formRequester.empty'),
+        'data-parsley-required-message': t('sr1:formRequester.empty'),
         'data-parsley-class-handler':"#formRequester-group",
         'data-parsley-errors-container':"#formRequester-error",
         'data-parsley-trigger':"focusout"
@@ -328,17 +328,17 @@
       fieldset: {
         legend: {
           classes: "govuk-label--m",
-          text: t('ds1500:formRequester.label')
+          text: t('sr1:formRequester.label')
         }
       },
       items: [
         {
           text: 'Patient',
-          value: t('ds1500:formRequester.options.patient')
+          value: t('sr1:formRequester.options.patient')
         },
         {
           text: 'Representative',
-          value: t('ds1500:formRequester.options.representative'),
+          value: t('sr1:formRequester.options.representative'),
           conditional: {
             html: representativeFields
           }
@@ -349,7 +349,7 @@
     }) }}
   </div>
 
-  <h2 class="govuk-heading-l">{{ t('ds1500:clinicalHeading') }}</h2>
+  <h2 class="govuk-heading-l">{{ t('sr1:clinicalHeading') }}</h2>
 
   <div class="form-group">
     {{ casaGovukCharacterCount({
@@ -358,18 +358,18 @@
       value: formData.clinicalFeatures,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:clinicalFeatures.label')
+        text: t('sr1:clinicalFeatures.label')
       },
       hint: {
-        text: t('ds1500:clinicalFeatures.hint')
+        text: t('sr1:clinicalFeatures.hint')
       },
       attributes: {
         'data-parsley-required':"true",
-        'data-parsley-required-message':t('ds1500:clinicalFeatures.empty'),
+        'data-parsley-required-message':t('sr1:clinicalFeatures.empty'),
         'data-parsley-maxlength':"236",
-        'data-parsley-maxlength-message':t('ds1500:clinicalFeatures.tooLong'),
+        'data-parsley-maxlength-message':t('sr1:clinicalFeatures.tooLong'),
         'data-parsley-invalidcharacters':"clinicalFeatures",
-        'data-parsley-invalidcharacters-message':t('ds1500:clinicalFeatures.invalid'),
+        'data-parsley-invalidcharacters-message':t('sr1:clinicalFeatures.invalid'),
         'data-parsley-class-handler':"#clinicalFeatures-group",
         'data-parsley-errors-container':"#clinicalFeatures-error",
         'data-parsley-trigger':"focusout keyup"
@@ -378,7 +378,7 @@
     }) }}
   </div>
 
-  <h2 class="govuk-heading-l">{{ t('ds1500:treatmentHeading') }}</h2>
+  <h2 class="govuk-heading-l">{{ t('sr1:treatmentHeading') }}</h2>
 
   <div class="form-group">
     {{ casaGovukCharacterCount({
@@ -387,18 +387,18 @@
       value: formData.treatment,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:treatment.label')
+        text: t('sr1:treatment.label')
       },
       hint: {
-        text: t('ds1500:treatment.hint')
+        text: t('sr1:treatment.hint')
       },
       attributes: {
         'data-parsley-required':"true",
-        'data-parsley-required-message':t('ds1500:treatment.empty'),
+        'data-parsley-required-message':t('sr1:treatment.empty'),
         'data-parsley-maxlength':"160",
-        'data-parsley-maxlength-message':t('ds1500:treatment.tooLong'),
+        'data-parsley-maxlength-message':t('sr1:treatment.tooLong'),
         'data-parsley-invalidcharacters':"treatment",
-        'data-parsley-invalidcharacters-message':t('ds1500:treatment.invalid'),
+        'data-parsley-invalidcharacters-message':t('sr1:treatment.invalid'),
         'data-parsley-class-handler':"#treatment-group",
         'data-parsley-errors-container':"#treatment-error",
         'data-parsley-trigger':"focusout keyup"
@@ -412,16 +412,16 @@
       value: formData.otherIntervention,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:otherIntervention.label')
+        text: t('sr1:otherIntervention.label')
       },
       hint: {
-          text: t('ds1500:otherIntervention.hint')
+          text: t('sr1:otherIntervention.hint')
       },
       attributes: {
         'data-parsley-maxlength':"120",
-        'data-parsley-maxlength-message':t('ds1500:otherIntervention.tooLong'),
+        'data-parsley-maxlength-message':t('sr1:otherIntervention.tooLong'),
         'data-parsley-invalidcharacters':"otherIntervention",
-        'data-parsley-invalidcharacters-message': t('ds1500:otherIntervention.invalid'),
+        'data-parsley-invalidcharacters-message': t('sr1:otherIntervention.invalid'),
         'data-parsley-class-handler':"#otherIntervention-group",
         'data-parsley-errors-container':"#otherIntervention-error",
         'data-parsley-trigger':"focusout keyup"
@@ -430,7 +430,7 @@
     }) }}
   </div>
 
-  <h2 class="govuk-heading-l">{{ t('ds1500:yourDetailsHeading') }}</h2>
+  <h2 class="govuk-heading-l">{{ t('sr1:yourDetailsHeading') }}</h2>
 
 
 
@@ -443,19 +443,19 @@
         value: formData.gmcNumber,
         label: {
           classes: "govuk-label--m",
-          text: t('ds1500:gmcNumber.label')
+          text: t('sr1:gmcNumber.label')
         },
         attributes: {
           'data-parsley-requireifmedicalrelationvisible':"declaration",
-          'data-parsley-requireifmedicalrelationvisible-message':t('ds1500:gmcNumber.empty'),
+          'data-parsley-requireifmedicalrelationvisible-message':t('sr1:gmcNumber.empty'),
           'data-parsley-validate-if-empty':"true",
           'data-parsley-validate-if-empty-message':"",
           'data-parsley-maxlength':"7",
           'data-parsley-gmcpattern':"7",
-          'data-parsley-gmcpattern-message':t('ds1500:gmcNumber.tooShort'),
-          'data-parsley-maxlength-message':t('ds1500:gmcNumber.tooLong'),
+          'data-parsley-gmcpattern-message':t('sr1:gmcNumber.tooShort'),
+          'data-parsley-maxlength-message':t('sr1:gmcNumber.tooLong'),
           'data-parsley-pattern':"^(?!0000000)[0-9]*$",
-          'data-parsley-pattern-message': t('ds1500:gmcNumber.pattern'),
+          'data-parsley-pattern-message': t('sr1:gmcNumber.pattern'),
           'data-parsley-class-handler':"#gmcNumber-group",
           'data-parsley-errors-container':"#gmcNumber-error",
           'data-parsley-trigger':"focusout",
@@ -475,19 +475,19 @@
         value: formData.gmcNumberConsultant,
         label: {
           classes: "govuk-label--m",
-          text: t('ds1500:gmcNumberConsultant.label')
+          text: t('sr1:gmcNumberConsultant.label')
         },
         attributes: {
           'data-parsley-requireifmedicalrelationvisible':"declaration",
-          'data-parsley-requireifmedicalrelationvisible-message':t('ds1500:gmcNumberConsultant.empty'),
+          'data-parsley-requireifmedicalrelationvisible-message':t('sr1:gmcNumberConsultant.empty'),
           'data-parsley-validate-if-empty':"true",
           'data-parsley-validate-if-empty-message':"",
           'data-parsley-maxlength':"7",
           'data-parsley-gmcpattern':"7",
-          'data-parsley-gmcpattern-message':t('ds1500:gmcNumberConsultant.tooShort'),
-          'data-parsley-maxlength-message':t('ds1500:gmcNumberConsultant.tooLong'),
+          'data-parsley-gmcpattern-message':t('sr1:gmcNumberConsultant.tooShort'),
+          'data-parsley-maxlength-message':t('sr1:gmcNumberConsultant.tooLong'),
           'data-parsley-pattern':"^(?!0000000)[0-9]*$",
-          'data-parsley-pattern-message': t('ds1500:gmcNumberConsultant.pattern'),
+          'data-parsley-pattern-message': t('sr1:gmcNumberConsultant.pattern'),
           'data-parsley-class-handler':"#gmcNumber-group",
           'data-parsley-errors-container':"#gmcNumber-error",
           'data-parsley-trigger':"focusout",
@@ -507,7 +507,7 @@
         value: formData.declarationAdditionalDetail,
         label: {
           classes: "govuk-label--m",
-          text: t('ds1500:declarationAdditionalDetail.label')
+          text: t('sr1:declarationAdditionalDetail.label')
         },
         formGroup: {
           classes: additionalDetailClasses
@@ -516,11 +516,11 @@
           'data-parsley-class-handler':"#declarationAdditionalDetail-group",
           'data-parsley-errors-container':"#declarationAdditionalDetail-error",
           'data-parsley-requireifotherrelationvisible':"declaration",
-          'data-parsley-requireifotherrelationvisible-message':t('ds1500:declarationAdditionalDetail.empty'),
+          'data-parsley-requireifotherrelationvisible-message':t('sr1:declarationAdditionalDetail.empty'),
           'data-parsley-validate-if-empty':"true",
           'data-parsley-trigger':"focusout",
           'data-parsley-invalidcharacters':"declarationAdditionalDetail",
-          'data-parsley-invalidcharacters-message':t('ds1500:declarationAdditionalDetail.invalid'),
+          'data-parsley-invalidcharacters-message':t('sr1:declarationAdditionalDetail.invalid'),
           'tabindex': additionalDetailInputTabIndex
         },
         classes: "govuk-!-width-two-thirds",
@@ -534,7 +534,7 @@
       attributes: {
         'data-parsley-multiple':"declaration",
         'data-parsley-required':"true",
-        'data-parsley-required-message': t('ds1500:declaration.empty'),
+        'data-parsley-required-message': t('sr1:declaration.empty'),
         'data-parsley-class-handler':"#declaration-group",
         'data-parsley-errors-container':"#declaration-error",
         'data-parsley-trigger':"focusout"
@@ -542,31 +542,31 @@
       fieldset: {
         legend: {
           classes: "govuk-label--m",
-          text: t('ds1500:declaration.label')
+          text: t('sr1:declaration.label')
         }
       },
       items: [
         {
-          text: t('ds1500:declaration.options.sn'),
-          value: t('ds1500:declaration.options.sn')
+          text: t('sr1:declaration.options.sn'),
+          value: t('sr1:declaration.options.sn')
         },
         {
-          text: t('ds1500:declaration.options.gp'),
-          value: t('ds1500:declaration.options.gp'),
+          text: t('sr1:declaration.options.gp'),
+          value: t('sr1:declaration.options.gp'),
           conditional: {
             html: gmcNumberInput
           }
         },
         {
-          text: t('ds1500:declaration.options.gmc'),
-          value: t('ds1500:declaration.options.gmc'),
+          text: t('sr1:declaration.options.gmc'),
+          value: t('sr1:declaration.options.gmc'),
           conditional: {
             html: gmcNumberConsultantInput
           }
         },
         {
-          text: t('ds1500:declaration.options.other'),
-          value: t('ds1500:declaration.options.other'),
+          text: t('sr1:declaration.options.other'),
+          value: t('sr1:declaration.options.other'),
           conditional: {
             html: declarationAdditionalInput
           }
@@ -581,13 +581,13 @@
       value: formData.gpName,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:gpName.label')
+        text: t('sr1:gpName.label')
       },
       attributes: {
         'data-parsley-required':"true",
-        'data-parsley-required-message': t('ds1500:gpName.empty'),
+        'data-parsley-required-message': t('sr1:gpName.empty'),
         'data-parsley-invalidcharacters':"gpName",
-        'data-parsley-invalidcharacters-message':t('ds1500:gpName.invalid'),
+        'data-parsley-invalidcharacters-message':t('sr1:gpName.invalid'),
         'data-parsley-class-handler':"#gpName-group",
         'data-parsley-errors-container':"#gpName-error",
         'data-parsley-trigger':"focusout"
@@ -601,17 +601,17 @@
       value: formData.gpAddress,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:gpAddress.label')
+        text: t('sr1:gpAddress.label')
       },
       classes: "govuk-!-width-two-thirds",
       hint: {
-        text: t('ds1500:gpAddress.hint')
+        text: t('sr1:gpAddress.hint')
       },
       attributes: {
         'data-parsley-required':"true",
-        'data-parsley-required-message':t('ds1500:gpAddress.empty'),
+        'data-parsley-required-message':t('sr1:gpAddress.empty'),
         'data-parsley-invalidcharacters':"gpAddress",
-        'data-parsley-invalidcharacters-message':t('ds1500:gpAddress.invalid'),
+        'data-parsley-invalidcharacters-message':t('sr1:gpAddress.invalid'),
         'data-parsley-class-handler':"#gpAddress-group",
         'data-parsley-errors-container':"#gpAddress-error",
         'data-parsley-trigger':"focusout keyup"
@@ -624,13 +624,13 @@
       value: formData.gpPhone,
       label: {
         classes: "govuk-label--m",
-        text: t('ds1500:gpPhone.label')
+        text: t('sr1:gpPhone.label')
       },
       attributes: {
         'data-parsley-required':"true",
-        'data-parsley-required-message':t('ds1500:gpPhone.empty'),
+        'data-parsley-required-message':t('sr1:gpPhone.empty'),
         'data-parsley-invalidcharacters':"gpPhone",
-        'data-parsley-invalidcharacters-message':t('ds1500:gpAddress.invalid'),
+        'data-parsley-invalidcharacters-message':t('sr1:gpAddress.invalid'),
         'data-parsley-class-handler':"#gpPhone-group",
         'data-parsley-errors-container':"#gpPhone-error",
         'data-parsley-trigger':"focusout keyup"

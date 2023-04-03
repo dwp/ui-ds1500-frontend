@@ -37,7 +37,7 @@ describe('Hooks: review', () => {
   describe('prerender', () => {
     it('should add journey data to res.locals', () => {
       const req = new Request({
-        ds1500: {
+        sr1: {
           patientName: 'test',
           patientAddress: 'test',
           patientDateOfBirth: { dd: '1', mm: '1', yyyy: '2001' },
@@ -59,7 +59,7 @@ describe('Hooks: review', () => {
 
     it('should call next', (done) => {
       const req = new Request({
-        ds1500: {
+        sr1: {
           patientName: 'test',
           patientAddress: 'test',
           patientDateOfBirth: { dd: '1', mm: '1', yyyy: '2001' },
@@ -76,7 +76,7 @@ describe('Hooks: review', () => {
   describe('postvalidate', () => {
     it('should submit the application', (done) => {
       const req = new Request({
-        ds1500: {
+        sr1: {
           patientName: 'test',
           patientAddress: 'test',
           patientDateOfBirth: { dd: '1', mm: '1', yyyy: '2001' },

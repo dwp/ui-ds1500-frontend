@@ -68,16 +68,16 @@ describe('Middleware: cookie-message', () => {
     const req = new Request();
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl, '/proxy/');
-    req.url = '/proxy/ds1500-start';
+    req.url = '/proxy/sr1-start';
     app.prependUse(req, res, () => {});
-    expect(res.locals).to.have.property('cookiePolicyUrl').that.equals(`${mountUrl}${waypoints.COOKIE_POLICY}?backto=%2Fds1500-start`);
+    expect(res.locals).to.have.property('cookiePolicyUrl').that.equals(`${mountUrl}${waypoints.COOKIE_POLICY}?backto=%2Fsr1-start`);
   });
 
   it('should not double up on backto queries', () => {
     const req = new Request();
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, mountUrl);
-    req.url = `${mountUrl}${waypoints.COOKIE_POLICY}?backto=%2Fds1500-start`;
+    req.url = `${mountUrl}${waypoints.COOKIE_POLICY}?backto=%2Fsr1-start`;
     app.prependUse(req, res, () => {});
     expect(res.locals).to.have.property('cookiePolicyUrl').that.equals(req.url);
   });
@@ -86,9 +86,9 @@ describe('Middleware: cookie-message', () => {
     const req = new Request();
     const res = new Response(req);
     cookieMessage(app, cookieName, waypoints, '/mountUrl/', '/proxy/');
-    req.url = `/proxy/${waypoints.COOKIE_POLICY}?backto=%2Fds1500-start`;
+    req.url = `/proxy/${waypoints.COOKIE_POLICY}?backto=%2Fsr1-start`;
     app.prependUse(req, res, () => {});
-    expect(res.locals).to.have.property('cookiePolicyUrl').that.equals(`/mountUrl/${waypoints.COOKIE_POLICY}?backto=%2Fds1500-start`);
+    expect(res.locals).to.have.property('cookiePolicyUrl').that.equals(`/mountUrl/${waypoints.COOKIE_POLICY}?backto=%2Fsr1-start`);
   });
 
   it('should call next', (done) => {

@@ -1,7 +1,23 @@
 {
-    "pageTitle": "503 - Service unavailable",
-    "h1": "There's been a problem",
-    "p1": "We haven't been able to send the DS1500 form.",
-    "p2": "If you still need to complete a DS1500 for your patient please use your existing clerical process.",
-    "p3": "If you have continuing problems using this service please contact <a href='mailto:dwp.digitalds1500@dwp.gov.uk?subject=DS1500%20error'>dwp.digitalds1500@dwp.gov.uk</a> and we will try to fix the problem."
+    "pageTitle": "The service is temporarily unavailable - Send an SR1 - GOV.UK",
+    "h1": "This service is temporarily unavailable - error 503",
+    "p1": "If the problem continues, you can complete PDF versions of the SR1 and the fee claim forms online. They do not need to be signed, but you’ll need to return them to us from a secure email address. Any email that does not come from a secure email address will be automatically deleted.",
+    "section1": {
+        "p1": "Secure email addresses end in:",
+        "ul": {
+            "li1": "@nhs.net",
+            "li2": "@nhs.uk",
+            "li3": "@nhs.scot",
+            "li4": "@nhs.wales.uk",
+            "li5": "@gov.uk"
+        }
+    },
+    "section2": {
+        "p1": "Send the request for a PDF version of the SR1 form, and fee claim form if needed, from your secure email address to <a class=\"govuk-link\" href=\"mailto:form.e-sr1@dwp.gov.uk\" title=\"Click this link to send your request for the PDF version of the SR1 form\">form.e-sr1@dwp.gov.uk</a>. Please include your:",
+        "ul": {
+            "li1": "surgery/hospital/postal address",
+            "li2": "phone number"
+        }
+    },
+    "p2": "Do not encrypt any part of the email."
 }

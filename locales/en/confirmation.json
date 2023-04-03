@@ -1,11 +1,11 @@
 {
-    "pageTitle": "Report submitted",
+    "pageTitle": "Form submitted",
     "panel": {
         "text": "Your reference is the patient’s National Insurance number"
     },
     "h2": "What happens next",
     "p1": "The form has been sent to DWP.",
     "p2": "If you require any further information contact the NHS service desk.",
-    "sendAnother": "Report another terminally ill patient",
+    "sendAnother": "Send another SR1",
     "feedbackLinkText": "What did you think of this service? (opens in a new tab)"
 }

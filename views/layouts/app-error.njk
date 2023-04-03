@@ -15,22 +15,33 @@
   },
   html: phaseBannerContent
 }) }}
-<div class="organisation-logo">Department for Work &amp; Pensions</div>
 </aside>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-l">{{ t('500:h1') }}</h1>
-        <p class="govuk-body-l">{{ t('500:lede') }}</p>
-        <p>{{ t('500:p1') }}</p>
-        <p>{{ t('500:p2') }}</p>
-        <p>
-          <a href="{{t('500:serviceDeskUrl')}}">{{t('500:serviceDeskUrl')}}</a>
-        </p>
-        <p>{{ t('500:p3') }}</p>
-        <p>{{ t('500:p4') }}</p>
+      <h1 class="govuk-heading-l">{{ t('500:h1') }}</h1>
+      <p class="govuk-body">{{ t('500:p1') }}</p>
+      <p class="govuk-body">{{ t('500:p2') }}</p>
+      <p class="govuk-body">{{ t('500:p3') | safe }}</p>
+      <p class="govuk-body">{{ t('500:p4') }}</p>
+      <h2 class="govuk-heading-m">{{ t('500:h2') }}</h2>
+      <p class="govuk-body">{{ t('500:p5') }}</p>
+        <p class="govuk-body">{{ t('500:section1.p1') }}</p>
+            <ul class="govuk-list govuk-list--bullet form-group">
+                <li><kbd>{{ t('500:section1.ul1.li1')}}</kbd></li>
+                <li><kbd>{{ t('500:section1.ul1.li2')}}</kbd></li>
+                <li><kbd>{{ t('500:section1.ul1.li3')}}</kbd></li>
+                <li><kbd>{{ t('500:section1.ul1.li4')}}</kbd></li>
+                <li><kbd>{{ t('500:section1.ul1.li5')}}</kbd></li>
+            </ul>
+        <p class="govuk-body">{{t('500:section1.p2') | safe }}</p>
+            <ul class="govuk-list govuk-list--bullet form-group">
+                <li>{{ t('500:section1.ul2.li1')}}</li>
+                <li>{{ t('500:section1.ul2.li2')}}</li>
+            </ul>
+      <p class="govuk-body">{{ t('500:p6') }}</p>
     </div>
 </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 {
-  "serviceName": "Report a terminally ill patient",
+  "serviceName": "Send an SR1",
   "back": "Back",
   "btnContinue": "Continue",
   "btnSaveChanges": "Save changes",
@@ -24,7 +24,7 @@
   },
   "talkToAdvisor": {
     "heading": "Get help",
-    "additionalGuidance": "Guidance for DS1500 and SR1 (opens in new tab)",
+    "additionalGuidance": "Guidance for the SR1 (opens in new tab)",
     "telephoneLabel": "Telephone",
     "telephoneValue": "0300 303 5035",
     "email": "ssd.nationalservicedesk@nhs.net",
@@ -32,7 +32,7 @@
     "serviceHours": "24-hour service"
   },
   "cookieBanner": {
-    "heading": "Cookies on Report a terminally ill patient",
+    "heading": "Cookies on Send an SR1",
     "essentialCookies": "We use some essential cookies to make this service work.",
     "analyticsCookies": "We’d also like to use analytics cookies so we can understand how you use the service and make improvements.",
     "acceptedHtml": "<p class='govuk-body'>You’ve accepted additional cookies. You can <a class=\"govuk-link\" href=\"{{url}}\">change your cookie settings</a> at any time.</p>",

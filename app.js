@@ -5,6 +5,7 @@ const { configure } = require('@dwp/govuk-casa');
 const { resolve } = require('path');
 const packageMeta = require('./package.json');
 
+const actuator = require('./routes/actuator/index');
 const cookiePolicyGet = require('./routes/cookies/cookie-policy.get');
 const cookiePolicyPost = require('./routes/cookies/cookie-policy.post');
 const cookieDetailsGet = require('./routes/cookies/cookie-details.get');
@@ -38,7 +39,7 @@ if (appConfig.NOTIFY_PROXY_PORT === 'null') {
 let sessionStore;
 let redisClient;
 if (appConfig.REDIS_PORT && appConfig.REDIS_HOST) {
-  const RedisStore = require('connect-redis')(expressSession);
+  const RedisStore = require('connect-redis').default;
   const Redis = require('ioredis');
   let clusterOptions = {
     redisOptions: { db: 0 }
@@ -217,6 +218,9 @@ const application = ({
   // specify a proxy prefix if you were using nginx rewriting, for example.
   const app = ExpressJS();
 
+  // Load the router index controller for the health endpoints
+  // /actuator/health
+  app.use('/', actuator());
   app.use(ExpressJS.json({ limit: '5mb' }));
   app.use(ExpressJS.urlencoded({ limit: '5mb', extended: true }));
 

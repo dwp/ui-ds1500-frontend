@@ -9,8 +9,8 @@ describe('WhiteListValidateRedirect', function () {
   });
 
   it('should validate redirect if it is in whitelist', function () {
-    const redirect = 'ds1500'
-    expect(whiteListValidateRedirect(redirect)).to.equal('ds1500');
+    const redirect = 'sr1'
+    expect(whiteListValidateRedirect(redirect)).to.equal('sr1');
   });
 
   it('should not validate redirect if it is not in whitelist', function () {

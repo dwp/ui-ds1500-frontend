@@ -116,9 +116,9 @@ describe('Routes: cookies/cookie-policy.post', () => {
     const req = new Request();
     const res = new Response(req);
     req.body.cookieConsent = 'accept';
-    req.query.backto = 'http://localhost/ds1500-start';
+    req.query.backto = 'http://localhost/sr1-start';
     route(req, res);
-    expect(res.redirectedTo).to.equal('/ds1500-start');
+    expect(res.redirectedTo).to.equal('/sr1-start');
   });
 
   it('should remove consecutive slashes from backto URL', () => {
@@ -126,9 +126,9 @@ describe('Routes: cookies/cookie-policy.post', () => {
     const req = new Request();
     const res = new Response(req);
     req.body.cookieConsent = 'accept';
-    req.query.backto = 'http://localhost/cookie-policy////ds1500-start';
+    req.query.backto = 'http://localhost/cookie-policy////sr1-start';
     route(req, res);
-    expect(res.redirectedTo).to.equal('/cookie-policy/ds1500-start');
+    expect(res.redirectedTo).to.equal('/cookie-policy/sr1-start');
   });
 
   it('should remove . and : form backto URL', () => {
@@ -136,9 +136,9 @@ describe('Routes: cookies/cookie-policy.post', () => {
     const req = new Request();
     const res = new Response(req);
     req.body.cookieConsent = 'accept';
-    req.query.backto = '/cookie-policy/:ds1500-start.';
+    req.query.backto = '/cookie-policy/:sr1-start.';
     route(req, res);
-    expect(res.redirectedTo).to.equal('/cookie-policy/ds1500-start');
+    expect(res.redirectedTo).to.equal('/cookie-policy/sr1-start');
   });
 
   it('should redirect back to req.url if backto query is not present', () => {

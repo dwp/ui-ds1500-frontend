@@ -30,7 +30,7 @@ const submissionService = new SubmissionService(
 );
 
 const prerender = (req, res, next) => {
-  const waypointEditUrl = '/ds1500'
+  const waypointEditUrl = '/sr1'
   const fieldSections = {
     patientDetails: [
       'patientName',
@@ -71,7 +71,7 @@ const prerender = (req, res, next) => {
 
   const sectionNames = Object.getOwnPropertyNames(fieldSections)
 
-  const jData = req.casa.journeyContext.getData().ds1500
+  const jData = req.casa.journeyContext.getData().sr1
 
   const createOptions = {
     t: req.t.bind(req),
@@ -96,7 +96,7 @@ const prerender = (req, res, next) => {
 
 const postvalidate = async (req, res, next) => {
   const serviceUrl = appConfig.DS1500_CONTROLLER_URL
-  const formData = req.casa.journeyContext.getData().ds1500
+  const formData = req.casa.journeyContext.getData().sr1
   const serviceData = formatServiceData(formData)
   let response
   try {
@@ -140,7 +140,7 @@ const postvalidate = async (req, res, next) => {
       }
 
       req.session.save(() => {
-        const redirectPath = whiteListValidateRedirect('ds1500')
+        const redirectPath = whiteListValidateRedirect('sr1')
         if (redirectPath) {
           res.redirect(encodeURI('/' + redirectPath))
         } else {

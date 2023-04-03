@@ -1,143 +1,196 @@
 {
-    "pageTitle": "Guidance for the DS1500 and SR1 forms",
-    "h1": "Guidance for the DS1500 and SR1 forms",
+    "pageTitle": "Guidance for the SR1 form",
+    "h1": "Guidance for the SR1 form",
     "links": {
-        "link1": "Changes to the Special Rules process in 2022",
-        "link2": "When to complete a DS1500",
-        "link3": "When to complete an SR1",
-        "link4": "About your patient",
-        "link5": "Benefits that can be claimed under the special rules",
-        "link6": "How this form will be used by DWP",
-        "link7": "Telephone contact",
-        "link8": "Claiming a fee"
+        "link1": "What the Special Rules are for",
+        "link2": "Why the Special Rules are needed",
+        "link3": "Providing medical evidence using the SR1 form",
+        "link4": "Patients who may not know the true nature of their illness",
+        "link5": "Completing the SR1 form",
+        "link6": "Using clinical indicators",
+        "link7": "Where to get more information",
+        "link8": "What we will do if anything on the SR1 is unclear",
+        "link9": "Who can make claims on behalf of patients",
+        "link10": "Claiming a fee",
+        "link11": "Returning the SR1 form"
     },
     "section1": {
-        "p1": "The Special Rules criteria are changing from applying to people with less than 6 months to live to applying to people with less than 12 months to live.",
-        "p2": "Due to parliamentary constraints, the Department of Work and Pensions (DWP) can only change the rules for 2 out of 5 benefits from April 2022.",
-        "p3": "These are Universal Credit (UC) and New Style Employment Support (ESA).",
-        "p4": "There will be:",
-        "ul": {
-            "li1": "criteria for 2 sets of special rules to consider",
-            "li2": "a new medical evidence form SR1, which will operate alongside the form DS1500"
+        "p1": "The Special Rules allow people nearing the end of life to:",
+        "ul1": {
+            "li1": "get faster, easier access to certain benefits",
+            "li2": "get higher payments for certain benefits",
+            "li3": "avoid a medical assessment"
         },
-        "p5": "This is a transitional period until the new rules are extended to all 5 benefits.",
-        "p6": "Find out more about the <a class=\"govuk-link\" href=\"{{url}}\" target=\"_blank\">changes to the Special Rules and completing the forms (opens in a new tab).</a>"
+        "p2": "An adult or child is nearing the end of life when they are likely to have less than 12 months to live.",
+        "p3": "A person who is likely to have less than 12 months to live can make a fast-tracked claim for any of the following benefits (for which they are eligible):",
+        "ul2": {
+            "li1": "<a class=\"govuk-link\" href=\"https://www.gov.uk/pip\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to Personal Independence Payment\">Personal Independence Payment (PIP)</a>",
+            "li2": "<a class=\"govuk-link\" href=\"https://www.gov.uk/universal-credit\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to Unversal Credit\">Universal Credit (UC)</a>",
+            "li3": "<a class=\"govuk-link\" href=\"https://www.gov.uk/employment-support-allowance\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to Employment and Support Allowance\">Employment and Support Allowance (ESA)</a>",
+            "li4": "<a class=\"govuk-link\" href=\"https://www.gov.uk/dla-disability-living-allowance-benefit\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to Disability Living Allowance\">Disability Living Allowance (DLA)</a>",
+            "li5": "<a class=\"govuk-link\" href=\"https://www.gov.uk/attendance-allowance\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to Attendance Allowance\">Attendance Allowance (AA)</a>"
+        },
+        "p4": "Clinicians can be asked to provide medical evidence on an SR1 form to support a benefit claim made under the Special Rules.",
+        "p5": "A clinician should complete an SR1 form promptly if they believe that their patient:",
+        "ul3": {
+            "li1": "has a progressive disease, and",
+            "li2": "as a consequence of that disease, it would not be a surprise if their patient were to die within 12 months"
+        },
+        "p6": "A clinician may be a:",
+        "ul4": {
+            "li1": "GP",
+            "li2": "hospital consultant",
+            "li3": "specialist doctor",
+            "li4": "hospice doctor",
+            "li5": "senior specialist nurse (such as a clinical nurse specialist, advanced nurse practitioner or similar)"
+        },
+        "p7": "The Special Rules apply to anyone who may be nearing the end of life due to age or illness. There are no negative consequences for the clinician or patient if a patient who claims under the Special Rules lives longer than expected."
     },
     "section2": {
-        "h3": "You should complete the DS1500 form promptly if you believe that your patient:",
-        "ul": {
-            "li1": "has a progressive disease, and",
-            "li2": "as a consequence of that disease, you would not be surprised if your patient were to die within 6 months"
-        },
-        "p1": "When you provide a DS1500 to DWP, it will be shared across all necessary benefit platforms. You do not need to complete a SR1 form as well."
+        "p1": "The 12-month, end of life approach used in the Special Rules means that the DWP is aligned with the NHS, where the definition of 'end of life' states that “patients are approaching the end of life when they are likely to die within the next 12 months”.",
+        "p2": "Clinicians are encouraged to identify patients who have reached the final year of their life and use a holistic approach to consider the support that their patient may require at this point. The alignment of the definition across welfare and health services allows clinicians to include conversations about financial support in wider conversations about what matters most to their patient, thus being more responsive to their needs."
     },
     "section3": {
-        "h3": "You should complete the SR1 form promptly if you believe that your patient:",
+        "p1": "It's important that you know about your patient's condition. It may be appropriate to complete an SR1 form:",
         "ul": {
-            "li1": "has a progressive disease, and",
-            "li2": "as a consequence of that disease you would not be surprised if your patient were to die within 12 months"
-        },
-        "p1": "If you think that your patient has a shorter prognosis, for example, less than 6 months to live, complete a DS1500 instead."
+            "li1": "to encourage your patient to see what financial support they may be entitled to",
+            "li2": "following a conversation about <a class=\"govuk-link\" href=\"https://www.england.nhs.uk/publication/universal-principles-for-advance-care-planning/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to Advance Care Planning\">advance care planning</a>",
+            "li3": "as part of an assessment about current social and financial issues",
+            "li4": "if requested by your patient or their representative"
+        }
     },
     "section4": {
-        "headers": {
-            "1": "Your patient’s prognosis",
-            "2": "Patients who may not know the true nature of their illness",
-            "3": "Who should complete the SR1 or DS1500 form",
-            "4": "Third party claims"
-        },
-        "p1": "It is understood that determining life expectancy in these circumstances is not an exact science. You will not face any negative consequences from the factual information you supply, for example if your patient lives longer than expected.",
-        "p2": "When a patient asks you to complete a DS1500 or SR1 form, do not assume that they understand the special rules criteria or that these criteria may apply to them. It may be an opportunity to initiate a conversation about advance care planning.",
-        "p3": "This form can be completed by a registered clinician such as:",
-        "ul": {
-            "li1": "a GP",
-            "li2": "a hospital doctor",
-            "li3": "a registered nurse such as a Macmillian nurse, advanced nurse practitioner, clinical specialist nurse or practice nurse"
-        },
-        "p4": "For Universal Credit and New Style Employment Support Allowance, only an appointee or a person who has power of attorney can make a third party claim on the patient’s behalf.",
-        "p5": "For Disability Living Allowance, Attendance Allowance and Personal Independence Payment, any person representing the patient can make a third party claim on their behalf, even if the patient is unaware that a claim is being made. In this circumstance the form should be issued to the person that requested it."
+        "p1": "If a patient asks for an SR1 form to be completed, do not assume they understand the Special Rules criteria or that these criteria may apply to them. It could be an opportunity to explore their understanding of their condition, begin a discussion about <a class=\"govuk-link\" href=\"https://www.england.nhs.uk/publication/universal-principles-for-advance-care-planning/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to Advance Care Planning\">advance care planning</a> or document what matters most to them. All claims made under the Special Rules are processed in a compassionate and appropriate manner."
     },
     "section5": {
-        "p1": "If your patient meets the 6-month special rules criteria, they can make claims for the following benefits:",
+        "p1": "The SR1 form asks for:",
         "ul1": {
-            "li1": "Universal Credit",
-            "li2": "New Style Employment and Support Allowance",
-            "li3": "Personal Independence Payment",
-            "li4": "Disability Living Allowance",
-            "li5": "Attendance Allowance"
+            "li1": "diagnosis/diagnoses and other relevant conditions",
+            "li2": "date of diagnosis",
+            "li3": "whether the patient is aware of their diagnosis and prognosis",
+            "li4": "date your patient is thought to have met the Special Rules*",
+            "li5": "clinical features that indicate a severe progressive condition (for example, investigation results, staging if appropriate)",
+            "li6": "information about treatment that has been received, is ongoing or is planned",
+            "li7": "clinician's details, including GMC/NMC number"
         },
-        "p2": "If your patient meets the new 12-month special rule criteria they can make claims for:",
-        "ul2": {
-            "li1": "Universal Credit",
-            "li2": "New Style Employment and Support Allowance"
-        },
-        "p3": "If your patient meets the Special Rules criteria, their benefit claim will be processed as a priority and they will not be required to attend an assessment."
+        "p2": "*This could be the date of diagnosis, the date the form is being completed or any date in between. If you do not know the exact date, you can use the 1st of the month. Providing this information will ensure your patient is paid from the correct date.",
+        "p3": "You do not need to give a specific prognosis. Please use language that you would normally use when communicating with other clinicians."
     },
     "section6": {
-        "p1": "This form allows you to provide further evidence to enable us to make a decision on your patient’s claim. It is not a claim form, as you cannot claim on behalf of your patients. It will not normally be necessary for you to examine the patient. You may use your own knowledge and the patient’s records to get the information you need."
+        "p1": "Determining life expectancy in these circumstances is challenging. The following indicators may suggest that a patient is eligible under the Special Rules:",
+        "ul1": {
+            "li1": "advanced, progressive illness",
+            "li2": "rapid or gradual deterioration of an incurable or terminal condition",
+            "li3": "worsening symptoms despite optimal treatment or management",
+            "li4": "(severe) degenerative condition",
+            "li5": "metastatic disease",
+            "li6": "inoperable cancer",
+            "li7": "severe frailty", 
+            "li8": "death is imminent, death is inevitable",
+            "li9": "a high risk of sudden death with an underlying deteriorating condition"
+        },
+        "p2": "Patients may be eligible for the Special Rules when receiving ongoing or palliative treatment. In some circumstances, there may not be any treatment options available that would significantly alter prognosis.",
+        "p3": "Your patient's claim is likely to be helped if you include relevant information such as:",
+        "ul2": {
+            "li1": "no or poor response to treatment", 
+            "li2": "palliative care or palliative treatment in any form including palliative chemotherapy, immunotherapy or radiotherapy",
+            "li3": "receiving symptom control and/or psychosocial support only",
+            "li4": "no further treatment planned/available",
+            "li5": "treatment is declined",
+            "li6": "treatment ongoing but unlikely to alter prognosis"
+        },
+        "p4": "The Special Rules criteria do not only apply to patients with cancer. They also apply to other severe, life-limiting conditions, such as:",
+        "ul3": {
+            "li1": "end-stage respiratory disease (for example, COPD, pulmonary fibrosis)",
+            "li2": "end-stage heart disease",
+            "li3": "end-stage dementia",
+            "li4": "severe frailty",
+            "li5": "end-stage liver disease",
+            "li6": "end-stage renal failure",
+            "li7": "end-stage neurological disease (for example, Motor Neurone Disease, Multiple Sclerosis, Huntington's Disease)",
+            "li8": "end-stage cystic fibrosis"
+        },
+        "p5": "This list is not exhaustive."
     },
     "section7": {
-        "p1": "As we need to deal with these claims urgently, the healthcare professional will usually contact you by telephone.",
-        "p2": "You may be contacted by a healthcare professional working for one of our clinical assessment providers if:",
+        "p1": "You can find information about general or disease-specific indicators, advance care planning, palliative care initiatives and NICE guidelines on these websites:",
         "ul": {
-            "li1": "if we need clarification of some of the information on the DS1500 to help with our decision about the claim, or",
-            "li2": "the patient has made a claim under the Special Rules process but has not submitted a DS1500 or SR1 form and we need clinical information to support the claim"
+            "li1": "Supportive and Palliative Care Indicators Tool (SPICT™) <a class=\"govuk-link\" href=\"https://www.spict.org.uk/e-spict/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to Supoortive and Palliative Care Indicators Tool\">SPICT_April-2019.pdf</a>",
+            "li2": "The Gold Standards Framework Proactive Identification Guidance (PIG) <a class=\"govuk-link\" href=\"https://goldstandardsframework.org.uk/pig/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go the gold standards framework proactive identification guidance\">Proactive Identification Guidance v7 (2022).pdf</a>",
+            "li3": "Universal Principles for Advance Care Planning (ACP) <a class=\"govuk-link\" href=\"https://www.england.nhs.uk/publication/universal-principles-for-advance-care-planning/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to Universal priciples for Advance Care Planning\">NHS England: Palliative and end of life care</a>",
+            "li4": "The Daffodil Standards <a class=\"govuk-link\" href=\"https://www.rcgp.org.uk/learning-resources/daffodil-standards/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to The Daffodil Standards\">The Daffodil Standards</a>",
+            "li5": "Ambitions for Palliative and End of Life Care <a class=\"govuk-link\" href=\"https://www.england.nhs.uk/blog/renewing-our-ambitions-for-palliative-and-end-of-life-care/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to NHS England Ambitions for palliative and end of life care\">NHS England: Renewing our ambitions for palliative and end of life care</a>",
+            "li6": "NHSE/I Delivery Plan for Palliative and End of Life Care <a class=\"govuk-link\" href=\"https://www.england.nhs.uk/eolc/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go NHSE/I Delivery Plan for palliative and end Of life care\">NHS England: Palliative and end of life care</a>",
+            "li7": "NICE Quality Standard for End of Life Care <a class=\"govuk-link\" href=\"https://www.nice.org.uk/guidance/qs13/chapter/Quality-statement-1-Identification/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to NICE Quality standard for end of life care\">Quality statement 1: Identification | End of life care for adults | Quality standards | NICE</a>",
+            "li8": "NICE Guideline for End of Life Care: Service Delivery <a class=\"govuk-link\" href=\"https://www.nice.org.uk/guidance/ng142/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to NICE Guideline for end of life Cre\">Overview | End of life care for adults: service delivery | Guidance | NICE</a>",
+            "li9": "What matters to you conversations <a class=\"govuk-link\" href=\"https://www.whatmattersconversations.org/\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to go to What matters to you conversations\">What matters to you conversations</a>"
         }
     },
     "section8": {
-        "p1": "You can claim a fee if you are a GP or GMC registered consultant, but only if you have authorised the fee form by signing it.",
-        "p2": "To claim your fee, download and fill out the form at the end.",
-        "p3": "We will pay it into your bank or building society account.",
-        "p4": "For claims to New Style Employment and Support Allowance or Universal Credit send the fee form to the nearest <a class=\"govuk-link\" href=\"{{url}}\" target=\"_blank\">Jobcentre Plus office (opens in a new tab).</a>",
-        "p5": "For all other benefits, send to the relevant address:",
-        "relevantAddresses": {
-            "address1": {
-                "ul": {
-                    "li1": "Personal Independence Payment (10)",
-                    "li2": "Mail Handling Site A",
-                    "li3": "Wolverhampton",
-                    "li4": "WV98 1AE"
-                }
-            },
-            "address2": {
-                "ul": {
-                    "li1": "Disability Living Allowance Adult 1",
-                    "li2": "For claimants born on or before 8 April 1948",
-                    "li3": "Disability Living Allowance 65+",
-                    "li4": "Mail Handling Site A",
-                    "li5": "Wolverhampton",
-                    "li6": "WV98 2AH"
-                }
-            },
-            "address3": {
-                "ul": {
-                    "li1": "Disability Living Allowance Adult 2",
-                    "li2": "For claimants born on or after 9 April 1948",
-                    "li3": "Disability Living Allowance",
-                    "li4": "Warbreck House",
-                    "li5": "Warbreck Hill",
-                    "li6": "Blackpool",
-                    "li7": "FY2 0YE"
-                }
-            },
-            "address4": {
-                "ul": {
-                    "li1": "Disability Living Allowance Child",
-                    "li2": "Disability Benefit Centre 4",
-                    "li3": "Post Handling Site B",
-                    "li4": "Wolverhampton",
-                    "li5": "WV99 1BY"
-                }
-            },
-            "address5": {
-                "ul": {
-                    "li1": "Attendance Allowance",
-                    "li2": "Attendance Allowance Unit",
-                    "li3": "Mail Handling Site A",
-                    "li4": "Wolverhampton",
-                    "li5": "WV98 2AD"
-                }
-            }
+        "p1": "The DWP relies on the judgement of clinicians when they complete an SR1 form. However, a clinician may be contacted by a practitioner working for one of our clinical assessment providers if:",
+        "ul": {
+            "li1": "information provided on the SR1 form needs to be clarified required to help with a decision about the claim",
+            "li2": "an individual has made a claim under the Special Rules but has not submitted an SR1 form and clinical information is required to support the claim"
+        },
+        "p2": "Because we need to deal with these claims urgently, the healthcare professional will usually make contact by phone."
+    },
+    "section9": {
+        "ul": {
+            "li1": "For UC and ESA, only an appointee or a person who has power of attorney can make a third party claim on the patient's behalf",
+            "li2": "For DLA, PIP and AA, any person representing the patient can make a third party claim on their behalf, even if the patient is unaware that a claim is being made"
         }
+    },
+    "section10": {
+        "p1": "If you're a GP or GMC registered consultant, you can claim a fee for completing an SR1 form by completing a separate fee form."
+    },
+    "section11": {
+        "p1": "You can return the SR1 form through the NHS Spine Portal, by email or by post.",
+        "sh1": "Through the NHS Spine Portal",
+        "p2": "This service is available from the NHS Portal on your desktop. You'll need an NHS smartcard to access the service. Once you have accessed the NHS Portal, click on 'Launch Digital SR1 Service' and complete the SR1 form online.",
+        "p3": "Once you have submitted the SR1 form online, you can download a copy and save it to your patient's medical record.",
+        "p4": "You can also download a fee form if required. This can be returned by post to:",
+        "ul1": {
+            "li1": "Personal Independence Payment (10)",
+            "li2": "Mail Handling Site A",
+            "li3": "Wolverhampton",
+            "li4": "WV98 1AE"
+        },
+        "sh2": "By email",
+        "p5": "To get an electronic version of the SR1 form and the fee form, you'll need to send a request from a secure email address with this information:",
+        "ul2": {
+            "li1": "surgery/hospital/office postal address",
+            "li2": "phone number"
+        },
+        "p6": "Secure email addresses end in:",
+        "ul3": {
+            "li1": "@nhs.net",
+            "li2": "@nhs.uk",
+            "li3": "@nhs.scot",
+            "li4": "@nhs.wales.uk",
+            "li5": "@[x].gov.uk"
+        },
+        "p7": "Send completed SR1 forms to <a class=\"govuk-link\" href=\"mailto:form.e-sr1@dwp.gov.uk\" title=\"Click here to send the request for a PDF version of the SR1 form\">form.e-sr1@dwp.gov.uk</a>",
+        "p8": "The SR1 can be saved to your device.",
+        "p9": "Do not encrypt any part of the email. Any email that does not come from a secure email account will be automatically deleted.",
+        "p10": "No signature is required on either form for this method of return.",
+        "sh3": "By post",
+        "p11": "You can order a book of paper SR1 forms using <a \"govuk-link\" href=\"https://www.gov.uk/government/publications/dwp-leaflets-order-form\" rel=\"noreferrer noopener\" target=\"_blank\" title=\"Click here to order SR1 forms\">this order form</a>, which should be sent with a covering letter on headed paper.",
+        "p12": "Do not print the electronic version of the SR1 form.",
+        "p13": "Only original signed copies of these forms will be accepted by post.",
+        "p14": "Include in the letter a list of clinicians who may complete the SR1 form.",
+        "p15": "The order form and cover letter can be either faxed to HH Global Limited on 0300 373 0125 or emailed to <a class=\"govuk-link\" href=\"mailto:dwp@hhglobal.com\" title=\"Click here to email HH Global Limited\">dwp@hhglobal.com</a> from a secure email address (see above).",
+        "p16": "If you have any questions about this process, call the HH Global Limited helpline on 0333 016 9656.",
+        "p17": "There are 2 options for returning the forms to us:",
+        "ul4": {
+            "li1": "give the SR1 form to the person who requested it and return the fee form separately to us, or",
+            "li2": "post the completed SR1 form and fee form directly to:"
+        },
+        "ul5": {
+            "li1": "Personal Independence Payment (10)",
+            "li2": "Mail Handling Site A",
+            "li3": "Wolverhampton",
+            "li4": "WV98 1AE"
+        },
+        "p18": "When returning SR1 forms, please use a separate envelope for each patient. Do not staple documents together."
     }
 }

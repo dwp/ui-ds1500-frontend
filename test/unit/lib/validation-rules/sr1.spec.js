@@ -1,15 +1,15 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const { isValidPhoneNumber, hasValidWords, isValidPatientName, specialCharCheck, hasValidWordsPatientName, hasValidWordsRepresentativeDetails, checkWordsValid } = require('../../../../lib/validation-rules/ds1500');
+const { isValidPhoneNumber, hasValidWords, isValidPatientName, specialCharCheck, hasValidWordsPatientName, hasValidWordsRepresentativeDetails, checkWordsValid } = require('../../../../lib/validation-rules/sr1');
 const { validNumbers } = require('../../../helpers/commonValues');
 
 const expectedErrorMsg = (fieldName, errKey) => {
   return [{
     focusSuffix: [],
-    inline: `ds1500:${fieldName}.${errKey}`,
-    message: `ds1500:${fieldName}.${errKey}`,
-    summary: `ds1500:${fieldName}.${errKey}`,
+    inline: `sr1:${fieldName}.${errKey}`,
+    message: `sr1:${fieldName}.${errKey}`,
+    summary: `sr1:${fieldName}.${errKey}`,
     variables: {},
     field: undefined,
     fieldHref: undefined,
@@ -69,7 +69,7 @@ describe('specialCharCheck', () => {
   })
 })
 
-describe('ds1500 validations: GP Phone Number', () => {
+describe('sr1 validations: GP Phone Number', () => {
   describe('isValidPhoneNumber', () => {
     const field = { fieldName: 'gpPhone' }
     it('should throw error if number contain non numeric characters', () => {
@@ -93,7 +93,7 @@ describe('ds1500 validations: GP Phone Number', () => {
   })
 })
 
-describe('ds1500 validations: Diagnosis', () => {
+describe('sr1 validations: Diagnosis', () => {
   describe('hasValidWords', () => {
     const dataContext = {
       waypointId: 'testPage',
@@ -131,7 +131,7 @@ describe('ds1500 validations: Diagnosis', () => {
   })
 });
 
-describe('ds1500 validations: RepresentativeName', () => {
+describe('sr1 validations: RepresentativeName', () => {
   describe('hasValidWordsRepresentativeDetails', () => {
     const dataContext = {
       waypointId: 'testPage',

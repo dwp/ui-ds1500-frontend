@@ -1,6 +1,6 @@
 const { expectValidatorToFail, expectValidatorToPass } = require('../../../helpers/validator-assertions');
 const { validNumbers } = require('../../../helpers/commonValues');
-const validators = require('../../../../definitions/fields/ds1500')();
+const validators = require('../../../../definitions/fields/sr1')();
 
 const defaultValidators = {
   patientName: '',
@@ -15,11 +15,11 @@ const defaultValidators = {
   clinicalFeatures: ''
 }
 
-describe('Validators: ds1500', () => {
+describe('Validators: sr1', () => {
   describe('field: patientName', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'patientName', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:patientName.empty'
+        summary: 'sr1:patientName.empty'
       });
     });
 
@@ -30,28 +30,28 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWordsPatientName" validator if both first words greater than 58 characters long and last word greater than 35 characters', async () => {
       const patientName = 'a'.repeat(59) + ' ' + 'b'.repeat(36)
       await expectValidatorToFail(validators, 'patientName', 'hasValidWordsPatientName', patientName, { ...defaultValidators, patientName }, {
-        summary: 'ds1500:patientName.firstLastTooLong'
+        summary: 'sr1:patientName.firstLastTooLong'
       });
     });
 
     it('should fail "hasValidWordsPatientName" validator if first word is less than 2 characters', async () => {
       const patientName = 'a'
       await expectValidatorToFail(validators, 'patientName', 'hasValidWordsPatientName', patientName, { ...defaultValidators, patientName }, {
-        summary: 'ds1500:patientName.wordTooShort'
+        summary: 'sr1:patientName.wordTooShort'
       });
     });
 
     it('should fail "hasValidWordsPatientName" validator if first words greater than 58 characters long', async () => {
       const patientName = 'a'.repeat(59) + ' ' + 'b'.repeat(30)
       await expectValidatorToFail(validators, 'patientName', 'hasValidWordsPatientName', patientName, { ...defaultValidators, patientName }, {
-        summary: 'ds1500:patientName.firstWordTooLong'
+        summary: 'sr1:patientName.firstWordTooLong'
       });
     });
 
     it('should fail "hasValidWordsPatientName" validator if last word greater than 35 characters long', async () => {
       const patientName = 'a'.repeat(50) + ' ' + 'b'.repeat(36)
       await expectValidatorToFail(validators, 'patientName', 'hasValidWordsPatientName', patientName, { ...defaultValidators, patientName }, {
-        summary: 'ds1500:patientName.lastWordTooLong'
+        summary: 'sr1:patientName.lastWordTooLong'
       });
     });
 
@@ -63,21 +63,21 @@ describe('Validators: ds1500', () => {
     it('should fail "isValidPatientName" validator if name has special char at end', async () => {
       const patientName = 'test@'
       await expectValidatorToFail(validators, 'patientName', 'isValidPatientName', patientName, { ...defaultValidators, patientName }, {
-        summary: 'ds1500:patientName.endCharInvalid'
+        summary: 'sr1:patientName.endCharInvalid'
       });
     });
 
     it('should fail "isValidPatientName" validator if name has special char', async () => {
       const patientName = '@test'
       await expectValidatorToFail(validators, 'patientName', 'isValidPatientName', patientName, { ...defaultValidators, patientName }, {
-        summary: 'ds1500:patientName.specialChar'
+        summary: 'sr1:patientName.specialChar'
       });
     });
 
     it('should fail "isValidPatientName" validator if name is invalid', async () => {
       const patientName = 'test12t'
       await expectValidatorToFail(validators, 'patientName', 'isValidPatientName', patientName, { ...defaultValidators, patientName }, {
-        summary: 'ds1500:patientName.pattern'
+        summary: 'sr1:patientName.pattern'
       });
     });
 
@@ -90,7 +90,7 @@ describe('Validators: ds1500', () => {
   describe('field: patientAddress', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'patientAddress', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:patientAddress.empty'
+        summary: 'sr1:patientAddress.empty'
       });
     });
 
@@ -102,7 +102,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
       const patientAddress = 'a'.repeat(59)
       await expectValidatorToFail(validators, 'patientAddress', 'hasValidWords', patientAddress, { ...defaultValidators, patientAddress }, {
-        summary: 'ds1500:patientAddress.wordTooLong'
+        summary: 'sr1:patientAddress.wordTooLong'
       });
     });
 
@@ -120,7 +120,7 @@ describe('Validators: ds1500', () => {
   describe('field: patientPostcode', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'patientPostcode', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:patientPostcode.empty'
+        summary: 'sr1:patientPostcode.empty'
       });
     });
 
@@ -132,7 +132,7 @@ describe('Validators: ds1500', () => {
     it('should fail "strlen" validator if invalid value is provided', async () => {
       const patientPostcode = 'SW12 2ABC'
       await expectValidatorToFail(validators, 'patientPostcode', 'Strlen', patientPostcode, { ...defaultValidators, patientPostcode }, {
-        summary: 'ds1500:patientPostcode.tooLong'
+        summary: 'sr1:patientPostcode.tooLong'
       });
     });
 
@@ -144,7 +144,7 @@ describe('Validators: ds1500', () => {
     it('should fail "regex" validator if invalid value is provided', async () => {
       const patientPostcode = '11X X11'
       await expectValidatorToFail(validators, 'patientPostcode', 'Regex', patientPostcode, { ...defaultValidators, patientPostcode }, {
-        summary: 'ds1500:patientPostcode.invalid'
+        summary: 'sr1:patientPostcode.invalid'
       });
     });
 
@@ -162,7 +162,7 @@ describe('Validators: ds1500', () => {
     it('should fail "nino" validator if invalid nino provided', async () => {
       const patientNino = 'ABCD123456'
       await expectValidatorToFail(validators, 'patientNino', 'Nino', patientNino, { ...defaultValidators, patientNino }, {
-        summary: 'ds1500:patientNino.invalid'
+        summary: 'sr1:patientNino.invalid'
       });
     });
 
@@ -175,7 +175,7 @@ describe('Validators: ds1500', () => {
   describe('field: diagnosis', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'diagnosis', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:diagnosis.empty'
+        summary: 'sr1:diagnosis.empty'
       });
     });
 
@@ -186,7 +186,7 @@ describe('Validators: ds1500', () => {
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const diagnosis = 'a'.repeat(50) + '' + 'b'.repeat(50) + '' + 'c'.repeat(59)
       await expectValidatorToFail(validators, 'diagnosis', 'Strlen', diagnosis, { ...defaultValidators, diagnosis }, {
-        summary: 'ds1500:diagnosis.tooLong'
+        summary: 'sr1:diagnosis.tooLong'
       });
     });
 
@@ -198,7 +198,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
       const diagnosis = 'a'.repeat(59)
       await expectValidatorToFail(validators, 'diagnosis', 'hasValidWords', diagnosis, { ...defaultValidators, diagnosis }, {
-        summary: 'ds1500:diagnosis.wordTooLong'
+        summary: 'sr1:diagnosis.wordTooLong'
       });
     });
 
@@ -221,7 +221,7 @@ describe('Validators: ds1500', () => {
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const otherDiagnoses = 'a'.repeat(50) + '' + 'b'.repeat(50) + '' + 'c'.repeat(50)
       await expectValidatorToFail(validators, 'otherDiagnoses', 'Strlen', otherDiagnoses, { ...defaultValidators, otherDiagnoses }, {
-        summary: 'ds1500:otherDiagnoses.tooLong'
+        summary: 'sr1:otherDiagnoses.tooLong'
       });
     });
 
@@ -233,7 +233,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
       const otherDiagnoses = 'a'.repeat(59)
       await expectValidatorToFail(validators, 'otherDiagnoses', 'hasValidWords', otherDiagnoses, { ...defaultValidators, otherDiagnoses }, {
-        summary: 'ds1500:otherDiagnoses.wordTooLong'
+        summary: 'sr1:otherDiagnoses.wordTooLong'
       });
     });
 
@@ -251,7 +251,7 @@ describe('Validators: ds1500', () => {
   describe('field: patientAware', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'patientAware', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:patientAware.empty'
+        summary: 'sr1:patientAware.empty'
       });
     });
 
@@ -271,7 +271,7 @@ describe('Validators: ds1500', () => {
   describe('field: formRequester', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'formRequester', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:formRequester.empty'
+        summary: 'sr1:formRequester.empty'
       });
     });
 
@@ -296,7 +296,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWordsRepresentativeDetails" validator if words greater than 43 characters long', async () => {
       const representativeName = 'a'.repeat(44)
       await expectValidatorToFail(validators, 'representativeName', 'hasValidWordsRepresentativeDetails', representativeName, { ...defaultValidators, representativeName }, {
-        summary: 'ds1500:representativeName.wordTooLong'
+        summary: 'sr1:representativeName.wordTooLong'
       });
     });
 
@@ -319,7 +319,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWordsRepresentativeDetails" validator if words greater than 43 characters long', async () => {
       const representativeAddress = 'a'.repeat(44)
       await expectValidatorToFail(validators, 'representativeAddress', 'hasValidWordsRepresentativeDetails', representativeAddress, { ...defaultValidators, representativeAddress }, {
-        summary: 'ds1500:representativeAddress.wordTooLong'
+        summary: 'sr1:representativeAddress.wordTooLong'
       });
     });
 
@@ -342,7 +342,7 @@ describe('Validators: ds1500', () => {
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const representativePostcode = 'SW12 2ABC'
       await expectValidatorToFail(validators, 'representativePostcode', 'Strlen', representativePostcode, { ...defaultValidators, representativePostcode }, {
-        summary: 'ds1500:representativePostcode.tooLong'
+        summary: 'sr1:representativePostcode.tooLong'
       });
     });
 
@@ -354,7 +354,7 @@ describe('Validators: ds1500', () => {
     it('should fail "regex" validator if invalid value is provided', async () => {
       const representativePostcode = '11X X11'
       await expectValidatorToFail(validators, 'representativePostcode', 'Regex', representativePostcode, { ...defaultValidators, representativePostcode }, {
-        summary: 'ds1500:representativePostcode.invalid'
+        summary: 'sr1:representativePostcode.invalid'
       });
     });
 
@@ -367,7 +367,7 @@ describe('Validators: ds1500', () => {
   describe('field: clinicalFeatures', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'clinicalFeatures', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:clinicalFeatures.empty'
+        summary: 'sr1:clinicalFeatures.empty'
       });
     });
 
@@ -378,7 +378,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
       const clinicalFeatures = 'a'.repeat(59)
       await expectValidatorToFail(validators, 'clinicalFeatures', 'hasValidWords', clinicalFeatures, { ...defaultValidators, clinicalFeatures }, {
-        summary: 'ds1500:clinicalFeatures.wordTooLong'
+        summary: 'sr1:clinicalFeatures.wordTooLong'
       });
     });
 
@@ -390,7 +390,7 @@ describe('Validators: ds1500', () => {
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const clinicalFeatures = 'a'.repeat(50) + ' ' + 'b'.repeat(50) + ' ' + 'c'.repeat(50) + ' ' + 'd'.repeat(50) + ' ' + 'e'.repeat(50)
       await expectValidatorToFail(validators, 'clinicalFeatures', 'Strlen', clinicalFeatures, { ...defaultValidators, clinicalFeatures }, {
-        summary: 'ds1500:clinicalFeatures.tooLong'
+        summary: 'sr1:clinicalFeatures.tooLong'
       });
     });
 
@@ -408,7 +408,7 @@ describe('Validators: ds1500', () => {
   describe('field: treatment', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'treatment', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:treatment.empty'
+        summary: 'sr1:treatment.empty'
       });
     });
 
@@ -419,7 +419,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
       const treatment = 'a'.repeat(59)
       await expectValidatorToFail(validators, 'treatment', 'hasValidWords', treatment, { ...defaultValidators, treatment }, {
-        summary: 'ds1500:treatment.wordTooLong'
+        summary: 'sr1:treatment.wordTooLong'
       });
     });
 
@@ -431,7 +431,7 @@ describe('Validators: ds1500', () => {
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const treatment = 'a'.repeat(55) + ' ' + 'b'.repeat(55) + ' ' + 'c'.repeat(55)
       await expectValidatorToFail(validators, 'treatment', 'Strlen', treatment, { ...defaultValidators, treatment }, {
-        summary: 'ds1500:treatment.tooLong'
+        summary: 'sr1:treatment.tooLong'
       });
     });
 
@@ -454,7 +454,7 @@ describe('Validators: ds1500', () => {
     it('should fail "strlen" validator if invalid length is provided', async () => {
       const otherIntervention = 'a'.repeat(55) + ' ' + 'b'.repeat(55) + ' ' + 'c'.repeat(55)
       await expectValidatorToFail(validators, 'otherIntervention', 'Strlen', otherIntervention, { ...defaultValidators, otherIntervention }, {
-        summary: 'ds1500:otherIntervention.tooLong'
+        summary: 'sr1:otherIntervention.tooLong'
       });
     });
 
@@ -472,7 +472,7 @@ describe('Validators: ds1500', () => {
   describe('field: declaration', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'declaration', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:declaration.empty'
+        summary: 'sr1:declaration.empty'
       });
     });
 
@@ -497,7 +497,7 @@ describe('Validators: ds1500', () => {
     it('should fail "required" validator if no value is provided', async () => {
       const declaration = 'General Practitioner'
       await expectValidatorToFail(validators, 'gmcNumber', 'Required', '', { ...defaultValidators, declaration }, {
-        summary: 'ds1500:gmcNumber.empty'
+        summary: 'sr1:gmcNumber.empty'
       });
     });
 
@@ -516,7 +516,7 @@ describe('Validators: ds1500', () => {
         gmcNumber: '0123456789'
       }
       await expectValidatorToFail(validators, 'gmcNumber', 'Strlen', setValidators.gmcNumber, { ...defaultValidators, ...setValidators }, {
-        summary: 'ds1500:gmcNumber.tooLong'
+        summary: 'sr1:gmcNumber.tooLong'
       });
     });
 
@@ -526,7 +526,7 @@ describe('Validators: ds1500', () => {
         gmcNumber: '01234'
       }
       await expectValidatorToFail(validators, 'gmcNumber', 'Strlen', setValidators.gmcNumber, { ...defaultValidators, ...setValidators }, {
-        summary: 'ds1500:gmcNumber.tooShort'
+        summary: 'sr1:gmcNumber.tooShort'
       });
     });
 
@@ -544,7 +544,7 @@ describe('Validators: ds1500', () => {
         gmcNumber: '@12e456'
       }
       await expectValidatorToFail(validators, 'gmcNumber', 'Regex', setValidators.gmcNumber, { ...defaultValidators, ...setValidators }, {
-        summary: 'ds1500:gmcNumber.pattern'
+        summary: 'sr1:gmcNumber.pattern'
       });
     });
 
@@ -561,7 +561,7 @@ describe('Validators: ds1500', () => {
     it('should fail "required" validator if no value is provided', async () => {
       const declaration = 'GMC registered consultant'
       await expectValidatorToFail(validators, 'gmcNumberConsultant', 'Required', '', { ...defaultValidators, declaration }, {
-        summary: 'ds1500:gmcNumberConsultant.empty'
+        summary: 'sr1:gmcNumberConsultant.empty'
       });
     });
 
@@ -580,7 +580,7 @@ describe('Validators: ds1500', () => {
         gmcNumberConsultant: '0123456789'
       }
       await expectValidatorToFail(validators, 'gmcNumberConsultant', 'Strlen', setValidators.gmcNumberConsultant, { ...defaultValidators, ...setValidators }, {
-        summary: 'ds1500:gmcNumberConsultant.tooLong'
+        summary: 'sr1:gmcNumberConsultant.tooLong'
       });
     });
 
@@ -590,7 +590,7 @@ describe('Validators: ds1500', () => {
         gmcNumberConsultant: '01234'
       }
       await expectValidatorToFail(validators, 'gmcNumberConsultant', 'Strlen', setValidators.gmcNumberConsultant, { ...defaultValidators, ...setValidators }, {
-        summary: 'ds1500:gmcNumberConsultant.tooShort'
+        summary: 'sr1:gmcNumberConsultant.tooShort'
       });
     });
 
@@ -608,7 +608,7 @@ describe('Validators: ds1500', () => {
         gmcNumberConsultant: '@12e456'
       }
       await expectValidatorToFail(validators, 'gmcNumberConsultant', 'Regex', setValidators.gmcNumberConsultant, { ...defaultValidators, ...setValidators }, {
-        summary: 'ds1500:gmcNumberConsultant.pattern'
+        summary: 'sr1:gmcNumberConsultant.pattern'
       });
     });
 
@@ -625,7 +625,7 @@ describe('Validators: ds1500', () => {
     it('should fail "required" validator if no value is provided', async () => {
       const declaration = 'Other'
       await expectValidatorToFail(validators, 'declarationAdditionalDetail', 'Required', '', { ...defaultValidators, declaration }, {
-        summary: 'ds1500:declarationAdditionalDetail.empty'
+        summary: 'sr1:declarationAdditionalDetail.empty'
       });
     });
 
@@ -652,7 +652,7 @@ describe('Validators: ds1500', () => {
         declarationAdditionalDetail: 'a'.repeat(59)
       }
       await expectValidatorToFail(validators, 'declarationAdditionalDetail', 'hasValidWords', setValidators.declarationAdditionalDetail, { ...defaultValidators, ...setValidators }, {
-        summary: 'ds1500:declarationAdditionalDetail.wordTooLong'
+        summary: 'sr1:declarationAdditionalDetail.wordTooLong'
       });
     });
 
@@ -668,7 +668,7 @@ describe('Validators: ds1500', () => {
   describe('field: gpName', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'gpName', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:gpName.empty'
+        summary: 'sr1:gpName.empty'
       });
     });
 
@@ -685,7 +685,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
       const gpName = 'a'.repeat(59)
       await expectValidatorToFail(validators, 'gpName', 'hasValidWords', gpName, { ...defaultValidators, gpName }, {
-        summary: 'ds1500:gpName.wordTooLong'
+        summary: 'sr1:gpName.wordTooLong'
       });
     });
 
@@ -698,7 +698,7 @@ describe('Validators: ds1500', () => {
   describe('field: gpAddress', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'gpAddress', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:gpAddress.empty'
+        summary: 'sr1:gpAddress.empty'
       });
     });
 
@@ -715,7 +715,7 @@ describe('Validators: ds1500', () => {
     it('should fail "hasValidWords" validator if words greater than 58 characters long', async () => {
       const gpAddress = 'a'.repeat(59)
       await expectValidatorToFail(validators, 'gpAddress', 'hasValidWords', gpAddress, { ...defaultValidators, gpAddress }, {
-        summary: 'ds1500:gpAddress.wordTooLong'
+        summary: 'sr1:gpAddress.wordTooLong'
       });
     });
 
@@ -728,7 +728,7 @@ describe('Validators: ds1500', () => {
   describe('field: gpPhone', () => {
     it('should fail "required" validator if no value is provided', async () => {
       await expectValidatorToFail(validators, 'gpPhone', 'Required', '', { ...defaultValidators }, {
-        summary: 'ds1500:gpPhone.empty'
+        summary: 'sr1:gpPhone.empty'
       });
     });
 
@@ -740,7 +740,7 @@ describe('Validators: ds1500', () => {
     it('should fail "isValidPhoneNumber" validator if invalid value is provided', async () => {
       const gpPhone = '@123c56789'
       await expectValidatorToFail(validators, 'gpPhone', 'isValidPhoneNumber', gpPhone, { ...defaultValidators, gpPhone }, {
-        summary: 'ds1500:gpPhone.invalid'
+        summary: 'sr1:gpPhone.invalid'
       });
     });
 

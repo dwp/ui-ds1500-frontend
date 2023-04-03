@@ -1,9 +1,8 @@
-const ds1500Fields = require('./fields/ds1500')
+const sr1Fields = require('./fields/sr1')
 const emptyFields = require('./fields/empty')
-const selectFormFields = require('./fields/select-form.js')
-const startHooks = require('./hooks/ds1500-start');
+const startHooks = require('./hooks/sr1-start');
 const sessionTimeoutHook = require('./hooks/session-timeout')
-const downloadHook = require('./hooks/ds1500-download')
+const downloadHook = require('./hooks/sr1-download')
 const reviewHooks = require('./hooks/review')
 
 const {
@@ -26,8 +25,8 @@ const {
 
 module.exports = ({ mountUrl }) => [
   {
-    waypoint: 'ds1500-start',
-    view: 'ds1500-start.njk',
+    waypoint: 'sr1-start',
+    view: 'sr1-start.njk',
     hooks: [{
       hook: 'prerender',
       middleware: startPrerender
@@ -38,29 +37,10 @@ module.exports = ({ mountUrl }) => [
     }]
   },
   {
-    waypoint: 'select-form',
-    view: 'select-form.njk',
-    fields: selectFormFields(),
-    id: 'select-form',
-    hooks: [{
-      hook: 'prerender',
-      middleware: sessionTimeoutPrerender
-    }]
-  },
-  {
-    waypoint: 'sr1-form-request',
-    view: 'sr1-form-request.njk',
-    id: 'sr1-form-request',
-    hooks: [{
-      hook: 'prerender',
-      middleware: sessionTimeoutPrerender
-    }]
-  },
-  {
-    waypoint: 'ds1500',
-    view: 'ds1500.njk',
-    fields: ds1500Fields(),
-    id: 'ds1500',
+    waypoint: 'sr1',
+    view: 'sr1.njk',
+    fields: sr1Fields(),
+    id: 'sr1',
     hooks: [{
       hook: 'prerender',
       middleware: sessionTimeoutPrerender
@@ -80,12 +60,13 @@ module.exports = ({ mountUrl }) => [
     }]
   },
   {
-    waypoint: 'ds1500-download',
+    waypoint: 'sr1-download',
     view: 'download.njk',
     fields: emptyFields(),
-    id: 'ds1500-download',
+    id: 'sr1-download',
     hooks: [{
       hook: 'prerender',
       middleware: downloadPrerender
     }]
-  }];
+  }
+];
