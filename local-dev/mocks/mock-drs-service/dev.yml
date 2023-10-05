@@ -1,0 +1,25 @@
+server:
+  applicationConnectors:
+    - type: https
+      port: 8888
+      keyStorePath: /drs-test-cert.ks
+      keyStorePassword: password
+      keyStoreType: JKS
+      trustStorePath: /drs-test-cert.ts
+      trustStorePassword: password
+      trustStoreType: JKS
+  adminConnectors:
+  - type: http
+    port: 0
+  requestLog:
+    type: external
+    
+rejectGenerateErrorFrequency: 7
+rejectSubmissionFrequency: 3
+
+soapSubmissionStore: /soap-output
+
+logging:
+  level: INFO
+  loggers:
+    "uk.gov": DEBUG

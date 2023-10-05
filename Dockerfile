@@ -3,12 +3,17 @@ ARG PORT
 
 FROM node:${NODE_VERSION} AS builder
 ENV PORT=${PORT}
-RUN apk --no-cache add git=2.38.4-r1
+ARG GITLAB_REGISTRY_TOKEN
+RUN apk --no-cache add git=2.40.1-r0 \
+     make=4.4.1-r1 \
+     build-base=0.5-r3 \
+     python3=3.11.6-r0 \
+     py3-pip=23.1.2-r0
+
 WORKDIR /src
-COPY package.json /src/package.json
-COPY package-lock.json /src/package-lock.json
-RUN npm install
 COPY . /src/
+
+RUN npm install
 RUN npm run build \
     && npm prune --production
 

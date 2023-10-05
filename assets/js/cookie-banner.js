@@ -2,8 +2,6 @@
 /* eslint-disable func-names, import/no-extraneous-dependencies */
 
 import setCookie from './set-cookie';
-import 'govuk-frontend-src/src/govuk/vendor/polyfills/Event';
-import 'govuk-frontend-src/src/govuk/vendor/polyfills/Function/prototype/bind';
 
 /**
  * @param $module

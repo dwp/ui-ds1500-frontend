@@ -10,7 +10,7 @@ module.exports = function (ancillaryRouter) {
       try {
         res.render('confirmation', {
           sessionId: encodeURIComponent(req.session.id),
-          appVersion: appVersion
+          appVersion
         });
       } catch (err) {
         logger.error('Session ending error - ' + err);

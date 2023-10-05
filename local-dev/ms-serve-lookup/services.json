@@ -1,0 +1,29 @@
+{
+    "ms-serve-broker": {
+        "/authenticate": {
+            "url": "http://ms-serve-mock-nhs-smartcard-frontend:9004/authenticate",
+            "idp": "NHS",
+            "idpUrl": "http://ms-serve-nhs-auth:9000/authenticatingService"
+        },
+        "/controller": {
+            "url": "http://ms-ds1500-controller:9013/controller",
+            "idp": "NHS",
+            "idpUrl": "http://ms-serve-nhs-auth:9000/authenticatingService"
+        },
+        "/download": {
+            "url": "http://ms-ds1500-controller:9013/download",
+            "idp": "NHS",
+            "idpUrl": "http://ms-serve-nhs-auth:9000/authenticatingService"
+        },
+        "/downloadFee": {
+            "url": "http://ms-ds1500-controller:9013/downloadFee",
+            "idp": "NHS",
+            "idpUrl": "http://ms-serve-nhs-auth:9000/authenticatingService"
+        },
+        "/": {
+            "url": "http://ms-ds1500-frontend:9012",
+            "idp": "NHS",
+            "idpUrl": "http://ms-serve-nhs-auth:9000/authenticatingService"
+        }
+    }
+}

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
-const { terser } = require('rollup-plugin-terser');
+const terser = require('@rollup/plugin-legacy');
 const legacy = require('@rollup/plugin-legacy');
 const { babel } = require('@rollup/plugin-babel');
 const alias = require('@rollup/plugin-alias');
@@ -11,11 +11,15 @@ const plugins = [
       // Dedupe NodeList.forEach() included in both hmrc-frontend and
       // govuk-frontend
       find: /.*common$/,
-      replacement: 'govuk-frontend-src/src/govuk/common.js'
-    }, {
-      // HMRC are bundling already bundled GOVUK polyfills, map to originals
-      find: /govuk-frontend\/govuk\/vendor\/polyfills/,
-      replacement: 'govuk-frontend-src/src/govuk/vendor/polyfills'
+      replacement: 'govuk-frontend/govuk-esm/common.mjs'
+    },
+    {
+      find: /.*defineProperty$/,
+      replacement: 'govuk-frontend/govuk/vendor/polyfills/Object/defineProperty.js'
+    },
+    {
+      find: /.*bind$/,
+      replacement: 'govuk-frontend/govuk/vendor/polyfills/Function/prototype/bind.js'
     }]
   }),
   legacy({}),

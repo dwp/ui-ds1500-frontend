@@ -1,0 +1,9 @@
+{
+    "request": {
+        "urlPath": "/saml/RoleAssertion"
+    },
+    "response": {
+        "bodyFileName": "data-adapter/doctor.saml",
+        "transformers": ["response-template"]
+    }
+}

@@ -1,0 +1,16 @@
+server:
+  applicationConnectors:
+  - type: http 
+    port: 9002
+  adminConnectors:
+  - type: http
+    port: 9003
+  requestLog:
+    type: external
+    
+jsonPath: /services.json
+
+logging:
+  level: INFO
+  loggers:
+    "uk.gov": DEBUG

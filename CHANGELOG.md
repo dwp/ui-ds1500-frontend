@@ -1,3 +1,10 @@
+<a name="2-0-1"></a>
+# 2-0-1 (2023-10-05)
+
+* chore: update to node 18 ([08945cc](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/08945cc))
+* chore: add project metadata ([acdd19c](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/acdd19c))
+* chore: update non-major npm dependencies ([29d3d6f](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/29d3d6f))
+
 ## 2.0.0 (2023-04-03)
 
 * feature: update ds1500 to sr1 ([68eb1053](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/68eb1053))
@@ -372,6 +379,3 @@
 * refactor(checkmarx): add fixes ([75cf184](https://gitlab.com/dwp/health-pdu/ds1500/ds1500-frontend/commit/75cf184))
 * refactor(sonarqube): add fixes ([1262e93](https://gitlab.com/dwp/health-pdu/ds1500/ds1500-frontend/commit/1262e93))
 * refactor(sonarqube): add fixes ([a5db437](https://gitlab.com/dwp/health-pdu/ds1500/ds1500-frontend/commit/a5db437))
-
-
-

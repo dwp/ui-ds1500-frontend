@@ -66,8 +66,8 @@ module.exports = function (ancillaryRouter, csrfMiddleware, ...args) {
     } else {
       res.render('feedback', {
         sessionid: encodeURIComponent(req.session.id),
-        appVersion: appVersion,
-        formData: formData,
+        appVersion,
+        formData,
         formErrors: errors,
         formErrorsGovukArray: errorList
       });

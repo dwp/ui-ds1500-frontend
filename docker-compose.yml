@@ -1,0 +1,327 @@
+# To execute this docker-compose yml file use `docker-compose up --exit-code-from ds1500-test-harness`
+# To remove containers then do docker-compose down
+version: "3"
+
+networks:
+  test:
+
+services:
+  localstack-seeder:
+    image: fstab/aws-cli:latest
+    expose:
+      - 9015
+      - 4576
+      - 4575
+      - 4572
+    entrypoint: /bin/sh /home/aws/initLocalstack.sh
+    volumes:
+      - ./local-dev/mocks/localstack/initLocalstack.sh:/home/aws/initLocalstack.sh
+    depends_on:
+      localstack:
+        condition: service_healthy
+    networks:
+      - test
+
+  localstack:
+    image: localstack/localstack-full:0.12.16
+    environment:
+      - SERVICES=s3,sns,sqs,kms
+      - HOSTNAME_EXTERNAL=localstack
+    expose:
+      - 4566
+    networks:
+      - test
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:4566/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  redis-cluster:
+    image: grokzen/redis-cluster:6.0.7
+    expose:
+      - 7000
+      - 7001
+      - 7002
+      - 7003
+      - 7004
+      - 7005
+    environment:
+      - CLUSTER_ONLY=true
+    networks:
+      - test
+
+  ms-ds1500-controller:
+    image: ${CONTROLLER_IMAGE}
+    environment:
+      - AWS_ACCESS_KEY_ID=my-key
+      - AWS_SECRET_ACCESS_KEY=its-a-secret
+      - SERVER_APP_CONNECTOR=http
+      - SERVER_APP_PORT=9013
+      - SERVER_ADMIN_CONNECTOR=http
+      - SERVER_ADMIN_PORT=3005
+      - PDF_FEE_GENERATOR_URL=http://ms-fee-pdf-generator:9990/feePdfGenerator/generatePdf
+      - PDF_GENERATOR_URL=http://ms-pdf-generator:9015/pdfGenerator/generatePdf
+      - KMS_ENDPOINT_OVERRIDE=http://localstack:4566
+      - KMS_DATA_KEY_REQUEST_ID=alias/test_event_request_id
+      - S3_ENDPOINT_OVERRIDE=
+      - ENDPOINT_OVERRIDE=http://localstack:4566
+      - REGION=US_EAST_1
+      - SSL_TRUSTSTORE_FILENAME_PDF=null
+      - SSL_KEYSTORE_FILENAME_PDF=null
+      - SSL_TRUSTSTORE_PASSWORD_PDF=null
+      - SSL_KEYSTORE_PASSWORD_PDF=null
+      - SSL_TRUSTSTORE_FILENAME_FEE_PDF=null
+      - SSL_KEYSTORE_FILENAME_FEE_PDF=null
+      - SSL_TRUSTSTORE_PASSWORD_FEE_PDF=null
+      - SSL_KEYSTORE_PASSWORD_FEE_PDF=null
+    expose:
+      - 9013
+    ports:
+      - 9013:9013
+    depends_on:
+      localstack:
+        condition: service_healthy
+    networks:
+      - test
+
+  ms-pdf-generator:
+    image: ${PDF_IMAGE}
+    expose:
+      - 9015
+    ports:
+      - 9015:9015
+    environment:
+      - SERVER_APP_CONNECTOR=http
+      - SERVER_APP_PORT=9015
+      - SERVER_ADMIN_CONNECTOR=http
+      - SERVER_ADMIN_PORT=0
+      - SERVER_REQUEST_LOG_TYPE=external
+      - htmlToPdfServiceUrl=http://ms-html-to-pdfa:8080/generatePdf
+      - htmlToPdfConformanceLevel=PDFA_1_A
+      - LOGGING_TYPE=external
+      - APPLICATION_INFO_ENABLED=true
+    networks:
+      - test
+
+  ms-fee-pdf-generator:
+    image: ${FEE_IMAGE}
+    expose:
+      - 9990
+    ports:
+      - 9990:9990
+    environment:
+      - SERVER_APP_CONNECTOR=http
+      - SERVER_APP_PORT=9990
+      - SERVER_ADMIN_CONNECTOR=http
+      - SERVER_ADMIN_PORT=0
+      - SERVER_REQUEST_LOG_TYPE=external
+      - htmlToPdfServiceUrl=http://ms-html-to-pdfa:8080/generatePdf
+      - htmlToPdfConformanceLevel=PDFA_1_A
+      - LOGGING_TYPE=external
+      - APPLICATION_INFO_ENABLED=true
+    networks:
+      - test
+
+  ms-html-to-pdfa:
+    image: ${PDFA_IMAGE}
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    environment:
+      - SERVER_APP_CONNECTOR=http
+      - SERVER_APP_PORT=8080
+      - SERVER_REQUEST_LOG_TYPE=external
+      - LOGGING_TYPE=external
+    networks:
+      - test
+
+  ms-ds1500-frontend:
+    image: ${APP_IMAGE}
+    environment:
+      - NODE_ENV=dev
+      - SERVER_PORT=9012
+      - SERVER_SSL_ENABLED=false
+      - SERVER_SSL_KEYFILE=
+      - SERVER_SSL_CERTFILE=
+      - SERVER_SSL_CACERTFILE=
+      - SESSIONS_SECRET=mysecret
+      - SESSIONS_TTL=1800
+      - DS1500_CONTROLLER_URL=http://ms-ds1500-controller:9013/
+      - NOTIFY_EMAILTO=dwp.digitalds1500@dwp.gsi.gov.uk
+      - NOTIFY_APIKEY=dwp_ds1500test-f0cde76d-05b0-4a1e-a8eb-6fe18dbc58fc-2528b5b6-8508-4cf5-81c4-8bc28301c051
+      - NOTIFY_PROXY_HOST=null
+      - NOTIFY_PROXY_PORT=80
+      - REDIS_HOST=redis-cluster
+      - REDIS_PORT=7000
+      - REDIS_CLUSTER=true
+      - GOOGLE_TAG_MANAGER_ID=N7JGL8W
+      - DS1500_SERVICE_DOMAIN=ms-serve-broker
+      - SECURE_COOKIES=false
+    expose:
+      - 9012
+    ports:
+      - 9012:9012
+    depends_on:
+      redis-cluster:
+        condition: service_started
+    networks:
+      - test
+
+  ms-drs-broker-service:
+    image: ${BROKER_IMAGE}
+    environment:
+      - AWS_ACCESS_KEY_ID=my-key
+      - AWS_SECRET_ACCESS_KEY=its-a-secret
+      - REGION=US_EAST_1
+      - S3_ENDPOINT_OVERRIDE=http://localstack:4566
+      - SQS_ENDPOINT_OVERRIDE=http://localstack:4566
+      - SNS_ENCRYPT_MESSAGES=false
+      - SNS_ENDPOINT_OVERRIDE=http://localstack:4566
+      - KMS_ENDPOINT_OVERRIDE=http://localstack:4566
+      - DATA_KEY_REQUEST_ID=alias/test_event_request_id
+      - META_DATA_CREATOR_URL=http://ms-drs-metadata-creator:9025/creator
+      - DRS_SUBMISSION_URL=https://ms-mock-drs-service:8888/drsDocumentUpload
+      - DRS_SUBMISSION_TRUSTSTORE_FILE=/opt/ms-drs-broker-service/drs-test-cert.ts
+      - DRS_SUBMISSION_TRUSTSTORE_PASS=password
+      - SERVICE_NAME=DS1500
+      - PDF_GENERATOR_URL=http://ms-pdf-generator:9015/pdfGenerator/generateAsPdfForDrs
+      - DRS_MSG_SUBJECT=DS1500-Message
+      - QUEUE_NAME=ds1500-queue
+    expose:
+      - 9064
+    depends_on:
+      localstack:
+        condition: service_healthy
+    volumes:
+      - ./local-dev/mocks/mock-drs-service/drs-test-cert.ts:/opt/ms-drs-broker-service/drs-test-cert.ts
+    networks:
+      - test
+
+  ms-drs-metadata-creator:
+    image: ${METADATA_IMAGE}
+    expose:
+      - 9025
+    volumes:
+      - ./local-dev/ms-drs-metadata-creator/drstest.jks:/drstest.jks
+    networks:
+      - test
+
+  ms-mock-drs-service:
+    image: ${MOCK_DRS_IMAGE}
+    expose:
+      - 8888
+    volumes:
+      - ./local-dev/mocks/mock-drs-service/dev.yml:/config.yml
+      - ./local-dev/mocks/mock-drs-service/drs-test-cert.ks:/drs-test-cert.ks
+      - ./local-dev/mocks/mock-drs-service/drs-test-cert.ts:/drs-test-cert.ts
+      - ./local-dev/mocks/mock-drs-service/soap-output:/soap-output
+    networks:
+      - test
+
+  ms-serve-broker:
+    image: ${S_BROKER_IMAGE}
+    environment:
+      - SERVICE_LOOKUP_URL=http://ms-serve-lookup:9002/lookupService
+      - SERVER_APP_PORT=9876
+    expose:
+      - 9876
+    ports:
+      - 9876:9876
+    networks:
+      - test
+
+  ms-serve-lookup:
+    image: ${LOOKUP_IMAGE}
+    environment:
+      - SERVER_APP_PORT=9002
+    volumes:
+      - ./local-dev/ms-serve-lookup/services.json:/services.json
+      - ./local-dev/ms-serve-lookup/dev.yml:/config.yml
+    networks:
+      - test
+
+  ms-serve-nhs-auth:
+    image: ${AUTH_IMAGE}
+    environment:
+      - SERVER_APP_PORT=9000
+      - SSB_GATEWAY_URL=http://ms-serve-ssb-wrapper:9019/ssbRestWrapperService
+      - JWT_TOKEN_EXPIRATION_SECONDS=1800
+      - DS1500_SERVICE_DOMAIN=ms-serve-broker
+      - IDP_URL=http://ms-serve-broker:9876/authenticate/index.html
+    networks:
+      - test
+
+  ms-serve-ssb-wrapper:
+    image: ${SSB_IMAGE}
+    environment:
+      - SERVER_APP_PORT=9019
+      - SSB_SERVICE_URL=http://nhs-spine-ssb-mock:8080/saml/RoleAssertion
+    networks:
+      - test
+
+  ms-serve-mock-nhs-smartcard-frontend:
+    image: ${SC_IMAGE}
+    environment:
+      - SERVER_APP_PORT=9004
+    networks:
+      - test
+
+  nhs-spine-ssb-mock:
+    image: registry.gitlab.com/dwp/engineering/mock-service-api/${BRANCH_NAME:-develop}:latest
+    volumes:
+      - ./local-dev/mocks/nhs-spine-ssb/files:/home/wiremock/__files/data-adapter
+      - ./local-dev/mocks/nhs-spine-ssb/mappings:/home/wiremock/mappings/data-adapter
+    networks:
+      - test
+
+  chrome:
+    image: selenium/node-chrome:4.0.0-beta-2-20210319
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - test
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    ports:
+      - "6900:5900"
+    logging:
+      driver: none
+
+  selenium-hub:
+    image: selenium/hub:4.0.0-beta-2-20210319
+    container_name: selenium-hub
+    networks:
+      - test
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+    logging:
+      driver: none
+
+  ds1500-test-harness:
+    image: ${TEST_IMAGE_CONTAINER}
+    environment:
+      - TEST_RUNNER=TestRunner
+      - SELENIUM_URL=http://selenium-hub
+      - SELENIUM_PORT=4444
+      - JAVA_OPTS=-Dselenium.LOGGER.level=WARN
+      - DS1500_URI=${DS1500_URI}
+      - CUCUMBER_REPORTS=${PWD}/cucumber-reports
+      - MVN_SETTINGS_FILE_SAAS=$MVN_SETTINGS_FILE_SAAS
+      - SUITE_XML_FILE=src/test/resources/testng/remote/chrome.xml
+      - TEST_TAG=@happyPath @smoke
+    volumes:
+      - ./cucumber-reports:/usr/src/mymaven/cucumber-reports
+    networks:
+      - test
+    depends_on:
+      - selenium-hub
+      - ms-ds1500-frontend
+      - chrome

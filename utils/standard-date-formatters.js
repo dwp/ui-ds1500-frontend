@@ -1,27 +1,31 @@
-const moment = require('moment');
+const { DateTime } = require('luxon');
 
-function dateFieldToMoment (df) {
-  return moment.utc([df.yyyy, df.mm, df.dd].join('-'), 'YYYY-MM-DD'
+function dateFieldToLuxon (df) {
+  return DateTime.utc(parseInt(df.yyyy), parseInt(df.mm), parseInt(df.dd)
   )
 }
 
-function approximateDateFieldToMoment (df) {
-  return moment.utc([df.yyyy, df.mm, '01'].join('-'), 'YYYY-MM-DD'
+function approximateDateFieldToLuxon (df) {
+  return DateTime.utc(parseInt(df.yyyy), parseInt(df.mm), 1
   )
 }
 
-function formatDateObject (date, { locale = 'en' } = {}) {
+function formatDateObject (date, { locale = 'en-gb' } = {}) {
   if (
     Object.prototype.toString.call(date) === '[object Object]' &&
     'yyyy' in date &&
     'mm' in date &&
     'dd' in date
   ) {
-    return moment([
+    let month = Math.max(0, parseInt(date.mm, 10));
+    if (month === 0) {
+      month = 1;
+    }
+    return DateTime.utc(
       Math.max(0, parseInt(date.yyyy, 10)),
-      Math.max(0, parseInt(date.mm, 10) - 1),
+      month,
       Math.max(1, parseInt(date.dd, 10))
-    ]).locale(locale).format('D MMMM YYYY');
+    ).setLocale(locale).toLocaleString(DateTime.DATE_FULL);
   }
   return 'INVALID DATE OBJECT';
 }
@@ -32,11 +36,15 @@ function formatDateSummaryObject (date, { locale = 'en' } = {}) {
     'yyyy' in date &&
     'mm' in date
   ) {
-    return moment([
+    let month = Math.max(0, parseInt(date.mm, 10));
+    if (month === 0) {
+      month = 1;
+    }
+    return DateTime.utc(
       Math.max(0, parseInt(date.yyyy, 10)),
-      Math.max(0, parseInt(date.mm, 10) - 1),
+      month,
       1
-    ]).locale(locale).format('MMMM YYYY');
+    ).setLocale(locale).toLocaleString({ month: 'long', year: 'numeric' })
   }
   return 'INVALID DATE SUMMARY OBJECT';
 }
@@ -45,8 +53,8 @@ const isDateValue = (value) => !!(typeof value === 'object' && !!value.dd && !!v
 const isDateSummaryValue = (value) => !!(typeof value === 'object' && !!value.mm && !!value.yyyy)
 
 module.exports = {
-  dateFieldToMoment,
-  approximateDateFieldToMoment,
+  dateFieldToLuxon,
+  approximateDateFieldToLuxon,
   formatDateObject,
   formatDateSummaryObject,
   isDateValue,

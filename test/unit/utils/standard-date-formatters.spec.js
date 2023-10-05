@@ -1,32 +1,32 @@
 const chai = require('chai');
-const moment = require('moment');
+const { DateTime } = require('luxon');
 const expect = chai.expect;
-const { dateFieldToMoment, approximateDateFieldToMoment, isDateValue, isDateSummaryValue, formatDateObject, formatDateSummaryObject } = require('../../../utils/standard-date-formatters');
+const { dateFieldToLuxon, approximateDateFieldToLuxon, isDateValue, isDateSummaryValue, formatDateObject, formatDateSummaryObject } = require('../../../utils/standard-date-formatters');
 
 describe('dateUtils', () => {
   const validDate = {
-    yyyy: '2000', mm: '01', dd: '01'
+    yyyy: 2000, mm: 5, dd: 1
   }
 
   const validDateSummary = {
-    yyyy: '2000', mm: '01'
+    yyyy: 2000, mm: 6
   }
 
-  describe('dateFieldToMoment', () => {
+  describe('dateFieldToLuxon', () => {
     it('should return expected value', () => {
       const dateField = { ...validDate }
-      const expectedDate = moment.utc('2000-01-01')
-      expect(dateFieldToMoment(dateField).isSame(expectedDate)).to.equal(true)
+      const createdOnLuxon = DateTime.utc(2000, 5, 1);
+      expect(dateFieldToLuxon(dateField).equals(createdOnLuxon)).to.equal(true)
     })
   })
 
-  describe('approximateDateFieldToMoment', () => {
+  describe('approximateDateFieldToLuxon', () => {
     it('should return expected value', () => {
       const dateField = {
-        ...validDate, dd: '13'
+        ...validDate, dd: 13
       }
-      const expectedDate = moment.utc('2000-01-01')
-      expect(approximateDateFieldToMoment(dateField).isSame(expectedDate)).to.equal(true)
+      const expectedDate = DateTime.utc(2000, 5, 1);
+      expect(approximateDateFieldToLuxon(dateField).equals(expectedDate)).to.equal(true)
     })
   })
 
@@ -40,25 +40,25 @@ describe('dateUtils', () => {
     it('should return false if incorrect date structure', () => {
       const invalidDateField = { ...validDateSummary }
       const invalidDateField1 = {
-        dd: '01',
-        mm: '01'
+        dd: 1,
+        mm: 6
       }
 
       const invalidDateField2 = {
-        dd: '01'
+        dd: 1
       }
 
       const invalidDateField3 = {
-        mm: '01'
+        mm: 1
       }
 
       const invalidDateField4 = {
-        yyyy: '2000'
+        yyyy: 2000
       }
 
       const invalidDateField5 = {
-        dd: '01',
-        yyyy: '2000'
+        dd: 1,
+        yyyy: 2000
       }
 
       const invalidDateField6 = {}
@@ -112,7 +112,7 @@ describe('dateUtils', () => {
     it('should return dateString if valid date object', () => {
       const dateField = { ...validDate }
 
-      expect(formatDateObject(dateField)).to.equal('1 January 2000')
+      expect(formatDateObject(dateField)).to.equal('1 May 2000')
     })
 
     it('should return "INVALID DATE OBJECT" if invalid date object', () => {
@@ -124,9 +124,9 @@ describe('dateUtils', () => {
 
   describe('formatDateSummaryObject', () => {
     it('should return dateString if valid date summaryobject', () => {
-      const dateField = { ...validDate }
+      const dateField = { ...validDateSummary }
 
-      expect(formatDateObject(dateField)).to.equal('1 January 2000')
+      expect(formatDateSummaryObject(dateField)).to.equal('June 2000')
     })
 
     it('should return "INVALID DATE OBJECT" if invalid date object', () => {

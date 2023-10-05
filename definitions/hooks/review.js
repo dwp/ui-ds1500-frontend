@@ -107,7 +107,7 @@ const postvalidate = async (req, res, next) => {
       req.session.downloadContext = {
         ninoComplete: req.body.patientNino !== '',
         sessionid: encodeURIComponent(req.session.id),
-        appVersion: appVersion,
+        appVersion,
         showFeeForm: serviceData.declaration === 'General Practitioner' || serviceData.declaration === 'GMC registered consultant',
         transactionID: response.body.id,
         controllerUrl: serviceUrl,
@@ -120,7 +120,7 @@ const postvalidate = async (req, res, next) => {
       logger.error('Error in DS1500 Controller - ' + response.body);
       res.status(503).render('casa/errors/503', {
         sessionid: encodeURIComponent(req.session.id),
-        appVersion: appVersion
+        appVersion
       });
     }
   } catch (errors) {
@@ -128,14 +128,14 @@ const postvalidate = async (req, res, next) => {
       logger.error('Error submitting application to DS1500 Controller', errors.message);
       res.status(503).render('casa/errors/503', {
         sessionid: encodeURIComponent(req.session.id),
-        appVersion: appVersion
+        appVersion
       });
     } else {
       res.locals = {
         ...res.locals,
         sessionid: encodeURIComponent(req.session.id),
-        appVersion: appVersion,
-        formData: formData,
+        appVersion,
+        formData,
         formErrors: errors
       }
 

@@ -29,7 +29,7 @@ const createSummaryItem = function (options, fieldName) {
     actions: {
       items: [
         {
-          href: href,
+          href,
           text: t('review:block.changeLink'),
           visuallyHiddenText: t(`sr1:${fieldName}.label`).toLowerCase(),
           classes: 'govuk-link--no-visited-state'
