@@ -2,8 +2,9 @@ const { field, validators: r } = require('@dwp/govuk-casa');
 const { DateTime } = require('luxon');
 
 const { isValidPhoneNumber, isValidPatientName, hasValidWords, hasValidWordsPatientName, hasValidWordsRepresentativeDetails } = require('../../lib/validation-rules/sr1');
-const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../lib/validation-rules/sr1DateOfBirth')
-const { isEmptyDateOfDiagnosis, isDateNumeric, isValidDateRange, isDateOfDiagnosisInFuture, isDateBeforeDoB } = require('../../lib/validation-rules/sr1DateOfDiagnosis')
+const { isEmptyDateOfBirth, isDateNumericDob, isValidDateRangeDob, isTooLongDob } = require('../../lib/validation-rules/sr1DateOfBirth');
+const { isEmptyDateOfDiagnosis, isDateNumeric, isValidDateRange, isDateOfDiagnosisInFuture, isDateBeforeDoB } = require('../../lib/validation-rules/sr1DateOfDiagnosis');
+const { isEmptyDateOfSpecialRules, isDateNumericSr, isValidDateRangeSr, isDateOfSpecialRulesInFuture, isDateBeforeDateOfDiagnosis } = require('../../lib/validation-rules/sr1DateOfSpecialRules');
 const { VALID_POSTCODE } = require('../../lib/constants')
 
 module.exports = () => [
@@ -132,6 +133,36 @@ module.exports = () => [
     {
       name: 'isDateBeforeDoB',
       validate: isDateBeforeDoB
+    },
+    r.dateObject.make({
+      allowSingleDigitDay: true,
+      allowSingleDigitMonth: true,
+      errorMsg: {
+        summary: 'sr1:dateOfDiagnosis.invalid',
+        focusSuffix: '[dd]'
+      }
+    })
+  ]),
+  field('dateOfSpecialRules').validators([
+    {
+      name: 'isEmptyDateOfSpecialRules',
+      validate: isEmptyDateOfSpecialRules
+    },
+    {
+      name: 'isDateNumericSr',
+      validate: isDateNumericSr
+    },
+    {
+      name: 'isValidDateRangeSr',
+      validate: isValidDateRangeSr
+    },
+    {
+      name: 'isDateOfSpecialRulesInFuture',
+      validate: isDateOfSpecialRulesInFuture
+    },
+    {
+      name: 'isDateBeforeDateOfDiagnosis',
+      validate: isDateBeforeDateOfDiagnosis
     }
   ]),
   field('otherDiagnoses', { optional: true }).validators([
@@ -144,6 +175,15 @@ module.exports = () => [
       errorMsgMax: 'sr1:otherDiagnoses.tooLong'
     })
   ]),
+  field('diagnosisAware').validators([
+    r.required.make({
+      errorMsg: 'sr1:diagnosisAware.empty'
+    }),
+    r.inArray.make({
+      source: ['Yes', 'No'],
+      errorMsg: 'sr1:diagnosisAware.empty'
+    })
+  ]),
   field('patientAware').validators([
     r.required.make({
       errorMsg: 'sr1:patientAware.empty'
@@ -151,15 +191,6 @@ module.exports = () => [
     r.inArray.make({
       source: ['Yes', 'No'],
       errorMsg: 'sr1:patientAware.empty'
-    })
-  ]),
-  field('formRequester').validators([
-    r.required.make({
-      errorMsg: 'sr1:formRequester.empty'
-    }),
-    r.inArray.make({
-      source: ['Patient', 'Representative'],
-      errorMsg: 'sr1:formRequester.empty'
     })
   ]),
   field('representativeName', { optional: true }).validators([
@@ -210,18 +241,8 @@ module.exports = () => [
       validate: hasValidWords
     },
     r.strlen.make({
-      max: 160,
+      max: 250,
       errorMsgMax: 'sr1:treatment.tooLong'
-    })
-  ]),
-  field('otherIntervention', { optional: true }).validators([
-    {
-      name: 'hasValidWords',
-      validate: hasValidWords
-    },
-    r.strlen.make({
-      max: 120,
-      errorMsgMax: 'sr1:otherIntervention.tooLong'
     })
   ]),
   field('declaration').validators([
@@ -307,6 +328,23 @@ module.exports = () => [
     {
       name: 'hasValidWords',
       validate: hasValidWords
+    }
+  ]),
+  field('gpPostcode').validators([
+    r.required.make({
+      errorMsg: 'sr1:gpPostcode.empty'
+    }),
+    r.strlen.make({
+      max: 8,
+      errorMsgMax: 'sr1:gpPostcode.tooLong'
+    }),
+    r.regex.make({
+      pattern: VALID_POSTCODE,
+      errorMsg: 'sr1:gpPostcode.invalid'
+    })
+  ]).processors([
+    (value) => {
+      return String(value).trim();
     }
   ]),
   field('gpPhone').validators([

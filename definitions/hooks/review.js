@@ -42,9 +42,10 @@ const prerender = (req, res, next) => {
     diagnosis: [
       'diagnosis',
       'dateOfDiagnosis',
+      'dateOfSpecialRules',
       'otherDiagnoses',
-      'patientAware',
-      'formRequester'
+      'diagnosisAware',
+      'patientAware'
     ],
     representative: [
       'representativeName',
@@ -55,8 +56,7 @@ const prerender = (req, res, next) => {
       'clinicalFeatures'
     ],
     treatment: [
-      'treatment',
-      'otherIntervention'
+      'treatment'
     ],
     referrer: [
       'declaration',
@@ -65,6 +65,7 @@ const prerender = (req, res, next) => {
       'gmcNumberConsultant',
       'gpName',
       'gpAddress',
+      'gpPostcode',
       'gpPhone'
     ]
   }
@@ -86,6 +87,27 @@ const prerender = (req, res, next) => {
     reviewSections[sectionName] = fieldNames.map(createSummaryItem.bind(this, createOptions))
   })
 
+  reviewSections.patientDetails[0].key.text = 'Name';
+  reviewSections.diagnosis[0].key.text = 'Diagnosis';
+  reviewSections.diagnosis[1].key.text = 'Date of diagnosis';
+  reviewSections.diagnosis[2].key.text = 'Date the patient met the Special Rules';
+  if (reviewSections.diagnosis[3]) {
+    reviewSections.diagnosis[3].key.text = 'Other relevant diagnoses';
+  }
+  reviewSections.diagnosis[4].key.text = 'Patient aware of diagnosis';
+  reviewSections.diagnosis[5].key.text = 'Patient aware of prognosis';
+  reviewSections.clinicalFeatures[0].key.text = 'Details of the clinical features';
+  reviewSections.treatment[0].key.text = 'Purpose of treatment and response';
+  reviewSections.referrer[0].key.text = 'Role';
+  if (reviewSections.referrer[2]) {
+    reviewSections.referrer[2].key.text = 'GMC number';
+  }
+  if (reviewSections.referrer[3]) {
+    reviewSections.referrer[3].key.text = 'GMC number';
+  }
+  reviewSections.referrer[4].key.text = 'Name';
+  reviewSections.referrer[5].key.text = 'Organisation’s address';
+  reviewSections.referrer[7].key.text = 'Phone number';
   res.locals = {
     ...res.locals,
     jData,

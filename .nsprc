@@ -1,2 +1,7 @@
 {
+  "1096460": {
+    "active": true,
+    "notes": "NPM IP package vulnerable to Server-Side Request"
+  }
+
 }

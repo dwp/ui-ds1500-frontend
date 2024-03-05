@@ -21,6 +21,9 @@
 {# set visibleErrorMessage #}
 {% if params.casaErrors[params.namePrefix] %}
 {% set visibleErrorMessage = t(params.casaErrors[params.namePrefix][0].inline, params.casaErrors[params.namePrefix][0].variables) %}
+{% elif params.casaErrors[params.namePrefix + '[dd]'] %}
+{% set visibleErrorKey = params.namePrefix + '[dd]' %}
+{% set visibleErrorMessage = t(params.casaErrors[params.namePrefix][0].inline, params.casaErrors[params.namePrefix][0].variables) %}
 {% elif params.casaErrors[params.namePrefix + '[mm]'] %}
 {% set visibleErrorKey = params.namePrefix + '[mm]' %}
 {% set visibleErrorMessage = t(params.casaErrors[visibleErrorKey][0].inline, params.casaErrors[visibleErrorKey][0].variables) %}
@@ -39,6 +42,14 @@
   namePrefix: '',
   attributes: mergedAttributes,
   items: [
+    mergeObjects({
+      label: t('macros:dateInput.day'),
+      classes: 'govuk-input--width-2 ' + (inputErrorClass if includes(fieldErrors[0].focusSuffix, '[dd]') or not hasSuffixHighlights)
+    }, params.items[0] if params.items[0] else {}, {
+      id: 'f-' + params.namePrefix + '[dd]',
+      name: params.namePrefix + '[dd]',
+      value: params.casaValue.dd
+    }),
     mergeObjects({
       label: t('macros:dateInput.month'),
       classes: 'govuk-input--width-2 ' + (inputErrorClass if includes(fieldErrors[0].focusSuffix, '[mm]') or not hasSuffixHighlights)
@@ -69,6 +80,10 @@
   {% set dateInputItems = mergedParams.items %}
 {% else %}
   {% set dateInputItems = [
+    {
+      name: "day",
+      classes: "govuk-input--width-2"
+    },
     {
       name: "month",
       classes: "govuk-input--width-2"

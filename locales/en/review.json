@@ -1,11 +1,11 @@
 {
-  "pageTitle": "Check your answers",
+  "pageTitle": "Check your answers before sending the SR1 form",
   "declaration": {
     "heading": "Declaration",
-    "p1": "You confirm that:",
+    "p1": "By sending this SR1 form, you confirm that:",
     "confirmation1": "the person named in this report is your patient",
     "confirmation2": "this is a full report of their condition and treatment",
-    "btn": "I agree - send the form"
-  },
-  "additionalGuidance": "<a class=\"govuk-link\" href=\"{{url}}\" target=\"_blank\">Guidance for the SR1 (opens in new tab)</a>"
+    "confirmation3": "you have read the guidance, and you are satisfied that the SR1 form is appropriate",
+    "btn": "I agree – send the form"
+  }
 }

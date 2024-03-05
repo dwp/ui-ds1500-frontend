@@ -52,6 +52,26 @@ describe('validation: gpAddress', function () {
   });
 });
 
+describe('validation: gpPostcode', function () {
+  it('should accept standard postcodes', function () {
+    browser.fill('gpPostcode', 'S8 0GA');
+    browser.pressButton(CONFIRM_BTN);
+    expect(browser.query('#gpPostcode-error li')).not.to.exist; // eslint-disable-line
+  });
+
+  it('should trigger error if invalid charaters are entered', function () {
+    browser.fill('gpPostcode', '!@#$%^&');
+    browser.pressButton(CONFIRM_BTN);
+    browser.assert.text('#gpPostcode-error .parsley-invalidcharacters', 'Contains invalid characters: $%&');
+  });
+
+  it('should reject postcodes longer than 8 characters', function () {
+    browser.fill('gpPostcode', '123456789');
+    browser.pressButton(CONFIRM_BTN);
+    browser.assert.text('#gpPostcode-error .parsley-maxlength', 'Representative postcode has a maximum length of 8 characters');
+  });
+});
+
 describe('validation: gpPhone', function () {
   it('should trigger error if left blank', function () {
     browser.fill('gpPhone', '');

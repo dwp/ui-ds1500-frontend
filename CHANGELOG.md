@@ -1,3 +1,17 @@
+<a name="2-1-0"></a>
+# 2-1-0 (2024-02-13)
+
+* feature: updates to review page ([3e3424d](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/3e3424d))
+* feature: updated flat images ([19b9253](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/19b9253))
+* feature: updates to sr1 page ([96d1af8](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/96d1af8))
+* feature: add postcode to org on sr1 ([2328f69](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/2328f69))
+* remove other intervention field ([6a5b223](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/6a5b223))
+* feature: specialist nurse updates ([9646e90](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/9646e90))
+* bug: form validation ([661534b](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/661534b))
+* bug: date of special rules ([b6004f6](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/b6004f6))
+* feature: update to GA4 ([6bb6bc1](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/6bb6bc1))
+
+
 <a name="2-0-1"></a>
 # 2-0-1 (2023-10-05)
 

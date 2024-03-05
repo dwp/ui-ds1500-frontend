@@ -6,7 +6,7 @@ function dateFieldToLuxon (df) {
 }
 
 function approximateDateFieldToLuxon (df) {
-  return DateTime.utc(parseInt(df.yyyy), parseInt(df.mm), 1
+  return DateTime.utc(parseInt(df.yyyy), parseInt(df.mm), parseInt(df.dd)
   )
 }
 

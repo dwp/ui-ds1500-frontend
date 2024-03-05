@@ -25,7 +25,7 @@ describe('dateUtils', () => {
       const dateField = {
         ...validDate, dd: 13
       }
-      const expectedDate = DateTime.utc(2000, 5, 1);
+      const expectedDate = DateTime.utc(2000, 5, 13);
       expect(approximateDateFieldToLuxon(dateField).equals(expectedDate)).to.equal(true)
     })
   })

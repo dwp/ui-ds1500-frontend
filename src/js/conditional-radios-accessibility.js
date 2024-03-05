@@ -6,20 +6,6 @@ function focusOnTextBox (id) {
 }
 
 window.onload = function () {
-  (function onLoad () {
-    function showReps () {
-      var radioValueRaw = document.querySelector('input[name="formRequester"]:checked');
-      if (radioValueRaw !== null) {
-        const radioValue = radioValueRaw.value;
-        if (radioValue === 'Representative') {
-          focusOnTextBox('f-representativeName')
-        }
-      }
-    }
-    document.getElementById('f-formRequester').addEventListener('click', showReps, false);
-    document.getElementById('f-formRequester-2').addEventListener('click', showReps, false);
-  })();
-
   (function onLoadDeclarations () {
     function showDeclaration () {
       var radioValueRaw = document.querySelector('input[name="declaration"]:checked');

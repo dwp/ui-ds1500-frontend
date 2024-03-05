@@ -1,5 +1,5 @@
 {# {% extends "casa/review/page-block.njk" %} #}
-{% extends "layouts/app-review.njk" %}
+{% extends "layouts/app-journey.njk" %}
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
@@ -39,14 +39,6 @@
     rows: reviewSections.diagnosis
   }) }}
 
-  {% if jData.formRequester != 'Patient' %}
-  <h2 class="govuk-heading-l">Representative</h2>
-  {{ govukSummaryList({
-    classes: "govuk-!-margin-bottom-9",
-    rows: reviewSections.representative
-  }) }}
-  {% endif %}
-
   <h2 class="govuk-heading-l">Clinical features</h2>
   {{ govukSummaryList({
     classes: "govuk-!-margin-bottom-9",
@@ -61,7 +53,7 @@
 
   <h2 class="govuk-heading-l">Your details</h2>
   {{ govukSummaryList({
-    classes: "govuk-!-margin-bottom-9",
+    classes: "govuk-!-margin-bottom-9 your-details",
     rows: reviewSections.referrer
   }) }}
 
@@ -72,6 +64,7 @@
     <ul class="govuk-list govuk-list--bullet">
       <li>{{ t('review:declaration.confirmation1') }}</li>
       <li>{{ t('review:declaration.confirmation2') }}</li>
+      <li>{{ t('review:declaration.confirmation3') }}</li>
     </ul>
   </div>
 
@@ -81,8 +74,4 @@
       type: 'submit'
     })
   }}
-
-{{ govukInsetText({
-    text: t('review:additionalGuidance', { url: '/additional-guidance' }) | safe
-}) }}
 {% endblock %}

@@ -13,15 +13,20 @@ describe('submission-service', () => {
 
   const validForm = {
     patientDateOfBirth: { ...validDate },
-    dateOfDiagnosis: { ...validDateSummary }
+    dateOfDiagnosis: { ...validDateSummary },
+    dateOfSpecialRules: { ...validDateSummary }
   }
 
   const expectedServiceData = {
     'patientDateOfBirth-day': validDate.dd,
     'patientDateOfBirth-month': validDate.mm,
     'patientDateOfBirth-year': validDate.yyyy,
+    'dateOfDiagnosis-day': validDateSummary.dd,
     'dateOfDiagnosis-month': validDateSummary.mm,
-    'dateOfDiagnosis-year': validDateSummary.yyyy
+    'dateOfDiagnosis-year': validDateSummary.yyyy,
+    'dateOfSpecialRules-day': validDateSummary.dd,
+    'dateOfSpecialRules-month': validDateSummary.mm,
+    'dateOfSpecialRules-year': validDateSummary.yyyy
   }
 
   const result = formatServiceData(validForm)
@@ -34,14 +39,13 @@ describe('submission-service', () => {
     expect(result).to.eql(expectedServiceData)
   })
 
-  it('should format data if provided declaration equals "Specialist nurse" then formats to "declaration:Other" and "declarationAdditionalDetail:Specialist nurse"', () => {
+  it('should not format data if provided declaration equals "Specialist nurse"', () => {
     const inputData = {
       declaration: 'Specialist nurse',
       ...validForm
     }
     const outputData = {
-      declaration: 'Other',
-      declarationAdditionalDetail: 'Specialist nurse',
+      declaration: 'Specialist nurse',
       ...expectedServiceData
     }
 

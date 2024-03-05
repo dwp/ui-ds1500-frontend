@@ -78,7 +78,7 @@ function addErrorMarkupRadio (qs) {
 $(function () {
   addErrorMarkup('input:not(".govuk-radios__input"), textarea')
   addErrorMarkupDate('#f-patientDateOfBirth\\[yyyy\\], #f-dateOfDiagnosis\\[yyyy\\]')
-  addErrorMarkupRadio('#f-patientAware, #f-formRequester, #f-declaration')
+  addErrorMarkupRadio('#f-patientAware, #f-declaration')
   $('input[name="declaration"]').on('change', function () {
     $('input[name="gmcNumber"], input[name="declarationAdditionalDetail"]').val('1234567');
     // $('input[name="gmcNumber"]').parsley().validate();

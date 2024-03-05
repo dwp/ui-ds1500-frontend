@@ -5,7 +5,7 @@ const { JourneyContext } = require('@dwp/govuk-casa');
  * Expect a validator to fail.
  *
  * @param {array} fieldValidators List of validators to test
- * @param {string} fieldName Name of field to vextract from page data context
+ * @param {string} fieldName Name of field to extract from page data context
  * @param {string} validatorName Validator expected to have failed in errors
  * @param {mixed} values values you actually want to test, in the form {fieldName:value,...}
  * @param {mixed} validationContext Value to pass into runValidators to trigger validation fail
@@ -38,7 +38,7 @@ async function expectValidatorToFailWithJourney (
  * @param {array} fieldValidators List of validators to test
  * @param {string} fieldName Name of field to vextract from page data context
  * @param {string} validatorName Validator expected to have failed in errors
- * @param {mixed} values these are the values you actually want to test, in the form {fieldName:value,...}
+ * @param {{dd: string, mm: string, yyyy: string}} values these are the values you actually want to test, in the form {fieldName:value,...}
  * @param {{}} pageDataContext Value to pass into processor to trigger validation fail
  * @param {object} errorObj Expected partial error object to be returned
  * @returns {Promise} Pending processor

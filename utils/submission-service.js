@@ -1,5 +1,3 @@
-const { SPECIALIST_NURSE } = require('../lib/constants')
-
 const formatServiceData = (submissionData) => {
   const serviceData = { ...submissionData }
   // translate dates to how the controller is expecting
@@ -9,20 +7,21 @@ const formatServiceData = (submissionData) => {
     serviceData['patientDateOfBirth-year'] = serviceData.patientDateOfBirth.yyyy;
     delete serviceData.patientDateOfBirth;
 
+    serviceData['dateOfDiagnosis-day'] = serviceData.dateOfDiagnosis.dd;
     serviceData['dateOfDiagnosis-month'] = serviceData.dateOfDiagnosis.mm;
     serviceData['dateOfDiagnosis-year'] = serviceData.dateOfDiagnosis.yyyy;
     delete serviceData.dateOfDiagnosis;
+
+    serviceData['dateOfSpecialRules-day'] = serviceData.dateOfSpecialRules.dd;
+    serviceData['dateOfSpecialRules-month'] = serviceData.dateOfSpecialRules.mm;
+    serviceData['dateOfSpecialRules-year'] = serviceData.dateOfSpecialRules.yyyy;
+    delete serviceData.dateOfSpecialRules;
     const hasGmcNumberProperty = Object.prototype.hasOwnProperty.call(serviceData, 'gmcNumberConsultant');
 
     if (hasGmcNumberProperty) {
       serviceData.gmcNumber = serviceData.gmcNumberConsultant
     }
     delete serviceData.gmcNumberConsultant;
-
-    if (serviceData.declaration === SPECIALIST_NURSE) {
-      serviceData.declaration = 'Other'
-      serviceData.declarationAdditionalDetail = SPECIALIST_NURSE
-    }
   } catch (err) {
     console.error(err)
     throw new Error(`formatServiceData error: ${submissionData}`)

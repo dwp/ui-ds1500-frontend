@@ -2,12 +2,12 @@ const chai = require('chai');
 const expect = chai.expect;
 const sinon = require('sinon');
 const {
-  isEmptyDateOfDiagnosis,
-  isDateNumeric,
-  isValidDateRange,
-  isDateOfDiagnosisInFuture,
-  isDateBeforeDoB
-} = require('../../../../lib/validation-rules/sr1DateOfDiagnosis');
+  isEmptyDateOfSpecialRules,
+  isDateNumericSr,
+  isValidDateRangeSr,
+  isDateOfSpecialRulesInFuture,
+  isDateBeforeDateOfDiagnosis
+} = require('../../../../lib/validation-rules/sr1DateOfSpecialRules');
 
 const expectedErrorMsg = (fieldName, errKey, focusSfx = []) => {
   return [{
@@ -23,82 +23,82 @@ const expectedErrorMsg = (fieldName, errKey, focusSfx = []) => {
   }]
 }
 
-describe('sr1 validations: Date of Diagnosis', () => {
-  let dataContext = { fieldName: 'dateOfDiagnosis' }
-  describe('isEmptyDateOfDiagnosis', () => {
+describe('sr1 validations: Date of SpecialRules', () => {
+  let dataContext = { fieldName: 'dateOfSpecialRules' }
+  describe('isEmptyDateOfSpecialRules', () => {
     it('should throw error message if DD, MM and YYYY are empty', () => {
       const fieldValue = { dd: '', mm: '', yyyy: '' };
-      return expect(isEmptyDateOfDiagnosis(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'empty', ['[dd]', '[mm]', '[yyyy]']))
+      return expect(isEmptyDateOfSpecialRules(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'empty', ['[dd]', '[mm]', '[yyyy]']))
     })
     it('should throw error message if DD is empty', () => {
-      dataContext = { fieldName: 'dateOfDiagnosis[dd]' }
+      dataContext = { fieldName: 'dateOfSpecialRules[dd]' }
       const fieldValue = { dd: '', mm: '12', yyyy: '2020' };
-      return expect(isEmptyDateOfDiagnosis(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'empty', '[dd]'))
+      return expect(isEmptyDateOfSpecialRules(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'empty', '[dd]'))
     })
     it('should throw error message if MM is empty', () => {
-      dataContext = { fieldName: 'dateOfDiagnosis[mm]' }
+      dataContext = { fieldName: 'dateOfSpecialRules[mm]' }
       const fieldValue = { dd: '01', mm: '', yyyy: '2020' };
-      return expect(isEmptyDateOfDiagnosis(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'empty', '[mm]'))
+      return expect(isEmptyDateOfSpecialRules(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'empty', '[mm]'))
     })
     it('should throw error message if YYYY is empty', () => {
-      dataContext = { fieldName: 'dateOfDiagnosis[yyyy]' }
+      dataContext = { fieldName: 'dateOfSpecialRules[yyyy]' }
       const fieldValue = { dd: '01', mm: '12', yyyy: '' };
-      return expect(isEmptyDateOfDiagnosis(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'empty', '[yyyy]'))
+      return expect(isEmptyDateOfSpecialRules(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'empty', '[yyyy]'))
     })
     it('should not throw error message if DD, MM and YYYY are provided', () => {
       const fieldValue = { dd: '01', mm: '12', yyyy: '2020' };
-      return expect(isEmptyDateOfDiagnosis(fieldValue)).to.eql([])
+      return expect(isEmptyDateOfSpecialRules(fieldValue)).to.eql([])
     })
   })
 
-  describe('isDateNumeric', () => {
+  describe('isDateNumericSr', () => {
     it('should throw error message if DD, MM and YYYY are all non numeric', () => {
-      dataContext = { fieldName: 'dateOfDiagnosis' }
+      dataContext = { fieldName: 'dateOfSpecialRules' }
       const fieldValue = { dd: '1a', mm: '12c', yyyy: '20-20' };
-      return expect(isDateNumeric(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'isNumeric', ['[dd]', '[mm]', '[yyyy]']))
+      return expect(isDateNumericSr(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'isNumeric', ['[dd]', '[mm]', '[yyyy]']))
     })
     it('should throw error message if MM is non numeric', () => {
       const fieldValue = { dd: '01', mm: '12c', yyyy: '2020' };
-      return expect(isDateNumeric(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'isNumeric', '[mm]'))
+      return expect(isDateNumericSr(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'isNumeric', '[mm]'))
     })
     it('should throw error message if YYYY is non numeric', () => {
       const fieldValue = { dd: '01', mm: '12', yyyy: '20-20' };
-      return expect(isDateNumeric(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'isNumeric', '[yyyy]'))
+      return expect(isDateNumericSr(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'isNumeric', '[yyyy]'))
     })
     it('should not throw error message if DD, MM and YYYY are all numeric', () => {
       const fieldValue = { dd: '01', mm: '12', yyyy: '2020' };
-      return expect(isDateNumeric(fieldValue)).to.eql([])
+      return expect(isDateNumericSr(fieldValue)).to.eql([])
     })
   })
 
-  describe('isValidDateRange', () => {
+  describe('isValidDateRangeSr', () => {
     it('should throw error message if DD, MM and YYYY are not in range', () => {
       const fieldValue = { dd: '40', mm: '13', yyyy: '1888' };
-      return expect(isValidDateRange(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'range', ['[dd]', '[mm]', '[yyyy]']))
+      return expect(isValidDateRangeSr(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'range', ['[dd]', '[mm]', '[yyyy]']))
     })
     it('should throw error message if DD is not in range[1-31]', () => {
-      dataContext = { fieldName: 'dateOfDiagnosis[dd]' }
+      dataContext = { fieldName: 'dateOfSpecialRules[dd]' }
       const fieldValue = { dd: '40', mm: '12', yyyy: '2020' };
-      return expect(isValidDateRange(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'range', '[dd]'))
+      return expect(isValidDateRangeSr(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'range', '[dd]'))
     })
     it('should throw error message if MM is not in range[1-12]', () => {
-      dataContext = { fieldName: 'dateOfDiagnosis[mm]' }
+      dataContext = { fieldName: 'dateOfSpecialRules[mm]' }
       const fieldValue = { dd: '01', mm: '14', yyyy: '2020' };
-      return expect(isValidDateRange(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'range', '[mm]'))
+      return expect(isValidDateRangeSr(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'range', '[mm]'))
     })
     it('should throw error message if YYYY is non in range[1890-present]', () => {
-      dataContext = { fieldName: 'dateOfDiagnosis[yyyy]' }
+      dataContext = { fieldName: 'dateOfSpecialRules[yyyy]' }
       const year = new Date().getFullYear() + 1
       const fieldValue = { dd: '01', mm: '10', yyyy: year };
-      return expect(isValidDateRange(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'range', '[yyyy]'))
+      return expect(isValidDateRangeSr(fieldValue)).to.eql(expectedErrorMsg(dataContext.fieldName, 'range', '[yyyy]'))
     })
     it('should not throw error message if DD, MM and YYYY are in range', () => {
       const fieldValue = { dd: '01', mm: '12', yyyy: '2020' };
-      return expect(isValidDateRange(fieldValue)).to.eql([])
+      return expect(isValidDateRangeSr(fieldValue)).to.eql([])
     })
   })
 
-  describe('isDateOfDiagnosisInFuture', () => {
+  describe('isDateOfSpecialRulesInFuture', () => {
     let clock;
     beforeEach(() => {
       // stub date to 01/01/2020
@@ -111,22 +111,22 @@ describe('sr1 validations: Date of Diagnosis', () => {
 
     it('should not throw error message if DD, MM and YYYY are in range', () => {
       const fieldValue = { dd: '01', mm: '01', yyyy: '2020' };
-      return expect(isDateOfDiagnosisInFuture(fieldValue)).to.eql([])
+      return expect(isDateOfSpecialRulesInFuture(fieldValue)).to.eql([])
     })
   })
 
-  describe('isDateBeforeDoB', () => {
-    it('should throw error message if dateOfDiagnosis is before dateOfBirth', () => {
-      const dateOfDiagnosis = { dd: '01', mm: '10', yyyy: '2010' }
+  describe('isDateBeforeDateOfDiagnosis', () => {
+    it('should throw error message if dateOfSpecialRules is before dateOfDiagnosis', () => {
+      const dateOfSpecialRules = { dd: '01', mm: '10', yyyy: '2010' }
       dataContext = {
         waypoint: 'testPage',
-        fieldName: 'dateOfDiagnosis',
+        fieldName: 'dateOfSpecialRules',
         journeyContext: {
           getDataForPage: function (waypoint) {
             return this[waypoint]
           },
           testPage: {
-            patientDateOfBirth: {
+            dateOfDiagnosis: {
               dd: '01',
               mm: '01',
               yyyy: '2012'
@@ -134,20 +134,20 @@ describe('sr1 validations: Date of Diagnosis', () => {
           }
         }
       }
-      return expect(isDateBeforeDoB(dateOfDiagnosis, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'beforeDob', ['[dd]', '[mm]', '[yyyy]']))
+      return expect(isDateBeforeDateOfDiagnosis(dateOfSpecialRules, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'beforeDob', ['[dd]', '[mm]', '[yyyy]']))
     })
 
-    it('should throw error message if dateOfDiagnosis is before "01 2001" when dateOfBirth is empty', () => {
-      const dateOfDiagnosis = { dd: '01', mm: '10', yyyy: '2000' }
+    it('should throw error message if dateOfSpecialRules is before "01 2001" when dateOfDiagnosis is empty', () => {
+      const dateOfSpecialRules = { dd: '01', mm: '10', yyyy: '2000' }
       dataContext = {
         waypointId: 'testPage',
-        fieldName: 'dateOfBirth',
+        fieldName: 'dateOfSpecialRules',
         journeyContext: {
           getDataForPage: function () {
             return this.testPage
           },
           testPage: {
-            patientDateOfBirth: {
+            dateOfDiagnosis: {
               dd: '',
               mm: '',
               yyyy: ''
@@ -155,20 +155,20 @@ describe('sr1 validations: Date of Diagnosis', () => {
           }
         }
       }
-      return expect(isDateBeforeDoB(dateOfDiagnosis, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'beforeDob', ['[dd]', '[mm]', '[yyyy]']))
+      return expect(isDateBeforeDateOfDiagnosis(dateOfSpecialRules, dataContext)).to.eql(expectedErrorMsg(dataContext.fieldName, 'beforeDob', ['[dd]', '[mm]', '[yyyy]']))
     })
 
-    it('should not throw error message if dateOfDiagnosis is after dateOfBirth', () => {
-      const dateOfDiagnosis = { dd: '01', mm: '10', yyyy: '2020' }
+    it('should not throw error message if dateOfSpecialRules is after dateOfDiagnosis', () => {
+      const dateOfSpecialRules = { dd: '01', mm: '10', yyyy: '2020' }
       dataContext = {
         waypointId: 'testPage',
-        fieldName: 'dateOfBirth',
+        fieldName: 'dateOfSpecialRules',
         journeyContext: {
           getDataForPage: function () {
             return this.testPage
           },
           testPage: {
-            patientDateOfBirth: {
+            dateOfDiagnosis: {
               dd: '01',
               mm: '01',
               yyyy: '2012'
@@ -176,20 +176,20 @@ describe('sr1 validations: Date of Diagnosis', () => {
           }
         }
       }
-      return expect(isDateBeforeDoB(dateOfDiagnosis, dataContext)).to.eql([])
+      return expect(isDateBeforeDateOfDiagnosis(dateOfSpecialRules, dataContext)).to.eql([])
     })
 
-    it('should not throw error message if dateOfDiagnosis is same as dateOfBirth', () => {
-      const dateOfDiagnosis = { dd: '13', mm: '01', yyyy: '2012' }
+    it('should not throw error message if dateOfSpecialRules is same as dateOfDiagnosis', () => {
+      const dateOfSpecialRules = { dd: '13', mm: '01', yyyy: '2012' }
       dataContext = {
         waypointId: 'testPage',
-        fieldName: 'dateOfBirth',
+        fieldName: 'dateOfSpecialRules',
         journeyContext: {
           getDataForPage: function () {
             return this.testPage
           },
           testPage: {
-            patientDateOfBirth: {
+            dateOfDiagnosis: {
               dd: '13',
               mm: '01',
               yyyy: '2012'
@@ -197,20 +197,20 @@ describe('sr1 validations: Date of Diagnosis', () => {
           }
         }
       }
-      return expect(isDateBeforeDoB(dateOfDiagnosis, dataContext)).to.eql([])
+      return expect(isDateBeforeDateOfDiagnosis(dateOfSpecialRules, dataContext)).to.eql([])
     })
 
-    it('should not throw error message if dateOfDiagnosis is after "01 01 2001" when dateOfBirth is empty', () => {
-      const dateOfDiagnosis = { dd: '01', mm: '10', yyyy: '2020' }
+    it('should not throw error message if dateOfSpecialRules is after "01 01 2001" when dateOfDiagnosis is empty', () => {
+      const dateOfSpecialRules = { dd: '01', mm: '10', yyyy: '2020' }
       dataContext = {
         waypointId: 'testPage',
-        fieldName: 'dateOfBirth',
+        fieldName: 'dateOfSpecialRules',
         journeyContext: {
           getDataForPage: function () {
             return this.testPage
           },
           testPage: {
-            patientDateOfBirth: {
+            dateOfDiagnosis: {
               dd: '',
               mm: '',
               yyyy: ''
@@ -218,7 +218,7 @@ describe('sr1 validations: Date of Diagnosis', () => {
           }
         }
       }
-      return expect(isDateBeforeDoB(dateOfDiagnosis, dataContext)).to.eql([])
+      return expect(isDateBeforeDateOfDiagnosis(dateOfSpecialRules, dataContext)).to.eql([])
     })
-  })
+  });
 });

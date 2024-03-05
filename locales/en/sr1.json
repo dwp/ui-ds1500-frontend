@@ -2,7 +2,7 @@
   "pageTitle": "SR1 form",
   "pageHeader": "SR1 form",
   "patientDetailsHeader": "Patient details",
-  "p": "This page can't be saved. If you leave this page before pressing submit any changes you have made will be lost.",
+  "p": "This page can't be saved. If you leave this page before pressing submit, any changes you have made will be lost.",
   "globalErrorMsgs": {
     "wordTooLong":"Single words must be fewer than 59 characters"
   },
@@ -62,27 +62,33 @@
   },
   "patientNino": {
     "label": "National Insurance number",
-    "hint": "(This form is processed quicker if you have it)",
+    "hint": "This form is processed quicker if you have it.",
     "pattern": "National Insurance number is not a valid format",
     "invalid": "Enter a National Insurance number that is 2 letters, 6 numbers, then A, B, C or D, like QQ123456C"
   },
   "diagnosisHeading": "Diagnosis",
   "diagnosis": {
-    "label": "Include details of the patient’s main diagnosis, and any others that are relevant",
-    "empty": "Describe your patient's diagnosis",
+    "label": "What is the patient’s diagnosis?",
+    "empty": "Give details of your patient’s diagnosis",
     "tooLong": "Your patient's diagnosis has a maximum length of 126 characters",
     "invalid": "Contains invalid characters",
     "wordTooLong": "Diagnosis must contain words with fewer than 59 characters"
   },
   "dateOfDiagnosis": {
-    "label": "Date of diagnosis",
-    "hint": "For example, 3 2020",
+    "label": "What was the date of the patient's diagnosis?",
+    "hint": "<p class=\"govuk-hint\">If you do not know the exact date, you can use the first of the month.</p><p class=\"govuk-hint\">For example, 27 3 2020</p>",
     "empty": "Enter your patient's date of diagnosis",
+    "empty[MMYY]":"Your patient's date of diagnosis must include a month and a year",
+    "empty[DDYY]":"Your patient's date of diagnosis must include a day and a year",
+    "empty[DDMM]":"Your patient's date of diagnosis must include a day and month",
     "future": "Patient's date of diagnosis must be in the past",
     "beforeDob": "Patient's date of diagnosis must be between date of birth and today",
     "invalid": "Patient's date of diagnosis must be a real date",
     "isNumeric": "Date of diagnosis should contain only numbers 0-9. Please avoid any hyphens, slashes or spaces",
-    "range": "Month must be between 1-12, Year must be between 1890-present"
+    "range[DDMM]": "Day must be between 1-31, Month must be between 1-12",
+    "range[DDYY]": "Day must be between 1-31, Year must be between 1890-present",
+    "range[MMYY]": "Month must be between 1-12, Year must be between 1890-present",
+    "range": "Day must be between 1-31, Month must be between 1-12, Year must be between 1890-present"
   },
   "dateOfDiagnosis[dd]": {
     "empty": "Enter day of your patient's diagnosis",
@@ -96,23 +102,48 @@
     "empty": "Enter your patient's year of diagnosis",
     "range": "Year must be between 1890-present"
   },
+  "dateOfSpecialRules": {
+    "label": "What date did the patient meet the Special Rules?",
+    "hint": "<p class=\"govuk-hint\">This could be any date from the date of diagnosis to when you complete this SR1 form. If you do not know the exact date, use the first of the month.</p><p class=\"govuk-hint\">Providing this information will ensure your patient is paid from the correct date.</p><p class=\"govuk-hint\">For example, 27 3 2020</p>",
+    "empty": "Enter the date your patient met the Special Rules",
+    "empty[MMYY]":"The date your patient met the Special Rules must include a month and a year",
+    "empty[DDYY]":"The date your patient met the Special Rules must include a day and a year",
+    "empty[DDMM]":"The date your patient met the Special Rules must include a day and month",
+    "future": "The date your patient met the Special Rules must be in the past",
+    "beforeDob": "The date your patient met the Special Rules must be between date of diagnosis and today",
+    "invalid": "The date your patient met the Special Rules must be a real date",
+    "isNumeric": "The date your patient met the Special Rules should contain only numbers 0-9. Please avoid any hyphens, slashes or spaces",
+    "range[DDMM]": "Day must be between 1-31, Month must be between 1-12",
+    "range[DDYY]": "Day must be between 1-31, Year must be between 1890-present",
+    "range[MMYY]": "Month must be between 1-12, Year must be between 1890-present",
+    "range": "Day must be between 1-31, Month must be between 1-12, Year must be between 1890-present"
+  },
+  "dateOfSpecialRules[dd]": {
+    "empty": "Enter day your patient met the Special Rules",
+    "range": "Day must be between 1 and 31"
+  },
+  "dateOfSpecialRules[mm]": {
+    "empty": "Enter month your patient met the Special Rules",
+    "range": "Month must be between 1 and 12"
+  },
+  "dateOfSpecialRules[yyyy]": {
+    "empty": "Enter year your patient met the Special Rules",
+    "range": "Year must be between 1890-present"
+  },
   "otherDiagnoses": {
-    "label": "Other relevant diagnoses? (optional)",
+    "label": "Other relevant diagnoses?",
+    "hint": "<p class=\"govuk-hint\">Include other relevant diagnoses (optional)</p>",
     "wordTooLong": "Other relevant diagnoses must contain words with fewer than 59 characters",
     "tooLong": "Other relevant diagnoses has a maximum length of 132 characters",
     "invalid": "Contains invalid characters"
   },
+  "diagnosisAware": {
+    "label": "Is the patient aware of their diagnosis?",
+    "empty": "Indicate whether or not your patient is aware of their diagnosis"
+  },
   "patientAware": {
     "label": "Is the patient aware of their prognosis?",
-    "empty": "Select if your patient is aware of their condition"
-  },
-  "formRequester": {
-    "label": "Who asked you to complete this form?",
-    "empty": "Select who asked you to complete this form",
-    "options": {
-      "patient": "Patient",
-      "representative": "Representative"
-    }
+    "empty": "Indicate whether or not your patient is aware of their prognosis"
   },
   "repDetailsHeading": "Representative details",
   "representativeName": {
@@ -135,27 +166,20 @@
   "clinicalFeatures": {
     "label": "Give details of the clinical features that indicate a severe progressive condition.",
     "labelAria": "Enter a description of clinical features",
-    "hint": "For example: the rate of progression, recurrence, staging, tumour markers, CD4 count and viral load, bulbar involvement, respiratory problems, heart failure.",
-    "empty": "Describe the clinical features",
+    "hint": "For example, rate of progression, recurrence, staging, tumour markers, bulbar involvement, end-stage disease.",
+    "empty": "Describe your patient’s clinical features",
     "tooLong": "Clinical features has a maximum length of 236 characters",
     "invalid": "Contains invalid characters",
     "wordTooLong": "Clinical features must contain words with fewer than 59 characters"
   },
   "treatmentHeading": "Treatment",
   "treatment": {
-    "label": "Give details of treatments",
-    "hint": "Including the dates and the patient's response to the treatment.",
-    "empty": "Describe your patient's treatment",
-    "tooLong": "Treatment details has a maximum length of 160 characters",
+    "label": "Tell us about the purpose of any treatment and the response",
+    "hint": "For example, treatment may be ongoing, palliative, symptom control, or psychosocial.",
+    "empty": "Tell us about your patient’s treatment",
+    "tooLong": "Treatment details has a maximum length of 250 characters",
     "invalid": "Contains invalid characters",
     "wordTooLong": "Treatment must contain words with fewer than 59 characters"
-  },
-  "otherIntervention": {
-    "label": "Give details of planned future treatments or interventions",
-    "hint": "Including if the planned treatments or interventions could significantly change the progression of the patient's condition.",
-    "tooLong": "Intervention and planned treatment has a maximum length of 120 characters",
-    "invalid": "Contains invalid characters",
-    "wordTooLong": "Other interventions must contain words with fewer than 59 characters"
   },
   "yourDetailsHeading": "Your details",
   "declaration": {
@@ -195,11 +219,18 @@
     "wordTooLong": "Names must be fewer than 59 characters"
   },
   "gpAddress": {
-    "label": "Your Trust address",
-    "hint": "If you are not a part of a Trust, this could be your Clinical Commissioning Group (CCG), Primary Care Trust (PCT) or surgery.",
-    "empty": "Enter your trust address",
+    "label": "What is your organisation's address?",
+    "hint": "This could be your Trust, Clinical Commissioning Group or surgery.",
+    "empty": "Enter your organisation’s address",
     "invalid": "Contains invalid characters",
     "wordTooLong": "Your address must contain words with fewer than 59 characters"
+  },
+  "gpPostcode": {
+    "label": "Postcode",
+    "empty": "Enter your organisation’s postcode",
+    "tooLong": "Your Trust's postcode has a maximum length of 8 characters. Please only include alphabetical and numeric characters and avoid spaces and hyphens",
+    "invalid": "Enter a real postcode",
+    "invalidChars": "Contains invalid characters"
   },
   "gpPhone": {
     "label": "Your phone number",

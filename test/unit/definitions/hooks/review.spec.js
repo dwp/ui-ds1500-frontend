@@ -41,7 +41,18 @@ describe('Hooks: review', () => {
           patientName: 'test',
           patientAddress: 'test',
           patientDateOfBirth: { dd: '1', mm: '1', yyyy: '2001' },
-          dateOfDiagnosis: { dd: '1', mm: '1', yyyy: '2011' }
+          diagnosis: 'test',
+          dateOfDiagnosis: { dd: '1', mm: '1', yyyy: '2011' },
+          dateOfSpecialRules: { dd: '1', mm: '1', yyyy: '2012' },
+          diagnosisAware: 'test',
+          patientAware: 'test',
+          clinicalFeatures: 'test',
+          treatment: 'test',
+          declaration: 'test',
+          gmcNumber: 123,
+          gpName: 'test',
+          gpAddress: 'test',
+          gpPhone: 'test'
         }
       });
 
@@ -53,7 +64,18 @@ describe('Hooks: review', () => {
         patientName: 'test',
         patientAddress: 'test',
         patientDateOfBirth: { dd: '1', mm: '1', yyyy: '2001' },
-        dateOfDiagnosis: { dd: '1', mm: '1', yyyy: '2011' }
+        diagnosis: 'test',
+        dateOfDiagnosis: { dd: '1', mm: '1', yyyy: '2011' },
+        dateOfSpecialRules: { dd: '1', mm: '1', yyyy: '2012' },
+        diagnosisAware: 'test',
+        patientAware: 'test',
+        clinicalFeatures: 'test',
+        treatment: 'test',
+        declaration: 'test',
+        gmcNumber: 123,
+        gpName: 'test',
+        gpAddress: 'test',
+        gpPhone: 'test'
       });
     });
 
@@ -63,7 +85,18 @@ describe('Hooks: review', () => {
           patientName: 'test',
           patientAddress: 'test',
           patientDateOfBirth: { dd: '1', mm: '1', yyyy: '2001' },
-          dateOfDiagnosis: { dd: '1', mm: '1', yyyy: '2011' }
+          diagnosis: 'test',
+          dateOfDiagnosis: { dd: '1', mm: '1', yyyy: '2011' },
+          dateOfSpecialRules: { dd: '1', mm: '1', yyyy: '2012' },
+          diagnosisAware: 'test',
+          patientAware: 'test',
+          clinicalFeatures: 'test',
+          treatment: 'test',
+          declaration: 'test',
+          gmcNumber: 123,
+          gpName: 'test',
+          gpAddress: 'test',
+          gpPhone: 'test'
         }
       });
       const res = new Response(req);
@@ -80,7 +113,8 @@ describe('Hooks: review', () => {
           patientName: 'test',
           patientAddress: 'test',
           patientDateOfBirth: { dd: '1', mm: '1', yyyy: '2001' },
-          dateOfDiagnosis: { dd: '1', mm: '1', yyyy: '2011' }
+          dateOfDiagnosis: { dd: '1', mm: '1', yyyy: '2011' },
+          dateOfSpecialRules: { dd: '1', mm: '1', yyyy: '2012' }
         }
       });
       const res = new Response(req);

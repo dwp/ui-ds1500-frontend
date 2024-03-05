@@ -200,12 +200,13 @@
     }) }}
 
     {# {{ dateInput('dateOfDiagnosis', formData, formErrors) }} #}
+    
     {{ govukDateInputApprox({
       id: 'dateOfDiagnosis',
       name: 'dateOfDiagnosis',
       namePrefix: 'dateOfDiagnosis',
       hint: {
-        text: t('sr1:dateOfDiagnosis.hint')
+        html: t('sr1:dateOfDiagnosis.hint')
       },
       fieldset: {
         legend: {
@@ -218,15 +219,61 @@
       casaErrors: formErrors
     }) }}
 
+    {{ govukDateInputApprox({
+      id: 'dateOfSpecialRules',
+      name: 'dateOfSpecialRules',
+      namePrefix: 'dateOfSpecialRules',
+      hint: {
+        html: t('sr1:dateOfSpecialRules.hint')
+      },
+      fieldset: {
+        legend: {
+          text: t('sr1:dateOfSpecialRules.label'),
+          classes: "govuk-label--m"
+        }
+      },
+      casaValue: formData.dateOfSpecialRules,
+      classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
     {{ casaGovukCharacterCount({
       name: 'otherDiagnoses',
       maxlength: 132,
+      hint: {
+        html: t('sr1:otherDiagnoses.hint')
+      },
       value: formData.otherDiagnoses,
       label: {
         classes: "govuk-label--m",
         text: t('sr1:otherDiagnoses.label')
       },
       classes: "govuk-!-width-two-thirds",
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukRadios({
+      name: 'diagnosisAware',
+      casaValue: formData.diagnosisAware,
+      fieldset: {
+        legend: {
+          classes: "govuk-label--m",
+          text: t('sr1:diagnosisAware.label')
+        }
+      },
+      items: [
+        {text: 'Yes', value: t('common:yes')},
+        {text: 'No', value: t('common:no')}
+      ],
+      attributes: {
+        'data-parsley-multiple':"diagnosisAware",
+        'data-parsley-required':"true",
+        'data-parsley-required-message': t('sr1:diagnosisAware.empty'),
+        'data-parsley-class-handler':"#diagnosisAware-group",
+        'data-parsley-errors-container':"#diagnosisAware-error",
+        'data-parsley-trigger':"focusout"
+      },
+      classes: "govuk-!-width-two-thirds govuk-radios--inline",
       casaErrors: formErrors
     }) }}
 
@@ -313,40 +360,6 @@
       casaErrors: formErrors
     }) }}
     {% endset %}
-
-    {{ casaGovukRadios({
-      name: 'formRequester',
-      casaValue: formData.formRequester,
-      attributes: {
-        'data-parsley-multiple':"formRequester",
-        'data-parsley-required':"true",
-        'data-parsley-required-message': t('sr1:formRequester.empty'),
-        'data-parsley-class-handler':"#formRequester-group",
-        'data-parsley-errors-container':"#formRequester-error",
-        'data-parsley-trigger':"focusout"
-      },
-      fieldset: {
-        legend: {
-          classes: "govuk-label--m",
-          text: t('sr1:formRequester.label')
-        }
-      },
-      items: [
-        {
-          text: 'Patient',
-          value: t('sr1:formRequester.options.patient')
-        },
-        {
-          text: 'Representative',
-          value: t('sr1:formRequester.options.representative'),
-          conditional: {
-            html: representativeFields
-          }
-          }
-      ],
-      classes: "govuk-!-width-two-thirds",
-      casaErrors: formErrors
-    }) }}
   </div>
 
   <h2 class="govuk-heading-l">{{ t('sr1:clinicalHeading') }}</h2>
@@ -383,7 +396,7 @@
   <div class="form-group">
     {{ casaGovukCharacterCount({
       name: 'treatment',
-      maxlength: 160,
+      maxlength: 250,
       value: formData.treatment,
       label: {
         classes: "govuk-label--m",
@@ -395,35 +408,12 @@
       attributes: {
         'data-parsley-required':"true",
         'data-parsley-required-message':t('sr1:treatment.empty'),
-        'data-parsley-maxlength':"160",
+        'data-parsley-maxlength':"250",
         'data-parsley-maxlength-message':t('sr1:treatment.tooLong'),
         'data-parsley-invalidcharacters':"treatment",
         'data-parsley-invalidcharacters-message':t('sr1:treatment.invalid'),
         'data-parsley-class-handler':"#treatment-group",
         'data-parsley-errors-container':"#treatment-error",
-        'data-parsley-trigger':"focusout keyup"
-      },
-      casaErrors: formErrors
-    }) }}
-
-    {{ casaGovukCharacterCount({
-      name: 'otherIntervention',
-      maxlength: 120,
-      value: formData.otherIntervention,
-      label: {
-        classes: "govuk-label--m",
-        text: t('sr1:otherIntervention.label')
-      },
-      hint: {
-          text: t('sr1:otherIntervention.hint')
-      },
-      attributes: {
-        'data-parsley-maxlength':"120",
-        'data-parsley-maxlength-message':t('sr1:otherIntervention.tooLong'),
-        'data-parsley-invalidcharacters':"otherIntervention",
-        'data-parsley-invalidcharacters-message': t('sr1:otherIntervention.invalid'),
-        'data-parsley-class-handler':"#otherIntervention-group",
-        'data-parsley-errors-container':"#otherIntervention-error",
         'data-parsley-trigger':"focusout keyup"
       },
       casaErrors: formErrors
@@ -616,6 +606,30 @@
         'data-parsley-errors-container':"#gpAddress-error",
         'data-parsley-trigger':"focusout keyup"
       },
+      casaErrors: formErrors
+    }) }}
+
+    {{ casaGovukInput({
+      name: 'gpPostcode',
+      value: formData.gpPostcode,
+      label: {
+        classes: "govuk-label--m",
+        text: t('sr1:gpPostcode.label')
+      },
+      attributes: {
+        'data-parsley-required':"true",
+        'data-parsley-required-message': t('sr1:gpPostcode.empty'),
+        'data-parsley-maxlength':"8",
+        'data-parsley-maxlength-message': t('sr1:gpPostcode.tooLong'),
+        'data-parsley-pattern':"/^(?![QVX])[A-Z]((?![IJZ])[A-Z][0-9](([0-9]?)|([ABEHMNPRVWXY]?))|([0-9]([0-9]?|[ABCDEFGHJKPSTUW]?))) ?[0-9]((?![CIKMOV])[A-Z]){2}$|^(BFPO)[ ]?[0-9]{1,4}$/i",
+        'data-parsley-pattern-message': t('sr1:gpPostcode.invalid'),
+        'data-parsley-invalidcharacters':"gpPostcode",
+        'data-parsley-invalidcharacters-message': t('sr1:gpPostcode.invalidChars'),
+        'data-parsley-class-handler':"#gpPostcode-group",
+        'data-parsley-errors-container':"#gpPostcode-error",
+        'data-parsley-trigger':"focusout"
+      },
+      classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors
     }) }}
 

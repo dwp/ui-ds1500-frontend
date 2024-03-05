@@ -185,14 +185,8 @@ $(function () {
   // initialise markup (add attributes to form-groups)
   addErrorMarkup('input:not(".govuk-radios__input"), textarea')
   addErrorMarkupDate('#f-patientDateOfBirth\\[yyyy\\], #f-dateOfDiagnosis\\[yyyy\\]')
-  addErrorMarkupRadio('#f-patientAware, #f-formRequester, #f-declaration')
+  addErrorMarkupRadio('#f-patientAware, #f-declaration')
   $('form').parsley();
-  $('input[name="formRequester"]').on('change', function () {
-    $('input[name="representativeName"], input[name="representativeAddress"], input[name="representativePostcode"]').val('');
-    $('input[name="representativeName"]').parsley().validate();
-    $('textarea[name="representativeAddress"]').parsley().validate();
-    $('input[name="representativePostcode"]').parsley().validate();
-  });
   // duplicated in validation-declaration.js
   // set validation for appropriate year fields
   var thisYear = new Date().getFullYear();
@@ -243,6 +237,7 @@ $(function () {
     return '<ul data-id="' + id + '"><li class="parsley-' + id + '">' + m + '</li></ul>';
   }
 
+  $('#f-dateOfDiagnosis\\[dd\\]').parsley().on('field:validated', checkDateErrors);
   $('#f-dateOfDiagnosis\\[mm\\]').parsley().on('field:validated', checkDateErrors);
   $('#f-dateOfDiagnosis\\[yyyy\\]').parsley().on('field:validated', checkDateErrors);
 
@@ -254,7 +249,8 @@ $(function () {
         var day = $('#f-patientDateOfBirth\\[dd\\]').val();
         var month = $('#f-patientDateOfBirth\\[mm\\]').val();
         var year = $('#f-patientDateOfBirth\\[yyyy\\]').val();
-        var diagMonth = $('#f-dateOfDiagnosis\\[dd\\]').val();
+        var diagDay = $('#f-dateOfDiagnosis\\[dd\\]').val();
+        var diagMonth = $('#f-dateOfDiagnosis\\[mm\\]').val();
         var diagYear = $('#f-dateOfDiagnosis\\[yyyy\\]').val();
 
         var errContainer = $('#dateOfDiagnosis-error');
@@ -279,6 +275,38 @@ $(function () {
         $('#dateOfDiagnosis-group').removeClass('parsley-success').addClass('parsley-error');
       } else {
         $('#dateOfDiagnosis-group').removeClass('parsley-error');
+      }
+    }, 0)
+  }
+
+  $('#f-dateOfSpecialRules\\[dd\\]').parsley().on('field:validated', checkDateErrors);
+  $('#f-dateOfSpecialRules\\[mm\\]').parsley().on('field:validated', checkDateErrors);
+  $('#f-dateOfSpecialRules\\[yyyy\\]').parsley().on('field:validated', checkDateErrors);
+
+  function checkDateErrors (e) {
+    setTimeout(function () {
+      $('[data-id="datefuture"]').remove();
+      if ($('#dateOfSpecialRules-error ul li').length === 0) {
+        var srDay = $('#f-dateOfSpecialRules\\[dd\\]').val();
+        var srMonth = $('#f-dateOfSpecialRules\\[mm\\]').val();
+        var srYear = $('#f-dateOfSpecialRules\\[yyyy\\]').val();
+
+        var errContainer = $('#dateOfSpecialRules-error');
+
+        if (day !== '' && month !== '' && year !== '' && srDay !== '' && srMonth !== '' && srYear !== '') {
+          var srDay = (parseInt(diagYear) === parseInt(year) && parseInt(srMonth) === parseInt(month)) ? day : '1';
+          var srDate = new Date(Date.parse(srYear + '/' + srMonth + '/' + srDay));
+
+          if (srDate > new Date()) {
+            errContainer.html(getMsg($('#f-dateOfSpecialRules\\[dd\\]').attr('data-parsley-future-message'), 'datefuture'));
+          }
+        }
+      }
+
+      if ($('#dateOfSpecialRules-error ul li').length > 0) {
+        $('#dateOfSpecialRules-group').removeClass('parsley-success').addClass('parsley-error');
+      } else {
+        $('#dateOfSpecialRules-group').removeClass('parsley-error');
       }
     }, 0)
   }

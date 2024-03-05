@@ -1,5 +1,6 @@
 {
   "dateInput": {
+    "day": "Day",
     "month": "Month",
     "year": "Year"
   }
