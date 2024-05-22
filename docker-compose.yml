@@ -7,7 +7,7 @@ networks:
 
 services:
   localstack-seeder:
-    image: fstab/aws-cli:latest
+    image: fstab/aws-cli:latest@sha256:01a8e8ada9585578d59daa01127a83439a70f9de842542801c18c903c52fbb73
     expose:
       - 9015
       - 4576
@@ -23,7 +23,7 @@ services:
       - test
 
   localstack:
-    image: localstack/localstack-full:0.12.16
+    image: localstack/localstack-full:0.12.16@sha256:852047ad7d786c1817b73c13fc4b88c87d4a258c4d2d19dfe70009c216252df3
     environment:
       - SERVICES=s3,sns,sqs,kms
       - HOSTNAME_EXTERNAL=localstack
@@ -38,7 +38,7 @@ services:
       retries: 20
 
   redis-cluster:
-    image: grokzen/redis-cluster:6.0.7
+    image: grokzen/redis-cluster:6.0.7@sha256:9d08910a69102069141999ef02b8821536a97502f94575880d1b0d00e608424c
     expose:
       - 7000
       - 7001
@@ -277,7 +277,7 @@ services:
       - test
 
   chrome:
-    image: selenium/node-chrome:4.0.0-beta-2-20210319
+    image: selenium/node-chrome:4.0.0-beta-2-20210319@sha256:d07686245f968729a46083eef72a3037750041c728a7c506f8b461463bff19a7
     volumes:
       - /dev/shm:/dev/shm
     networks:
@@ -294,7 +294,7 @@ services:
       driver: none
 
   selenium-hub:
-    image: selenium/hub:4.0.0-beta-2-20210319
+    image: selenium/hub:4.0.0-beta-2-20210319@sha256:a0235bf3c5ac572f0e81215dcee64a8987c0d241d52bb82826144a04373ed1d0
     container_name: selenium-hub
     networks:
       - test

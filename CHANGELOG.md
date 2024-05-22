@@ -1,3 +1,9 @@
+<a name="2-2-0"></a>
+# 2-2-0 (2024-05-14)
+
+* feature: crown logo update ([ee45d96](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ee45d96))
+
+
 <a name="2-1-0"></a>
 # 2-1-0 (2024-02-13)
 
