@@ -580,7 +580,8 @@
         'data-parsley-invalidcharacters-message':t('sr1:gpName.invalid'),
         'data-parsley-class-handler':"#gpName-group",
         'data-parsley-errors-container':"#gpName-error",
-        'data-parsley-trigger':"focusout"
+        'data-parsley-trigger':"focusout",
+        'autocomplete':"name"
       },
       casaErrors: formErrors
     }) }}
@@ -604,7 +605,8 @@
         'data-parsley-invalidcharacters-message':t('sr1:gpAddress.invalid'),
         'data-parsley-class-handler':"#gpAddress-group",
         'data-parsley-errors-container':"#gpAddress-error",
-        'data-parsley-trigger':"focusout keyup"
+        'data-parsley-trigger':"focusout keyup",
+        'autocomplete':"street-address"
       },
       casaErrors: formErrors
     }) }}
@@ -627,7 +629,8 @@
         'data-parsley-invalidcharacters-message': t('sr1:gpPostcode.invalidChars'),
         'data-parsley-class-handler':"#gpPostcode-group",
         'data-parsley-errors-container':"#gpPostcode-error",
-        'data-parsley-trigger':"focusout"
+        'data-parsley-trigger':"focusout",
+        'autocomplete':"postal-code"
       },
       classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors
@@ -647,7 +650,8 @@
         'data-parsley-invalidcharacters-message':t('sr1:gpAddress.invalid'),
         'data-parsley-class-handler':"#gpPhone-group",
         'data-parsley-errors-container':"#gpPhone-error",
-        'data-parsley-trigger':"focusout keyup"
+        'data-parsley-trigger':"focusout keyup",
+        'autocomplete':"tel-local"
       },
       classes: "govuk-!-width-two-thirds",
       casaErrors: formErrors

@@ -1,7 +1,6 @@
 {
-  "1096460": {
+  "1097346": {
     "active": true,
-    "notes": "NPM IP package vulnerable to Server-Side Request"
+    "notes": "ip SSRF improper categorization in isPublic"
   }
-
 }

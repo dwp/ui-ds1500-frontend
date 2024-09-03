@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const concat = require('gulp-concat');
 const { watch } = gulp
 const rename = require('gulp-rename');
 const jsonmin = require('gulp-jsonmin');
@@ -49,7 +50,8 @@ gulp.task('js', function (callback) {
   pump([
     gulp.src(npath.resolve(srcdir, 'js/**/*.js')),
     uglify(),
-    gulp.dest(npath.resolve(dstdir, 'js'))
+    gulp.dest(npath.resolve(dstdir, 'js')),
+    gulp.dest(npath.resolve(pubDir, 'js'))
   ], callback);
 });
 
@@ -101,6 +103,19 @@ gulp.task('data', function (callback) {
   ], callback);
 });
 
+/* ----------------------------------------------------------------------- staticPages */
+
+gulp.task('staticPages', function (done) {
+  gulp.task('img');
+  gulp.task('public');
+  gulp.src(['src/js/clear-cookies.js'])
+    .pipe(concat('app.js'))
+    .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(npath.resolve(pubDir, 'js')));
+  done();
+});
+
 /* -------------------------------------------------------------------- Tasks */
 
-gulp.task('default', gulp.series('sass', 'sass-ie8', 'js', 'img', 'public', 'data', 'copy'));
+gulp.task('default', gulp.series('sass', 'sass-ie8', 'js', 'img', 'public', 'data', 'copy', 'staticPages'));

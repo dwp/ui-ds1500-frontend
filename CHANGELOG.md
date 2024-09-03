@@ -1,3 +1,15 @@
+<a name="2-3-0"></a>
+# 2-3-0 (2024-07-26)
+
+* build: revert axios override ([cc7a936](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/cc7a936))
+* feature: update accessibility statement ([5cb3ce0](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/5cb3ce0))
+* feature: 403 page content updates & banner url change ([95d0f77](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/95d0f77))
+* feature: add clear cookie button function on 403 page ([ea0cba2](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ea0cba2))
+* feature: update anchor element to be interactable when using voice control ([79eaa8c](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/79eaa8c))
+* feature: page title accessibility fix ([b5b1b91](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/b5b1b91))
+* feature: ds1500 accessibility autocomplete fixes ([bd07368](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/bd07368))
+
+
 <a name="2-2-0"></a>
 # 2-2-0 (2024-05-14)
 
