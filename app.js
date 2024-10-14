@@ -17,9 +17,11 @@ const pages = require('./definitions/pages.js');
 const plan = require('./definitions/plan.js')();
 
 const { CONSENT_COOKIE_NAME, GTM_DOMAIN, COOKIE_POLICY, COOKIE_DETAILS, SESSIONID, waypoints } = require('./lib/constants.js');
+const dwpNodeLogger = require('@dwp/node-logger');
 
 // Load app config from `.env`
 const appConfig = Object.assign({}, process.env);
+const logger = dwpNodeLogger('api');
 
 try {
   require('./lib/EnvValidator')(appConfig);
@@ -121,9 +123,26 @@ const application = ({
       // `img-src` directive
       config.contentSecurityPolicy.directives['img-src'].push('data:');
 
-      // Only upgrade http requests in prod
       if (appConfig.NODE_ENV !== 'production') {
+        // Only upgrade http requests in prod
         config.contentSecurityPolicy.directives.upgradeInsecureRequests = null;
+      }
+
+      // Disables certain security headers that will prevent the various Google
+      // Tag Manager tools from working correctly, should NOT be enabled in
+      // production! Instruct data and analytics colleagues to tag in dev/test.
+      if (appConfig.DISABLE_GTM_BREAKING_HEADERS === 'true') {
+        logger.info(`Content security policy DISABLED as DISABLE_GTM_BREAKING_HEADERS set to ${appConfig.DISABLE_GTM_BREAKING_HEADERS}`);
+        // Prevents `NotSameOriginAfterDefaultedToSameOriginByCoep` error in
+        // browser console while using Tag Manager.
+        config.crossOriginEmbedderPolicy = false;
+        // Stops Tag Manager overlays failing to load / inject styles, etc.
+        config.contentSecurityPolicy = false;
+        // Fixes Tag Assisstant overlay failing to persist beyond the first
+        // page in Google Chrome.
+        config.referrerPolicy = false;
+      } else {
+        logger.info(`Content security policy ENABLED as DISABLE_GTM_BREAKING_HEADERS set to ${appConfig.DISABLE_GTM_BREAKING_HEADERS ?? false}`);
       }
 
       return config;

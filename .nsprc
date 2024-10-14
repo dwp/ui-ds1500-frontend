@@ -1,6 +1,16 @@
 {
-  "1097346": {
+  "1099520": {
     "active": true,
-    "notes": "ip SSRF improper categorization in isPublic"
+    "notes": "body-parser vulnerable to denial of service when url encoding is enabled"
+  },
+
+  "1099558": {
+    "active": true,
+    "notes": "path-to-regexp outputs backtracking regular expressions"
+  },
+
+  "1099562": {
+    "active": true,
+    "notes": "path-to-regexp outputs backtracking regular expressions"
   }
 }

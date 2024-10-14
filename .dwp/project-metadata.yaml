@@ -6,10 +6,10 @@ project:
   - project_id: 27291673
     component_name: ui-ds1500-frontend
 
-    version: 2.3.0
+    version: 2.4.0
 
     last_verified:
-      date: "2024-08-23"
+      date: "2024-10-04"
       name: "@aayush.srikanth"
 
     tags:

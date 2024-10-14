@@ -10,6 +10,7 @@ module.exports = function (ancillaryRouter, csrfMiddleware, ...args) {
 
   if (notifyProxyHost != null && notifyProxyPort != null) {
     notifyProxyConfig = {
+      protocol: 'http',
       host: notifyProxyHost,
       port: notifyProxyPort
     }

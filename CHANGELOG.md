@@ -1,3 +1,11 @@
+<a name="2-4-0"></a>
+# 2-4-0 (2024-10-04)
+
+* build: update the content security policy to enable data import for GA4 ([dd1d809e]((https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/dd1d809e))
+* build: update proxy so feedback submission test will run properly and fail fix for cucumber tests and unit tests ([615c5656](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/615c5656)
+* fix: update vulnerabilities and dockerfile ([cd8b2b42](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/cd8b2b42))
+
+
 <a name="2-3-0"></a>
 # 2-3-0 (2024-07-26)
 

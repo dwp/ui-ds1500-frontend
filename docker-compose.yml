@@ -151,8 +151,8 @@ services:
       - DS1500_CONTROLLER_URL=http://ms-ds1500-controller:9013/
       - NOTIFY_EMAILTO=dwp.digitalds1500@dwp.gsi.gov.uk
       - NOTIFY_APIKEY=dwp_ds1500test-f0cde76d-05b0-4a1e-a8eb-6fe18dbc58fc-2528b5b6-8508-4cf5-81c4-8bc28301c051
-      - NOTIFY_PROXY_HOST=null
-      - NOTIFY_PROXY_PORT=80
+      - NOTIFY_PROXY_HOST=proxy.public.health-dev.dwpcloud.uk
+      - NOTIFY_PROXY_PORT=3128
       - REDIS_HOST=redis-cluster
       - REDIS_PORT=7000
       - REDIS_CLUSTER=true
