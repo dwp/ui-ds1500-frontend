@@ -1,3 +1,20 @@
+const pages = require('../../definitions/pages');
+const pageNames = pages({ mountUrl: '/' });
+
+const startPageUrl = '/sr1-start';
+const cookiePolicyUrl = '/cookie-policy';
+
+const allowedUrls = pageNames
+  .filter((item) => item.waypoint && typeof item.waypoint === 'string' && item.waypoint.trim() !== '')
+  .map((item) => `/${item.waypoint}`);
+
+allowedUrls.push(cookiePolicyUrl);
+allowedUrls.push('/cookies');
+allowedUrls.push('/cookies-table');
+allowedUrls.push('/accessibility-statement');
+allowedUrls.push('feedback-sent');
+allowedUrls.push('/additional-guidance');
+
 function getOneYearInMilliseconds () {
   const currYear = new Date().getFullYear();
   const isLeap = year => new Date(year, 1, 29).getDate() === 29;
@@ -12,7 +29,12 @@ module.exports = (consentCookieName, mountUrl, gtmDomain, useTLS = false) => (re
   // Validation error, set messeage in session and redirect back to this page
   if (!cookieConsent || (cookieConsent !== 'reject' && cookieConsent !== 'accept')) {
     req.session.cookieConsentError = 'cookie-policy:field.cookieConsent.required';
-    return req.session.save(() => res.redirect(req.url));
+
+    if (allowedUrls.includes(req.url) || allowedUrls.some((url) => req.url.startsWith(url))) {
+      return req.session.save(() => res.redirect(req.url));
+    }
+
+    return res.redirect(cookiePolicyUrl);
   }
 
   // Validation successful, set cookie and redirect back where they came from
@@ -52,8 +74,15 @@ module.exports = (consentCookieName, mountUrl, gtmDomain, useTLS = false) => (re
   if (req.query.backto) {
     const { pathname, search } = new URL(String(req.query.backto), 'https://dummy.test/');
     const redirectBackTo = (pathname + search).replace(/\/+/g, '/').replace(/[.:]+/g, '');
-    return req.session.save(() => res.redirect(redirectBackTo));
+
+    if (allowedUrls.includes(redirectBackTo)) {
+      return req.session.save(() => res.redirect(redirectBackTo));
+    }
   }
 
-  return req.session.save(() => res.redirect(req.url));
+  if (allowedUrls.includes(req.url)) {
+    return req.session.save(() => res.redirect(req.url));
+  }
+
+  return res.redirect(startPageUrl);
 };

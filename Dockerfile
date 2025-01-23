@@ -4,11 +4,14 @@ ARG PORT
 FROM node:${NODE_VERSION} AS builder
 ENV PORT=${PORT}
 ARG GITLAB_REGISTRY_TOKEN
-RUN apk --no-cache add git=2.43.5-r0 \
+RUN apk --no-cache add git=2.43.6-r0 \
      make=4.4.1-r2 \
      build-base=0.5-r3 \
-     python3=3.11.10-r0 \
+     python3=3.11.11-r0 \
      py3-pip=23.3.1-r0
+
+RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
+USER nonroot
 
 WORKDIR /src
 COPY . /src/

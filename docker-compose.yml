@@ -269,7 +269,7 @@ services:
       - test
 
   nhs-spine-ssb-mock:
-    image: registry.gitlab.com/dwp/engineering/mock-service-api/${BRANCH_NAME:-develop}:latest
+    image: ${CI_REGISTRY}/dwp/engineering/mock-service-api/${BRANCH_NAME:-develop}:latest
     volumes:
       - ./local-dev/mocks/nhs-spine-ssb/files:/home/wiremock/__files/data-adapter
       - ./local-dev/mocks/nhs-spine-ssb/mappings:/home/wiremock/mappings/data-adapter

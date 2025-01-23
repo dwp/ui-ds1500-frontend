@@ -18,21 +18,21 @@ describe('Routes: cookies/cookie-policy.post', () => {
     const route = cookiePolicyPost(CONSENT_COOKIE_NAME);
     const req = new Request();
     const res = new Response(req);
-    req.url = 'test';
+    req.url = '/cookie-policy?backto=%2Fsr1';
     route(req, res);
     expect(req.session.cookieConsentError).to.equal('cookie-policy:field.cookieConsent.required');
-    expect(res.redirectedTo).to.equal('test');
+    expect(res.redirectedTo).to.equal('/cookie-policy?backto=%2Fsr1');
   });
 
   it('should add error to session and redirect back if req.body.cookieConsent is not accept or reject', () => {
     const route = cookiePolicyPost(CONSENT_COOKIE_NAME);
     const req = new Request();
     const res = new Response(req);
-    req.url = 'test';
+    req.url = '/cookie-policy?backto=%2Fsr1';
     req.body.cookieConsent = 'wrong';
     route(req, res);
     expect(req.session.cookieConsentError).to.equal('cookie-policy:field.cookieConsent.required');
-    expect(res.redirectedTo).to.equal('test');
+    expect(res.redirectedTo).to.equal('/cookie-policy?backto=%2Fsr1');
   });
 
   it('should update consent cookie if req.body.cookieConsent is accept or reject', () => {
@@ -126,9 +126,9 @@ describe('Routes: cookies/cookie-policy.post', () => {
     const req = new Request();
     const res = new Response(req);
     req.body.cookieConsent = 'accept';
-    req.query.backto = 'http://localhost/cookie-policy////sr1-start';
+    req.query.backto = 'http://localhost////sr1-start';
     route(req, res);
-    expect(res.redirectedTo).to.equal('/cookie-policy/sr1-start');
+    expect(res.redirectedTo).to.equal('/sr1-start');
   });
 
   it('should remove . and : form backto URL', () => {
@@ -136,9 +136,9 @@ describe('Routes: cookies/cookie-policy.post', () => {
     const req = new Request();
     const res = new Response(req);
     req.body.cookieConsent = 'accept';
-    req.query.backto = '/cookie-policy/:sr1-start.';
+    req.query.backto = '/:sr1-start.';
     route(req, res);
-    expect(res.redirectedTo).to.equal('/cookie-policy/sr1-start');
+    expect(res.redirectedTo).to.equal('/sr1-start');
   });
 
   it('should redirect back to req.url if backto query is not present', () => {
@@ -147,8 +147,8 @@ describe('Routes: cookies/cookie-policy.post', () => {
     const res = new Response(req);
     req.body.cookieConsent = 'accept';
     req.originalUrl = 'proxy/test';
-    req.url = 'test';
+    req.url = '/sr1-download';
     route(req, res);
-    expect(res.redirectedTo).to.equal('test');
+    expect(res.redirectedTo).to.equal('/sr1-download');
   });
 });

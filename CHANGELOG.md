@@ -1,3 +1,30 @@
+<a name="2.6.0"></a>
+# 2.6.0 (2025-01-20)
+
+* release: set version to candidate version in dwp metadata file 2.6.0 ([c49ef95](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/c49ef95))
+* release: set version to candidate version in package files 2.6.0 ([1d7856a](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/1d7856a))
+* chore: metadata/fragment updates ([3e5e654](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/3e5e654))
+* ui: new SR1 feedback link ([e3dd54e](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/e3dd54e))
+* fix: correct version updated in error ([a9fe859](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/a9fe859))
+* release: set version from  to snapshot  [skip ci] ([24dee19](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/24dee19))
+
+
+<a name="2.5.0"></a>
+# 2.5.0 (2024-11-26)
+
+* release: set version to candidate version in dwp metadata file 2.5.0 ([41282b0](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/41282b0))
+* release: set version to candidate version in package files 2.5.0 ([b2df78b](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/b2df78b))
+* chore: add/update file via GitLabForm [skip ci] ([52f4df8](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/52f4df8))
+* chore: add/update file via GitLabForm [skip ci] ([ad4ce9e](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ad4ce9e))
+* chore: add/update file via GitLabForm [skip ci] ([bcd7064](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/bcd7064))
+* Dependency updates ([a2e6ca9](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/a2e6ca9))
+* chore: add/update file via GitLabForm [skip ci] ([988fd38](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/988fd38))
+* chore: add/update file via GitLabForm [skip ci] ([db3203a](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/db3203a))
+* chore: add/update file via GitLabForm [skip ci] ([28317bf](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/28317bf))
+* Update .gitlab-ci.yml [skip ci] ([8ab85d5](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/8ab85d5))
+* build: bump release version [skip ci] ([f3179f7](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/f3179f7))
+
+
 <a name="2-4-0"></a>
 # 2-4-0 (2024-10-04)
 

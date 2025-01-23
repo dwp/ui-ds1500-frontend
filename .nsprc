@@ -12,5 +12,10 @@
   "1099562": {
     "active": true,
     "notes": "path-to-regexp outputs backtracking regular expressions"
+  },
+
+  "1100563": {
+    "active": true,
+    "notes": "Regular Expression Denial of Service (ReDoS)"
   }
 }

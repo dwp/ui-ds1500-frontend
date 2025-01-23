@@ -18,7 +18,7 @@
       }) }}
     <h1 class="govuk-heading-l">{{ t('sr1-start:h1') }} </h1>
     <div class="govuk-inset-text">
-        {{ t('sr1-start:insetText') }}
+        {{ t('sr1-start:insetText', { url: 'https://send-an-sr1-medical-evidence-form.dwp.gov.uk/start' }) | safe  }}
     </div>
     <div class="form-group">
       <p>{{ t('sr1-start:p1') }}</p>
