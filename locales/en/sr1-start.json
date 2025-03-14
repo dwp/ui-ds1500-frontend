@@ -7,5 +7,10 @@
   "li1": "has a progressive disease and",
   "li2": "you would not be surprised if they were to live for less than 12 months",
   "startNow": "Start now",
-  "additionalGuidance": "Additional guidance"
+  "additionalGuidance": "Additional guidance",
+  "alert": {
+    "heading": "From 1 April 2025 you will no longer be able to access the SR1 service from this page",
+    "line1": "Use the <a href=\"https://send-an-sr1-medical-evidence-form.dwp.gov.uk/start\">Send an SR1 medical evidence form</a> which replaces it and is available now.",
+    "line2": "Any bookmarks you have created for the SR1 service will no longer work and should be deleted."
+  }
 }

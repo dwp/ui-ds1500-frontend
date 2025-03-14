@@ -1,3 +1,17 @@
+<a name="2.7.0"></a>
+# 2.7.0 (2025-03-07)
+
+* release: set version to candidate version in dwp metadata file 2.7.0 ([ca913a4](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ca913a4))
+* release: set version to candidate version in package files 2.7.0 ([fb9e15f](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/fb9e15f))
+* Add new alert to new sr1 service ([ea6a0c5](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/ea6a0c5))
+* fix: Address new high vulns ([74e13c9](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/74e13c9))
+* chore: Identify hardcoded GitLab URLs ([bc64d09](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/bc64d09))
+* fix: Apply bot version updates ([d886615](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/d886615))
+* Address vulnerabilities ([7949d4b](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/7949d4b))
+* build: bump release version [skip ci] ([baa07f6](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/baa07f6))
+* ci: fix vulnerability ([8a9ebbf](https://gitlab.com/dwp/health/ds1500/components/ui-ds1500-frontend/-/commit/8a9ebbf))
+
+
 <a name="2.6.0"></a>
 # 2.6.0 (2025-01-20)
 

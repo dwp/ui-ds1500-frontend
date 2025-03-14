@@ -102,7 +102,8 @@ const application = ({
     views: [
       resolve(__dirname, './views'),
       resolve(__dirname, './alpha/views'),
-      resolve(__dirname, './node_modules/hmrc-frontend')
+      resolve(__dirname, './node_modules/hmrc-frontend'),
+      resolve(__dirname, './node_modules/@ministryofjustice')
     ],
     session: {
       name: SESSIONID,

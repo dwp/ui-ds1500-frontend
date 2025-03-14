@@ -1,0 +1,13 @@
+Hardcoded URLs found in non-targeted files:
+File: ./.npmrc
+Line: 2:@dwp:registry=https://gitlab.com/api/v4/packages/npm/
+---
+File: ./.npmrc
+Line: 3://gitlab.com/api/v4/packages/npm/:_authToken=${GITLAB_REGISTRY_TOKEN}
+---
+File: ./package-lock.json
+Line: 1771:      "resolved": "https://gitlab.com/api/v4/projects/26878543/packages/npm/@dwp/govuk-casa/-/@dwp/govuk-casa-8.15.2.tgz",
+---
+File: ./package-lock.json
+Line: 2126:      "resolved": "https://gitlab.com/api/v4/projects/30151843/packages/npm/@dwp/node-logger/-/@dwp/node-logger-2.0.2.tgz",
+---

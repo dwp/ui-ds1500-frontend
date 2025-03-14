@@ -6,11 +6,11 @@ project:
   - project_id: 27291673
     component_name: ui-ds1500-frontend
 
-    version: 2.6.0
+    version: 2.7.0
 
     last_verified:
-      date: "2025-01-20"
-      name: "@stephen.nimako"
+      date: "2025-03-04"
+      name: "@zakariyya.uddin"
 
     tags:
       payments: false

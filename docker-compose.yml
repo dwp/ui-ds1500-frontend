@@ -38,7 +38,7 @@ services:
       retries: 20
 
   redis-cluster:
-    image: grokzen/redis-cluster:6.0.7@sha256:9d08910a69102069141999ef02b8821536a97502f94575880d1b0d00e608424c
+    image: grokzen/redis-cluster:6.2.14@sha256:c7fa7b3889d885ed1ed63f32ac1bf0ba6acea5f3d15efabafe59b3bfce81d860
     expose:
       - 7000
       - 7001
@@ -279,7 +279,7 @@ services:
   chrome:
     image: selenium/node-chrome:4.0.0-beta-2-20210319@sha256:d07686245f968729a46083eef72a3037750041c728a7c506f8b461463bff19a7
     volumes:
-      - /dev/shm:/dev/shm
+      - /tmp:/tmp
     networks:
       - test
     depends_on:
